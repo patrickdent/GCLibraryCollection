@@ -1,6 +1,10 @@
 <h1><%= @genre.name %></h1>
 <ul> 
 	<% @genre.books.each do |b| %>
-	<li> <%= b.title %>, <%= b.author %> </li>
+	<li> <%= b.title %>, 
+  <% b.authors.each do |a| %>
+    <%= a.name %>
+  <% end %>
+  </li>
 	<% end %>
 </ul>
