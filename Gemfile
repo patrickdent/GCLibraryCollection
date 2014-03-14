@@ -10,8 +10,15 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 group :test, :developement do 
-  gem 'rspec', '~> 2.14.1'
+  gem 'rspec-rails'
+
 end 
+
+group :test do
+    gem 'capybara'
+    gem 'selenium-webdriver'
+    gem 'shoulda-matchers'
+end
 
 group :doc do
   gem 'sdoc', require: false
