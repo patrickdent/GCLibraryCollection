@@ -15,19 +15,40 @@ Ruby 2.0.0
  - search collection by genre, author, or title 
  - contact librarians
 
-###public user can not:
-
- - see if a book is available to check out
- - put a book on hold 
-
 ###admin can:
 
+ - log in to view admin dashboard 
  - upload a file (export from BookCat) of books to be entered into collection 
 
 
 #v2
 
 
-#v3 
+#v3 : Full library management app!
 
-Full library management app???
+All of the v1 features plus:
+
+###public user can: 
+
+ - see if a book is available to check out
+
+###patron can:
+
+ - log in to view their borrowing history 
+ - put an available book on hold 
+
+###librarian can:
+
+ - log in to view librarian dashboard
+ - create patron accounts (for borrowing & using the app)
+ - check books in/out to patrons 
+ - view borrowing history of collection items
+ - view borrowing history of each patron 
+ - generate reports from borrowing data 
+
+###admin can: 
+
+ - create librarian accounts
+ - manage collection with CRUD capabilities for all items
+ - enter the ISBN of a new item and get details for it via scrape process
+
