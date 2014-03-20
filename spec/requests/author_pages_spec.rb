@@ -7,8 +7,8 @@ require 'spec_helper'
 
 describe "Author Pages" do
 
-  let(:author)  { FactoryGirl.create(:author) }
-  let(:book)    { FactoryGirl.create(:book) }
+  let(:author)  { create(:author) }
+  let(:book)    { create(:book) }
 
   # problamatic...not sure why
   # let(:genre)   { FactoryGirl.create(:genre) }
@@ -27,7 +27,7 @@ describe "Author Pages" do
 
    before { visit authors_path }
 
-   it { should have_link(author.name, href: author_path(author.id)) }
+   it { should have_link(author.name, author_path(author.id)) }
 
   end
 
