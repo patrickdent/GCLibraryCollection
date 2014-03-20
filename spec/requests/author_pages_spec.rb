@@ -7,17 +7,12 @@ require 'spec_helper'
 
 describe "Author Pages" do
 
+  let(:genre)   { create(:genre)}
+  let(:book)    { create(:book, genre: genre) }
   let(:author)  { create(:author) }
-  let(:book)    { create(:book) }
-
-  # problamatic...not sure why
-  # let(:genre)   { FactoryGirl.create(:genre) }
-  # let(:genre)   { Genre.first }
   
 
   before do
-   # problamatic...not sure why 
-   # book.genre_id = genre.id
    author.books << book
   end
 

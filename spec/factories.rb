@@ -4,8 +4,6 @@ FactoryGirl.define do
     #simple starting data
     title     "Kittypuss: an History"
     isbn      "123456789"
-    genre
-    # association :authors, factory: :author 
 
     #for when we want to populate the database with a lot of data
     # Sequence(:title)  { |n| "Title #{n}" }
@@ -17,7 +15,7 @@ FactoryGirl.define do
     #simple starting data
     name      "Chairman Meow"
 
-  
+
     #for when we want to populate the database with a lot of data
     # Sequence(:name)   { |n| "Author #{n}" }
   end
