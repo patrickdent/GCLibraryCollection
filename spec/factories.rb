@@ -1,8 +1,10 @@
 FactoryGirl.define do
+  
   factory :book do
     #simple starting data
     title     "Kittypuss: an History"
     isbn      "123456789"
+    genre_id  1
 
     #for when we want to populate the database with a lot of data
     # Sequence(:title)  { |n| "Title #{n}" }

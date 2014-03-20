@@ -42,8 +42,10 @@ RSpec.configure do |config|
   require 'capybara/rspec'
   # require 'capybara/rails'
 
-  RSpec.configure do |config|
-    config.include Capybara::DSL 
-  end 
+  
+  config.include Capybara::DSL 
+
+  config.include FactoryGirl::Syntax::Methods
+  
 
 end
