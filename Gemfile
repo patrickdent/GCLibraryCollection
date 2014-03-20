@@ -9,6 +9,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
+
 group :test, :developement do 
   gem 'rspec-rails'
 
@@ -18,6 +19,7 @@ group :test do
     gem 'capybara'
     gem 'selenium-webdriver'
     gem 'shoulda-matchers'
+    gem 'factory_girl_rails', '~> 4.0'
 end
 
 group :doc do
