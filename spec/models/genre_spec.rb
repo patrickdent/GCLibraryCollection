@@ -8,7 +8,7 @@ describe Genre do
   subject { genre }
 
   describe "accessible attributes" do 
-    its(:name) { should == "Meowstory" }
+    its(:name) { should == genre.name }
   end
 
 end
