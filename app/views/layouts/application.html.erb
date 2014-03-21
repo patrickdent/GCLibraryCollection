@@ -7,10 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
 <nav>
   <%= link_to "Home", root_path %> &nbsp;
   <a href="mailto:library@example.com?Subject=Inquiry" target="_top">Contact the Library!</a>
 </nav>
+
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, class: name %>
+<% end %>
 
 <%= yield %>
 
