@@ -1,0 +1,9 @@
+<h1> Search Results </h1>
+
+<% if @books.count > 0 %>
+<% @books.each do |b| %>
+  <%= link_to b.name, book_path(b.id) %>
+<% end %>
+<% else %>
+  <p> Your search yeilded no results. </p>
+<% end %>

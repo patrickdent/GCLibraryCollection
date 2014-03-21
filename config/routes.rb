@@ -3,7 +3,7 @@ LibraryCollection::Application.routes.draw do
   resources :genres
   resources :authors
 
-  get 'search' => 'authors#search'
+  get 'search' => 'search#search'
   
   root to: 'static_pages#home'
   # The priority is based upon order of creation: first created -> highest priority.
