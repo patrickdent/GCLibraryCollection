@@ -7,7 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<nav><%= link_to "Home", root_path %></nav>
+<nav>
+  <%= link_to "Home", root_path %> &nbsp;
+  <a href="mailto:library@example.com?Subject=Inquiry" target="_top">Contact the Library!</a>
+</nav>
 
 <%= yield %>
 
