@@ -1,0 +1,9 @@
+<h1> Search Results </h1>
+
+<% if @authors.count > 0 %>
+<% @authors.each do |a| %>
+  <%= link_to a.name, author_path(a.id) %>, total: <%= a.books.count %>
+<% end %>
+<% else %>
+  <p> Your search yeilded no results. </p>
+<% end %>
