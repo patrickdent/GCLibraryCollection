@@ -1,3 +1,5 @@
+<h1>Authors</h1>
+
 <% @authors.each do |a| %>
   <%= link_to a.name, author_path(a.id) %>, total: <%= a.books.count %>
 <% end %>

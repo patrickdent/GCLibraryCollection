@@ -1,3 +1,5 @@
+<h1>Genres</h1>
+
 <% @genres.each do |g| %>
 	<%= link_to g.name, genre_path(g.id) %>, total: <%= g.books.count %>
 <% end %>
