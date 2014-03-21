@@ -18,15 +18,18 @@ Ruby 2.0.0
 ###admin can:
 
  - log in to view admin dashboard 
- - upload a file (export from BookCat) of books to be entered into collection 
+ - upload a file (export from previous cataloguing system) of books to be entered into collection 
 
 
 #v2
 
+###admin can: 
+
+ - manage collection with CRUD capabilities for all items
+ - enter the ISBN of a new item and get details for it via scrape process
+
 
 #v3 : Full library management app!
-
-All of the v1 features plus:
 
 ###public user can: 
 
@@ -49,6 +52,4 @@ All of the v1 features plus:
 ###admin can: 
 
  - create librarian accounts
- - manage collection with CRUD capabilities for all items
- - enter the ISBN of a new item and get details for it via scrape process
 
