@@ -26,7 +26,7 @@ describe "Genre Pages" do
 
    it { should have_selector('h1', text: genre.name) }
    it { should have_content(book.title) }
-   #it { should have_content(book.author.name) }
+   it { should have_content(book.authors.first.name) }
 
   end
 end

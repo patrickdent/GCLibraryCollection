@@ -1,10 +1,5 @@
 require 'spec_helper'
 
-
-
-#before running test:
-#run: rake RAILS_ENV=test db:seed
-
 describe "Author Pages" do
 
   let(:genre)   { create(:genre)}
