@@ -23,13 +23,15 @@ books = Book.create([{ title: 'Kittles and Bits', genre: genres[0] },
 
 #assigns cute name books to cute name authors
 authors.each do |a|
-  a.books << books[(@int += 1) % 4]
+  a.books << books[(@int += 1) % books.count]
 end
 
 @int = 0
 
 #a bunch of extra test books assigned to authors
 (1..100).each do |i|
-  authors[@int % 4].books << Book.create(title: "Test Book #{i}", genre: genres[(@int += 1) % 3])
+  authors[@int % authors.count].books << 
+                          Book.create(title: "Test Book #{i}", 
+                                      genre: genres[(@int += 1) % genres.count])
 end
  
