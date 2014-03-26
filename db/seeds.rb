@@ -6,6 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 genre = Genre.create([{ name: 'Meowstory'}])
-authors = Author.create([{ name: 'Chairmam Meow' }, { name: 'B. Author'}])
+authors = Author.create([{ name: 'Chairman Meow' }, { name: 'B. Author'}])
 book = Book.create([{ title: 'Kittles and BIts', genre_id: 1}])
 authors[0].books << book 
