@@ -5,7 +5,33 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-genre = Genre.create([{ name: 'Meowstory'}])
-authors = Author.create([{ name: 'Chairman Meow' }, { name: 'B. Author'}])
-book = Book.create([{ title: 'Kittles and BIts', genre_id: 1}])
-authors[0].books << book 
+genres = Genre.create([{ name: 'Meowstory' }, 
+                       { name: 'Self Help' }, 
+                       { name: 'Fur Facts' }])
+
+authors = Author.create([{ name: 'Chairman Meow' }, 
+                         { name: 'Fluffy Faulkner'}, 
+                         { name: 'B. Author' }, 
+                         { name: 'Boots McNally'}])
+
+books = Book.create([{ title: 'Kittles and Bits', genre: genres[0] }, 
+                     { title: 'I Am Who Am I?', genre: genres[1] },
+                     { title: 'The Sound and the Furry', genre: genres[0] },
+                     { title: 'Meowtains', genre: genres[2] }])
+
+@int = 0
+
+#assigns cute name books to cute name authors
+authors.each do |a|
+  a.books << books[(@int += 1) % books.count]
+end
+
+@int = 0
+
+#a bunch of extra test books assigned to authors
+(1..100).each do |i|
+  authors[@int % authors.count].books << 
+                          Book.create(title: "Test Book #{i}", 
+                                      genre: genres[(@int += 1) % genres.count])
+end
+ 
