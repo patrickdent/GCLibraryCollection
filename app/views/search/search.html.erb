@@ -3,11 +3,11 @@
 <% if @authors.count > 0 || @books.count > 0 %>
   <h3>Authors</h3>
   <% @authors.each do |a| %>
-    <%= link_to a.name, author_path(a.id) %>, total: <%= a.books.count %>
+    <p><%= link_to a.name, author_path(a.id) %>, total: <%= a.books.count %></p>
   <% end %>
   <h3>Books</h3>
   <% @books.each do |b| %>
-    <%= link_to b.title, book_path(b.id) %>
+    <p><%= link_to b.title, book_path(b.id) %></p>
   <% end %>
   
 <% else %>
