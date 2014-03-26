@@ -1,5 +1,6 @@
 FactoryGirl.define do
-  factory :book do
+  
+  factory :book, class: Book do
     #simple starting data
     title     "Kittypuss: an History"
     isbn      "123456789"
@@ -10,15 +11,16 @@ FactoryGirl.define do
     # Sequence(:isbn)   { |n| "12345678#{n}"}
   end
 
-  factory :author do
+  factory :author, class: Author do
     #simple starting data
     name      "Chairman Meow"
+
 
     #for when we want to populate the database with a lot of data
     # Sequence(:name)   { |n| "Author #{n}" }
   end
 
-  factory :genre do
+  factory :genre, class: Genre do
 
     #simple starting data
     name      "Meowstory"
