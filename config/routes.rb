@@ -1,4 +1,5 @@
 LibraryCollection::Application.routes.draw do
+  devise_for :users
   resources :books
   resources :genres
   resources :authors
