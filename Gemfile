@@ -10,6 +10,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'devise'
 gem 'cancan'
+gem 'rolify'
 
 
 group :test, :developement do 
