@@ -2,6 +2,7 @@ LibraryCollection::Application.routes.draw do
   resources :books
   resources :genres
   resources :authors
+   resources :book_imports, only: [:new, :create]
 
   get 'search' => 'search#search'
   
