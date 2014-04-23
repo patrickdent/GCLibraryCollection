@@ -6,10 +6,6 @@ class BookImport < ActiveRecord::Base
   require 'csv'
 
   def save
-    # if imported_books.map(&:valid?).all?
-    #   imported_books.each(&:save!)
-    #   true
-    # if imported_books.each {|i| i[:title] != nil }
     if imported_books.each { |i| make_book(i) }
       true 
     else
@@ -49,8 +45,9 @@ class BookImport < ActiveRecord::Base
 
   def make_book(book_data)
     return false if book_data["title"] == false
+    
     book = Book.create( title:  book_data["title"],
-                        genre:  Genre.find_by_name("Unassigned"),
+                        genre:  Genre.find_by_name(genre),
                         publisher: book_data["publisher"],
                         publish_date:  book_data["publish date"],
                         publication_place:  book_data["publication place"],

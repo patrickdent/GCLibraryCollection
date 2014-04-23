@@ -5,9 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-genres = Genre.create([{ name: 'Meowstory' }, 
-                       { name: 'Self Help' }, 
-                       { name: 'Fur Facts' }])
+genres = Genre.create([{ name: 'Meowstory'  }, 
+                       { name: 'Self Help'  }, 
+                       { name: 'Fur Facts'  }])
+
+#temp storage for books with no genre
+Genre.create(name: 'Unassigned')
 
 authors = Author.create([{ name: 'Chairman Meow' }, 
                          { name: 'Fluffy Faulkner'}, 
