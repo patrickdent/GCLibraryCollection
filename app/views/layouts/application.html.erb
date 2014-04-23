@@ -18,7 +18,7 @@
     <%= link_to "Logout", destroy_user_session_path, method: :delete %>  &nbsp;
 
     <% if current_user.has_role? :admin %>
-      <%= link_to "Upload Books", new_book_import_path %> &nbsp;
+      <%= link_to "Admin Dashboard", admin_dashboard_path %> &nbsp;
     <% end %>
 
   <% else %>
