@@ -1,0 +1,5 @@
+<h1>Upload yer file!</h1>
+<%= form_for @book_import do |b| %>
+  <%= b.file_field :file %>
+  <%= b.submit "Import File" %>
+<% end %>
