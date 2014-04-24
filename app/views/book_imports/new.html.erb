@@ -1,0 +1,7 @@
+<h1>Upload books to:</h1>
+
+<%= form_for @book_import do |b| %>
+  <%= b.select :genre, Genre.all.collect { |n| n.name } %>
+  <%= b.file_field :file %>
+  <%= b.submit "Import Books" %>
+<% end %>
