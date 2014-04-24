@@ -37,4 +37,11 @@ end
                           Book.create(title: "Test Book #{i}", 
                                       genre: genres[(@int += 1) % genres.count])
 end
- 
+
+# an admin user 
+u = User.new(
+  email: "admin@example.com",
+  password: 'password')
+u.add_role :admin
+u.save!(:validate => false)
+

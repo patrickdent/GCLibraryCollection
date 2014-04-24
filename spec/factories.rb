@@ -28,5 +28,15 @@ FactoryGirl.define do
     #for when we want to populate the database with a lot of data
     # Sequence(:name)   { |n| "Genre #{n}" }
   end
+
+  factory :user do 
+    email "bobo@example.com"
+    password "password"
+    password_confirmation "password" 
+
+    factory :admin do 
+      after(:create) {|user| user.add_role(:admin) }
+    end 
+  end 
   
 end
