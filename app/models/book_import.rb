@@ -45,7 +45,7 @@ class BookImport < ActiveRecord::Base
 
   def make_book(book_data)
     return false if book_data["title"] == false
-    
+
     book = Book.create( title:  book_data["title"],
                         genre:  Genre.find_by_name(genre),
                         publisher: book_data["publisher"],
@@ -70,4 +70,11 @@ class BookImport < ActiveRecord::Base
   def make_genre(name)
   end
   
+  def self.import_requirements?(params)
+    if params[:book_import].has_key?(:file)
+      true
+    else
+      false
+    end
+  end
 end
