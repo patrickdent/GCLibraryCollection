@@ -7,3 +7,7 @@
   <li>ISBN: <%= @book.isbn %></li>
   <li>Genre: <%= @book.genre.name %></li>
 </ul>
+
+<% if current_user && current_user.has_role? :admin then %>
+  <%= link_to "Edit This Book", edit_book_path %>
+<% end %>
