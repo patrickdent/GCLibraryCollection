@@ -12,9 +12,14 @@ gem 'cancan'
 gem 'rolify'
 
 
-group :test, :developement do 
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end 
+
+group :developement, :test do 
   gem 'rspec-rails'
-  #gem 'sqlite3'
+  gem 'sqlite3'
 end 
 
 group :test do
@@ -26,9 +31,4 @@ end
 
 group :doc do
   gem 'sdoc', require: false
-end
-
-group :production do
-  gem 'pg'
-  gem 'rails_12factor'
 end
