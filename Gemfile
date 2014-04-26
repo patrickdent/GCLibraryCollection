@@ -12,7 +12,7 @@ gem 'cancan'
 gem 'rolify'
 
 
-group :test, :developement do 
+group :developement do 
   gem 'rspec-rails'
   gem 'sqlite3'
 end 
@@ -22,6 +22,8 @@ group :test do
     gem 'selenium-webdriver'
     gem 'shoulda-matchers'
     gem 'factory_girl_rails', '~> 4.0'
+    gem 'sqlite3'
+    gem 'rspec-rails'
 end
 
 group :doc do
