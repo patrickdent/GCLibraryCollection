@@ -1,1 +1,9 @@
 <h1>Edit this Book</h1>
+
+<%= form_for @book do |b| %>
+  <%= b.label :title %> 
+  <%= b.text_field :title %> 
+  <%= b.label :genre_id %> 
+  <%= b.select :genre, Genre.all.collect { |n| n.name }, {include_blank: 'None'}, required: :true  %>
+  <%= b.submit "Update" %>
+<% end %>
