@@ -23,6 +23,7 @@ group :test do
     gem 'selenium-webdriver'
     gem 'shoulda-matchers'
     gem 'factory_girl_rails', '~> 4.0'
+    gem 'simplecov', '~> 0.9.0', :require => false
 end
 
 group :doc do
