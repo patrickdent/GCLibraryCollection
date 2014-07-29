@@ -11,6 +11,10 @@ Ruby 2.0.0
  - rake db:seed 
  - rails server
 
+###To see test coverage via SimpleCov gem:
+  - run all tests via 'rake'
+  - in a browser, open LibraryCollection/coverage/index.html 
+
 
 #v1
 ###public user can:

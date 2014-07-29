@@ -14,3 +14,9 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore SimpleCov output 
+coverage
+
+# Ignore mac generated nonsense 
+.DS_Store
