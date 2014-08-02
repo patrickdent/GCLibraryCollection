@@ -3,6 +3,8 @@ class Book < ActiveRecord::Base
   has_many :book_authors
   has_many :authors, through: :book_authors
 
+  validates :title, presence: true 
+
   def self.search(search)
     find(:all, conditions: ['title LIKE ?', "%#{search}%"] )
   end

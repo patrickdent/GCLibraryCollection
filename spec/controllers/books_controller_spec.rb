@@ -60,16 +60,25 @@ describe BooksController do
         @book.reload 
 
         expect(@book.title).to eq("Kittypuss: an History")
+        expect(response.status).to eq(302)
       end 
     end
 
     context 'when admin is logged in' do
-      it "allows user to edit" do 
+      it "allows authorized user to update with valid params" do 
         sign_in @admin
         post :update, id: @book.id, book: { title: "Whiskers and Black Lace" }
         @book.reload 
 
         expect(@book.title).to eq("Whiskers and Black Lace")      
+      end 
+      it "does not update with invalid params" do 
+        sign_in @admin
+        post :update, id: @book.id, book: { title: "" }
+        @book.reload 
+
+        expect(@book.title).to eq("Kittypuss: an History")
+        expect(response.status).to eq(302)
       end 
     end
   end 
