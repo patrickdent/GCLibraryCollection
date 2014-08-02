@@ -5,7 +5,7 @@
       <% end %> 
   </li>
   <li>ISBN: <%= @book.isbn %></li>
-  <li>Genre: <%= @book.genre.name %></li>
+  <li>Genre: <%= @book.genre.name if @book.genre %></li>
 </ul>
 
 <% if user_signed_in? and current_user.has_role? :admin %>

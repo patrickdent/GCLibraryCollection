@@ -21,6 +21,8 @@ class BooksController < ApplicationController
   def update 
     is_admin?
     @book = Book.find(params[:id])
+    genre = Genre.where(name: params[:genre]).first
+    @book.genre_id = genre.id 
     if @book.update(book_params)
       redirect_to book_path(@book)
       flash[:notice] = "Update Successful!"

@@ -1,9 +1,14 @@
 <h1>Edit this Book</h1>
 
+<%= @book.title %>, <%= @book.genre.name %>
+
+
 <%= form_for @book do |b| %>
   <%= b.label :title %> 
   <%= b.text_field :title %> 
-  <%= b.label :genre_id %> 
-  <%= b.select :genre, Genre.all.collect { |n| n.name }, {include_blank: 'None'}, required: :true  %>
+  <%= label_tag :genre %> 
+  <%= select_tag(:genre, options_for_select(Genre.all.collect { |n| n.name }), required: true, prompt: 'Please select one') %>
   <%= b.submit "Update" %>
 <% end %>
+
+<button><%= link_to "Cancel", book_path(@book) %></button>
