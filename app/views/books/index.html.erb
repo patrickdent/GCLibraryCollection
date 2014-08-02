@@ -1,0 +1,21 @@
+<h1>All Books</h1>
+
+<table class="books_index">
+  <tr>
+    <th>Title</th>
+    <th>Genre</th>
+    <th>Author(s)</th>
+  </tr>
+
+  <% @books.each do |b| %>
+  <tr>
+  <td> <%= link_to b.title, book_path(b.id) %></td>
+  <td> <%= b.genre.name if b.genre %> </td>
+  <td>
+    <% b.authors.each do |a| %>
+      <%= a.name %>
+    <% end %>
+  </td>
+  </tr>
+  <% end %>
+</table>
