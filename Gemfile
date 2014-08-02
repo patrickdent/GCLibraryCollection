@@ -19,6 +19,7 @@ group :test, :developement do
 end 
 
 group :test do
+    gem 'database_cleaner', '~> 1.3.0'
     gem 'capybara'
     gem 'selenium-webdriver'
     gem 'shoulda-matchers'
