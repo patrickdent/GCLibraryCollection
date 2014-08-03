@@ -11,4 +11,13 @@ describe Book do
     its(:isbn)  { should == "123456789" }
   end
 
+    describe "validations" do
+    it "will not create a book without a title" do 
+      count = Book.count  
+      FactoryGirl.create(:book, title: "")
+
+      expect(Book.count).to eq count
+    end 
+  end 
+
 end
