@@ -9,26 +9,54 @@ nav {
 	background-color: black;
 	font-weight: bold;
 	color: #ffffff;
-	height: 30px;
+	height: 25px;
 	padding: 1em;
 	margin: 0px, 0px;
+	// vertical-align: middle;
+	border-bottom: 8px #F6A450 solid;
 }
 
 nav a {
+	color: #DFE3DC;
+}
+
+nav a:visited {
+	color: #B8B2A0;
+}
+
+nav a:hover {
 	color: white;
 }
 
 .btn {
-	width: 75px;
-	height: 35px;
+	padding: 6px 10px;
 	background-color: #F6A450;
 	color: #ffffff;
 	font-size: 1em;
-	font-variant: small-caps;
 	border: 1px black solid;
-
+	border-radius: 8px;
 }
 
-#main_content {
+a {
+	text-decoration: none;
+}
+
+#content a {
+	padding: 0 10px 0 0;
+	color: #1764A8;
+	font-weight: bold;
+}
+
+#content a:hover {
+	color: #A7B5C7;
+}
+
+#content {
 	margin-left: 25px;
 }
+
+.browse {
+	margin-top: 40px;
+}
+
+
