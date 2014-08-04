@@ -1,13 +1,12 @@
 <h1>Edit this Book</h1>
 
-<%= @book.title %>, <%= @book.genre.name %>
-
 
 <%= form_for @book do |b| %>
   <%= b.label :title %> 
   <%= b.text_field :title %> 
-  <%= label_tag :genre %> 
-  <%= select_tag(:genre, options_for_select(Genre.all.collect { |n| n.name }), required: true, prompt: 'Please select one') %>
+  <%= b.label :genre %> 
+  <%= b.select(:genre_id, Genre.all.collect { |n| [n.name, n.id] }) %>
+
   <%= b.submit "Update" %>
 <% end %>
 
