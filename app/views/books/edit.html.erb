@@ -6,6 +6,7 @@
   <%= b.text_field :title %> 
   <%= b.label :genre %> 
   <%= b.select(:genre_id, Genre.all.collect { |n| [n.name, n.id] }) %>
+  <%= b.select :author_ids, Author.all.collect {|a| [a.name, a.id]}, {}, multiple: true %>
 
   <%= b.submit "Update" %>
 <% end %>
