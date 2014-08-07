@@ -1,0 +1,14 @@
+<h1>Edit this Book</h1>
+
+
+<%= form_for @book do |b| %>
+  <%= b.label :title %> 
+  <%= b.text_field :title %> 
+  <%= b.label :genre %> 
+  <%= b.select(:genre_id, Genre.all.collect { |n| [n.name, n.id] }) %>
+  <%= b.select :author_ids, Author.all.collect {|a| [a.name, a.id]}, {}, multiple: true %>
+
+  <%= b.submit "Update" %>
+<% end %>
+
+<button><%= link_to "Cancel", book_path(@book) %></button>

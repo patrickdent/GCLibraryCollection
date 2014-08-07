@@ -39,7 +39,17 @@ class BookImport < ActiveRecord::Base
     when ".txt" then CSV.read(file.path)
     # when ".xls" then Excel.new(file.path, nil, :ignore)
     # when ".xlsx" then Excelx.new(file.path, nil, :ignore)
-    else raise "Unknown file type: #{file.original_filename}"
+    # else raise "Unknown file type: #{file.original_filename}"
+    else raise InvalidFileError
+    end
+  end
+
+  def csv_handling(file)
+    begin
+      CSV.read(file.path)
+    #try again if it's an encoding issue
+    rescue CSV::MalformedCSVError
+      CSV.read(file.path, encoding: "bom|utf-8")
     end
   end
 
@@ -77,4 +87,9 @@ class BookImport < ActiveRecord::Base
       false
     end
   end
+
+  #should I do this here?
+  class InvalidFileError < RuntimeError
+  end
 end
+
