@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Book do
   
-  let(:book) { FactoryGirl.create(:book) }
+  let(:book) { FactoryGirl.create(:book, title: "Kittypuss: an History", isbn: "123456789" ) }
 
   subject { book }
 
@@ -12,11 +12,8 @@ describe Book do
   end
 
     describe "validations" do
-    it "will not create a book without a title" do 
-      count = Book.count  
-      FactoryGirl.create(:book, title: "")
-
-      expect(Book.count).to eq count
+    it "will not create a book without a title" do  
+      FactoryGirl.build(:book, title: "").should_not be_valid
     end 
   end 
 

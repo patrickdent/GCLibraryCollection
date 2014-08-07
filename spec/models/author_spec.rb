@@ -1,27 +1,16 @@
 require 'spec_helper'
 
 describe Author do
-  
-  let(:author) { FactoryGirl.create(:author) }
-
-  subject { author }
-
-  describe "accessible attributes" do
-    its(:name) { should == "Chairman Meow" }
-  end
 
   describe "validations" do
-    it "will not create a second author with exact same name" do 
-      count = Author.count  
-      author2 = FactoryGirl.create(:author)
+    it "will not create a second author with exact same name" do   
+      FactoryGirl.create(:author, name: "Steve Bobs")
 
-      expect(Author.count).to eq count
+      FactoryGirl.build(:author, name: "Steve Bobs").should_not be_valid
     end
-    it "will not create an author without a name" do 
-      count = Author.count  
-      author2 = FactoryGirl.create(:author, name: "")
 
-      expect(Author.count).to eq count
+    it "will not create an author without a name" do 
+      FactoryGirl.build(:author, name: "").should_not be_valid
     end  
   end 
 

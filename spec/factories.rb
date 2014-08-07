@@ -6,37 +6,45 @@ FactoryGirl.define do
     isbn      "123456789"
 
     #for when we want to populate the database with a lot of data
-    # Sequence(:title)  { |n| "Title #{n}" }
+    # sequence(:title)  { |n| "Title #{n}" }
     # # only good for 10 books
-    # Sequence(:isbn)   { |n| "12345678#{n}"}
+    # sequence(:isbn)   { |n| "12345678#{n}"}
   end
 
   factory :author, class: Author do
     #simple starting data
-    name      "Chairman Meow"
+    # name      "Chairman Meow"
 
 
     #for when we want to populate the database with a lot of data
-    # Sequence(:name)   { |n| "Author #{n}" }
+    sequence :name do |n| 
+      "Kitty #{n}" 
+    end
   end
 
   factory :genre, class: Genre do
 
     #simple starting data
-    name      "Meowstory"
+    # name      "Meowstory"
 
     #for when we want to populate the database with a lot of data
-    # Sequence(:name)   { |n| "Genre #{n}" }
+    sequence :name do |n|
+      "Kitty Interests #{n}" 
+    end
   end
 
   factory :user, class: User do 
-    email "user@example.com"
+    sequence :email do |n| 
+      "user#{n}@example.com" 
+    end
     password "password"
     password_confirmation "password" 
   end 
 
   factory :admin, class: User do 
-    email "adminuser@example.com"
+    sequence :email do |n| 
+      "adminuser#{n}@example.com" 
+    end
     password "password"
     password_confirmation "password" 
     after(:create) {|user| user.add_role(:admin) }

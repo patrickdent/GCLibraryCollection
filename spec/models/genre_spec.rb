@@ -2,27 +2,14 @@ require 'spec_helper'
 
 describe Genre do
 
-  let(:genre) { FactoryGirl.create(:genre) }
-
-
-  subject { genre }
-
-  describe "accessible attributes" do 
-    its(:name) { should == genre.name }
-  end
-
   describe "validations" do
     it "will not create a second genre with exact same name" do 
-      count = Genre.count  
-      genre2 = FactoryGirl.create(:genre)
-
-      expect(Genre.count).to eq count
+      FactoryGirl.create(:genre, name: "Cool Genre") 
+      FactoryGirl.build(:genre, name: "Cool Genre").should_not be_valid
     end
-    it "will not create an genre without a name" do 
-      count = Genre.count  
-      genre2 = FactoryGirl.create(:genre, name: "")
 
-      expect(Genre.count).to eq count
+    it "will not create an genre without a name" do 
+      FactoryGirl.build(:genre, name: "").should_not be_valid
     end  
   end 
 
