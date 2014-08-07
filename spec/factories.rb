@@ -29,14 +29,17 @@ FactoryGirl.define do
     # Sequence(:name)   { |n| "Genre #{n}" }
   end
 
-  factory :user do 
-    email "bobo@example.com"
+  factory :user, class: User do 
+    email "user@example.com"
     password "password"
     password_confirmation "password" 
+  end 
 
-    factory :admin do 
-      after(:create) {|user| user.add_role(:admin) }
-    end 
+  factory :admin, class: User do 
+    email "adminuser@example.com"
+    password "password"
+    password_confirmation "password" 
+    after(:create) {|user| user.add_role(:admin) }
   end 
   
 end
