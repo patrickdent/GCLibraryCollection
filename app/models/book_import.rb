@@ -44,15 +44,6 @@ class BookImport < ActiveRecord::Base
     end
   end
 
-  # def csv_handling(file)
-  #   # begin
-  #     CSV.read(file.path, encoding: "bom|utf-8")
-
-  #   # rescue CSV::MalformedCSVError
-  #   #   raise InvalidFileError
-  #   # end
-  # end
-
   def make_book(book_data)
     return false if book_data["title"] == false
 
