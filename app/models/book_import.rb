@@ -35,8 +35,8 @@ class BookImport < ActiveRecord::Base
 
   def open_spreadsheet
     case File.extname(file.original_filename)
-    when ".csv" then CSV.read(file.path)
-    when ".txt" then CSV.read(file.path)
+    when ".csv" then CSV.read(file.path, encoding: "bom|utf-8")
+    when ".txt" then CSV.read(file.path, encoding: "bom|utf-8")
     # when ".xls" then Excel.new(file.path, nil, :ignore)
     # when ".xlsx" then Excelx.new(file.path, nil, :ignore)
     # else raise "Unknown file type: #{file.original_filename}"
@@ -44,14 +44,14 @@ class BookImport < ActiveRecord::Base
     end
   end
 
-  def csv_handling(file)
-    begin
-      CSV.read(file.path)
-    #try again if it's an encoding issue
-    rescue CSV::MalformedCSVError
-      CSV.read(file.path, encoding: "bom|utf-8")
-    end
-  end
+  # def csv_handling(file)
+  #   # begin
+  #     CSV.read(file.path, encoding: "bom|utf-8")
+
+  #   # rescue CSV::MalformedCSVError
+  #   #   raise InvalidFileError
+  #   # end
+  # end
 
   def make_book(book_data)
     return false if book_data["title"] == false
