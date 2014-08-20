@@ -22,8 +22,8 @@ class BookImportsController < ApplicationController
     end
   end
 
-  def invalid_file
-    flash[:notice] = "Import Unsuccessful: Please Ensure That The File Is Formatted Correctly."
+  def invalid_file(msg)
+    flash[:notice] = "Import Unsuccessful: please upload a file with the correct file type and formatting."
     redirect_to :back
   end
 end
