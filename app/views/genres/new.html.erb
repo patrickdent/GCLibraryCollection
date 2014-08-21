@@ -1,0 +1,11 @@
+<%= form_for @genre, url: {action: "create"} do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.submit "Create" %> 
+<% end %>
+
+
+<% @genres.each do |g| %>
+  <%= link_to g.name, genre_path(g.id) %>, total: <%= g.books.count %>
+<% end %>
+
