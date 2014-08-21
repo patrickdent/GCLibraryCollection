@@ -2,8 +2,8 @@
 
 <%= render 'form' %>
 
-<div id="genres">
+<ul id="genres">
   <% @genres.each do |g| %>
-    <%= link_to g.name, genre_path(g.id) %>, total: <%= g.books.count %>
+    <li><%= link_to g.name, genre_path(g.id) %>, total: <%= g.books.count %></li>
   <% end %>
-</div>
+</ul>

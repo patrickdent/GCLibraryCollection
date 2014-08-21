@@ -6,6 +6,7 @@ class BookImportsController < ApplicationController
 
   def new
     @book_import = BookImport.new
+    @genre = Genre.new 
   end
 
   def create  

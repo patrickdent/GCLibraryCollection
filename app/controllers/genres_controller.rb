@@ -14,20 +14,20 @@ class GenresController < ApplicationController
 
   def create 
     @genre = Genre.new(genre_params)
-    
-    respond_to do |format|
-      format.html do 
-        if @genre.save 
-          flash[:notice] = "Genre added"
-          redirect_to new_genre_path
-        else
-          flash[:alert] = "Genre failed to save"
-          redirect_to new_genre_path
-        end
-      end 
-      format.js {@genre.save}
+    if @genre.save 
 
+      respond_to do |format|
+        format.html do 
+            flash[:notice] = "Genre added"
+            redirect_to new_genre_path
+        end 
+        format.js {}
+      end
+    else
+      flash[:alert] = "Genre failed to save"
+      redirect_to new_genre_path
     end
+
   end 
 
   private
