@@ -8,8 +8,10 @@ Ruby 2.0.0
 ###After you pull from origin, run:
  - bundle install --without production
  - rake db:migrate
- - rake db:seed 
+ - rake db:seed RAILS_ENV=development
  - rails server
+
+ Note: We now have different seed files for the different environments, so that we're not seeding a ton of fake books on production, only what we need. Therefore, we must now specify the environment when running 'rake db:seed'
 
 ###To see test coverage via SimpleCov gem:
   - run all tests via 'rake'
