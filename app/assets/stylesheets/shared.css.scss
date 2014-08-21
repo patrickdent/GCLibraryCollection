@@ -59,13 +59,26 @@ nav a {
 a {text-decoration: none; 
 		color: #1A7091;}
 
-a:hover { text-shadow: 1px 1px 2px #B1FAF9;}
+a:hover { text-shadow: 1px 1px 2px rgba(42, 185, 247, 0.7);}
 
-nav a:hover { text-shadow: 2px 2px 2px #B1FAF9;}
+nav a:hover { text-shadow: 2px 2px 2px rgba(42, 185, 247, 0.9);}
 
-.btn2 a:hover, .btn a:hover { text-shadow: 2px 2px 2px gray;}
+a.btn2:hover, a.btn:hover  { text-shadow: 2px 2px 2px gray;}
 
 .show {padding: .75em;
             border: 3px #FAC0FA solid; 
             border-radius: 25px;}
 
+.error {background-color: rgba(247, 104, 42, 0.3);
+				color: rgba(247, 104, 42, 1);
+				border: 2px solid rgba(247, 104, 42, 0.9);
+				border-radius: 10px;
+				padding: .5em; 
+				margin: .25em;}
+
+.notice {background-color: rgba(42, 185, 247, 0.3);
+				color: rgba(42, 185, 247, 1);
+				border: 2px solid rgba(42, 185, 247, 0.9);
+				border-radius: 10px;
+				padding: .5em; 
+				margin: .25em;}
