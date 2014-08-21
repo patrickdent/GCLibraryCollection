@@ -26,7 +26,15 @@ nav a {
 	font-size: 1em;
 	font-variant: small-caps;
 	border: 1px black solid;
+}
 
+.btn2 {
+	padding: 0.5em;
+	background-color: #F6A450;
+	color: #ffffff;
+	font-size: 1em;
+	font-variant: small-caps;
+	border: 1px black solid;
 }
 
 #main_content {
@@ -46,9 +54,18 @@ nav a {
 }
 
 .right {float: right; 
-				padding-right: 5%;}
+				margin-right: 5%;}
 
 a {text-decoration: none; 
 		color: #1A7091;}
 
 a:hover { text-shadow: 1px 1px 2px #B1FAF9;}
+
+nav a:hover { text-shadow: 2px 2px 2px #B1FAF9;}
+
+.btn2 a:hover, .btn a:hover { text-shadow: 2px 2px 2px gray;}
+
+.show {padding: .75em;
+            border: 3px #FAC0FA solid; 
+            border-radius: 25px;}
+
