@@ -12,10 +12,13 @@ class BookImportsController < ApplicationController
   def create  
      if BookImport.import_requirements?(params)
       @book_import = BookImport.new(book_imports_params)
+      genre = Genre.find_by(name: params[:book_import][:genre])
       if @book_import.save
         flash[:notice] = "Import Successful"
-      # else
-      #   render "static_pages/home"
+        redirect_to genre_path(genre.id)
+      else
+        flash[:error] = "Import Failed"
+        redirect_to new_book_import_path
       end
     else
       flash[:notice] = "Please select a file."
