@@ -1,16 +1,19 @@
 <h1><%= @book.title %></h1>
-<ul>
-  <li>Author(s): 
+
+<div class="book_show">
+  <p>Author(s): </p>
     <ul>
     <% @book.authors.each do |a| %>
       <li><%= a.name %> </li>
       <% end %> 
     </ul>
-  </li>
-  <li>ISBN: <%= @book.isbn %></li>
-  <li>Genre: <%= @book.genre.name if @book.genre %></li>
-</ul>
+
+  <p>ISBN: <%= @book.isbn %></p>
+  <p>Genre: <%= @book.genre.name if @book.genre %></p>
+</div>
+
+<br />
 
 <% if user_signed_in? and current_user.has_role? :admin %>
-  <%= link_to "Edit This Book", edit_book_path(@book.id) %>
+  <%= link_to "Edit This Book", edit_book_path(@book.id), class: "right" %>
 <% end %>

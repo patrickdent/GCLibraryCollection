@@ -2,9 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.books_index {
-  padding: 5%;
-}
-.books_index td, .books_index th {
-  padding: .75em;
-}
+.book_show {padding: .75em;
+            border: 3px #FAC0FA solid; 
+            border-radius: 25px;}
+

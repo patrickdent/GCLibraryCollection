@@ -30,5 +30,25 @@ nav a {
 }
 
 #main_content {
-	margin-left: 25px;
+	margin: 2% 4%;
 }
+
+.index {
+	width: 80%;
+  margin: auto;
+}
+.index td, .books_index th {
+  padding: .75em;
+}
+
+.index tr:nth-child(2n) {
+	background-color: #FAC0FA;
+}
+
+.right {float: right; 
+				padding-right: 5%;}
+
+a {text-decoration: none; 
+		color: #1A7091;}
+
+a:hover { text-shadow: 1px 1px 2px #B1FAF9;}

@@ -1,6 +1,15 @@
 <h1><%= @author.name %></h1>
-<ul> 
+
+<table class="index">
+  <tr>
+    <th>Title</th>
+    <th>Genre</th>
+  </tr>
+
   <% @author.books.each do |b| %>
-  <li> <%= link_to b.title, book_path(b.id) %>, <%= b.genre.name if b.genre %> </li>
+    <tr>
+    <td><%= link_to b.title, book_path(b.id) %></td>
+    <td><%= b.genre.name if b.genre %></td>
+    </tr>
   <% end %>
-</ul>
+</table>
