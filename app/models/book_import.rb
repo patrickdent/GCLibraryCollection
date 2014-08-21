@@ -72,7 +72,7 @@ class BookImport < ActiveRecord::Base
   end
   
   def self.import_requirements?(params)
-    if params[:book_import].has_key?(:file)
+    if params[:book_import].has_key?(:file) && !params[:book_import][:genre].blank?
       true
     else
       false
