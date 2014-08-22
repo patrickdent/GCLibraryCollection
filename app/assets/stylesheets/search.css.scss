@@ -2,14 +2,39 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-body {
-	color: #000000;
-	font-family: Roboto, sans-serif;
+
+
+.search {
+	margin: 40px 0 10px 45px;
+}
+.browse {
+	margin: 40px 0 10px 45px;
 }
 
-// nav {
-// 	background-color: black;
-// 	font-weight: bold;
-// 	color: #ffffff;
-// 	height: 30px;
-// }
+.search a {
+	text-transform: uppercase;
+	background-color: #1764A8;
+	font-weight: bold;
+	font-size: .7em;
+	padding: 5px 15px;
+}
+
+.search a:hover {
+	color: #01B8F1;
+}
+
+.browse a {
+	text-transform: uppercase;
+	background-color: #1764A8;
+	color: #FFFFFF;
+	padding: 5px 15px;
+	font-size: .7em;
+}
+
+.browse a:hover {
+	color: #01B8F1;
+}
+
+.browse a:visited {
+	color: #95CB15;
+}
