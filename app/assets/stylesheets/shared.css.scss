@@ -1,5 +1,5 @@
 body {
-	color: #FEF1E0;
+	// color: #FEF1E0;
 	font-family: Roboto, sans-serif;
 	margin: 0;
 	text-decoration: none;
@@ -9,16 +9,16 @@ body {
 nav {
 	background-color: #1764A8;
 	font-weight: 500;
+	font-size: .8em;
 	color: #ffffff;
-	height: 15px;
+	height: 10px;
 	padding: 1em;
 	margin: 0px, 0px;
 	border-bottom: 3px #000000 solid;
 }
 
 nav a {
-	color: #F2EEEF;
-	font-size: .8em;
+	color: #95CB15;
 }
 
 nav a:visited {
@@ -28,22 +28,22 @@ nav a:visited {
 nav a:hover {
 	color: #FFFFFF;
 }
-
-.btn .btn2{
+input[type=submit], .btn, .btn2{
 	text-transform: uppercase;
 	border: none;
 	background-color: #1764A8;
 	color: #FFFFFF;
 	font-size: .7em;
-	padding: 5px 15px;
+	padding: 7px 15px;
+	margin-left: 4%;
 }
 
-.btn:hover {
-	color: #01B8F1;
+.btn:hover, .btn2:hover {
+	color: #95CB15;
 }
 
 .btn:visited {
-	color: #95CB15;
+	color: #FFFFFF;
 }
 
 .btn::before {
@@ -58,11 +58,18 @@ h1 {
 	-webkit-margin-start: 0px;
 	-webkit-margin-end: 0px;
 	font-weight: bold;
-	color: #F2EEEF;
+	color: #000000;
+	background-color: #f48b1f;
+	margin-top: 0;
+	margin-left: 0;
+	margin-bottom: 25px;
+	padding: 15px 30px;
+	border-bottom: 5px #95CB15 solid;
 }
 
 h3 {
 	color: #00364A;
+	margin: 2% 4%;
 }
 
 p {
@@ -73,6 +80,7 @@ display: block;
 -webkit-margin-end: 0px;
 font-size: 1em;
 color: #3B2E2A;
+margin: 2% 4%;
 }
 
 a {
@@ -80,48 +88,45 @@ a {
 }
 
 #main_content {
-	background-color: #ffa500;
-	padding: 2px 18px 12px;
-	width: 100%;
-	height: 20%;
-	border-bottom: 5px #95CB15 solid;
+	// background-color: #ffa500;
+	// padding: 2px 18px 12px;
+	// width: 100%;
+	// height: 20%;
+	// border-bottom: 5px #95CB15 solid;
+	// margin: 2% 4%;
 }
 
 #main_content p {
 	color: #000000;
 }
 
-#content a {
+#main_content a {
 	// padding: 0 10px 0 0;
 	// color: #1764A8;
 	// font-weight: bold;
 }
 
-#content a:hover {
-	color: #01B8F1;
-}
-
-#main_content {
-	margin: 2% 4%;
-}
+// #main_content a:hover {
+// 	color: #01B8F1;
+// }
 
 .index {
 	width: 80%;
-  margin: auto;
+  margin: 5% auto;
 }
 .index td, .books_index th {
   padding: .75em;
 }
 
 .index tr:nth-child(2n) {
-	background-color: #FAC0FA;
+	background-color: #cccccc;
 }
 
 .right {float: right; 
 				margin-right: 5%;}
 
 .show {padding: .75em;
-            border: 3px #FAC0FA solid; 
+            border: 3px #95CB15 solid; 
             border-radius: 25px;}
 
 // =======
