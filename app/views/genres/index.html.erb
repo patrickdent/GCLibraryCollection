@@ -1,5 +1,15 @@
 <h1>Genres</h1>
 
-<% @genres.each do |g| %>
-	<%= link_to g.name, genre_path(g.id) %>, total: <%= g.books.count %>
-<% end %>
+<table class="index">
+  <tr>
+    <th>Genre Name</th>
+    <th>Number of Books</th>
+  </tr>
+
+  <% @genres.each do |g| %>
+  <tr>
+  <td> <%= link_to g.name, genre_path(g.id) %></td>
+  <td><%= g.books.count %></td>
+  </tr>
+  <% end %>
+</table>

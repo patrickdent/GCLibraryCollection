@@ -1,10 +1,18 @@
 <h1><%= @genre.name %></h1>
-<ul> 
-	<% @genre.books.each do |b| %>
-	<li> <%= link_to b.title, book_path(b.id) %>, 
-  <% b.authors.each do |a| %>
-    <%= a.name %>
+
+<table class="index">
+  <tr>
+    <th>Title</th>
+    <th>Author</th>
+  </tr>
+
+  <% @genre.books.each do |b| %>
+    <tr>
+    <td><%= link_to b.title, book_path(b.id) %></td>
+    <td><% b.authors.each do |a| %>
+          <%= a.name %>
+        <% end %>
+    </td>
+    </tr>
   <% end %>
-  </li>
-	<% end %>
-</ul>
+</table>

@@ -29,7 +29,7 @@ nav a:hover {
 	color: #FFFFFF;
 }
 
-.btn {
+.btn .btn2{
 	text-transform: uppercase;
 	border: none;
 	background-color: #1764A8;
@@ -101,7 +101,78 @@ a {
 	color: #01B8F1;
 }
 
+#main_content {
+	margin: 2% 4%;
+}
 
+.index {
+	width: 80%;
+  margin: auto;
+}
+.index td, .books_index th {
+  padding: .75em;
+}
 
+.index tr:nth-child(2n) {
+	background-color: #FAC0FA;
+}
 
+.right {float: right; 
+				margin-right: 5%;}
+
+.show {padding: .75em;
+            border: 3px #FAC0FA solid; 
+            border-radius: 25px;}
+
+// =======
+// 	width: 75px;
+// 	height: 35px;
+// 	background-color: #F6A450;
+// 	color: #ffffff;
+// 	font-size: 1em;
+// 	font-variant: small-caps;
+// 	border: 1px black solid;
+// }
+
+// .btn2 {
+// 	padding: 0.5em;
+// 	background-color: #F6A450;
+// 	color: #ffffff;
+// 	font-size: 1em;
+// 	font-variant: small-caps;
+// 	border: 1px black solid;
+// }
+
+// #main_content {
+// 	margin: 2% 4%;
+// }
+
+// .index {
+// 	width: 80%;
+//   margin: auto;
+// }
+// .index td, .books_index th {
+//   padding: .75em;
+// }
+
+// .index tr:nth-child(2n) {
+// 	background-color: #FAC0FA;
+// }
+
+// .right {float: right; 
+// 				margin-right: 5%;}
+
+// a {text-decoration: none; 
+// 		color: #1A7091;}
+
+// a:hover { text-shadow: 1px 1px 2px #B1FAF9;}
+
+// nav a:hover { text-shadow: 2px 2px 2px #B1FAF9;}
+
+// .btn2 a:hover, .btn a:hover { text-shadow: 2px 2px 2px gray;}
+
+// .show {padding: .75em;
+//             border: 3px #FAC0FA solid; 
+//             border-radius: 25px;}
+// >>>>>>> dcfad92dc46752c2956ebaf4b734baccb99acb3b
 

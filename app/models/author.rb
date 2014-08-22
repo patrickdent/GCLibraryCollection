@@ -5,6 +5,6 @@ class Author < ActiveRecord::Base
   validates :name, uniqueness: true, presence: true  
 
   def self.search(search)
-    find(:all, conditions: ['name LIKE ?', "%#{search}%"] )
+    find(:all, conditions: ['lower(name) LIKE lower(?)', "%#{search}%"] )
   end
 end

@@ -6,24 +6,28 @@ class BookImportsController < ApplicationController
 
   def new
     @book_import = BookImport.new
+    @genre = Genre.new 
   end
 
   def create  
      if BookImport.import_requirements?(params)
       @book_import = BookImport.new(book_imports_params)
+      genre = Genre.find_by(name: params[:book_import][:genre])
       if @book_import.save
-        flash[:notice] = "Import Successful"
-      # else
-      #   render "static_pages/home"
+        flash[:notice] = "Import successful"
+        redirect_to genre_path(genre.id)
+      else
+        flash[:error] = "Import failed"
+        redirect_to new_book_import_path
       end
     else
-      flash[:notice] = "Please select a file."
-      render "static_pages/home"
+      flash[:notice] = "Please select a file and genre"
+      redirect_to new_book_import_path
     end
   end
 
-  def invalid_file
-    flash[:notice] = "Import Unsuccessful: Please Ensure That The File Is Formatted Correctly."
+  def invalid_file(msg)
+    flash[:notice] = "Import Unsuccessful: please upload a file with the correct file type and formatting."
     redirect_to :back
   end
 end
