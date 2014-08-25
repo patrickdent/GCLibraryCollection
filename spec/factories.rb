@@ -54,4 +54,7 @@ FactoryGirl.define do
     keyword "keyword"
   end
   
+  factory :contribution, class: Contribution do
+    name "contribution"
+  end
 end
