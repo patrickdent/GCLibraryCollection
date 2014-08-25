@@ -9,6 +9,17 @@ describe Book do
   describe "accessible attributes" do
     its(:title) { should == "Kittypuss: an History" }
     its(:isbn)  { should == "123456789" }
+    it { should respond_to(:language) }
+    it { should respond_to(:publisher) }
+    it { should respond_to(:publish_date) }
+    it { should respond_to(:publication_place) }
+    it { should respond_to(:authors) }
+    it { should respond_to(:title) }
+    it { should respond_to(:genre) }
+    it { should respond_to(:pages) }
+    it { should respond_to(:keywords) }
+    it { should respond_to(:location) }
+
   end
 
     describe "validations" do

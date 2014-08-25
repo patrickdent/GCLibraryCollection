@@ -49,5 +49,9 @@ FactoryGirl.define do
     password_confirmation "password" 
     after(:create) {|user| user.add_role(:admin) }
   end 
+
+  factory :keyword, class: Keyword do
+    keyword "keyword"
+  end
   
 end
