@@ -50,25 +50,44 @@ input[type=submit], .btn, .btn2{
 	background-image: url('..app/assets/images/search.png');
 }
 
-h1 {
-	display: block;
-	font-size: 1.9em;
-	-webkit-margin-before: 0.4em;
-	-webkit-margin-after: 0.3em;
-	-webkit-margin-start: 0px;
-	-webkit-margin-end: 0px;
-	font-weight: bold;
-	color: #000000;
+// #main_content h1 {
+	// display: block;
+	// position: absolute;
+	// left: 0;
+	// top: 25px;
+	// width: 100%;
+	// z-index: 0;
+// 	font-size: 1.9em;
+// 	-webkit-margin-before: 0.4em;
+// 	-webkit-margin-after: 0.3em;
+// 	-webkit-margin-start: 0px;
+// 	-webkit-margin-end: 0px;
+// 	font-weight: bold;
+// 	color: #000000;
+// 	// background-color: #f48b1f;
+// 	margin-top: -2%;
+// 	margin-left: -4%;
+// 	margin-bottom: 40px;
+// 	padding: 12px 30px;
+// 	border-bottom: 5px #95CB15 solid;
+// }
+
+#headerbar {
+	position: absolute;
+	left: 0;
+	top: 38px;
+	width: 100%;
+	height: 11%;
 	background-color: #f48b1f;
-	margin-top: 0;
-	margin-left: 0;
-	margin-bottom: 25px;
-	padding: 15px 30px;
 	border-bottom: 5px #95CB15 solid;
 }
 
-h3 {
+#main_content h3 {
+	// margin-top: 15%;
+}
+#browse h3 {
 	color: #00364A;
+	// margin-top: 5%;
 	margin: 2% 4%;
 }
 
@@ -89,30 +108,41 @@ a {
 
 #main_content {
 	// background-color: #ffa500;
-	// padding: 2px 18px 12px;
-	// width: 100%;
-	// height: 20%;
+	position: relative;
+	top: -20px;
+	padding: 2px 18px 12px;
+	width: 100%;
+	height: 20%;
 	// border-bottom: 5px #95CB15 solid;
-	// margin: 2% 4%;
+	margin: 2% 4%;
 }
 
 #main_content p {
 	color: #000000;
 }
 
-#main_content a {
+// #main_content a {
 	// padding: 0 10px 0 0;
 	// color: #1764A8;
 	// font-weight: bold;
-}
+// }
 
 // #main_content a:hover {
 // 	color: #01B8F1;
 // }
 
+// #main_content h1 {
+// 	margin: -8%;
+// }
+
+form {
+	margin-top: 3em;
+}
+
 .index {
 	width: 80%;
-  margin: 5% auto;
+  margin: 2.5em auto;
+  padding-top: 2%;
 }
 .index td, .books_index th {
   padding: .75em;
@@ -125,9 +155,13 @@ a {
 .right {float: right; 
 				margin-right: 5%;}
 
-.show {padding: .75em;
-            border: 3px #95CB15 solid; 
-            border-radius: 25px;}
+.show {
+	padding: .75em;
+	margin-top: 3.0em;
+	width: 85%;
+  border: 3px #95CB15 solid; 
+  border-radius: 25px;
+}
 
 // =======
 // 	width: 75px;
