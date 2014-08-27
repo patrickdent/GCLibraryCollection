@@ -11,6 +11,11 @@
 	margin: 40px 0 10px 45px;
 }
 
+#browse h3 {
+	color: #00364A;
+	margin: 2% 4%;
+}
+
 .search .btn {
 	text-transform: uppercase;
 	background-color: #1764A8;
@@ -25,18 +30,14 @@
 	color: #95CB15;
 }
 
+.btn:hover, .btn2:hover {
+	color: #95CB15;
+}
 
-// .browse a {
-// 	text-transform: uppercase;
-// 	background-color: #1764A8;
-// 	color: #FFFFFF;
-// 	padding: 5px 15px;
-// 	font-size: .7em;
-// }
+.btn:visited {
+	color: #FFFFFF;
+}
 
-// .browse .btn:hover {
-// 	color: #95CB15;
-// }
 
 .browse .btn:visited {
 	color: #FFFFFF;
