@@ -22,6 +22,10 @@ FactoryGirl.define do
     end
   end
 
+  factory :book_author, class: BookAuthor do
+
+  end
+
   factory :genre, class: Genre do
 
     #simple starting data
