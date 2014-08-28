@@ -22,6 +22,10 @@ FactoryGirl.define do
     end
   end
 
+  factory :book_author, class: BookAuthor do
+
+  end
+
   factory :genre, class: Genre do
 
     #simple starting data
@@ -49,5 +53,12 @@ FactoryGirl.define do
     password_confirmation "password" 
     after(:create) {|user| user.add_role(:admin) }
   end 
+
+  factory :keyword, class: Keyword do
+    keyword "keyword"
+  end
   
+  factory :contribution, class: Contribution do
+    name "contribution"
+  end
 end

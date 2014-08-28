@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140423211725) do
+ActiveRecord::Schema.define(version: 20140826230821) do
 
   create_table "authors", force: true do |t|
     t.string   "name"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20140423211725) do
     t.integer  "author_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "contribution_id"
   end
 
   create_table "book_imports", force: true do |t|
@@ -31,6 +32,13 @@ ActiveRecord::Schema.define(version: 20140423211725) do
     t.datetime "updated_at"
     t.string   "file"
     t.string   "genre"
+  end
+
+  create_table "book_keywords", force: true do |t|
+    t.integer  "book_id"
+    t.integer  "keyword_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "books", force: true do |t|
@@ -42,10 +50,25 @@ ActiveRecord::Schema.define(version: 20140423211725) do
     t.string   "publisher"
     t.string   "publish_date"
     t.string   "publication_place"
+    t.string   "language"
+    t.integer  "pages"
+    t.string   "location"
+  end
+
+  create_table "contributions", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "genres", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "keywords", force: true do |t|
+    t.string   "keyword"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

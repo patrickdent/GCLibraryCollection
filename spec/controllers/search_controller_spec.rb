@@ -6,16 +6,23 @@ describe SearchController do
   describe '#search' do 
 
     it 'returns results for good search terms' do 
-      author = FactoryGirl.build(:author)
+      author = FactoryGirl.create(:author, name: "Kitty Belvedere")
       get :search, "search" => "Kitty"
       response.should be_ok
-      expect(assigns[:authors]).to_not be_nil
+      expect(assigns[:authors]).to include(author)
+    end 
+
+    it 'returns results for good, multi-word search terms' do 
+      book = FactoryGirl.create(:book, title: "The True Story of Those Boots")
+      get :search, "search" => "True Boots"
+      response.should be_ok
+      expect(assigns[:books]).to include(book)
     end 
 
     it 'returns nothing for unsuccessful searches' do 
       get :search, search: "Pegasus"
       response.should be_ok
-      assigns[:authors].first.should be nil
+      expect(assigns[:authors].empty?).to be_true
     end 
 
     it 'redirects with notice for nil search terms' do 
