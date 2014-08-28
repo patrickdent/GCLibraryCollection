@@ -30,12 +30,14 @@
 
 
 </nav>
+ 
+<div id="headerbar">
 
 <% flash.each do |name, msg| %>
  <%= content_tag :div, msg, class: name %>
  <% end %>
- 
-<div id="headerbar"></div>
+
+ </div>
 
 <div id="main_content">
   <%= yield %>
