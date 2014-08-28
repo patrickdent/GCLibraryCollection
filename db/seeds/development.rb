@@ -58,3 +58,10 @@ contributions = Contribution.create([{ name: 'Author' },
                                      { name: 'Editor' },
                                      { name: 'Foreword' }])
 
+
+
+# book = Book.create(title: 'Titley')
+# author = Author.create(name: 'Authory')
+# contribution = Contribution.create(name: 'Contriby')
+
+# ba = BookAuthor.create(book: book, author: author, contribution: contribution)
