@@ -51,3 +51,10 @@ u = User.new(
   password: 'password')
 u.save!(:validate => false)
 
+# different contributions
+contributions = Contribution.create([{ name: 'Author' },
+                                     { name: 'Illustrator' },
+                                     { name: 'Photographer' },
+                                     { name: 'Editor' },
+                                     { name: 'Foreword' }])
+

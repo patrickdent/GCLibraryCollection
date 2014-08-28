@@ -1,15 +1,18 @@
 <h1>Genres</h1>
 
 <table class="index">
-  <tr>
-    <th>Genre Name</th>
-    <th>Number of Books</th>
-  </tr>
-
-  <% @genres.each do |g| %>
-  <tr>
-  <td> <%= link_to g.name, genre_path(g.id) %></td>
-  <td><%= g.books.count %></td>
-  </tr>
-  <% end %>
+  <thead>
+    <tr>
+      <th>Genre Name</th>
+      <th>Number of Books</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @genres.each do |g| %>
+    <tr>
+    <td> <%= link_to g.name, genre_path(g.id) %></td>
+    <td><%= g.books.count %></td>
+    </tr>
+    <% end %>
+  </tbody>
 </table>

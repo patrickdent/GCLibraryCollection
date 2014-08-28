@@ -21,13 +21,13 @@ class BookImportsController < ApplicationController
         redirect_to new_book_import_path
       end
     else
-      flash[:notice] = "Please select a file and genre"
+      flash[:error] = "Please select a file and genre"
       redirect_to new_book_import_path
     end
   end
 
   def invalid_file(msg)
-    flash[:notice] = "Import Unsuccessful: please upload a file with the correct file type and formatting."
+    flash[:error] = "Import Unsuccessful: please upload a file with the correct file type and formatting."
     redirect_to :back
   end
 end

@@ -1,15 +1,18 @@
 <h1>Authors</h1>
 
 <table class="index">
-  <tr>
-    <th>Author Name</th>
-    <th>Number of Books</th>
-  </tr>
-
-  <% @authors.each do |a| %>
-  <tr>
-  <td> <%= link_to a.name, author_path(a.id) %></td>
-  <td><%= a.books.count %></td>
-  </tr>
-  <% end %>
+  <thead>
+    <tr>
+      <th>Author Name</th>
+      <th>Number of Books</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @authors.each do |a| %>
+    <tr>
+    <td> <%= link_to a.name, author_path(a.id) %></td>
+    <td><%= a.books.count %></td>
+    </tr>
+    <% end %>
+  </tbody>
 </table>
