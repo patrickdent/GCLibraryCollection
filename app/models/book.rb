@@ -6,7 +6,8 @@ class Book < ActiveRecord::Base
   validates :title, presence: true 
 
   def self.search(search)
-    where(['lower(title) LIKE lower(?)', "%#{search}%"] )
+    search_length = search.split.length
+    where([(['lower(title) LIKE lower(?)'] * search_length).join(' AND ')] + search.split.map { |search| "%#{search}%" })
   end
 
 

@@ -5,6 +5,8 @@ class Author < ActiveRecord::Base
   validates :name, uniqueness: true, presence: true  
 
   def self.search(search)
-    where(['lower(name) LIKE lower(?)', "%#{search}%"] )
+    search_length = search.split.length
+    where([(['lower(name) LIKE lower(?)'] * search_length).join(' AND ')] + search.split.map { |search| "%#{search}%" })
+
   end
 end
