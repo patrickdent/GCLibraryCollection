@@ -12,6 +12,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'devise'
 gem 'cancan'
 gem 'rolify'
+gem 'font-awesome-sass'
 
 
 group :production do
