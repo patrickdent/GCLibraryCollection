@@ -1,19 +1,35 @@
-<h1> Search Results </h1>
+<div class = "results">
+  <h1> Search Results </h1>
 
-<% if @authors || @books || @genres %>
-  <h3>Authors</h3>
-  <% @authors.each do |a| %>
-    <p><%= link_to a.name, author_path(a.id) %>, total: <%= a.books.count %></p>
+  <div class = "search right">
+    <h3>Search Again</h3>
+    <%= form_tag "/search", method: "get" do %>
+      <p>
+        <%= label_tag "Search for:" %>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Search", name: nil, class: "btn" %>
+      </p>
+    <% end %>
+  </div>
+
+
+  <% if @authors || @books || @genres %>
+    <h3>Authors</h3>
+    <% @authors.each do |a| %>
+      <p><%= link_to a.name, author_path(a.id) %>, total: <%= a.books.count %></p>
+    <% end %>
+    <h3>Books</h3>
+    <% @books.each do |b| %>
+      <p><%= link_to b.title, book_path(b.id) %></p>
+    <% end %>
+    <h3>Genres</h3>
+    <% @genres.each do |g| %>
+      <p><%= link_to g.name, genre_path(g.id) %></p>
+    <% end %>
+    
+  <% else %>
+    <p> Your search yeilded no results. </p>
   <% end %>
-  <h3>Books</h3>
-  <% @books.each do |b| %>
-    <p><%= link_to b.title, book_path(b.id) %></p>
-  <% end %>
-  <h3>Genres</h3>
-  <% @genres.each do |g| %>
-    <p><%= link_to g.name, genre_path(g.id) %></p>
-  <% end %>
-  
-<% else %>
-  <p> Your search yeilded no results. </p>
-<% end %>
+
+  <%= link_to "Home", root_path, class: "right btn" %>
+</div>
