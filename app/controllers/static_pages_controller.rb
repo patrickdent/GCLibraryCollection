@@ -4,4 +4,7 @@ class StaticPagesController < ApplicationController
 
   def admin_dashboard
   end 
+
+  def styleguide
+  end
 end

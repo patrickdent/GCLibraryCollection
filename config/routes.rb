@@ -8,6 +8,7 @@ LibraryCollection::Application.routes.draw do
   get 'search' => 'search#search'
 
   get 'admin_dashboard' => 'static_pages#admin_dashboard'
+  get 'styleguide' => 'static_pages#styleguide'
   
   root to: 'static_pages#home'
   # The priority is based upon order of creation: first created -> highest priority.
