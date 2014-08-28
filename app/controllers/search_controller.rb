@@ -7,6 +7,7 @@ class SearchController < ApplicationController
     else
       @authors = Author.search(params[:search])
       @books = Book.search(params[:search])
+      @genres = Genre.search(params[:search])
     end
   end
 
