@@ -138,16 +138,24 @@ h3 {
 				margin-right: 5%;}
 
 
-.error {background-color: rgba(247, 104, 42, 0.3);
-				color: rgba(247, 104, 42, 1);
-				border: 2px solid rgba(247, 104, 42, 0.9);
+.error {background-color: rgba(0, 0, 0, 0.3);
+				color: rgba(0, 0, 0, 1);
+				border: 2px solid rgba(0, 0, 0, 0.9);
 				border-radius: 10px;
 				padding: .5em; 
-				margin: .25em;}
+				margin: .25em;
+				z-index: 500;
+				width: 50%;
+				float: right;
+				text-align: center;}
 
-.notice {background-color: rgba(42, 185, 247, 0.3);
-				color: rgba(42, 185, 247, 1);
-				border: 2px solid rgba(42, 185, 247, 0.9);
+.notice {background-color: rgba(255, 255, 255, 0.3);
+				color: rgba(255, 255, 255, 1);
+				border: 2px solid rgba(255, 255, 255, 0.9);
 				border-radius: 10px;
 				padding: .5em; 
-				margin: .25em;}
+				margin: .25em;
+				z-index: 500;
+				width: 50%;
+				float: right;
+				text-align: center;}
