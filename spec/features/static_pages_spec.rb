@@ -6,38 +6,33 @@ describe 'Static Pages', type: feature do
   describe 'Home Page' do 
     before { visit root_path }
 
-    it { should have_link('Browse by Genre', href: genres_path) }
-    it { should have_link('Browse by Author', href: authors_path) }
-      
-      describe 'Search Form' do
-        
-        describe 'clicking on search with an empty search field' do
-          before { click_on 'Search' }
-          it { should have_content('Please enter a search term.') }
-        end
+    # it { should have_link('Browse by Genre', href: genres_path) }
+    it 'has working genre link' do expect(subject).to have_link('Browse by Genre', href: genres_path) end
+    # it { should have_link('Browse by Author', href: authors_path) }
+    it 'has working author link' do expect(subject).to have_link('Browse by Author', href: authors_path) end
+          
+    describe 'Search' do
 
-        describe 'searching for something that\'s not in the database' do
-          before do 
-            fill_in('search', :with => 'XXXXXXXXXXXX!XXX')
-            click_on('Search')
-          end
-          it { should have_content('Your search yeilded no results.') } 
-        end
-
-        describe 'searching for something that\'s in the database' do
-          before do 
-            fill_in('search', :with => 'Test Book')
-            click_on('Search')
-          end
-          it { should have_content('Test Book 1') }
-        end 
+      context 'with no term' do
+        before { click_on 'Search' }
+        it 'promts for term' do expect(subject).to have_content('Please enter a search term.') end
       end
 
-    describe 'links should work' do
-      before { click_on 'Browse by Genre' }
-      it {should have_content 'Meowstory' }
-    end
-  end 
+      context 'with non-matching term' do
+        before do 
+          fill_in('search', :with => 'XXXXXXXXXXXX!XXX')
+          click_on('Search')
+        end
+        it 'flashes no results' do expect(subject).to have_content('Your search yeilded no results.') end
+      end
 
-  describe ''
+      context 'with matching term' do
+        before do 
+          fill_in('search', :with => 'Test Book')
+          click_on('Search')
+        end
+        it 'shows matches' do expect(subject).to have_content('Test Book 1') end
+      end 
+    end
+  end
 end 
