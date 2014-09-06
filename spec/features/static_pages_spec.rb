@@ -35,4 +35,35 @@ describe 'Static Pages', type: feature do
       end 
     end
   end
+
+  describe 'Admin Dashboard' do
+    
+    describe 'login' do
+      before do
+        visit root_path
+        click_on('Login')
+      end
+
+      context 'with invalid credentials' do
+        before do
+          fill_in("Email", :with => 'bogus@email.com')
+          fill_in("Password", :with => 'nope')
+          click_on("Sign in")
+        end
+
+        it "should flash invalid" do expect(subject).to have_content('Invalid email or password.') end
+      end
+
+
+      context 'valid credentials' do
+        before do
+          fill_in("Email", :with => 'admin@example.com')
+          fill_in("Password", :with => 'password')
+          click_on("Sign in")
+        end
+
+        it "should flash success" do expect(subject).to have_content('Signed in successfully.') end
+      end
+    end
+  end
 end 
