@@ -6,11 +6,12 @@ describe 'Static Pages', type: feature do
   describe 'Home Page' do 
     before { visit root_path }
 
-    # it { should have_link('Browse by Genre', href: genres_path) }
     it 'has working genre link' do expect(subject).to have_link('Browse by Genre', href: genres_path) end
-    # it { should have_link('Browse by Author', href: authors_path) }
     it 'has working author link' do expect(subject).to have_link('Browse by Author', href: authors_path) end
-          
+    it 'does not have admin links' do expect(subject).to_not have_link('Admin Dashboard') end
+    it 'does not have logout links' do expect(subject).to_not have_link('Logout') end
+    it 'does not have profile links' do expect(subject).to_not have_link('Edit profile') end
+
     describe 'Search' do
 
       context 'with no term' do
@@ -36,7 +37,7 @@ describe 'Static Pages', type: feature do
     end
   end
 
-  describe 'Admin Dashboard' do
+  describe 'Admin' do
     
     describe 'login' do
       before do
@@ -63,7 +64,30 @@ describe 'Static Pages', type: feature do
         end
 
         it "should flash success" do expect(subject).to have_content('Signed in successfully.') end
+        it 'has admin links' do expect(subject).to have_link('Admin Dashboard') end
+        it 'has logout links' do expect(subject).to have_link('Logout') end
+        it 'has profile links' do expect(subject).to have_link('Edit profile') end
       end
     end
+
+    describe 'Dashboard' do
+      before do
+          visit root_path
+          click_on('Login')
+          fill_in("Email", :with => 'admin@example.com')
+          fill_in("Password", :with => 'password')
+          click_on("Sign in")
+          click_on('Admin Dashboard')
+      end
+
+      describe 'links' do
+        it 'has upload' do expect(subject).to have_link('Upload Books') end
+        it 'has broswe all' do expect(subject).to have_link('Browse All Books') end
+        it 'has manage genres' do expect(subject).to have_link('Manage Genres') end
+      end
+
+
+    end
   end
+
 end 
