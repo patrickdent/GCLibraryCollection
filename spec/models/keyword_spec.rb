@@ -16,5 +16,15 @@ describe Keyword  do
     
   end
 
+  describe "validations" do
 
+    it "require keyword" do expect(FactoryGirl.build(:keyword, keyword: "")).to_not be_valid end
+
+    context "duplicates" do
+      before do
+        FactoryGirl.create(:keyword, keyword: "duplicate")
+      end    
+      it "are invalid" do expect(FactoryGirl.build(:keyword, keyword: "duplicate")).to_not be_valid end      
+    end
+  end
 end
