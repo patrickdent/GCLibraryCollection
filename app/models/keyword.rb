@@ -4,4 +4,9 @@ class Keyword < ActiveRecord::Base
 
   validates :keyword, uniqueness: true, presence: true  
 
+  def self.search(search)
+    search_length = search.split.length
+    where([(['lower(keyword) LIKE lower(?)'] * search_length).join(' AND ')] + search.split.map { |search| "%#{search}%" })
+  end
+
 end
