@@ -10,17 +10,11 @@ describe "Keyword Pages" do
 
   before do
    book.keywords << keyword
+   book.genre = genre
+   book.authors << author
   end
 
   subject { page }
-
-  describe "index" do
-
-   before { visit keywords_path }
-
-   it "has link to keyword" do expect(subject).to have_link(keyword.keyword, keyword_path(keyword.id)) end
-
-  end
 
   describe "show" do
 
@@ -28,8 +22,17 @@ describe "Keyword Pages" do
 
     it "keyword as h1" do expect(subject).to have_selector('h1', text: keyword.keyword) end
     it "books" do expect(subject).to have_content(book.title) end
-    it "genre" do expect(subject).to have_content(book.genre.name) end
+    it "genre" do expect(subject).to have_content(genre.name) end
+    it "author" do expect(subject).to have_content(author.name) end
     #maybe authors associated with keyword
+
+  end
+
+  describe "index" do
+
+   before { visit keywords_path }
+
+   it "has link to keyword" do expect(subject).to have_link(keyword.keyword, keyword_path(keyword.id)) end
 
   end
 

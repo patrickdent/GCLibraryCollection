@@ -36,8 +36,9 @@ end
 
 @int = 0
 
-#assigns cute name books to cute name authors
+#assigns a couple cute name books to cute name authors
 authors.each do |a|
+  a.books << books[(@int += 1) % books.count]
   a.books << books[(@int += 1) % books.count]
 end
 
