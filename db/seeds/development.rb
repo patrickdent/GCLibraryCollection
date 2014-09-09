@@ -28,6 +28,14 @@ keywords = Keyword.create([{ keyword: 'good' },
 
 @int = 0
 
+#assigns 2 keywords to each book
+books.each do |b|
+  b.keywords << keywords[(@int += 1) % keywords.count]
+  b.keywords << keywords[(@int += 1) % keywords.count]
+end
+
+@int = 0
+
 #assigns cute name books to cute name authors
 authors.each do |a|
   a.books << books[(@int += 1) % books.count]
