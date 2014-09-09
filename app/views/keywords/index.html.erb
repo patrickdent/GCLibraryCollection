@@ -1,0 +1,18 @@
+<h1>Keywords</h1>
+
+<table class="index">
+  <thead>
+    <tr>
+      <th>Keyword</th>
+      <th>Number of Books</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @keyword.each do |a| %>
+    <tr>
+    <td> <%= link_to a.keyword, keyword_path(a.id) %></td>
+    <td><%= a.books.count %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

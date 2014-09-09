@@ -1,0 +1,15 @@
+<h1><%= @keyword.keyword %></h1>
+
+<table class="index">
+  <tr>
+    <th>Title</th>
+    <th>Genre</th>
+  </tr>
+
+  <% @keyword.books.each do |b| %>
+    <tr>
+    <td><%= link_to b.title, book_path(b.id) %></td>
+    <td><%= b.genre.name if b.genre %></td>
+    </tr>
+  <% end %>
+</table>
