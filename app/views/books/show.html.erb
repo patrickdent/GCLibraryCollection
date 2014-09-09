@@ -10,6 +10,12 @@
 
   <p>ISBN: <%= @book.isbn %></p>
   <p>Genre: <%= @book.genre.name if @book.genre %></p>
+  <p>Keyword(s): </p>
+    <ul>
+    <% @book.keywords.each do |k| %>
+      <li><%= k.keyword %> </li>
+      <% end %> 
+    </ul>
 </div>
 
 <br />
