@@ -18,7 +18,7 @@ describe "Keyword Pages" do
 
    before { visit keywords_path }
 
-   # it "has link to keyword" do expect(subject).to have_link(keyword.keyword, keyword_path(keyword.id)) end
+   it "has link to keyword" do expect(subject).to have_link(keyword.keyword, keyword_path(keyword.id)) end
 
   end
 
