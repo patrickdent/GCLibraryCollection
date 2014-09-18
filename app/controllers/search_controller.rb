@@ -9,6 +9,11 @@ class SearchController < ApplicationController
       @books = Book.search(params[:search])
       @genres = Genre.search(params[:search])
     end
+
+    if @authors.blank? && @books.blank? && @genres.blank?
+      flash[:notice] = "Your search yielded no results."
+    end
+
   end
 
 end

@@ -24,7 +24,7 @@ describe 'Static Pages', type: feature do
           fill_in('search', :with => 'XXXXXXXXXXXX!XXX')
           click_on('Search')
         end
-        it 'flashes no results' do expect(subject).to have_content('Your search yeilded no results.') end
+        it 'flashes no results' do expect(subject).to have_content('Your search yielded no results.') end
       end
 
       context 'with matching term' do
