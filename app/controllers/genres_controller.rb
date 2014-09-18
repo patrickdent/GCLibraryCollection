@@ -38,19 +38,19 @@ class GenresController < ApplicationController
   def update 
     is_admin?
     if @genre.update(genre_params)
-      redirect_to genre_path(@genre)
       flash[:notice] = "Update Successful!"
+      redirect_to genre_path(@genre)
     else 
-      redirect_to edit_genre_path
       flash[:error] = "Update Failed"
+      redirect_to edit_genre_path
     end 
   end 
 
   def destroy 
     is_admin? 
     @genre.destroy 
-    redirect_to genres_path 
     flash[:notice] = "Delete Successful!"
+    redirect_to genres_path 
   end 
 
   private
