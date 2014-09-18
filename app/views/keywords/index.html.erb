@@ -16,12 +16,12 @@
     <tr>
       <td> <%= link_to k.name, keyword_path(k) %></td>
       <td><%= k.books.count %></td>
-      <td>
-        <% if current_user && (current_user.has_role? :admin) %>
+      <% if current_user && (current_user.has_role? :admin) %>
+        <td>
           <%= link_to "Edit", edit_keyword_path(k) %>
           <%= link_to "Delete", keyword_path(k), method: :delete, confirm: "Are you sure you want to delete this keyword?" %>
-        <% end %>
-      </td>
+        </td>
+      <% end %>
     </tr>
     <% end %>
   </tbody>
