@@ -10,7 +10,7 @@
     <%= b.label :author %>
     <%= b.select :author_ids, Author.all.collect {|a| [a.name, a.id]}, {}, multiple: true %>
     <%= b.label :keyword %>
-    <%= b.select :keyword_ids, Keyword.all.collect {|k| [k.keyword, k.id]}, {}, multiple: true %>
+    <%= b.select :keyword_ids, Keyword.all.collect {|k| [k.name, k.id]}, {}, multiple: true %>
 
     <%= b.submit "Update", class: "btn2" %>
   <% end %>

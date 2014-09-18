@@ -8,10 +8,10 @@
     </tr>
   </thead>
   <tbody>
-    <% @keyword.each do |a| %>
+    <% @keyword.each do |k| %>
     <tr>
-    <td> <%= link_to a.keyword, keyword_path(a.id) %></td>
-    <td><%= a.books.count %></td>
+    <td> <%= link_to k.name, keyword_path(k.id) %></td>
+    <td><%= k.books.count %></td>
     </tr>
     <% end %>
   </tbody>

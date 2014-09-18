@@ -22,7 +22,7 @@ describe "Book Pages" do
     it "title" do expect(subject).to have_selector('h1', text: book.title) end
     it "author" do expect(subject).to have_content(author.name) end
     it "genre" do expect(subject).to have_content(genre.name) end
-    it "keyword" do expect(subject).to have_content(keyword.keyword) end
+    it "keyword" do expect(subject).to have_content(keyword.name) end
     it "no edit" do expect(subject).to_not have_content("Edit") end
     
     #not all books have ISBNs, so not testing for presence 

@@ -28,7 +28,7 @@
     <% end %>
     <h3>Keywords</h3>
     <% @keywords.each do |k| %>
-      <p><%= link_to k.keyword, keyword_path(k.id) %></p>
+      <p><%= link_to k.name, keyword_path(k.id) %></p>
     <% end %>
     
   <% else %>

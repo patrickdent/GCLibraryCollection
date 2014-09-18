@@ -24,7 +24,7 @@ books = Book.create([{ title: 'Kittles and Bits', genre: genres[0] },
 
 keywords = Keyword.create([{ keyword: 'good' },
                            { keyword: 'bad' },
-                           { keyword: 'ugly'}])
+                           { keyword: 'furry'}])
 
 @int = 0
 

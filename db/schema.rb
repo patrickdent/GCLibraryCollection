@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20140826230821) do
   end
 
   create_table "keywords", force: true do |t|
-    t.string   "keyword"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
