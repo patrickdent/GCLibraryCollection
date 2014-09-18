@@ -1,4 +1,4 @@
-<%= form_for @genre do |f| %>
+<%= form_for @genre, remote: true do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
   <%= f.submit "Create" %> 
