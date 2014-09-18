@@ -36,18 +36,18 @@ class BooksController < ApplicationController
   def destroy 
     is_admin? 
     @book.destroy 
-    redirect_to books_path 
     flash[:notice] = "Delete Successful!"
+    redirect_to books_path 
   end 
 
   def update 
     is_admin?
     if @book.update(book_params)
-      redirect_to book_path(@book)
       flash[:notice] = "Update Successful!"
+      redirect_to book_path(@book)
     else 
-      redirect_to edit_book_path
       flash[:error] = "Update Failed"
+      redirect_to edit_book_path
     end 
   end 
 

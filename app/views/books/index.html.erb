@@ -1,5 +1,7 @@
 <h1>All Books</h1>
-<%= link_to "New Book", new_book_path, class: "btn right" %>
+<% if current_user && (current_user.has_role? :admin) %>
+  <%= link_to "New Book", new_book_path, class: "btn right" %>
+<% end %>
 
 <table class="index">
   <thead>
@@ -24,10 +26,12 @@
           <%= link_to a.name, author_path(a) %>
         <% end %>
       </td>
-      <td>
+      <% if current_user && (current_user.has_role? :admin) %>
+        <td>
         <%= link_to "Edit", edit_book_path(b) %> 
         <%= link_to "Delete", book_path(b), method: :delete, confirm: "Are you sure you want to delete this book?" %> 
-      </td>
+        </td>
+      <% end %>
     </tr>
     <% end %>
   </tbody>

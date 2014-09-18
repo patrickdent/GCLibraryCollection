@@ -1,17 +1,27 @@
 <h1>Authors</h1>
+<% if current_user && (current_user.has_role? :admin) %>
+  <%= link_to "New Author", new_author_path, class: "btn right" %>
+<% end %>
 
 <table class="index">
   <thead>
     <tr>
       <th>Author Name</th>
       <th>Number of Books</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <% @authors.each do |a| %>
     <tr>
-    <td> <%= link_to a.name, author_path(a.id) %></td>
-    <td><%= a.books.count %></td>
+      <td> <%= link_to a.name, author_path(a.id) %></td>
+      <td><%= a.books.count %></td>
+      <% if current_user && (current_user.has_role? :admin) %>
+        <td>
+          <%= link_to "Edit", edit_author_path(a) %> 
+          <%= link_to "Delete", author_path(a), method: :delete, confirm: "Are you sure you want to delete this author?" %> 
+        </td>
+      <% end %>
     </tr>
     <% end %>
   </tbody>

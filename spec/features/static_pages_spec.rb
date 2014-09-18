@@ -98,7 +98,7 @@ describe 'Static Pages', type: feature do
 
       describe 'links' do
         it 'has upload' do expect(subject).to have_link('Upload Books') end
-        it 'has broswe all' do expect(subject).to have_link('Browse All Books') end
+        it 'has broswe all' do expect(subject).to have_link('Manage Books') end
         it 'has manage genres' do expect(subject).to have_link('Manage Genres') end
       end
     end

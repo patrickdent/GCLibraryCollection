@@ -22,7 +22,7 @@ describe KeywordsController do
     it "shows all keywords" do 
       get :index 
 
-      expect(assigns[:keyword]).to include @keyword
+      expect(assigns[:keywords]).to include @keyword
     end 
 
   end 
