@@ -29,10 +29,11 @@ describe 'Static Pages', type: feature do
 
       context 'with matching term' do
         before do 
-          fill_in('search', :with => 'Test Book')
+          @book = FactoryGirl.create(:book)
+          fill_in('search', :with => @book.title)
           click_on('Search')
         end
-        it 'shows matches' do expect(subject).to have_content('Test Book 1') end
+        it 'shows matches' do expect(subject).to have_content("Books #{@book.title}") end
       end 
     end
   end
