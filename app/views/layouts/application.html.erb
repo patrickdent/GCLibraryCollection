@@ -34,10 +34,11 @@
 <div id="headerbar">
 
 <% flash.each do |name, msg| %>
- <%= content_tag :div, msg, class: name %>
+<%= content_tag :div, msg, class: name %>
  <% end %>
 
  </div>
+
 
 <div id="main_content">
   <%= yield %>
