@@ -1,18 +1,8 @@
-<h1>Edit this Book</h1>
+<h1>Edit Book</h1>
 
 <div class="book_edit">
-
-  <%= form_for @book do |b| %>
-    <%= b.label :title %> 
-    <%= b.text_field :title %> 
-    <%= b.label :genre %> 
-    <%= b.select(:genre_id, Genre.all.collect { |n| [n.name, n.id] }) %>
-    <%= b.label :author %>
-    <%= b.select :author_ids, Author.all.collect {|a| [a.name, a.id]}, {}, multiple: true %>
-
-    <%= b.submit "Update", class: "btn2" %>
-  <% end %>
-
-  <button class="btn2 right"><%= link_to "Cancel", book_path(@book) %></button>
-
+ <%= render 'form' %>
 </div>
+
+<button class="btn2 right"><%= link_to "Cancel", book_path(@book) %></button>
+

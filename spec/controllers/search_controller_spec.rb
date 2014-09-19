@@ -6,10 +6,10 @@ describe SearchController do
   describe '#search' do 
 
     it 'returns results for good search terms' do 
-      author = FactoryGirl.create(:author, name: "Kitty Belvedere")
-      get :search, "search" => "Kitty"
+      keyword = FactoryGirl.create(:keyword)
+      get :search, "search" => "keyword"
       response.should be_ok
-      expect(assigns[:authors]).to include(author)
+      expect(assigns[:keywords]).to include(keyword)
     end 
 
     it 'returns results for good, multi-word search terms' do 

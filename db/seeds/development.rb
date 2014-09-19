@@ -22,10 +22,23 @@ books = Book.create([{ title: 'Kittles and Bits', genre: genres[0] },
                      { title: 'The Sound and the Furry', genre: genres[0] },
                      { title: 'Meowtains', genre: genres[2] }])
 
+keywords = Keyword.create([{ name: 'good' },
+                           { name: 'bad' },
+                           { name: 'furry'}])
+
 @int = 0
 
-#assigns cute name books to cute name authors
+#assigns 2 keywords to each book
+books.each do |b|
+  b.keywords << keywords[(@int += 1) % keywords.count]
+  b.keywords << keywords[(@int += 1) % keywords.count]
+end
+
+@int = 0
+
+#assigns a couple cute name books to cute name authors
 authors.each do |a|
+  a.books << books[(@int += 1) % books.count]
   a.books << books[(@int += 1) % books.count]
 end
 
