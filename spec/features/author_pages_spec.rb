@@ -54,7 +54,6 @@ describe 'Author Pages', type: feature do
       admin_login
       visit author_path(author)
       click_on "Delete"
-      # page.driver.browser.accept_js_confirms
     end
 
     it 'flashes success' do expect(subject).to have_content('Delete Successful!') end

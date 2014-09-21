@@ -76,7 +76,6 @@ describe 'Book Pages', type: feature do
       admin_login
       visit book_path(book)
       click_on "Delete"
-      # page.driver.browser.accept_js_confirms
     end
 
     it 'flashes success' do expect(subject).to have_content('Delete Successful!') end
