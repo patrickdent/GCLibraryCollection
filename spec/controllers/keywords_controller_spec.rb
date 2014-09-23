@@ -96,6 +96,14 @@ describe KeywordsController do
     context 'as admin' do
       before { sign_in @admin }
 
+      it "does not update with invalid params" do 
+        post :update, id: @keyword.id, keyword: { name: "" }
+        @keyword.reload 
+
+        expect(@keyword.name).to_not eq("")
+        expect(response.status).to eq(302)
+      end 
+
       it 'changes the name' do
         put :update, id: @keyword, keyword: FactoryGirl.attributes_for(:keyword, name: "new and unique")
         @keyword.reload

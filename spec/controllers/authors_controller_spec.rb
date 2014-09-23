@@ -96,6 +96,14 @@ describe AuthorsController do
     context 'as admin' do
       before { sign_in @admin }
 
+      it "does not update with invalid params" do 
+        post :update, id: @author.id, author: { name: "" }
+        @author.reload 
+
+        expect(@author.name).to_not eq("")
+        expect(response.status).to eq(302)
+      end 
+
       it 'changes the name' do
         put :update, id: @author, author: FactoryGirl.attributes_for(:author, name: "new and unique")
         @author.reload

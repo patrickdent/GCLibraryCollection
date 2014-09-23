@@ -96,6 +96,14 @@ describe GenresController do
     context 'as admin' do
       before { sign_in @admin }
 
+      it "does not update with invalid params" do 
+        post :update, id: @genre.id, genre: { name: "" }
+        @genre.reload 
+
+        expect(@genre.name).to_not eq("")
+        expect(response.status).to eq(302)
+      end 
+
       it 'changes the name' do
         put :update, id: @genre, genre: FactoryGirl.attributes_for(:genre, name: "new and unique")
         @genre.reload
