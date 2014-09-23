@@ -1,6 +1,7 @@
 class GenresController < ApplicationController
   include ApplicationHelper
   before_filter :find_genre, only: [:show, :edit, :destroy, :update]
+  before_filter :is_admin?, only: [:new, :create, :edit, :destroy, :update]
 
   def index
     @genres = Genre.all
@@ -9,13 +10,11 @@ class GenresController < ApplicationController
   def show
   end
 
-  def new 
-    is_admin?
+  def new
     @genre = Genre.new
   end 
 
-  def create 
-    is_admin?
+  def create
     @genre = Genre.new(genre_params)
     if @genre.save 
       respond_to do |format|
@@ -31,12 +30,10 @@ class GenresController < ApplicationController
     end
   end 
 
-  def edit 
-    is_admin?
+  def edit
   end 
 
-  def update 
-    is_admin?
+  def update
     if @genre.update(genre_params)
       flash[:notice] = "Update Successful!"
       redirect_to genre_path(@genre)
@@ -47,7 +44,6 @@ class GenresController < ApplicationController
   end 
 
   def destroy 
-    is_admin? 
     @genre.destroy 
     flash[:notice] = "Delete Successful!"
     redirect_to genres_path 

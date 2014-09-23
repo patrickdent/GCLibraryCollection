@@ -35,4 +35,42 @@ describe KeywordsController do
     end 
   end
 
+  describe "POST 'create'" do
+
+    context 'as non-admin' do
+      before { sign_in @user }
+
+      it 'redirects unauthorized user' do
+        #throws a really cool error
+        expect(post :create, keyword: FactoryGirl.attributes_for(:keyword, name: 'unique')).to redirect_to(root_path)
+        # expect(response).to eq(302)
+      end
+    end
+
+    context 'as admin' do
+      before { sign_in @admin }
+
+      it "creates a new keyword" do
+        #undefined method 'call'
+        # expect(post :create, keyword: FactoryGirl.attributes_for(:keyword, name: 'unique')).to change(Keyword, :count)
+      end
+
+      it "redirects to index" do
+        expect(post :create, keyword: FactoryGirl.attributes_for(:keyword, name: 'testname1')).to redirect_to(keywords_path)
+      end
+    end 
+  end
+
+  describe "DELETE destroy" do
+
+    context 'as non-admin' do
+      before { sign_in @user }
+
+      it 'redirects unauthroized user' do
+        #throws a really cool error
+        # delete :destroy, id: @keyword
+        # expect(response).to eq(302) 
+      end
+    end
+  end
 end

@@ -4,18 +4,18 @@ class BooksController < ApplicationController
 
   before_filter :authenticate_user!, except: [:index, :show]
   before_filter :find_book, only: [:show, :edit, :destroy, :update]
+  before_filter :is_admin?, only: [:new, :create, :edit, :destroy, :update]
+
   
   def index
     @books = Book.all
   end
 
-  def new 
-    is_admin?
+  def new
     @book = Book.new 
   end 
 
-  def create 
-    is_admin?
+  def create
     @book = Book.new(book_params)
     if @book.save 
       flash[:notice] = "Book Created"
@@ -30,18 +30,15 @@ class BooksController < ApplicationController
   end
 
   def edit 
-    is_admin? 
   end 
 
   def destroy 
-    is_admin? 
     @book.destroy 
     flash[:notice] = "Delete Successful!"
     redirect_to books_path 
   end 
 
-  def update 
-    is_admin?
+  def update
     if @book.update(book_params)
       flash[:notice] = "Update Successful!"
       redirect_to book_path(@book)
