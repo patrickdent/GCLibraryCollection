@@ -41,9 +41,7 @@ describe KeywordsController do
       before { sign_in @user }
 
       it 'redirects unauthorized user' do
-        #throws a really cool error
-        expect(post :create, keyword: FactoryGirl.attributes_for(:keyword, name: 'unique')).to redirect_to(root_path)
-        # expect(response).to eq(302)
+        expect(post :create, keyword: FactoryGirl.attributes_for(:keyword)).to redirect_to(root_path)
       end
     end
 
@@ -52,7 +50,7 @@ describe KeywordsController do
 
       it "creates a new keyword" do
         #undefined method 'call'
-        # expect(post :create, keyword: FactoryGirl.attributes_for(:keyword, name: 'unique')).to change(Keyword, :count)
+        # expect(post :create, keyword: FactoryGirl.attributes_for(:keyword)).to change(Keyword, :count).by(1)
       end
 
       it "redirects to index" do
@@ -66,10 +64,47 @@ describe KeywordsController do
     context 'as non-admin' do
       before { sign_in @user }
 
-      it 'redirects unauthroized user' do
-        #throws a really cool error
-        # delete :destroy, id: @keyword
-        # expect(response).to eq(302) 
+      it 'redirects unauthorized user' do
+        expect(delete :destroy, id: @keyword).to redirect_to(root_path)
+      end
+    end
+
+    context 'as admin' do
+      before { sign_in @admin }
+
+      it 'removes a keyword' do
+        #undefined method 'call'
+        # expect(delete :destroy, id: @keyword).to change(Keyword, :count).by(-1)
+      end
+
+      it 'redirects to keywords path' do
+        expect(delete :destroy, id: @keyword).to redirect_to(keywords_path)
+      end
+    end
+  end
+
+  describe "PUT update" do
+
+    context 'as non-admin' do
+      before { sign_in @user }
+
+      it 'redirects unauthorized user' do
+        expect(put :update, id: @keyword).to redirect_to(root_path)
+      end      
+    end
+
+    context 'as admin' do
+      before { sign_in @admin }
+
+      it 'changes the name' do
+        put :update, id: @keyword, keyword: FactoryGirl.attributes_for(:keyword, name: "new and unique")
+        @keyword.reload
+        expect(@keyword.name).to eq("new and unique")
+      end
+
+      it 'redirects to keyword show' do
+        put :update, id: @keyword, keyword: FactoryGirl.attributes_for(:keyword, name: "new and unique")
+        expect(response).to redirect_to(keyword_path(@keyword))
       end
     end
   end
