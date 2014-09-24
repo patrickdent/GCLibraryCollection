@@ -20,3 +20,6 @@ coverage
 
 # Ignore mac generated nonsense 
 .DS_Store
+
+#Ignore figaro fil
+/config/application.yml
