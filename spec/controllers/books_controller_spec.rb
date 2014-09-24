@@ -83,4 +83,50 @@ describe BooksController do
     end
   end 
 
+  describe "POST 'create'" do
+
+    context 'as non-admin' do
+      before { sign_in @user }
+
+      it 'redirects unauthorized user' do
+        expect(post :create, book: FactoryGirl.attributes_for(:book)).to redirect_to(root_path)
+      end
+    end
+
+    context 'as admin' do
+      before { sign_in @admin }
+
+      it "creates a new book" do
+        expect{post :create, book: {title: "Touch My Belly... Trust Me"}}.to change{Book.count}.by(1)
+      end
+
+      it "redirects to index" do
+        expect(post :create, book: FactoryGirl.attributes_for(:book, name: 'testname1')).to redirect_to(books_path)
+      end
+    end 
+  end
+
+  describe "DELETE destroy" do
+
+    context 'as non-admin' do
+      before { sign_in @user }
+
+      it 'redirects unbookized user' do
+        expect(delete :destroy, id: @book).to redirect_to(root_path)
+      end
+    end
+
+    context 'as admin' do
+      before { sign_in @admin }
+
+      it 'removes a book' do
+        expect{delete :destroy, id: @book}.to change{Book.count}.by(-1)
+      end
+
+      it 'redirects to Authors path' do
+        expect(delete :destroy, id: @book).to redirect_to(books_path)
+      end
+    end
+  end
+
 end 

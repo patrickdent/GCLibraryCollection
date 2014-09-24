@@ -1,19 +1,24 @@
-<h1><%= @book.title %></h1>
+<h1>Book: <%= @book.title %></h1>
 
 <div class="show">
   <p>Author(s): </p>
     <ul>
     <% @book.authors.each do |a| %>
-      <li><%= a.name %> </li>
+      <li><%= link_to a.name, author_path(a) %> </li>
       <% end %> 
     </ul>
 
   <p>ISBN: <%= @book.isbn %></p>
-  <p>Genre: <%= @book.genre.name if @book.genre %></p>
+  <p>
+  Genre: 
+  <% if @book.genre %>
+    <%= link_to @book.genre.name, genre_path(@book.genre) %>
+  <% end %> 
+  </p>
   <p>Keyword(s): </p>
     <ul>
     <% @book.keywords.each do |k| %>
-      <li><%= k.name %> </li>
+      <li><%= link_to k.name, keyword_path(k) %> </li>
       <% end %> 
     </ul>
 </div>
@@ -21,5 +26,6 @@
 <br />
 
 <% if user_signed_in? and current_user.has_role? :admin %>
-  <%= link_to "Edit This Book", edit_book_path(@book.id), class: "right btn2" %>
+  <%= link_to "Edit This Book", edit_book_path(@book), class: "right btn2" %>
+  <%= link_to "Delete", book_path(@book), method: :delete, confirm: "Are you sure you want to delete this book?", class: "right btn2" %> 
 <% end %>

@@ -1,5 +1,5 @@
-<%= form_for @genre, remote: true do |f| %>
+<%= form_for @genre do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
-  <%= f.submit "Create" %> 
+  <%= f.submit "Submit" %> 
 <% end %>

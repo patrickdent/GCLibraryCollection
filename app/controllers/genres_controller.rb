@@ -1,25 +1,26 @@
 class GenresController < ApplicationController
+  include ApplicationHelper
+  before_filter :find_genre, only: [:show, :edit, :destroy, :update]
+  before_filter :is_admin?, only: [:new, :create, :edit, :destroy, :update]
+
   def index
     @genres = Genre.all
   end
 
   def show
-    @genre = Genre.find(params[:id])
   end
 
-  def new 
+  def new
     @genre = Genre.new
-    @genres = Genre.all
   end 
 
-  def create 
+  def create
     @genre = Genre.new(genre_params)
     if @genre.save 
-
       respond_to do |format|
         format.html do 
             flash[:notice] = "Genre added"
-            redirect_to new_genre_path
+            redirect_to genres_path
         end 
         format.js {}
       end
@@ -27,11 +28,33 @@ class GenresController < ApplicationController
       flash[:alert] = "Genre failed to save"
       redirect_to new_genre_path
     end
+  end 
 
+  def edit
+  end 
+
+  def update
+    if @genre.update(genre_params)
+      flash[:notice] = "Update Successful!"
+      redirect_to genre_path(@genre)
+    else 
+      flash[:error] = "Update Failed"
+      redirect_to edit_genre_path
+    end 
+  end 
+
+  def destroy 
+    @genre.destroy 
+    flash[:notice] = "Delete Successful!"
+    redirect_to genres_path 
   end 
 
   private
   def genre_params
     params.require(:genre).permit(:name, :id)
+  end 
+
+  def find_genre
+    @genre = Genre.find(params[:id])
   end 
 end

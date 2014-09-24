@@ -1,34 +1,55 @@
 class BooksController < ApplicationController
   include BooksHelper
   include ApplicationHelper
-  #to restrict methods, use this before filter: 
+
   before_filter :authenticate_user!, except: [:index, :show]
+  before_filter :find_book, only: [:show, :edit, :destroy, :update]
+  before_filter :is_admin?, only: [:new, :create, :edit, :destroy, :update]
+
   
   def index
     @books = Book.all
   end
 
+  def new
+    @book = Book.new 
+  end 
+
+  def create
+    @book = Book.new(book_params)
+    if @book.save 
+      flash[:notice] = "Book Created"
+      redirect_to books_path
+    else 
+      flash[:alert] = "Book Creation Failed"
+      redirect_to new_book_path
+    end 
+  end 
+
   def show
-    @book = Book.find(params[:id])
   end
 
   def edit 
-    is_admin? 
-    @book = Book.find(params[:id])
-
   end 
 
-  def update 
-    is_admin?
-    @book = Book.find(params[:id])
-    # genre = Genre.where(name: params[:genre]).first
-    # @book.genre_id = genre.id 
+  def destroy 
+    @book.destroy 
+    flash[:notice] = "Delete Successful!"
+    redirect_to books_path 
+  end 
+
+  def update
     if @book.update(book_params)
-      redirect_to book_path(@book)
       flash[:notice] = "Update Successful!"
+      redirect_to book_path(@book)
     else 
-      redirect_to edit_book_path
       flash[:error] = "Update Failed"
+      redirect_to edit_book_path
     end 
+  end 
+
+  private 
+  def find_book 
+    @book = Book.find(params[:id])
   end 
 end

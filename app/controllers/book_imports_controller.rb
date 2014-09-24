@@ -3,6 +3,8 @@ class BookImportsController < ApplicationController
   require 'csv'
   rescue_from BookImport::InvalidFileError, with: :invalid_file
   rescue_from CSV::MalformedCSVError, with: :invalid_file
+  before_filter :is_admin?
+
 
   def new
     @book_import = BookImport.new
