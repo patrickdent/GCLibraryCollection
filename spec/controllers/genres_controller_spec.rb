@@ -49,8 +49,7 @@ describe GenresController do
       before { sign_in @admin }
 
       it "creates a new genre" do
-        #undefined method 'call'
-        # expect(post :create, genre: FactoryGirl.attributes_for(:genre)).to change(Genre, :count).by(1)
+        expect{post :create, genre: {name: "Fluffy"}}.to change{Genre.count}.by(1)
       end
 
       it "redirects to index" do
@@ -73,8 +72,7 @@ describe GenresController do
       before { sign_in @admin }
 
       it 'removes a genre' do
-        #undefined method 'call'
-        # expect(delete :destroy, id: @genre).to change(Genre, :count).by(-1)
+        expect{delete :destroy, id: @genre}.to change{Genre.count}.by(-1)
       end
 
       it 'redirects to genres path' do

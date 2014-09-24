@@ -97,8 +97,7 @@ describe BooksController do
       before { sign_in @admin }
 
       it "creates a new book" do
-        #undefined method 'call'
-        # expect(post :create, book: FactoryGirl.attributes_for(:book)).to change(Book, :count).by(1)
+        expect{post :create, book: {title: "Touch My Belly... Trust Me"}}.to change{Book.count}.by(1)
       end
 
       it "redirects to index" do
@@ -121,8 +120,7 @@ describe BooksController do
       before { sign_in @admin }
 
       it 'removes a book' do
-        #undefined method 'call'
-        # expect(delete :destroy, id: @book).to change(Book, :count).by(-1)
+        expect{delete :destroy, id: @book}.to change{Book.count}.by(-1)
       end
 
       it 'redirects to Authors path' do

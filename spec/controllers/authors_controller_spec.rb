@@ -49,8 +49,7 @@ describe AuthorsController do
       before { sign_in @admin }
 
       it "creates a new author" do
-        #undefined method 'call'
-        # expect(post :create, author: FactoryGirl.attributes_for(:author)).to change(Author, :count).by(1)
+        expect{post :create, author: {name: "Mittens McScruff"}}.to change{Author.count}.by(1)
       end
 
       it "redirects to index" do
@@ -72,9 +71,8 @@ describe AuthorsController do
     context 'as admin' do
       before { sign_in @admin }
 
-      it 'removes a author' do
-        #undefined method 'call'
-        # expect(delete :destroy, id: @author).to change(Author, :count).by(-1)
+      it 'removes a author' do 
+        expect{delete :destroy, id: @author}.to change{Author.count}.by(-1)
       end
 
       it 'redirects to Authors path' do

@@ -49,8 +49,10 @@ describe KeywordsController do
       before { sign_in @admin }
 
       it "creates a new keyword" do
-        #undefined method 'call'
-        # expect(post :create, keyword: FactoryGirl.attributes_for(:keyword)).to change(Keyword, :count).by(1)
+        expect {post :create, keyword: {name: "TestKeyword9000"} }.to change{Keyword.count}.by(1)
+
+
+
       end
 
       it "redirects to index" do
@@ -73,8 +75,7 @@ describe KeywordsController do
       before { sign_in @admin }
 
       it 'removes a keyword' do
-        #undefined method 'call'
-        # expect(delete :destroy, id: @keyword).to change(Keyword, :count).by(-1)
+        expect {delete :destroy, id: @keyword}.to change{Keyword.count}.by(-1)
       end
 
       it 'redirects to keywords path' do
