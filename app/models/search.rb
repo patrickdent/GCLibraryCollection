@@ -1,14 +1,14 @@
 class Search
   require 'net/http'
 
-  def scrape(isbn)
+  def self.scrape(isbn)
     return if Book.find_by(isbn: isbn)
     google_api(isbn)
   end
 
   private
 
-  def google_api(isbn)
+  def self.google_api(isbn)
     url = URI.parse("https://www.googleapis.com/books/v1/volumes?q=isbn:#{isbn}&key=")
     req = Net::HTTP::Get.new(url.to_s + ENV['google_api_key'])
     http = Net::HTTP.new(url.host, url.port)

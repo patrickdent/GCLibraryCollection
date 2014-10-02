@@ -18,8 +18,13 @@ class SearchController < ApplicationController
 
   end
 
-  def scrape(isbn)
+  def import 
+  end 
+
+  def scrape
+    isbn = params[:isbn]
     @book = Search.scrape(isbn)
+    redirect_to edit_book_path(@book)
   end
 
 end
