@@ -18,4 +18,8 @@ class SearchController < ApplicationController
 
   end
 
+  def scrape(isbn)
+    @book = Search.scrape(isbn)
+  end
+
 end
