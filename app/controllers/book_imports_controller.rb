@@ -1,5 +1,6 @@
 class BookImportsController < ApplicationController
   include BookImportsHelper
+  include ApplicationHelper
   require 'csv'
   rescue_from BookImport::InvalidFileError, with: :invalid_file
   rescue_from CSV::MalformedCSVError, with: :invalid_file
