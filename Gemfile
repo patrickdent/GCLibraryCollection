@@ -13,6 +13,7 @@ gem 'devise'
 gem 'cancan'
 gem 'rolify'
 gem 'figaro'
+gem 'pry'
 
 
 group :production do

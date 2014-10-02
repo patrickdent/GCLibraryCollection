@@ -22,7 +22,7 @@ describe Book do
 
   end
 
-    describe "validations" do
+  describe "validations" do
     it "will not create a book without a title" do  
       FactoryGirl.build(:book, title: "").should_not be_valid
     end 

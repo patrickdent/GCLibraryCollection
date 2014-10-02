@@ -2,8 +2,29 @@ class Search
   require 'net/http'
 
   def self.scrape(isbn)
-    return if Book.find_by(isbn: isbn)
-    google_api(isbn)
+    return nil if Book.find_by(isbn: isbn)
+
+    google_info = google_api(isbn)
+    
+    return nil if google_info == nil 
+
+    b = Book.new
+    b.title = google_info["title"]
+    b.publisher = google_info["publisher"]
+    b.publish_date = google_info["publishedDate"]
+    b.language = google_info["lang"]
+    b.pages = google_info["pageCount"]
+    b.isbn = isbn
+    authors = google_info["authors"]
+    if authors 
+      authors.each do |name|
+        a = Author.find_or_create_by(name: name)
+        b.authors << a
+      end
+    end 
+    b.save!
+  
+    return b
   end
 
   private
@@ -17,25 +38,19 @@ class Search
     body = response.body
     temp_hash = JSON.parse(body)
 
-    if temp_hash["totalItems"] == 0 
-      return nil 
-    end 
+    return nil if temp_hash["totalItems"] == 0        
 
     book_hash = temp_hash["items"].first["volumeInfo"]
-    authors = temp_hash["items"].first["volumeInfo"]["authors"]
-    
-    b = Book.new
-    b.title = book_hash["title"]
-    b.publisher = book_hash["publisher"]
-    b.publish_date = book_hash["publishedDate"]
-    b.language = book_hash["lang"]
-    b.pages = book_hash["pageCount"]
-    b.isbn = isbn
-    authors.each do |name|
-      a = Author.find_or_create_by(name: name)
-      b.authors << a
-    end
-    b.save!
-    return b
+
+    google_info = Hash.new 
+    google_info["title"] = book_hash["title"]
+    google_info["publisher"] = book_hash["publisher"]
+    google_info["publish_date"] = book_hash["publishedDate"]
+    google_info["language"] = book_hash["lang"]
+    google_info["pages"] = book_hash["pageCount"]
+    google_info["isbn"] = isbn
+    google_info["authors"] = temp_hash["items"].first["volumeInfo"]["authors"]
+
+    return google_info
   end
 end
