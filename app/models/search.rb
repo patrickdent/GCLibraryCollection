@@ -16,6 +16,11 @@ class Search
     response = http.request(req)
     body = response.body
     temp_hash = JSON.parse(body)
+
+    if temp_hash["totalItems"] == 0 
+      return nil 
+    end 
+
     book_hash = temp_hash["items"].first["volumeInfo"]
     authors = temp_hash["items"].first["volumeInfo"]["authors"]
     

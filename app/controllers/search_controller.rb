@@ -23,8 +23,12 @@ class SearchController < ApplicationController
 
   def scrape
     isbn = params[:isbn]
+    isbn = isbn.delete!(" ")
+
     @book = Search.scrape(isbn)
-    redirect_to edit_book_path(@book)
+    redirect_to edit_book_path(@book) if @book 
+    flash[:error] = "Book Not Found"
+    redirect_to import_path
   end
 
 end
