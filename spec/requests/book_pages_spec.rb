@@ -15,17 +15,47 @@ describe "Book Pages" do
 
   subject { page }
 
+  describe 'index' do
+    context "as non-admin" do
+      before { visit books_path }
+
+      it "links to books" do expect(subject).to have_link(book.title) end
+      it "links to author" do expect(subject).to have_link(book.authors.first.name) end
+      it "links to genre" do expect(subject).to have_link(book.genre.name) end
+    end
+
+    context "as admin" do
+      before do
+        admin_login
+        visit book_path(book)
+      end
+
+      it 'edit' do expect(subject).to have_link("Edit") end
+      it 'delete' do expect(subject).to have_link("Delete") end
+    end
+  end
+
   describe "show" do
 
-    before { visit book_path(book.id) }
+    context "as non-admin" do
+      before { visit book_path(book) }
 
-    it "title" do expect(subject).to have_selector('h1', text: book.title) end
-    it "author" do expect(subject).to have_content(author.name) end
-    it "genre" do expect(subject).to have_content(genre.name) end
-    it "keyword" do expect(subject).to have_content(keyword.name) end
-    it "no edit" do expect(subject).to_not have_content("Edit") end
-    
-    #not all books have ISBNs, so not testing for presence 
+      it "title" do expect(subject).to have_selector('h1', text: book.title) end
+      it "author" do expect(subject).to have_link(author.name) end
+      it "genre" do expect(subject).to have_link(genre.name) end
+      it "keyword" do expect(subject).to have_link(keyword.name) end
+      it "no edit" do expect(subject).to_not have_content("Edit") end
+      #not all books have ISBNs, so not testing for presence 
+    end
 
+    context "as admin" do
+      before do
+        admin_login
+        visit book_path(book)
+      end
+
+      it 'edit' do expect(subject).to have_link("Edit") end
+      it 'delete' do expect(subject).to have_link("Delete") end
+    end
   end
 end

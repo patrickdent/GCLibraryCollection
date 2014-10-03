@@ -2,18 +2,17 @@ class KeywordsController < ApplicationController
 
   include ApplicationHelper
   before_filter :find_keyword, only: [:show, :edit, :destroy, :update]
+  before_filter :is_admin?, only: [:new, :create, :edit, :destroy, :update]
 
   def index
     @keywords = Keyword.all
   end
 
   def new 
-    is_admin?
     @keyword = Keyword.new 
   end 
 
   def create 
-    is_admin?
     @keyword = Keyword.new(keyword_params)
     if @keyword.save 
       flash[:notice] = "Keyword Created"
@@ -28,18 +27,15 @@ class KeywordsController < ApplicationController
   end
 
   def edit 
-    is_admin? 
   end 
 
   def destroy 
-    is_admin? 
     @keyword.destroy 
     flash[:notice] = "Delete Successful!"
     redirect_to keywords_path 
   end 
 
   def update 
-    is_admin?
     if @keyword.update(keyword_params)
       flash[:notice] = "Update Successful!"
       redirect_to keyword_path(@keyword)

@@ -57,7 +57,12 @@ describe 'Static Pages', type: feature do
 
       context 'valid credentials' do
         before do
-          admin_login
+            admin = FactoryGirl.create(:admin, password: "password", email: "email@email.com")
+            visit root_path
+            click_on('Login')
+            fill_in("Email", :with => admin.email)
+            fill_in("Password", :with => 'password')
+            click_on("Sign in")
         end
 
         it "should flash success" do expect(subject).to have_content('Signed in successfully.') end
@@ -66,9 +71,10 @@ describe 'Static Pages', type: feature do
         it 'has profile links' do expect(subject).to have_link('Edit profile') end
       end
 
-      context 'logout' do
+      context 'then logout' do
         before do
           admin_login
+          visit root_path
           click_on 'Logout'
         end
 
@@ -82,13 +88,20 @@ describe 'Static Pages', type: feature do
     describe 'Dashboard' do
       before do
           admin_login
+          visit root_path
           click_on('Admin Dashboard')
+      end
+
+      after do
+        Warden.test_reset!
       end
 
       describe 'links' do
         it 'has upload' do expect(subject).to have_link('Upload Books') end
-        it 'has broswe all' do expect(subject).to have_link('Manage Books') end
-        it 'has manage genres' do expect(subject).to have_link('Manage Genres') end
+        it 'has manage Books' do expect(subject).to have_link('Manage Books') end
+        it 'has manage Genres' do expect(subject).to have_link('Manage Genres') end
+        it 'has manage Authors' do expect(subject).to have_link('Manage Authors') end
+        it 'has manage Keywords' do expect(subject).to have_link('Manage Keywords') end
       end
     end
   end
