@@ -29,6 +29,7 @@ class Search
 
   private
 
+  #preferred method; has most important fields
   def self.google_api(isbn)
     url = URI.parse("https://www.googleapis.com/books/v1/volumes?q=isbn:#{isbn}&key=")
     req = Net::HTTP::Get.new(url.to_s + ENV['google_api_key'])
@@ -52,5 +53,24 @@ class Search
     google_info["authors"] = temp_hash["items"].first["volumeInfo"]["authors"]
 
     return google_info
+  end
+
+  #not the best, authors is non-standardized - can't be parsed
+  def self.world_cat_api(isbn)
+    url = URI.parse("http://xisbn.worldcat.org/webservices/xid/isbn/#{isbn}?method=getMetadata&format=json&fl=*")
+    req = Net::HTTP::Get.new(url.to_s)
+    http = Net::HTTP.new(url.host, url.port)
+    response = http.request(req)
+    body = response.body
+    book_hash = JSON.parse(body)["list"].first
+
+    world_cat_info = Hash.new
+    world_cat_info["title"] = book_hash["title"]
+    world_cat_info["publisher"] = book_hash["publisher"]
+    world_cat_info["language"] = book_hash["lang"]
+    world_cat_info["publish_date"] = book_hash["year"]
+    world_cat_info["publish_place"] = book_hash["city"]
+
+    return world_cat_info
   end
 end
