@@ -33,6 +33,7 @@ group :test do
     gem 'shoulda-matchers'
     gem 'factory_girl_rails', '~> 4.0'
     gem 'simplecov', '~> 0.9.0', :require => false
+    gem 'webmock'
 end
 
 group :doc do

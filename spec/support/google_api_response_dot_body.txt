@@ -1,10 +1,4 @@
-def admin_login
-  admin = FactoryGirl.create(:admin)
-  login_as(admin, scope: :user)
-end
-
-def return_json_body
-'{
+{
  "kind": "books#volumes",
  "totalItems": 1,
  "items": [
@@ -20,7 +14,7 @@ def return_json_body
     ],
     "publisher": "Womens Press",
     "publishedDate": "1985",
-    "description": "Jennifer has two daddies, and that\'s just fine; she has one \'real\' daddy, and one \'real\' stepdaddy. But when one daddy goes away on a trip Jennifer is faced with the challenge of learning how to deal with change.",
+    "description": "Jennifer has two daddies, and that's just fine; she has one 'real' daddy, and one 'real' stepdaddy. But when one daddy goes away on a trip Jennifer is faced with the challenge of learning how to deal with change.",
     "industryIdentifiers": [
      {
       "type": "ISBN_10",
@@ -76,5 +70,4 @@ def return_json_body
    }
   }
  ]
-}'
-end
+}

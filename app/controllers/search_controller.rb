@@ -25,7 +25,6 @@ class SearchController < ApplicationController
     isbn = params[:isbn]
     isbn = isbn.delete(" ")
 
-
     @book = Search.scrape(isbn)
     redirect_to edit_book_path(@book) and return if @book
 
