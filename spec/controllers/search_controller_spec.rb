@@ -1,5 +1,6 @@
 # spec/controllers/search_controller_spec.rb
 require 'spec_helper' 
+require 'support/api_utilities'
 
 describe SearchController do
 
@@ -32,4 +33,56 @@ describe SearchController do
     end 
 
   end 
+
+  describe 'scrape' do
+
+  before do 
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.start
+    @user = create :user
+    @admin = create :admin 
+    @isbn = "1234567890"
+    create_google_stub(create_google_url(@isbn), "exists")
+  end 
+
+  after do 
+    DatabaseCleaner.clean
+  end 
+
+  after :each do 
+    Warden.test_reset! 
+  end 
+
+
+    context 'as non-admin' do
+
+      before { sign_in @user }
+
+
+      it 'redirects un-authorized users' do
+        expect(get :import).to redirect_to(root_path)
+        expect(post :scrape, isbn: @isbn).to redirect_to(root_path)
+      end
+    end
+
+    context 'as admin' do
+
+      before { sign_in @admin }
+
+      context 'success' do
+        it 'redirects to edit book' do
+          post :scrape, isbn: @isbn
+          expect(response).to redirect_to(edit_book_path(Book.last))
+        end
+      end
+
+      context 'failure' do
+        it 'redirects to import' do
+          Search.scrape(@isbn)
+          post :scrape, isbn: @isbn
+          expect(response).to redirect_to(import_path)
+        end
+      end
+    end
+  end
 end 

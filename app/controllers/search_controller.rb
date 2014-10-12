@@ -1,4 +1,9 @@
 class SearchController < ApplicationController
+  include ApplicationHelper
+
+  before_filter :authenticate_user!, except: [:search]
+  before_filter :is_admin?, only: [:import, :scrape]
+
   
   def search
     if params[:search] == ""

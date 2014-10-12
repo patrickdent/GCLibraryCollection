@@ -23,7 +23,7 @@ class Search
       end
     end 
     b.save!
-  
+
     return b
   end
 

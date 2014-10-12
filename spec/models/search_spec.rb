@@ -1,51 +1,46 @@
 require 'spec_helper'
-require 'support/utilities'
+require 'support/api_utilities'
 
 describe Search do
 
   let(:isbn) { "1234567890" }
-  let(:url) { "https://www.googleapis.com/books/v1/volumes?q=isbn:#{isbn}&key=" + ENV['google_api_key'] }
-  let(:title) { "Cute Title" }
-  let(:publisher) { "Cute Publisher" }
-  let(:publishedDate) { "Cute Date" }
-  let(:lang) { "Cute Language" }
-  let(:pageCount) { "Cute Number" }
-  let(:authors) { ["Cute Authors"] }
-  
   
   describe "scrape" do
 
-    before do
-      stub_request(:get, url).
-        with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'}).
-        to_return(:status => 200, :body => return_json_body, :headers => {})
-    end
-
     context "good info" do
 
+      # the example Json respons has three authors, on of whom is made into the @author variable below
+      before do 
+        create_google_stub(create_google_url(isbn), "exists")
+        @author = create(:author, name: "Fen Osler Hampson")
+        @author_count = Author.all.length
+        @book = Search.scrape(isbn)
+      end
+
       it "will make a book from good info" do  
-        expect(Search.scrape(isbn)).to eq Book.last
+        expect(@book).to eq Book.last
       end 
 
-      it "will find authors from good info" do  
-
-      end 
-
-      it "will make authors from good info" do  
-
+      # one was made in the before block, so author count should only be two larger
+      it "will find or make authors from good info" do  
+        expect(@author_count).to eq (Author.all.length - 2)
       end 
     end 
-    
-    it "will return nil if no book info comes back" do  
 
+    it "will return nil if no book info comes back" do  
+      create_google_stub(create_google_url(isbn), "does not exist")
+      expect(Search.scrape(isbn)).to eq nil
     end 
 
     it "will not error if no author info present" do  
-
+      create_google_stub(create_google_url(isbn), "no authors")
+      expect(Search.scrape(isbn)).to be_valid
     end 
 
     it "will return nil if book with isbn already exists" do 
-
+      create_google_stub(create_google_url(isbn), "exists")
+      Search.scrape(isbn)
+      expect(Search.scrape(isbn)).to eq nil
     end 
   end 
 end
