@@ -1,4 +1,4 @@
-class BookImport < ActiveRecord::Base
+class BookUpload < ActiveRecord::Base
 
   extend ActiveModel::Naming
   include ActiveModel::Conversion
@@ -72,14 +72,13 @@ class BookImport < ActiveRecord::Base
   end
   
   def self.import_requirements?(params)
-    if params[:book_import].has_key?(:file) && !params[:book_import][:genre].blank?
+    if params[:book_upload].has_key?(:file) && !params[:book_upload][:genre].blank?
       true
     else
       false
     end
   end
 
-  #should I do this here?
   class InvalidFileError < RuntimeError
   end
 end
