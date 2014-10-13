@@ -32,7 +32,7 @@ class Search
   #preferred method; has most important fields
   def self.google_api(isbn)
     url = URI.parse("https://www.googleapis.com/books/v1/volumes?q=isbn:#{isbn}&key=")
-    req = Net::HTTP::Get.new(url.to_s + ENV['google_api_key'])
+    req = Net::HTTP::Get.new(url.to_s + ENV['google_api_key'].to_s)
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
     response = http.request(req)
