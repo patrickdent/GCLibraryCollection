@@ -1,5 +1,5 @@
 def create_google_url(isbn)
-  url = ("https://www.googleapis.com/books/v1/volumes?q=isbn:#{isbn}&key=" + ENV['google_api_key'])
+  url = ("https://www.googleapis.com/books/v1/volumes?q=isbn:#{isbn}&key=" + ENV['google_api_key'].to_s)
   return url
 end
 
