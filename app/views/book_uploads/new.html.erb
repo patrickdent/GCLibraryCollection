@@ -1,10 +1,10 @@
 <h1>Upload Books</h1>
 
 <h5>Upload .csv or .txt File</h5>
-<%= form_for @book_import do |b| %>
+<%= form_for @book_upload do |b| %>
   <%= b.select :genre, Genre.all.collect { |n| n.name }, prompt: "Choose genre", required: true %>
   <%= b.file_field :file %>
-  <%= b.submit "Import Books" %>
+  <%= b.submit "Upload File" %>
 <% end %>
 
 <br />

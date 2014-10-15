@@ -1,4 +1,9 @@
 class SearchController < ApplicationController
+  include ApplicationHelper
+
+  before_filter :authenticate_user!, except: [:search]
+  before_filter :is_admin?, only: [:import, :scrape]
+
   
   def search
     if params[:search] == ""
@@ -16,6 +21,20 @@ class SearchController < ApplicationController
       flash[:notice] = "Your search yielded no results."
     end
 
+  end
+
+  def import 
+  end 
+
+  def scrape
+    isbn = params[:isbn]
+    isbn = isbn.delete(" ")
+
+    @book = Search.scrape(isbn)
+    redirect_to edit_book_path(@book) and return if @book
+
+    flash[:error] = "Book Upload Failed"
+    redirect_to import_path
   end
 
 end
