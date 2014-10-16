@@ -16,9 +16,9 @@ class BookUploadsController < ApplicationController
      if BookUpload.import_requirements?(params)
       @book_upload = BookUpload.new(book_uploads_params)
       genre = Genre.find_by(name: params[:book_upload][:genre])
-      if @book_upload.save
+      if @new_books = @book_upload.save
         flash[:notice] = "Upload successful"
-        redirect_to genre_path(genre.id)
+        redirect_to uploaded_books_path(new_books: @new_books.length)
       else
         flash[:error] = "Upload failed"
         redirect_to new_book_upload_path
@@ -27,6 +27,10 @@ class BookUploadsController < ApplicationController
       flash[:error] = "Please select a file and genre"
       redirect_to new_book_upload_path
     end
+  end
+
+  def uploaded_books
+    @new_books = Book.last(params[:new_books].to_i)
   end
 
   def invalid_file(msg)

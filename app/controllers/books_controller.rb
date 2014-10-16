@@ -11,6 +11,10 @@ class BooksController < ApplicationController
     @books = Book.all
   end
 
+  # def index(new_book_array)
+  #   @books = Book.find(new_book_array)
+  # end
+
   def new
     @book = Book.new 
   end 

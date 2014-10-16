@@ -6,8 +6,10 @@ class BookUpload < ActiveRecord::Base
   require 'csv'
 
   def save
+    @new_books = Array.new
     if imported_books.each { |i| make_book(i) }
-      true 
+      @new_books
+      # true 
     else
       imported_books.each_with_index do |product, index|
         product.errors.full_messages.each do |message|
@@ -58,6 +60,9 @@ class BookUpload < ActiveRecord::Base
     # => the commented line below or the uncommented one after
     # (make_authors(book_data["author"])).each { |n| book.authors << n } if book_data["author"] != nil
     
+    # adds the actrive record id to an array of all the books created this session
+    @new_books << book.id
+
     if (a = book_data["author"]) != nil then (make_authors(a)).each { |n| book.authors << n } end
     
   end
