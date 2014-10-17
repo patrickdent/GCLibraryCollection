@@ -1,0 +1,2 @@
+###"Author","Title","ISBN","Publish Date","Publisher","Publication Place"
+"Cristaldi, Kathryn; Carter, Abby (Illustrator)","Baseball Ballerina","0679817344",003],"Random House","New York"
