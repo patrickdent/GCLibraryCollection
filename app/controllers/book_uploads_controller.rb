@@ -33,6 +33,8 @@ class BookUploadsController < ApplicationController
     @new_books = Book.last(params[:new_books].to_i)
   end
 
+private
+
   def invalid_file(msg)
     flash[:error] = "Upload Unsuccessful: please upload a file with the correct file type and formatting."
     redirect_to :back
