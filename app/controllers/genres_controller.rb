@@ -51,7 +51,7 @@ class GenresController < ApplicationController
 
   private
   def genre_params
-    params.require(:genre).permit(:name, :id)
+    params.require(:genre).permit(:name, :abbreviation, :id)
   end 
 
   def find_genre
