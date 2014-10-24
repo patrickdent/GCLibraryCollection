@@ -8,41 +8,41 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="wrapper">
+  <nav>
+    <%= link_to "Home", root_path %> &nbsp; 
+    <a href="mailto:library@example.com?Subject=Inquiry" target="_top">Contact the Library!</a>  &nbsp;
 
-<nav>
-  <%= link_to "Home", root_path %> &nbsp; 
-  <a href="mailto:library@example.com?Subject=Inquiry" target="_top">Contact the Library!</a>  &nbsp;
+    <% if user_signed_in? %>
+      Logged in as <strong><%= current_user.email %></strong>. &nbsp;
+      <%= link_to 'Edit profile', edit_user_registration_path %>  &nbsp;
+      <%= link_to "Logout", destroy_user_session_path, method: :delete %>  &nbsp;
 
-  <% if user_signed_in? %>
-    Logged in as <strong><%= current_user.email %></strong>. &nbsp;
-    <%= link_to 'Edit profile', edit_user_registration_path %>  &nbsp;
-    <%= link_to "Logout", destroy_user_session_path, method: :delete %>  &nbsp;
+      <% if current_user.has_role? :admin %>
+        <%= link_to "Admin Dashboard", admin_dashboard_path %> &nbsp;
+      <% end %>
 
-    <% if current_user.has_role? :admin %>
-      <%= link_to "Admin Dashboard", admin_dashboard_path %> &nbsp;
+    <% else %>
+
+      <%= link_to "Login", new_user_session_path %> &nbsp;
+
     <% end %>
 
-  <% else %>
 
-    <%= link_to "Login", new_user_session_path %> &nbsp;
+  </nav>
+   
+  <div id="headerbar">
 
-  <% end %>
+  <% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, class: name %>
+   <% end %>
 
-
-</nav>
- 
-<div id="headerbar">
-
-<% flash.each do |name, msg| %>
-<%= content_tag :div, msg, class: name %>
- <% end %>
-
- </div>
+   </div>
 
 
-<div id="main_content">
-  <%= yield %>
+  <div id="main_content">
+    <%= yield %>
+  </div>
 </div>
-
 </body>
 </html>
