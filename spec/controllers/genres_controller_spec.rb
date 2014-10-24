@@ -49,7 +49,7 @@ describe GenresController do
       before { sign_in @admin }
 
       it "creates a new genre" do
-        expect{post :create, genre: {name: "Fluffy"}}.to change{Genre.count}.by(1)
+        expect{post :create, genre: {name: "Fluffy", abbreviation: "Fl"}}.to change{Genre.count}.by(1)
       end
 
       it "redirects to index" do

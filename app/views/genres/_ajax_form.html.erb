@@ -1,5 +1,7 @@
 <%= form_for @genre, remote: true do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
+  <%= f.label :abbreviation %>
+  <%= f.text_field :abbreviation %>
   <%= f.submit "Create" %> 
 <% end %>

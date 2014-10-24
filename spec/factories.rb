@@ -35,6 +35,10 @@ FactoryGirl.define do
     sequence :name do |n|
       "Kitty Interests #{n}" 
     end
+
+    sequence :abbreviation do |n|
+      "KI #{n}" 
+    end  
   end
 
   factory :user, class: User do 

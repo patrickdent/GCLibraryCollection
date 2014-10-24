@@ -1,7 +1,8 @@
 class Genre < ActiveRecord::Base
 	has_many :books
 
-  validates :name, uniqueness: true, presence: true 
+  validates :name, uniqueness: true, presence: true
+  validates :abbreviation, uniqueness: true, presence: true 
 
   def self.search(search)
     search_length = search.split.length
