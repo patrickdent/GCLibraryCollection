@@ -1,0 +1,43 @@
+
+.edit_user form {
+	margin-top: 3em;
+}
+
+.edit_user input {
+	padding: 3px;
+	margin: 1%;
+	display: inline-block;
+  float: left;
+  vertical-align: baseline;
+}
+
+
+.edit_user {
+	margin-top: 3em;
+}
+
+.edit_user input[type=submit] {
+	// clear: both;
+	margin-bottom: 7em;
+}
+
+.edit_user label {
+	font-size: .9em;
+	display: inline-block;
+  float: left;
+  clear: left;
+  width: 175px;
+  text-align: right;
+  vertical-align: baseline;
+  padding: 3px;
+	margin: 1% 0;
+}
+
+.edit_user i {
+	font-size: .7em;
+	vertical-align: sub;
+}
+
+.left form label {
+	visibility: hidden;
+}
