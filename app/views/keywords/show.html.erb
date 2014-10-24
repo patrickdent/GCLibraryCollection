@@ -1,4 +1,4 @@
-<h1>Keyword: <%= @keyword.name %></h1>
+<h2>Keyword: <%= @keyword.name %></h2>
 
 <% if user_signed_in? and current_user.has_role? :admin %>
   <%= link_to "Edit Keyword", edit_keyword_path(@keyword), class: "right btn2" %>

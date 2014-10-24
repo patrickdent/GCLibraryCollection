@@ -10,7 +10,7 @@
 <body>
 <div class="wrapper">
   <!-- search column aside -->
-  <aside class="column-2 left">
+  <div class="column-2 left">
 
       <% flash.each do |name, msg| %>
       <%= content_tag :div, msg, class: name, id:"headerbar" %>
@@ -28,7 +28,7 @@
     <h3><%= link_to "by genre", genres_path %></h3>
 
  
-  </aside>
+  </div>
 
   <div class="column-6 gray">
     <section class="main">

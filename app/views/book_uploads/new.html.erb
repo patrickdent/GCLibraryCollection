@@ -1,6 +1,6 @@
-<h1>Upload Books</h1>
+<h2>Upload Books</h2>
 
-<h5>Upload .csv or .txt File</h5>
+<h3>Upload .csv or .txt File</h3>
 <%= form_for @book_upload do |b| %>
   <%= b.select :genre, Genre.all.collect { |n| n.name }, prompt: "Choose genre", required: true %>
   <%= b.file_field :file %>
@@ -10,5 +10,5 @@
 <br />
 <br />
 
-<h5>Create a New Genre</h5>
+<h3>Create a New Genre</h3>
 <%= render "genres/form" %>

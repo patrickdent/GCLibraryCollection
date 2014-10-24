@@ -1,4 +1,4 @@
-<h1>Authors</h1>
+<h2>Authors</h2>
 <% if current_user && (current_user.has_role? :admin) %>
   <%= link_to "New Author", new_author_path, class: "btn right" %>
 <% end %>

@@ -1,4 +1,4 @@
-<h1>Genres</h1>
+<h2>Genres</h2>
 <% if current_user && (current_user.has_role? :admin) %>
   <%= link_to "New Genre", new_genre_path, class: "btn right" %>
 <% end %>
