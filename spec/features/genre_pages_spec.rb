@@ -40,6 +40,7 @@ describe 'Genre Pages', type: feature do
       visit genres_path
       click_on 'New Genre'
       fill_in('Name', with: 'newer genre')
+      fill_in('Abbreviation', with: 'NG')
       click_on 'Submit'
     end
 
