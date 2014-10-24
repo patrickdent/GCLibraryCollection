@@ -2,21 +2,6 @@
 
   <p>Here's some informational text.</p>
 
-<div class = "search">
-	<h3>Search the Collection</h3>
-	<%= form_tag "/search", method: "get" do %>
-	  <p>
-	    <i class="fa fa-search"></i><%= label_tag "Search for:" %>
-	    <%= text_field_tag :search, params[:search] %>
-	    <%= submit_tag "Search", name: nil %>
-	  </p>
-	<% end %>
-</div>
 
 
-<div class = "browse">
-	<h3>Browse the Collection</h3>
-	<%= link_to "Browse by Genre", genres_path, class: "btn2" %>
-	<%= link_to "Browse by Author", authors_path, class: "btn2" %>
-	<%= link_to "Browse by Keyword", keywords_path, class: "btn2" %>
-</div>
+

@@ -9,40 +9,59 @@
 </head>
 <body>
 <div class="wrapper">
-  <nav>
-    <%= link_to "Home", root_path %> &nbsp; 
-    <a href="mailto:library@example.com?Subject=Inquiry" target="_top">Contact the Library!</a>  &nbsp;
+  <!-- search column aside -->
+  <aside class="column-2 left">
 
-    <% if user_signed_in? %>
-      Logged in as <strong><%= current_user.email %></strong>. &nbsp;
-      <%= link_to 'Edit profile', edit_user_registration_path %>  &nbsp;
-      <%= link_to "Logout", destroy_user_session_path, method: :delete %>  &nbsp;
-
-      <% if current_user.has_role? :admin %>
-        <%= link_to "Admin Dashboard", admin_dashboard_path %> &nbsp;
+      <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, class: name, id:"headerbar" %>
       <% end %>
 
-    <% else %>
+ <%= form_tag "/search", method: "get" do %>
+      <%= label_tag "search" %>
+      <%= text_field_tag :search, params[:search], placeholder:"sparkle" %>
+      <%= submit_tag "Search", name: nil %>
+  <% end %>
+  
+    <h2>browse</h2>
+    <h3><%= link_to "by keyword", keywords_path %></h3>
+    <h3><%= link_to "by author", authors_path %></h3>
+    <h3><%= link_to "by genre", genres_path %></h3>
 
-      <%= link_to "Login", new_user_session_path %> &nbsp;
+ 
+  </aside>
 
-    <% end %>
+  <div class="column-6 gray">
+    <section class="main">
+      <h1>Library Collection</h1>
+      <nav>
+        <ul>
+        <li><%= link_to "home", root_path %></li> 
+        <li>
+            <a href="mailto:library@example.com?Subject=Inquiry" target="_top">contact the library!</a></li>
 
+        <% if user_signed_in? %>
+          logged in as <strong><%= current_user.email %></strong>. 
+          <li><%= link_to 'edit profile', edit_user_registration_path %></li>  
+          <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>  
 
-  </nav>
-   
-  <div id="headerbar">
+          <% if current_user.has_role? :admin %>
+            <li><%= link_to "admin Dashboard", admin_dashboard_path %></li> 
+          <% end %>
 
-  <% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, class: name %>
-   <% end %>
+        <% else %>
 
-   </div>
+          <li><%= link_to "login", new_user_session_path %></li> 
 
+        <% end %>
 
-  <div id="main_content">
+        </ul>
+      </nav>
     <%= yield %>
+   </div>
+  <div class="column-2">
+    <span class="vertical">home</span>
   </div>
+ 
 </div>
 </body>
 </html>
