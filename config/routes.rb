@@ -6,6 +6,7 @@ LibraryCollection::Application.routes.draw do
   resources :keywords
   resources :book_uploads, only: [:new, :create]
 
+  get 'uploaded_books' => 'book_uploads#uploaded_books'
   get 'search' => 'search#search'
   get 'import' => 'search#import'
   post 'scrape' => 'search#scrape'
