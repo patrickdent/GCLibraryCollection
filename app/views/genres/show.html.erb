@@ -1,4 +1,4 @@
-<h1>Genre: <%= @genre.name %> <% if @genre.abbreviation && @genre.abbreviation != "" then %> | <%= @genre.abbreviation%> <% end %></h1>
+<h1>Genre: <%= @genre.name %> <% if @genre.abbreviation then %> | <%= @genre.abbreviation%> <% end %></h1>
 
 <% if user_signed_in? and current_user.has_role? :admin %>
   <%= link_to "Edit Genre", edit_genre_path(@genre), class: "right btn2" %>

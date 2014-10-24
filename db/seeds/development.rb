@@ -10,7 +10,7 @@ genres = Genre.create([{ name: 'Whisker Grooming', abbreviation: 'WG'  },
                        { name: 'Ew, Gross', abbreviation: 'EGr'  }])
 
 #temp storage for books with no genre
-Genre.create(name: 'Unassigned')
+Genre.create(name: 'Unassigned', abbreviation: 'UA')
 
 authors = Author.create([{ name: 'Chairman Meow' }, 
                          { name: 'Fluffy Faulkner'}, 
