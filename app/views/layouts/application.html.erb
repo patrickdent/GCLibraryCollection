@@ -18,8 +18,9 @@
 
  <%= form_tag "/search", method: "get" do %>
       <%= label_tag "search" %>
+      <%= submit_tag "search", name: nil %>
       <%= text_field_tag :search, params[:search], placeholder:"sparkle" %>
-      <%= submit_tag "Search", name: nil %>
+    
   <% end %>
   
     <h2>browse</h2>
@@ -40,12 +41,13 @@
             <a href="mailto:library@example.com?Subject=Inquiry" target="_top">contact the library!</a></li>
 
         <% if user_signed_in? %>
-          logged in as <strong><%= current_user.email %></strong>. 
+          <li>logged in as <strong><%= current_user.email %></strong>
+          </li> 
           <li><%= link_to 'edit profile', edit_user_registration_path %></li>  
           <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>  
 
           <% if current_user.has_role? :admin %>
-            <li><%= link_to "admin Dashboard", admin_dashboard_path %></li> 
+            <li><%= link_to "admin dashboard", admin_dashboard_path %></li> 
           <% end %>
 
         <% else %>

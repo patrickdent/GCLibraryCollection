@@ -50,68 +50,68 @@ nav li {
 		}
 
 nav li:first-of-type {
-	padding-left: 0;
-	}
+		padding-left: 0;
+		}
 
 nav li > a:hover {
-	color: orange;
-	}
+		color: orange;
+		}
 
 nav span {
-	color: 	white;
-}
+		color: 	white;
+		}
 
 .main article {
-	margin: 5em 6em;
-	height: 100%;
-}
+		margin: 5em 6em;
+		height: 100%;
+		}
 
 .main p {
-	margin: 1em 0;
-	font-weight: normal;
-}
+		margin: 1em 0;
+		font-weight: normal;
+		}
 
 /*left side area styles*/
 
 .left {
-	margin-top: 12em;
-	text-align: right;
-
-}
+		margin-top: 12em;
+		text-align: right;
+		}
 
 .left h2 {
-	font-size: 2.5em;
-}
+		font-size: 2.5em;
+		}
 
 .left form {
-	padding-bottom: 3em;
-}
+		padding-bottom: 3em;
+		}
 
 input {
-	font-family: 'Helvetica Neue', Arial, Helvetica, 'Liberation Sans', sans-serif;
-	font-weight: bold;
-}
+		font-family: 'Helvetica Neue', Arial, Helvetica, 'Liberation Sans', sans-serif;
+		font-weight: bold;
+		}
 
 input[type="submit"] {
 		font-size: 2.5em;
 		font-weight: bold;
 		background: none;
 		border: none;
-}
+		text-align: right;
+		}
 
 input[type="text"] {
-	width: 7em;
-	height: 2em;
-	/*padding: 1em;*/
-	border: 1px solid black;
-	text-align: right;
-}
+		width: 7em;
+		height: 2em;
+		/*padding: 1em;*/
+		border: 1px solid black;
+		text-align: right;
+		}
 
 input[placeholder] {
-	font-size: 1.5em;
-	color: gray;
-	padding-right: .5em;
-}
+		font-size: 1.5em;
+		color: gray;
+		padding-right: .5em;
+		}
 
 .vertical {
 	font-size: 6em;
@@ -120,18 +120,20 @@ input[placeholder] {
 }
 
 span.vertical {
-						 display:inline-block; 
-    					position:relative;
-							margin-top: 1.25em;
-							margin-left: -.75em;
-             -webkit-transform: rotate(90deg);
-             -moz-transform:rotate(90deg);
-             transform: rotate(90deg);
+ 	display:inline-block; 
+	position:relative;
+	margin-top: 1.25em;
+	margin-left: -.75em;
+ 	-webkit-transform: rotate(90deg);
+ 	-moz-transform:rotate(90deg);
+ 	transform: rotate(90deg);
 }
 
 
 
-.right {float: right; 
-				margin-right: 5%;}
+.right {
+	float: right; 
+	margin-right: 5%;
+	}
 
 
