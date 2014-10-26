@@ -52,6 +52,11 @@ describe AuthorsController do
         expect{post :create, author: {name: "Mittens McScruff"}}.to change{Author.count}.by(1)
       end
 
+      it "does not create a new author with bad data" do
+        expect{post :create, author: {name: ""}}.to_not change{Author.count}
+        expect(response).to redirect_to(new_author_path)
+      end
+
       it "redirects to index" do
         expect(post :create, author: FactoryGirl.attributes_for(:author, name: 'testname1')).to redirect_to(authors_path)
       end
