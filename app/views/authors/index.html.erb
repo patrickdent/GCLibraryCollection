@@ -18,8 +18,8 @@
       <td><%= a.books.count %></td>
       <% if current_user && (current_user.has_role? :admin) %>
         <td>
-          <%= link_to "Edit", edit_author_path(a) %> 
-          <%= link_to "Delete", author_path(a), method: :delete, data: {confirm: "Are you sure you want to delete this author?"} %> 
+          <%= link_to "edit", edit_author_path(a) %> 
+          <%= link_to "delete", author_path(a), method: :delete, data: {confirm: "Are you sure you want to delete this author?"} %> 
         </td>
       <% end %>
     </tr>

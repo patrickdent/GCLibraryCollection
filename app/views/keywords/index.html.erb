@@ -1,6 +1,6 @@
 <h2>Keywords</h2>
 <% if current_user && (current_user.has_role? :admin) %>
-  <%= link_to "New Keyword", new_keyword_path, class: "btn right" %>
+  <%= link_to "New keyword", new_keyword_path, class: "btn right" %>
 <% end %>
 
 <table class="index">
@@ -18,8 +18,8 @@
       <td><%= k.books.count %></td>
       <% if current_user && (current_user.has_role? :admin) %>
         <td>
-          <%= link_to "Edit", edit_keyword_path(k) %>
-          <%= link_to "Delete", keyword_path(k), method: :delete, data: {confirm: "Are you sure you want to delete this keyword?"} %>
+          <%= link_to "edit", edit_keyword_path(k) %>
+          <%= link_to "delete", keyword_path(k), method: :delete, data: {confirm: "Are you sure you want to delete this keyword?"} %>
         </td>
       <% end %>
     </tr>
