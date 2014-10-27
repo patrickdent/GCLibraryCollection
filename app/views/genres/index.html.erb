@@ -18,8 +18,8 @@
       <td><%= g.books.count %></td>      
       <% if current_user && (current_user.has_role? :admin) %>
         <td>
-          <%= link_to "Edit", edit_genre_path(g) %>
-          <%= link_to "Delete", genre_path(g), method: :delete, data: {confirm: "Are you sure you want to delete this genre?"} %>
+          <%= link_to "edit", edit_genre_path(g) %>
+          <%= link_to "delete", genre_path(g), method: :delete, data: {confirm: "Are you sure you want to delete this genre?"} %>
         </td>
       <% end %>
     </tr>

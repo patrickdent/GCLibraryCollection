@@ -2,6 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.book_edit {padding: .75em .75em 3em .75em;
-            border: 3px #FAC0FA solid; 
-            border-radius: 25px; }
+.book_edit {padding: 2em;
+						margin: 1em 0 0 0;
+            border: 1px black solid; 
+            background-color: #F5F5F5;
+            // border-radius: 25px; 
+          }
