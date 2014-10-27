@@ -8,5 +8,5 @@
     <%= b.label :keyword %>
     <%= b.select :keyword_ids, Keyword.all.collect {|k| [k.name, k.id]}, {}, multiple: true %>
 
-    <%= b.submit "submit", class: "btn2" %>
+    <%= b.submit "Submit", class: "btn2" %>
 <% end %>

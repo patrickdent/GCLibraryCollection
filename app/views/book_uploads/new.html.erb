@@ -4,7 +4,7 @@
 <%= form_for @book_upload do |b| %>
   <%= b.select :genre, Genre.all.collect { |n| n.name }, prompt: "Choose genre", required: true %>
   <%= b.file_field :file %>
-  <%= b.submit "upload file" %>
+  <%= b.submit "Upload File" %>
 <% end %>
 
 <br />
