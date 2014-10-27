@@ -25,7 +25,7 @@ describe "Author Pages" do
 
    before { visit author_path(author.id) }
 
-   it { should have_selector('h1', text: author.name) }
+   it { should have_selector('h2', text: author.name) }
    it { should have_content(book.title) }
    it { should have_content(book.genre.name) }
 

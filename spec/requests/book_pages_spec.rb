@@ -40,7 +40,7 @@ describe "Book Pages" do
     context "as non-admin" do
       before { visit book_path(book) }
 
-      it "title" do expect(subject).to have_selector('h1', text: book.title) end
+      it "title" do expect(subject).to have_selector('h2', text: book.title) end
       it "author" do expect(subject).to have_link(author.name) end
       it "genre" do expect(subject).to have_link(genre.name) end
       it "keyword" do expect(subject).to have_link(keyword.name) end

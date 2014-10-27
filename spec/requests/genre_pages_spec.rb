@@ -24,7 +24,7 @@ describe "Genre Pages" do
 
    before { visit genre_path(genre.id) }
 
-   it { should have_selector('h1', text: genre.name) }
+   it { should have_selector('h2', text: genre.name) }
    it { should have_content(book.title) }
    it { should have_content(book.authors.first.name) }
 
