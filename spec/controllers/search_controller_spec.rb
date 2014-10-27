@@ -8,7 +8,7 @@ describe SearchController do
 
     it 'returns results for good search terms' do 
       keyword = FactoryGirl.create(:keyword)
-      get :search, "search" => "keyword"
+      get :search, "search" => "boogers"
       response.should be_ok
       expect(assigns[:keywords]).to include(keyword)
     end 

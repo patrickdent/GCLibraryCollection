@@ -20,7 +20,7 @@ describe "Keyword Pages" do
 
     before { visit keyword_path(keyword.id) }
 
-    it "keyword as h1" do expect(subject).to have_selector('h1', text: keyword.name) end
+    it "keyword as h2" do expect(subject).to have_selector('h2', text: keyword.name) end
     it "books" do expect(subject).to have_content(book.title) end
     it "genre" do expect(subject).to have_content(genre.name) end
     it "author" do expect(subject).to have_content(author.name) end

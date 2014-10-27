@@ -1,4 +1,4 @@
-<h1>All Books</h1>
+<h2>All Books</h2>
 <% if current_user && (current_user.has_role? :admin) %>
   <%= link_to "New Book", new_book_path, class: "btn right" %>
 <% end %>

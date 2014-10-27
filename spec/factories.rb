@@ -59,10 +59,10 @@ FactoryGirl.define do
   end 
 
   factory :keyword, class: Keyword do
-    name "keyword"
+    name "Boogers"
   end
   
   factory :contribution, class: Contribution do
-    name "contribution"
+    name "illustrator"
   end
 end

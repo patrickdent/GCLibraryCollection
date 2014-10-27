@@ -9,7 +9,7 @@ describe Keyword  do
 
     it "include name" do expect(subject).to respond_to(:name) end
     it "include books" do expect(subject).to respond_to(:books) end
-    it "has name of keyword" do expect(subject.name).to eq "keyword" end
+    it "has name of keyword" do expect(subject.name).to eq "Boogers" end
     
   end
 

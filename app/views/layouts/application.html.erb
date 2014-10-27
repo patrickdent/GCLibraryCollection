@@ -8,41 +8,62 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="wrapper">
+  <!-- search column aside -->
+  <div class="column-2 left">
 
-<nav>
-  <%= link_to "Home", root_path %> &nbsp; 
-  <a href="mailto:library@example.com?Subject=Inquiry" target="_top">Contact the Library!</a>  &nbsp;
+      <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, class: name, id:"headerbar" %>
+      <% end %>
 
-  <% if user_signed_in? %>
-    Logged in as <strong><%= current_user.email %></strong>. &nbsp;
-    <%= link_to 'Edit profile', edit_user_registration_path %>  &nbsp;
-    <%= link_to "Logout", destroy_user_session_path, method: :delete %>  &nbsp;
-
-    <% if current_user.has_role? :admin %>
-      <%= link_to "Admin Dashboard", admin_dashboard_path %> &nbsp;
-    <% end %>
-
-  <% else %>
-
-    <%= link_to "Login", new_user_session_path %> &nbsp;
-
+ <%= form_tag "/search", method: "get" do %>
+      <%= label_tag "search" %>
+      <%= submit_tag "search", name: nil %>
+      <%= text_field_tag :search, params[:search], placeholder:"sparkle" %>
+    
   <% end %>
+  
+    <h2>browse</h2>
+    <h3><%= link_to "by keyword", keywords_path %></h3>
+    <h3><%= link_to "by author", authors_path %></h3>
+    <h3><%= link_to "by genre", genres_path %></h3>
 
-
-</nav>
  
-<div id="headerbar">
+  </div>
 
-<% flash.each do |name, msg| %>
-<%= content_tag :div, msg, class: name %>
- <% end %>
+  <div class="column-6 gray">
+    <section class="main">
+      <h1>Library Collection</h1>
+      <nav>
+        <ul>
+        <li><%= link_to "home", root_path %></li> 
+        <li>
+            <a href="mailto:library@example.com?Subject=Inquiry" target="_top">contact the library!</a></li>
 
- </div>
+        <% if user_signed_in? %>
+          <li>logged in as <strong><%= current_user.email %></strong>
+          </li> 
+          <li><%= link_to 'edit profile', edit_user_registration_path %></li>  
+          <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>  
 
+          <% if current_user.has_role? :admin %>
+            <li><%= link_to "admin dashboard", admin_dashboard_path %></li> 
+          <% end %>
 
-<div id="main_content">
-  <%= yield %>
+        <% else %>
+
+          <li><%= link_to "login", new_user_session_path %></li> 
+
+        <% end %>
+
+        </ul>
+      </nav>
+    <article><%= yield %></article>
+   </div>
+  <div class="column-2">
+    <span class="vertical">home</span>
+  </div>
+ 
 </div>
-
 </body>
 </html>

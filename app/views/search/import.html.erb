@@ -1,6 +1,6 @@
-<h1>Import Books</h1>
+<h2>Import Books</h2>
 
-<h5>Enter ISBN</h5>
+<h3>Enter ISBN</h3>
 <%= form_tag("/scrape", method: "post") do |b| %>
   <%= label_tag :isbn %>
   <%= text_field_tag :isbn %>

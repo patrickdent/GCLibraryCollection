@@ -6,23 +6,24 @@ describe 'Static Pages', type: feature do
   describe 'Home Page' do 
     before { visit root_path }
 
-    it 'has working genre link' do expect(subject).to have_link('Browse by Genre', href: genres_path) end
-    it 'has working author link' do expect(subject).to have_link('Browse by Author', href: authors_path) end
-    it 'does not have admin links' do expect(subject).to_not have_link('Admin Dashboard') end
+    it 'has working genre link' do expect(subject).to have_link('by genre', href: genres_path) end
+    it 'has working author link' do expect(subject).to have_link('by author', href: authors_path) end
+    it 'has working keyword link' do expect(subject).to have_link('by keyword', href: keywords_path) end
+    it 'does not have admin links' do expect(subject).to_not have_link('admin dashboard') end
     it 'does not have logout links' do expect(subject).to_not have_link('Logout') end
     it 'does not have profile links' do expect(subject).to_not have_link('Edit profile') end
 
     describe 'Search' do
 
       context 'with no term' do
-        before { click_on 'Search' }
+        before { click_on 'search' }
         it 'promts for term' do expect(subject).to have_content('Please enter a search term.') end
       end
 
       context 'with non-matching term' do
         before do 
           fill_in('search', :with => 'XXXXXXXXXXXX!XXX')
-          click_on('Search')
+          click_on('search')
         end
         it 'flashes no results' do expect(subject).to have_content('Your search yielded no results.') end
       end
@@ -31,7 +32,7 @@ describe 'Static Pages', type: feature do
         before do 
           @book = FactoryGirl.create(:book)
           fill_in('search', :with => @book.title)
-          click_on('Search')
+          click_on('search')
         end
         it 'shows matches' do expect(subject).to have_content("Books #{@book.title}") end
       end 
@@ -45,7 +46,7 @@ describe 'Static Pages', type: feature do
       context 'with invalid credentials' do
         before do
           visit root_path
-          click_on('Login')
+          click_on('login')
           fill_in("Email", :with => 'bogus@email.com')
           fill_in("Password", :with => 'nope')
           click_on("Sign in")
@@ -59,29 +60,29 @@ describe 'Static Pages', type: feature do
         before do
             admin = FactoryGirl.create(:admin, password: "password", email: "email@email.com")
             visit root_path
-            click_on('Login')
+            click_on('login')
             fill_in("Email", :with => admin.email)
             fill_in("Password", :with => 'password')
             click_on("Sign in")
         end
 
         it "should flash success" do expect(subject).to have_content('Signed in successfully.') end
-        it 'has admin links' do expect(subject).to have_link('Admin Dashboard') end
-        it 'has logout links' do expect(subject).to have_link('Logout') end
-        it 'has profile links' do expect(subject).to have_link('Edit profile') end
+        it 'has admin links' do expect(subject).to have_link('admin dashboard') end
+        it 'has logout links' do expect(subject).to have_link('logout') end
+        it 'has profile links' do expect(subject).to have_link('edit profile') end
       end
 
       context 'then logout' do
         before do
           admin_login
           visit root_path
-          click_on 'Logout'
+          click_on 'logout'
         end
 
         it "should flash success" do expect(subject).to have_content('Signed out successfully.') end
-        it 'does not have admin links' do expect(subject).to_not have_link('Admin Dashboard') end
-        it 'does not have logout links' do expect(subject).to_not have_link('Logout') end
-        it 'does not have profile links' do expect(subject).to_not have_link('Edit profile') end
+        it 'does not have admin links' do expect(subject).to_not have_link('admin dashboard') end
+        it 'does not have logout links' do expect(subject).to_not have_link('logout') end
+        it 'does not have profile links' do expect(subject).to_not have_link('edit profile') end
       end
     end
 
@@ -89,7 +90,7 @@ describe 'Static Pages', type: feature do
       before do
           admin_login
           visit root_path
-          click_on('Admin Dashboard')
+          click_on('admin dashboard')
       end
 
       after do

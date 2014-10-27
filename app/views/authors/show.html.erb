@@ -1,4 +1,4 @@
-<h1>Author: <%= @author.name %></h1>
+<h2>Author: <%= @author.name %></h2>
 
 <% if user_signed_in? and current_user.has_role? :admin %>
   <%= link_to "Edit Author", edit_author_path(@author), class: "right btn2" %>
