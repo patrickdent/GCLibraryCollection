@@ -1,3 +1,6 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$(".select-book").change ->
+  alert "something in double quotes"
+ $.get "book/update?id=" + $(this).val(), (data, status) ->
+   alert data  if status is "success"
+   return
+return

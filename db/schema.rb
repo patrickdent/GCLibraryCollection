@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141031164111) do
+ActiveRecord::Schema.define(version: 20141031182546) do
 
   create_table "authors", force: true do |t|
     t.string   "name"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20141031164111) do
     t.string   "language"
     t.integer  "pages"
     t.string   "location"
+    t.boolean  "selected",          default: false
   end
 
   create_table "contributions", force: true do |t|
