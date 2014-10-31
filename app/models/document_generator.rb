@@ -3,7 +3,7 @@ class DocumentGenerator
   require "prawn/measurement_extensions"
 
   def initialize(format)
-    @dimentions = {}
+    @dimensions = {}
     @format = format
     set_format(format)
   end
@@ -19,8 +19,8 @@ class DocumentGenerator
 
   private
 
-  def dimentions
-    @dimentions
+  def dimensions
+    @dimensions
   end
 
   def set_format(format)
@@ -33,26 +33,26 @@ class DocumentGenerator
   end
 
   def set_label_format
-    @dimentions[:height] = 0.66
-    @dimentions[:width] = 1.75
+    @dimensions[:height] = 0.66
+    @dimensions[:width] = 1.75
 
-    @dimentions[:top_margin] = 0.55
-    @dimentions[:bottom_margin] = 0.47
-    @dimentions[:left_margin] = 0.39
-    @dimentions[:right_margin] = 0.31
+    @dimensions[:top_margin] = 0.55
+    @dimensions[:bottom_margin] = 0.47
+    @dimensions[:left_margin] = 0.39
+    @dimensions[:right_margin] = 0.31
     
-    @dimentions[:gutter] = 0.3
+    @dimensions[:gutter] = 0.3
 
-    @dimentions[:rows] = 15
-    @dimentions[:columns] = 4
+    @dimensions[:rows] = 15
+    @dimensions[:columns] = 4
   end
 
   def make_labels(info)
     document = Prawn::Document.new({page_size: "LETTER",
-                                    margin: [@dimentions[:top_margin].in, 
-                                             @dimentions[:right_margin].in,
-                                             @dimentions[:bottom_margin].in,
-                                             @dimentions[:left_margin].in]})  
+                                    margin: [@dimensions[:top_margin].in, 
+                                             @dimensions[:right_margin].in,
+                                             @dimensions[:bottom_margin].in,
+                                             @dimensions[:left_margin].in]})  
 
     #to count labels to know when to go to a new line
     @label_count = 0
@@ -64,7 +64,7 @@ class DocumentGenerator
     info.each do |i|
       new_label(i, @x, @y, document)
       @label_count += 1
-      #change 4 to @dimentions[:columns]
+      #change 4 to @dimensions[:columns]
       if @label_count % 60 == 0 then
         document.start_new_page
         @y = cursor
