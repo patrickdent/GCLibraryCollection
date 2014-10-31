@@ -12,7 +12,7 @@ class Author < ActiveRecord::Base
   end
 
   def sort_by_name
-    return sort_by if sort_by
-    update_attribute(:sort_by, name.split(" ").last)
+    update_attribute(:sort_by, name.split(" ").last) unless sort_by 
+    return sort_by 
   end
 end
