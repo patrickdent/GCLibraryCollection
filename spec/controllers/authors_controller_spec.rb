@@ -5,7 +5,9 @@ describe AuthorsController do
   before do 
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
-    @author = create :author 
+    @author = create :author, name: "Abbie Abberson"
+    @author2 = create :author, name: "Zed Zebrafish" 
+    @author3 = create :author, sort_by: "Moo"
     @user = create :user
     @admin = create :admin 
   end 
@@ -23,6 +25,16 @@ describe AuthorsController do
       get :index 
 
       expect(assigns[:authors]).to include @author
+    end 
+
+    it "shows all Authors in alphabetical order" do 
+      pending
+      # WHY ISN'T THIS WORKING?!?!?!
+      get :index 
+
+      expect(assigns[:authors].first).to eq @author
+      expect(assigns[:authors]).to include @author3
+      expect(assigns[:authors].last).to eq @author2
     end 
 
   end 

@@ -5,7 +5,7 @@ class KeywordsController < ApplicationController
   before_filter :is_admin?, only: [:new, :create, :edit, :destroy, :update]
 
   def index
-    @keywords = Keyword.all
+    @keywords = Keyword.all.order('name DESC')
   end
 
   def new 
