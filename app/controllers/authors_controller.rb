@@ -6,7 +6,7 @@ class AuthorsController < ApplicationController
 
 
   def index
-    @authors = Author.all.order('sort_by DESC')
+    @authors = Author.all.order('sort_by ASC')
   end 
 
   def new
