@@ -85,10 +85,9 @@ class DocumentGenerator
     float do
       document.bounding_box([x, y], width: 1.75.in, height: 0.66.in) do
         #use padding instead of a new line here if you can
-        document.text_box( "#{info.title}
-                            #{info.authors.first.name}
-                            #{info.genre.name}
-                            #{info.isbn}
+        #genre.abbr, 1st 4 of auth's last n
+        document.text_box( "#{info.genre.abbreviation.upcase}
+                            #{info.authors.first.name[0..3]}
                             ", 
                             overflow: :shrink_to_fit )
       end
