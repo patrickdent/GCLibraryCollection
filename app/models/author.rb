@@ -10,4 +10,9 @@ class Author < ActiveRecord::Base
     where([(['lower(name) LIKE lower(?)'] * search_length).join(' AND ')] + search.split.map { |search| "%#{search}%" })
 
   end
+
+  def sort_by_name
+    return sort_by if sort_by
+    update_attribute(:sort_by, name.split(" ").last)
+  end
 end
