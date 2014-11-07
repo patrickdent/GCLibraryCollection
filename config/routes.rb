@@ -5,6 +5,7 @@ LibraryCollection::Application.routes.draw do
   resources :authors
   resources :keywords
   resources :book_uploads, only: [:new, :create]
+  resources :users, path: 'manage_users'
 
   get 'uploaded_books' => 'book_uploads#uploaded_books'
   get 'search' => 'search#search'
