@@ -4,6 +4,7 @@ class BookUploadsController < ApplicationController
   require 'csv'
   rescue_from BookUpload::InvalidFileError, with: :invalid_file
   rescue_from CSV::MalformedCSVError, with: :invalid_file
+  before_filter :authenticate_user!
   before_filter :is_admin?
 
 
