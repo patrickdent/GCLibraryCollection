@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
 
+  before_filter :is_librarian?, only: [:new, :create, :edit, :update]
+  before_filter :is_admin?, only: :destroy
+
   def edit
   end
 
@@ -12,10 +15,4 @@ class UsersController < ApplicationController
   def show
   end
 
-  def new
-  end
-
-  def create
-  end
-  
 end
