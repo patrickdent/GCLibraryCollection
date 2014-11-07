@@ -6,7 +6,7 @@ class AuthorsController < ApplicationController
 
 
   def index
-    @authors = Author.all
+    @authors = Author.all.order('sort_by ASC')
   end 
 
   def new
@@ -52,6 +52,6 @@ class AuthorsController < ApplicationController
   end 
 
   def author_params
-    params.require(:author).permit(:name, :id)
+    params.require(:author).permit(:name, :id, :sort_by)
   end 
 end

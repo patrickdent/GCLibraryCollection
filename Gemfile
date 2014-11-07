@@ -14,6 +14,7 @@ gem 'cancan'
 gem 'rolify'
 gem 'figaro'
 gem 'pry'
+gem 'prawn'
 
 
 group :production do

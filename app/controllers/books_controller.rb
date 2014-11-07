@@ -8,7 +8,7 @@ class BooksController < ApplicationController
 
   
   def index
-    @books = Book.all
+    @books = Book.all.order('title ASC')
   end
 
   # def index(new_book_array)
