@@ -1,7 +1,9 @@
 module UsersHelper
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :remember_me)
+    params.require(:user).permit( :email, :password, :password_confirmation, :remember_me, 
+                                  :notes, :name, :phone, :sort_by, :do_not_lend, :address, 
+                                  :identification )
   end
 
   def librarian_user? 

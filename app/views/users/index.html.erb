@@ -3,6 +3,7 @@
 <table class="index">
   <thead>
     <tr>
+      <th></th>
       <th>User Name</th>
       <th>sort name</th>
       <th>email</th>
@@ -16,15 +17,18 @@
   </thead>
   <tbody>
     <% @users.each do |u| %>
+    <% role = "librarian" if u.has_role? :librarian %>
+    <% role = "admin" if u.has_role? :admin %>
     <tr>
-      <td> <%= link_to u.name, user_path(u.id) %></td>
+      <td><%= role if role %></td>
+      <td><%= link_to u.name, user_path(u.id) %></td>
       <td><%= u.sort_by %></td>
       <td><%= u.email %></td>
       <td><%= u.phone %></td>
       <td><%= u.notes %></td>
       <td><%= u.address %></td>
       <td><%= u.id %></td>
-      <td><% "DO NOT LEND" if u.do_not_lend %></td>
+      <td><%= "X" if u.do_not_lend %></td>
       <td>
         <% if librarian_user? %>
             <%= link_to "Edit", edit_user_path(u) %>

@@ -1,0 +1,18 @@
+<%= form_for @user do |u| %>
+    <%= u.label :name %> 
+    <%= u.text_field :name %> 
+    <%= u.label :sort_by %> 
+    <%= u.text_field :sort_by %>
+    <%= u.label :email %> 
+    <%= u.text_field :email %>
+    <%= u.label :phone %> 
+    <%= u.text_field :phone %> 
+    <%= u.label :address %> 
+    <%= u.text_field :address %>
+    <%= u.label :notes %> 
+    <%= u.text_field :notes %> 
+    <%= u.label :do_not_lend %> 
+    <%= u.check_box :do_not_lend %>
+    
+    <%= u.submit "Submit", class: "btn2" %>
+<% end %>
