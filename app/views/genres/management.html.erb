@@ -1,9 +1,0 @@
-<h2>Genre Management</h2>
-
-<%= render 'ajax_form' %>
-
-<ul id="genres">
-  <% @genres.each do |g| %>
-    <li><%= link_to g.name, genre_path(g.id) %>, total: <%= g.books.count %></li>
-  <% end %>
-</ul>
