@@ -21,15 +21,15 @@ class UsersController < ApplicationController
   end
 
   def update
-    
-    @user.roles = []
+
     case params[:user][:role]
       when "admin"
+        @user.roles = []
         @user.add_role(:admin)
       when "librarian"
+        @user.roles = []
         @user.add_role(:librarian)
       else
-        @user.roles = []
     end
 
     if @user.update(user_params)
