@@ -11,6 +11,7 @@ LibraryCollection::Application.routes.draw do
   get 'search' => 'search#search'
   get 'import' => 'search#import'
   post 'scrape' => 'search#scrape'
+  post "users/promote" => "users#promote"
 
   get 'admin_dashboard' => 'static_pages#admin_dashboard'
   get 'styleguide' => 'static_pages#styleguide'

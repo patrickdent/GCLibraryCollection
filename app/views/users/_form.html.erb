@@ -16,3 +16,5 @@
     
     <%= u.submit "Submit", class: "btn2" %>
 <% end %>
+
+<%= button_to "promote to admin", { action: "promote", id: @user.id } %>

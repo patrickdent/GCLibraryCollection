@@ -5,8 +5,13 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
   before_filter :is_librarian?, only: [:new, :create, :edit, :update, :index]
   before_filter :is_admin?, only: :destroy
-  before_filter :find_user, only: [:show, :edit, :destroy, :update]
+  before_filter :find_user, only: [:show, :edit, :destroy, :update, :promote]
 
+
+  def promote
+    @user.add_role :admin
+    redirect_to users_path
+  end
 
   def edit
   end
