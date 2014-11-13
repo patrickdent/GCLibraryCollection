@@ -22,14 +22,16 @@ class UsersController < ApplicationController
 
   def update
 
-    case params[:user][:role]
-      when "admin"
-        @user.roles = []
-        @user.add_role(:admin)
-      when "librarian"
-        @user.roles = []
-        @user.add_role(:librarian)
-      else
+    if current_user.has_role? :admin then
+      @user.roles = []
+      case params[:user][:role]
+        when "admin"
+          @user.add_role(:admin)
+        when "librarian"
+          @user.add_role(:librarian)
+        else
+          @user.roles = []
+      end
     end
 
     if @user.update(user_params)
@@ -39,6 +41,10 @@ class UsersController < ApplicationController
       flash[:error] = "Update Failed"
       redirect_to :back
     end 
+  end
+
+  def change_role
+
   end
 
   def show
