@@ -13,8 +13,13 @@
     <%= u.text_field :notes %> 
     <%= u.label :do_not_lend %> 
     <%= u.check_box :do_not_lend %>
-    
+    <%= u.label :role, "admin" %>
+    <%= u.radio_button(:role, :admin, {}) %>
+    <%= u.label :role, "librarian" %>
+    <%= u.radio_button(:role, :librarian, {}) %>
+    <%= u.label :role, "patron" %>
+    <%= u.radio_button(:role, nil, {}) %>
+
     <%= u.submit "Submit", class: "btn2" %>
 <% end %>
 
-<%= button_to "promote to admin", { action: "promote", id: @user.id } %>

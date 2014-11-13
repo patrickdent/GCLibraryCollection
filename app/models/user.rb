@@ -5,5 +5,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-         
+  def role
+    return roles.first.name.to_sym if roles.first != nil
+    nil
+  end
+
 end
