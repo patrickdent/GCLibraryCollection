@@ -24,7 +24,7 @@ describe 'Genre Pages', type: feature do
         visit genre_path(genre)
         click_on 'Edit Genre'
         fill_in('Name', with: 'new genre')
-        click_on 'Submit'
+        click_on 'submit'
       end
 
       it 'flashes success' do expect(subject).to have_content('Update Successful') end
@@ -41,7 +41,7 @@ describe 'Genre Pages', type: feature do
       click_on 'New Genre'
       fill_in('Name', with: 'newer genre')
       fill_in('Abbreviation', with: 'NG')
-      click_on 'Submit'
+      click_on 'submit'
     end
 
       it 'flashes success' do expect(subject).to have_content('Genre added') end

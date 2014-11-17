@@ -30,8 +30,8 @@ describe "Book Pages" do
         visit book_path(book)
       end
 
-      it 'edit' do expect(subject).to have_link("Edit") end
-      it 'delete' do expect(subject).to have_link("Delete") end
+      it 'edit' do expect(subject).to have_link("edit") end
+      it 'delete' do expect(subject).to have_link("delete") end
     end
   end
 
@@ -44,7 +44,7 @@ describe "Book Pages" do
       it "author" do expect(subject).to have_link(author.name) end
       it "genre" do expect(subject).to have_link(genre.name) end
       it "keyword" do expect(subject).to have_link(keyword.name) end
-      it "no edit" do expect(subject).to_not have_content("Edit") end
+      it "no edit" do expect(subject).to_not have_content("edit") end
       #not all books have ISBNs, so not testing for presence 
     end
 
@@ -54,8 +54,8 @@ describe "Book Pages" do
         visit book_path(book)
       end
 
-      it 'edit' do expect(subject).to have_link("Edit") end
-      it 'delete' do expect(subject).to have_link("Delete") end
+      it 'edit' do expect(subject).to have_link("edit") end
+      it 'delete' do expect(subject).to have_link("delete") end
     end
   end
 end
