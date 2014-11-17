@@ -14,7 +14,7 @@ module UsersHelper
         return true        
       end
     end
-    false
+    return false
   end 
 
 
@@ -24,7 +24,7 @@ module UsersHelper
         return true
       end
     end
-    false
+    return false
   end
 
 end
