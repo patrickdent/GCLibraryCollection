@@ -9,7 +9,9 @@
   <p><%= "DO NOT LEND" if @user.do_not_lend %>
 </div>
 
-<% if admin_user? %>
+<% if librarian_user? %>
   <%= link_to "Edit This User", edit_user_path(@user), class: "right btn2" %>
+<% end %>
+<% if admin_user? %>
   <%= link_to "Delete", user_path(@user), method: :delete, data: {confirm: "Are you sure you want to delete this user?"}, class: "right btn2" %> 
 <% end %>
