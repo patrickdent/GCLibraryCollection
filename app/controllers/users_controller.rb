@@ -3,15 +3,9 @@ class UsersController < ApplicationController
   include UsersHelper
 
   before_filter :authenticate_user!
-  before_filter :is_librarian?, only: [:new, :create, :edit, :update, :index]
+  before_filter :is_librarian?, only: [:edit, :update, :index]
   before_filter :is_admin?, only: :destroy
-  before_filter :find_user, only: [:show, :edit, :destroy, :update, :promote]
-
-
-  def promote
-    @user.add_role :admin
-    redirect_to users_path
-  end
+  before_filter :find_user, only: [:show, :edit, :destroy, :update]
 
   def edit
   end
@@ -43,11 +37,13 @@ class UsersController < ApplicationController
     end 
   end
 
-  def change_role
-
+  def show
   end
 
-  def show
+  def destroy
+    @user.destroy 
+    flash[:notice] = "Delete Successful!"
+    redirect_to users_path 
   end
 
   private 
