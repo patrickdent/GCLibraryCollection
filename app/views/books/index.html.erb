@@ -26,10 +26,12 @@
           <%= link_to a.name, author_path(a) %>
         <% end %>
       </td>
-      <% if admin_user? %>
+      <% if librarian_user? %>
         <td>
         <%= link_to "Edit", edit_book_path(b) %> 
+        <% if admin_user? %>
         <%= link_to "Delete", book_path(b), method: :delete, data: {confirm: "Are you sure you want to delete this book?"} %> 
+        <% end %>
         </td>
       <% end %>
     </tr>

@@ -1,12 +1,14 @@
+<% disabled ||= true %>
+<% disabled = false if admin_user? %>
 <%= form_for @book do |b| %>
     <%= b.label :title %> 
-    <%= b.text_field :title %> 
+    <%= b.text_field :title, disabled: disabled %> 
     <%= b.label :genre %> 
-    <%= b.select(:genre_id, Genre.all.collect { |n| [n.name, n.id] }) %>
+    <%= b.select :genre_id, Genre.all.collect { |n| [n.name, n.id] }, {}, multiple: false, disabled: disabled %>
     <%= b.label :author %>
-    <%= b.select :author_ids, Author.all.collect {|a| [a.name, a.id]}, {}, multiple: true %>
+    <%= b.select :author_ids, Author.all.collect { |a| [a.name, a.id] }, {}, multiple: true, disabled: disabled %>
     <%= b.label :keyword %>
-    <%= b.select :keyword_ids, Keyword.all.collect {|k| [k.name, k.id]}, {}, multiple: true %>
+    <%= b.select :keyword_ids, Keyword.all.collect { |k| [k.name, k.id] }, {}, multiple: true %>
 
     <%= b.submit "Submit", class: "btn2" %>
 <% end %>
