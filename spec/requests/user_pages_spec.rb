@@ -17,6 +17,10 @@ describe "User Pages" do
         visit users_path
       end
 
+      after do
+        
+      end
+
       it "links to users" do expect(subject).to have_link(@user.name, user_path(@user.id)) end
       #doesn't work for some reason
       # it "has edit link" do expect(subject).to have_link("Edit") end
