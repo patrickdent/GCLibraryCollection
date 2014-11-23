@@ -45,7 +45,10 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if @user.destroy then
+    if current_user == @user then
+      flash[:error] = "You cannot delete yourself"
+      redirect_to :back
+    elsif @user.destroy then
       flash[:notice] = "Delete Successful!"
       redirect_to users_path 
     else

@@ -61,7 +61,10 @@ describe UsersController do
 
   describe 'as admin' do
 
-    before { sign_in @admin }
+    before do 
+      sign_in @admin 
+      request.env["HTTP_REFERER"] = "http://test.com/"
+    end
 
     it "can change user roles" do
       @user.add_role(:admin)
@@ -70,6 +73,10 @@ describe UsersController do
 
     it "DELETE 'destroy'" do
       expect{delete :destroy, id: @user}.to change{User.count}.by(-1)
+    end
+
+    it "can't DELETE 'destroy' self" do
+      expect{delete :destroy, id: @admin}.to_not change{User.count}
     end
 
     it "GET 'index'" do
