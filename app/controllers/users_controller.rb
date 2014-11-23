@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   include UsersHelper
 
   before_filter :authenticate_user!
-  before_filter :is_librarian?, only: [:edit, :update, :index, :show]
+  before_filter :is_librarian?, only: [:edit, :update, :index]
   before_filter :is_admin?, only: :destroy
   before_filter :find_user, only: [:show, :edit, :destroy, :update]
 
@@ -38,6 +38,10 @@ class UsersController < ApplicationController
   end
 
   def show
+    if !(librarian_user?) && current_user != @user then
+      flash[:error] = "You are not authorized" 
+      redirect_to root_path
+    end
   end
 
   def destroy

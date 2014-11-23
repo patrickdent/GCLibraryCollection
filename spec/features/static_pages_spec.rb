@@ -69,7 +69,7 @@ describe 'Static Pages', type: feature do
         it "should flash success" do expect(subject).to have_content('Signed in successfully.') end
         it 'has admin links' do expect(subject).to have_link('admin dashboard') end
         it 'has logout links' do expect(subject).to have_link('logout') end
-        it 'has profile links' do expect(subject).to have_link('edit profile') end
+        it 'has profile links' do expect(subject).to have_link('my profile') end
       end
 
       context 'then logout' do
@@ -82,7 +82,7 @@ describe 'Static Pages', type: feature do
         it "should flash success" do expect(subject).to have_content('Signed out successfully.') end
         it 'does not have admin links' do expect(subject).to_not have_link('admin dashboard') end
         it 'does not have logout links' do expect(subject).to_not have_link('logout') end
-        it 'does not have profile links' do expect(subject).to_not have_link('edit profile') end
+        it 'does not have profile links' do expect(subject).to_not have_link('my profile') end
       end
     end
 
@@ -123,7 +123,7 @@ describe 'Static Pages', type: feature do
       it "should flash success" do expect(subject).to have_content('Signed in successfully.') end
       it 'has admin links' do expect(subject).to have_link('admin dashboard') end
       it 'has logout links' do expect(subject).to have_link('logout') end
-      it 'has profile links' do expect(subject).to have_link('edit profile') end
+      it 'has profile links' do expect(subject).to have_link('my profile') end
     end
 
     describe 'Dashboard' do
