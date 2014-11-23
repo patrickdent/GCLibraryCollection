@@ -21,7 +21,7 @@
     <% role = "admin" if u.has_role? :admin %>
     <tr>
       <td><%= role if role %></td>
-      <td><%= link_to u.name, user_path(u.id) %></td>
+      <td><%= link_to (u.name || "user"), user_path(u.id) %></td>
       <td><%= u.sort_by %></td>
       <td><%= u.email %></td>
       <td><%= u.phone %></td>
