@@ -17,7 +17,7 @@ class SearchController < ApplicationController
       @keywords = Keyword.search(params[:search])
     end
 
-    if @authors.blank? && @books.blank? && @genres.blank?
+    if @authors.blank? && @books.blank? && @genres.blank? && @keywords.blank?
       flash[:notice] = "Your search yielded no results."
     end
 
