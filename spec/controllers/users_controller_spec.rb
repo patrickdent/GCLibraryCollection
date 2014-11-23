@@ -27,6 +27,7 @@ describe UsersController do
       expect(get :edit, id: @user.id).to redirect_to(root_path)
       expect(post :update, id: @user.id).to redirect_to(root_path)
       expect(delete :destroy, id: @user.id).to redirect_to(root_path)
+      expect(get :show, id: @librarian.id).to redirect_to(root_path)
     end
   end
 
