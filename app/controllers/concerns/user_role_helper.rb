@@ -1,4 +1,4 @@
-module ApplicationHelper
+module UserRoleHelper
 
   def is_librarian? 
     if current_user.has_role? :librarian

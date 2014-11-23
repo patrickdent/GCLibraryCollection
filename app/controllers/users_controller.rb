@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  include ApplicationHelper
+  include UserRoleHelper
   include UsersHelper
 
   before_filter :authenticate_user!
