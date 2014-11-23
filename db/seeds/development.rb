@@ -67,6 +67,14 @@ u = User.new(
 u.add_role :librarian
 u.save!(:validate => false)
 
+# a basic user 
+u = User.new(
+  email:  "user@example.com",
+  password: 'password',
+  name: "Marie Purrie")
+u.save!(:validate => false)
+
+
 # different contributions
 contributions = Contribution.create([{ name: 'Author' },
                                      { name: 'Illustrator' },

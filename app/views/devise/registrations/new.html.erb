@@ -9,6 +9,9 @@
   <%= f.email_field :email%></div>
   <small>Email address is not required, but if you do not have one, you will not be able to reset your password or recieve overdue reminders.</small>
 
+  <div><%= f.label :name %>
+  <%= f.text_field :name%></div>
+
   <div><%= f.label :password %><br />
     <%= f.password_field :password, autocomplete: "off" %></div>
 
