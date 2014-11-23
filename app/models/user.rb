@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   def role
-    return roles.first.name.to_sym if roles.first != nil
+    return roles.first.name.to_sym if roles.first
     nil
   end
 

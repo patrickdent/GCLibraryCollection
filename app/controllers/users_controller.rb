@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   include UsersHelper
 
   before_filter :authenticate_user!
-  before_filter :is_librarian?, only: [:edit, :update, :index]
+  before_filter :is_librarian?, only: [:edit, :update, :index, :show]
   before_filter :is_admin?, only: :destroy
   before_filter :find_user, only: [:show, :edit, :destroy, :update]
 
@@ -41,13 +41,17 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy 
-    flash[:notice] = "Delete Successful!"
-    redirect_to users_path 
+    if @user.destroy then
+      flash[:notice] = "Delete Successful!"
+      redirect_to users_path 
+    else
+      flash[:error] = "Delete Failed"
+      redirect_to users_path
+    end
   end
 
   private 
   def find_user 
-    @user = User.find(params[:id])
+    @user = User.find_by(id: params[:id])
   end 
 end
