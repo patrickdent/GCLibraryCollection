@@ -12,6 +12,10 @@ class User < ActiveRecord::Base
     nil
   end
 
+  def email_required?
+    false
+  end
+
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
