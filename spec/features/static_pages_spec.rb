@@ -47,12 +47,12 @@ describe 'Static Pages', type: feature do
         before do
           visit root_path
           click_on('login')
-          fill_in("Email", :with => 'bogus@email.com')
+          fill_in("Login", :with => 'bogus@email.com')
           fill_in("Password", :with => 'nope')
           click_on("Sign in")
         end
 
-        it "should flash invalid" do expect(subject).to have_content('Invalid email or password.') end
+        it "should flash invalid" do expect(subject).to have_content('Invalid login or password.') end
       end
 
 
@@ -61,7 +61,7 @@ describe 'Static Pages', type: feature do
             admin = FactoryGirl.create(:admin, password: "password", email: "email@email.com")
             visit root_path
             click_on('login')
-            fill_in("Email", :with => admin.email)
+            fill_in("Login", :with => admin.email)
             fill_in("Password", :with => 'password')
             click_on("Sign in")
         end
@@ -115,7 +115,7 @@ describe 'Static Pages', type: feature do
           admin = FactoryGirl.create(:librarian, password: "password", email: "email@email.com")
           visit root_path
           click_on('login')
-          fill_in("Email", :with => admin.email)
+          fill_in("Login", :with => admin.email)
           fill_in("Password", :with => 'password')
           click_on("Sign in")
       end
