@@ -24,8 +24,9 @@
 </div>
 
 <br />
-
-<% if user_signed_in? and current_user.has_role? :admin %>
+<% if librarian_user? %>
   <%= link_to "Edit This Book", edit_book_path(@book), class: "right btn2" %>
+<% end %>
+<% if admin_user? %>
   <%= link_to "Delete", book_path(@book), method: :delete, data: {confirm: "Are you sure you want to delete this book?"}, class: "right btn2" %> 
 <% end %>

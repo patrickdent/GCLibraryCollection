@@ -23,7 +23,7 @@
           <%= link_to a.name, author_path(a) %>
         <% end %>
       </td>
-      <% if current_user && (current_user.has_role? :admin) %>
+      <% if admin_user? %>
         <td>
         <%= link_to "Edit", edit_book_path(b) %> 
         <%= link_to "Delete", book_path(b), method: :delete, data: {confirm: "Are you sure you want to delete this book?"} %> 

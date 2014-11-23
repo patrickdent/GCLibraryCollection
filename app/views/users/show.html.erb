@@ -1,0 +1,17 @@
+<h2><%= @user.name %></h2>
+
+<div class="show">
+  <p>email: <%= @user.email %></p>
+  <p>phone: <%= @user.phone %></p>
+  <p>address: <%= @user.address %></p>
+  <p>notes: <%= @user.notes %></p>
+  <p> PLACE HOLDER FOR BORROWING HISTORY </p>
+  <p><%= "DO NOT LEND" if @user.do_not_lend %>
+</div>
+
+<% if librarian_user? %>
+  <%= link_to "Edit This User", edit_user_path(@user), class: "right btn2" %>
+<% end %>
+<% if admin_user? %>
+  <%= link_to "Delete", user_path(@user), method: :delete, data: {confirm: "Are you sure you want to delete this user?"}, class: "right btn2" %> 
+<% end %>

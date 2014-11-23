@@ -3,3 +3,8 @@ def admin_login
   login_as(admin, scope: :user)
 end
 
+def librarian_login
+  lib = create :librarian
+  login_as(lib, scope: :user)
+end
+

@@ -46,7 +46,7 @@
           <li><%= link_to 'edit profile', edit_user_registration_path %></li>  
           <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>  
 
-          <% if current_user.has_role? :admin %>
+          <% if librarian_user? %>
             <li><%= link_to "admin dashboard", admin_dashboard_path %></li> 
           <% end %>
 

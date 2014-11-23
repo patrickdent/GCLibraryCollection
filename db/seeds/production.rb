@@ -13,4 +13,5 @@ u.save!(:validate => false)
 u = User.new(
   email: "librarian@example.com",
   password: 'password')
+u.add_role :librarian
 u.save!(:validate => false)
