@@ -13,7 +13,7 @@ gem 'rolify'
 gem 'figaro'
 gem 'pry'
 gem 'prawn'
-
+gem 'jquery-tablesorter'
 
 group :production do
   gem 'pg'
