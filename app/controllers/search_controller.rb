@@ -1,5 +1,5 @@
 class SearchController < ApplicationController
-  include ApplicationHelper
+  include UserRoleHelper
 
   before_filter :authenticate_user!, except: [:search]
   before_filter :is_admin?, only: [:import, :scrape]

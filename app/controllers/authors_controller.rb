@@ -1,5 +1,5 @@
 class AuthorsController < ApplicationController
-  include ApplicationHelper
+  include UserRoleHelper
   before_filter :authenticate_user!, except: [:index, :show]
   before_filter :find_author, only: [:show, :edit, :destroy, :update]
   before_filter :is_admin?, only: [:new, :create, :edit, :destroy, :update]

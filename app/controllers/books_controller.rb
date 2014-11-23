@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   include BooksHelper
-  include ApplicationHelper
+  include UserRoleHelper
 
   before_filter :authenticate_user!, except: [:index, :show]
   before_filter :find_book, only: [:show, :edit, :destroy, :update]

@@ -1,6 +1,6 @@
 class BookUploadsController < ApplicationController
   include BookUploadsHelper
-  include ApplicationHelper
+  include UserRoleHelper
   require 'csv'
   rescue_from BookUpload::InvalidFileError, with: :invalid_file
   rescue_from CSV::MalformedCSVError, with: :invalid_file

@@ -1,6 +1,6 @@
 class KeywordsController < ApplicationController
 
-  include ApplicationHelper
+  include UserRoleHelper
 
   before_filter :authenticate_user!, only: [:new, :create, :edit, :destroy, :update]
   before_filter :find_keyword, only: [:show, :edit, :destroy, :update]

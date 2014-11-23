@@ -1,0 +1,13 @@
+<% location = params[:controller].humanize.downcase %>
+<%= case location
+		when 'static pages'
+			'library'
+		when 'devise/sessions'
+			'login'
+		when 'search'
+			if request.original_url.include?('/import') then
+				'import'
+			end
+		else
+			location
+		end %>
