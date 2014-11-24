@@ -24,7 +24,7 @@ describe 'Author Pages', type: feature do
         visit author_path(author)
         click_on 'Edit Author'
         fill_in('Name', with: 'new author')
-        click_on 'Submit'
+        click_on 'submit'
       end
 
       it 'flashes success' do expect(subject).to have_content('Update Successful') end
@@ -40,7 +40,7 @@ describe 'Author Pages', type: feature do
       visit authors_path
       click_on 'New Author'
       fill_in('Name', with: 'newer author')
-      click_on 'Submit'
+      click_on 'submit'
     end
 
       it 'flashes success' do expect(subject).to have_content('Author Created') end

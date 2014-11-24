@@ -10,8 +10,8 @@ describe 'Static Pages', type: feature do
     it 'has working author link' do expect(subject).to have_link('by author', href: authors_path) end
     it 'has working keyword link' do expect(subject).to have_link('by keyword', href: keywords_path) end
     it 'does not have admin links' do expect(subject).to_not have_link('admin dashboard') end
-    it 'does not have logout links' do expect(subject).to_not have_link('Logout') end
-    it 'does not have profile links' do expect(subject).to_not have_link('Edit profile') end
+    it 'does not have logout links' do expect(subject).to_not have_link('logout') end
+    it 'does not have profile links' do expect(subject).to_not have_link('edit profile') end
 
     describe 'Search' do
 
@@ -49,7 +49,7 @@ describe 'Static Pages', type: feature do
           click_on('login')
           fill_in("Login", :with => 'bogus@email.com')
           fill_in("Password", :with => 'nope')
-          click_on("Sign in")
+          click_on("sign in")
         end
 
         it "should flash invalid" do expect(subject).to have_content('Invalid login or password.') end
@@ -63,7 +63,7 @@ describe 'Static Pages', type: feature do
             click_on('login')
             fill_in("Login", :with => admin.email)
             fill_in("Password", :with => 'password')
-            click_on("Sign in")
+            click_on("sign in")
         end
 
         it "should flash success" do expect(subject).to have_content('Signed in successfully.') end
