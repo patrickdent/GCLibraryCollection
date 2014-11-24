@@ -31,7 +31,7 @@
           <% if admin_user? %>
             <%= link_to "delete", book_path(b), method: :delete, data: {confirm: "Are you sure you want to delete this book?"} %> 
             <% end %>
-          <%=  check_box_tag :selected, b.id, false, class: "select-book"  %>
+          <%=  check_box_tag :selected, b.id, b.selected, id: "book-select_#{b.id}"  %>
         <% end %>
       </td>
     </tr>

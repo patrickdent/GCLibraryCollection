@@ -12,10 +12,6 @@ class BooksController < ApplicationController
     @books = Book.all.order('title ASC')
   end
 
-  # def index(new_book_array)
-  #   @books = Book.find(new_book_array)
-  # end
-
   def new
     @book = Book.new 
   end 
@@ -62,6 +58,21 @@ class BooksController < ApplicationController
         end
       end
     end 
+  end 
+
+  def list 
+    @book = Book.find(params[:book][:id])
+    @book.selected = !@book.selected
+    @book.save!
+    puts @book.inspect
+  end 
+
+  def clear_list 
+
+  end 
+
+  def show_list 
+
   end 
 
   private 
