@@ -54,15 +54,26 @@ end
 # an admin user 
 u = User.new(
   email: "admin@example.com",
-  password: 'password')
+  password: 'password',
+  name: "Ad Meownistrator")
 u.add_role :admin
 u.save!(:validate => false)
 
 # a librarian user 
 u = User.new(
   email: "librarian@example.com",
-  password: 'password')
+  password: 'password',
+  name: "Dewey Decimeowl")
+u.add_role :librarian
 u.save!(:validate => false)
+
+# a basic user 
+u = User.new(
+  email:  "user@example.com",
+  password: 'password',
+  name: "Marie Purrie")
+u.save!(:validate => false)
+
 
 # different contributions
 contributions = Contribution.create([{ name: 'Author' },

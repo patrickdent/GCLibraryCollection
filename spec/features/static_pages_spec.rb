@@ -10,8 +10,8 @@ describe 'Static Pages', type: feature do
     it 'has working author link' do expect(subject).to have_link('by author', href: authors_path) end
     it 'has working keyword link' do expect(subject).to have_link('by keyword', href: keywords_path) end
     it 'does not have admin links' do expect(subject).to_not have_link('admin dashboard') end
-    it 'does not have logout links' do expect(subject).to_not have_link('Logout') end
-    it 'does not have profile links' do expect(subject).to_not have_link('Edit profile') end
+    it 'does not have logout links' do expect(subject).to_not have_link('logout') end
+    it 'does not have profile links' do expect(subject).to_not have_link('edit profile') end
 
     describe 'Search' do
 
@@ -47,12 +47,12 @@ describe 'Static Pages', type: feature do
         before do
           visit root_path
           click_on('login')
-          fill_in("Email", :with => 'bogus@email.com')
+          fill_in("Login", :with => 'bogus@email.com')
           fill_in("Password", :with => 'nope')
-          click_on("Sign in")
+          click_on("sign in")
         end
 
-        it "should flash invalid" do expect(subject).to have_content('Invalid email or password.') end
+        it "should flash invalid" do expect(subject).to have_content('Invalid login or password.') end
       end
 
 
@@ -61,15 +61,15 @@ describe 'Static Pages', type: feature do
             admin = FactoryGirl.create(:admin, password: "password", email: "email@email.com")
             visit root_path
             click_on('login')
-            fill_in("Email", :with => admin.email)
+            fill_in("Login", :with => admin.email)
             fill_in("Password", :with => 'password')
-            click_on("Sign in")
+            click_on("sign in")
         end
 
         it "should flash success" do expect(subject).to have_content('Signed in successfully.') end
         it 'has admin links' do expect(subject).to have_link('admin dashboard') end
         it 'has logout links' do expect(subject).to have_link('logout') end
-        it 'has profile links' do expect(subject).to have_link('edit profile') end
+        it 'has profile links' do expect(subject).to have_link('my profile') end
       end
 
       context 'then logout' do
@@ -82,7 +82,7 @@ describe 'Static Pages', type: feature do
         it "should flash success" do expect(subject).to have_content('Signed out successfully.') end
         it 'does not have admin links' do expect(subject).to_not have_link('admin dashboard') end
         it 'does not have logout links' do expect(subject).to_not have_link('logout') end
-        it 'does not have profile links' do expect(subject).to_not have_link('edit profile') end
+        it 'does not have profile links' do expect(subject).to_not have_link('my profile') end
       end
     end
 
@@ -103,8 +103,48 @@ describe 'Static Pages', type: feature do
         it 'has manage Genres' do expect(subject).to have_link('Manage Genres') end
         it 'has manage Authors' do expect(subject).to have_link('Manage Authors') end
         it 'has manage Keywords' do expect(subject).to have_link('Manage Keywords') end
+        it 'has manage Users' do expect(subject).to have_link('Manage Users') end
       end
     end
   end
 
+  describe 'Librarian' do
+
+    context 'valid credentials' do
+      before do
+          admin = FactoryGirl.create(:librarian, password: "password", email: "email@email.com")
+          visit root_path
+          click_on('login')
+          fill_in("Login", :with => admin.email)
+          fill_in("Password", :with => 'password')
+          click_on("sign in")
+      end
+
+      it "should flash success" do expect(subject).to have_content('Signed in successfully.') end
+      it 'has admin links' do expect(subject).to have_link('admin dashboard') end
+      it 'has logout links' do expect(subject).to have_link('logout') end
+      it 'has profile links' do expect(subject).to have_link('my profile') end
+    end
+
+    describe 'Dashboard' do
+      before do
+          librarian_login
+          visit root_path
+          click_on('admin dashboard')
+      end
+
+      after do
+        Warden.test_reset!
+      end
+
+      describe 'links' do
+        it 'no upload' do expect(subject).to_not have_link('Upload Books') end
+        it 'no manage Books' do expect(subject).to_not have_link('Manage Books') end
+        it 'no manage Genres' do expect(subject).to_not have_link('Manage Genres') end
+        it 'no manage Authors' do expect(subject).to_not have_link('Manage Authors') end
+        it 'has manage Keywords' do expect(subject).to have_link('Manage Keywords') end
+        it 'has manage Users' do expect(subject).to have_link('Manage Users') end
+      end
+    end
+  end
 end 

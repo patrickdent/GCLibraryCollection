@@ -1,8 +1,10 @@
 class KeywordsController < ApplicationController
 
-  include ApplicationHelper
+  include UserRoleHelper
+
+  before_filter :authenticate_user!, only: [:new, :create, :edit, :destroy, :update]
   before_filter :find_keyword, only: [:show, :edit, :destroy, :update]
-  before_filter :is_admin?, only: [:new, :create, :edit, :destroy, :update]
+  before_filter :is_librarian?, only: [:new, :create, :edit, :destroy, :update]
 
   def index
     @keywords = Keyword.all.order('name ASC')

@@ -1,23 +1,27 @@
 <h2>Genre: <%= @genre.name %> <% if @genre.abbreviation then %> | <%= @genre.abbreviation%> <% end %></h2>
 
-<% if user_signed_in? and current_user.has_role? :admin %>
+<% if admin_user? %>
   <%= link_to "Edit Genre", edit_genre_path(@genre), class: "right btn2" %>
   <%= link_to "Delete", genre_path(@genre), method: :delete, data: {confirm: "Are you sure you want to delete this genre?"}, class: "right btn2" %> 
 <% end %>
 
-<table class="index">
-  <tr>
-    <th>Title</th>
-    <th>Author</th>
-  </tr>
-
-  <% @genre.books.each do |b| %>
+<table class="index tablesorter">
+  <thead>
     <tr>
-    <td><%= link_to b.title, book_path(b.id) %></td>
-    <td><% b.authors.each do |a| %>
-          <%= link_to a.name, author_path(a) %>
-        <% end %>
-    </td>
+      <th>Title</th>
+      <th>Author</th>
     </tr>
-  <% end %>
+  </thead>
+
+  <tbody>
+    <% @genre.books.each do |b| %>
+      <tr>
+      <td><%= link_to b.title, book_path(b.id) %></td>
+      <td><% b.authors.each do |a| %>
+            <%= link_to a.name, author_path(a) %>
+          <% end %>
+      </td>
+      </tr>
+    <% end %>
+  </tbody>  
 </table>

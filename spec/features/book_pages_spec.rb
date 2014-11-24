@@ -33,7 +33,7 @@ describe 'Book Pages', type: feature do
         # select(genre.name, from: 'Genre') 
         # select(author.name, from: 'Author') 
         # select(keyword.name, from: 'Keyword')
-        click_on 'Submit'
+        click_on 'submit'
 
       end
 
@@ -62,7 +62,7 @@ describe 'Book Pages', type: feature do
       # select(Genre.all[0].name, from: 'Genre') 
       # select(Author.all[0].name, from: 'Author') 
       # select(Keyword.all[0].name, from: 'Keyword')
-      click_on 'Submit'
+      click_on 'submit'
     end
 
       it 'flashes success' do expect(subject).to have_content('Book Created') end

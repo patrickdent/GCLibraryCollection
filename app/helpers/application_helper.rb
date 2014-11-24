@@ -1,10 +1,21 @@
 module ApplicationHelper
-  def is_admin? 
-    if current_user.has_role? :admin
-      return true 
+
+def location
+  location = params[:controller].humanize.downcase
+  case location
+    when 'static pages'
+      'library'
+    when 'devise/sessions'
+      'login'
+    when 'search'
+      if request.original_url.include?('/import') then
+        'import'
+      else
+        location
+      end
     else
-      flash[:error] = "You are not authorized"
-      redirect_to root_path
-    end 
+      location
   end
+end
+
 end

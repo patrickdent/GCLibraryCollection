@@ -28,8 +28,6 @@ describe AuthorsController do
     end 
 
     it "shows all Authors in alphabetical order" do 
-      pending
-      # WHY ISN'T THIS WORKING?!?!?!
       get :index 
 
       expect(assigns[:authors].first).to eq @author
