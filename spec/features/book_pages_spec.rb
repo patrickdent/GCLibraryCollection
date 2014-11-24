@@ -15,7 +15,7 @@ describe 'Book Pages', type: feature do
     before do
       admin_login
       visit book_path(book)
-      click_on 'edit this book'
+      click_on 'Edit This Book'
     end
 
     it 'displays title' do expect(subject).to have_selector('h1', 'Edit Book') end
@@ -25,7 +25,7 @@ describe 'Book Pages', type: feature do
       before do
         admin_login
         visit book_path(book)
-        click_on 'edit this book'
+        click_on 'Edit This Book'
         fill_in('Title', with: 'new title')
         
 #Can't get capybara to see select boxes
@@ -75,7 +75,7 @@ describe 'Book Pages', type: feature do
     before do 
       admin_login
       visit book_path(book)
-      click_on "delete"
+      click_on "Delete"
     end
 
     it 'flashes success' do expect(subject).to have_content('Delete Successful!') end

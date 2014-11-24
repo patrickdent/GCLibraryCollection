@@ -117,7 +117,7 @@ describe 'Static Pages', type: feature do
           click_on('login')
           fill_in("Login", :with => admin.email)
           fill_in("Password", :with => 'password')
-          click_on("Sign in")
+          click_on("sign in")
       end
 
       it "should flash success" do expect(subject).to have_content('Signed in successfully.') end
