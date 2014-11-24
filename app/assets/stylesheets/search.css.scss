@@ -11,6 +11,10 @@
 	margin: 40px 0 10px 45px;
 }
 
+.main .search {
+	margin: 2em 0;
+}
+
 #browse h3 {
 	color: #00364A;
 	margin: 2% 4%;
@@ -26,19 +30,24 @@
 // 	border: none;
 // }
 
-.search .btn:hover {
-	color: #95CB15;
-}
+// .search .btn:hover {
+// 	color: #95CB15;
+// }
 
 .btn:hover, .btn2:hover {
 	color: #95CB15;
 }
 
-.btn:visited {
-	color: #FFFFFF;
-}
+// .btn:visited {
+// 	color: #FFFFFF;
+// }
 
 
 .browse .btn:visited {
 	color: #FFFFFF;
 }
+
+p {
+	margin: 0;
+}
+

@@ -11,25 +11,9 @@ input, button {
 		border: none;
 		}
 
-input:hover, button:hover {
+input[type="submit"]:hover, button:hover {
 	color: #95CB15;
 }
-
-.left input[type="submit"] {
-		font-size: 2.5em;
-		text-align: right;
-		}
-
-.main input[type="submit"] {
-		font-size: 1.5em;
-		padding-left: .25em;
-		}
-
-.main input[type="text"] {
-		font-size: 1.5em;
-		height: 1.5em;
-		background: white;
-		}
 
 input[type="text"] {
 		width: 7em;
@@ -49,13 +33,33 @@ label {
 	font-size: 1.5em;
 }
 
-.btn2 {
+.btn, .btn2 {
 	font-size: 1.5em;
 }
 
 .edit_user form {
 	margin-top: 3em;
 }
+
+
+.left input[type="submit"] {
+		font-size: 2.5em;
+		text-align: right;
+		}
+
+.main input[type="submit"] {
+		font-size: 1.5em;
+		padding-left: .25em;
+		}
+
+.main input[type="text"] {
+		font-size: 1em;
+		height: 1.5em;
+		background: white;
+		padding: .25em;
+		width: auto;
+		min-width: 7em;
+		}
 
 .edit_user input {
 	padding: 3px;
