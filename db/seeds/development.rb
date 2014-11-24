@@ -17,10 +17,10 @@ authors = Author.create([{ name: 'Chairman Meow' },
                          { name: 'B. Author' }, 
                          { name: 'Boots McNally'}])
 
-books = Book.create([{ title: 'Kittles and Bits', genre: genres[0] }, 
-                     { title: 'I Am Who Am I?', genre: genres[1] },
-                     { title: 'The Sound and the Furry', genre: genres[0] },
-                     { title: 'Meowtains', genre: genres[2] }])
+books = Book.create([{ title: 'Kittles and Bits', genre: genres[0], isbn: 1234567890 }, 
+                     { title: 'I Am Who Am I?', genre: genres[1], isbn: 1123456789 },
+                     { title: 'The Sound and the Furry', genre: genres[0], isbn: 1112345678 },
+                     { title: 'Meowtains', genre: genres[2], isbn: 1111234567 }])
 
 keywords = Keyword.create([{ name: 'good' },
                            { name: 'bad' },
@@ -54,15 +54,26 @@ end
 # an admin user 
 u = User.new(
   email: "admin@example.com",
-  password: 'password')
+  password: 'password',
+  name: "Ad Meownistrator")
 u.add_role :admin
 u.save!(:validate => false)
 
 # a librarian user 
 u = User.new(
   email: "librarian@example.com",
-  password: 'password')
+  password: 'password',
+  name: "Dewey Decimeowl")
+u.add_role :librarian
 u.save!(:validate => false)
+
+# a basic user 
+u = User.new(
+  email:  "user@example.com",
+  password: 'password',
+  name: "Marie Purrie")
+u.save!(:validate => false)
+
 
 # different contributions
 contributions = Contribution.create([{ name: 'Author' },

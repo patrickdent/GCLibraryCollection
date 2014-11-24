@@ -1,24 +1,28 @@
 <h2>Author: <%= @author.name %></h2>
 
-<% if user_signed_in? and current_user.has_role? :admin %>
+<% if admin_user? %>
   <%= link_to "Edit Author", edit_author_path(@author), class: "right btn2" %>
   <%= link_to "Delete", author_path(@author), method: :delete, data: {confirm: "Are you sure you want to delete this author?"}, class: "right btn2" %> 
 <% end %>
 
-<table class="index">
-  <tr>
-    <th>Title</th>
-    <th>Genre</th>
-  </tr>
-
-  <% @author.books.each do |b| %>
+<table class="index tablesorter">
+  <thead>
     <tr>
-      <td><%= link_to b.title, book_path(b.id) %></td>
-      <td>
-        <% if b.genre %>
-          <%= link_to b.genre.name, genre_path(b.genre) %>
-        <% end %> 
-      </td>
+      <th>Title</th>
+      <th>Genre</th>
     </tr>
-  <% end %>
+  </thead>
+
+  <tbody>
+    <% @author.books.each do |b| %>
+      <tr>
+        <td><%= link_to b.title, book_path(b.id) %></td>
+        <td>
+          <% if b.genre %>
+            <%= link_to b.genre.name, genre_path(b.genre) %>
+          <% end %> 
+        </td>
+      </tr>
+    <% end %>
+  </tbody>  
 </table>

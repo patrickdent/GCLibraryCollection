@@ -1,14 +1,15 @@
 class BooksController < ApplicationController
   include BooksHelper
-  include ApplicationHelper
+  include UserRoleHelper
 
   before_filter :authenticate_user!, except: [:index, :show]
   before_filter :find_book, only: [:show, :edit, :destroy, :update]
-  before_filter :is_admin?, only: [:new, :create, :edit, :destroy, :update]
+  before_filter :is_admin?, only: [:new, :create, :destroy]
+  before_filter :is_librarian?, only: [:edit, :update] 
 
   
   def index
-    @books = Book.all
+    @books = Book.all.order('title ASC')
   end
 
   # def index(new_book_array)

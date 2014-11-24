@@ -1,5 +1,5 @@
 class SearchController < ApplicationController
-  include ApplicationHelper
+  include UserRoleHelper
 
   before_filter :authenticate_user!, except: [:search]
   before_filter :is_admin?, only: [:import, :scrape]
@@ -17,7 +17,7 @@ class SearchController < ApplicationController
       @keywords = Keyword.search(params[:search])
     end
 
-    if @authors.blank? && @books.blank? && @genres.blank?
+    if @authors.blank? && @books.blank? && @genres.blank? && @keywords.blank?
       flash[:notice] = "Your search yielded no results."
     end
 

@@ -23,3 +23,6 @@ coverage
 
 #Ignore figaro fil
 /config/application.yml
+
+#Ignore test pdf files 
+/*.pdf

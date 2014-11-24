@@ -1,10 +1,12 @@
 class GenresController < ApplicationController
-  include ApplicationHelper
+  include UserRoleHelper
+
+  before_filter :authenticate_user!, only: [:new, :create, :edit, :destroy, :update]
   before_filter :find_genre, only: [:show, :edit, :destroy, :update]
   before_filter :is_admin?, only: [:new, :create, :edit, :destroy, :update]
 
   def index
-    @genres = Genre.all
+    @genres = Genre.all.order('name ASC')
   end
 
   def show

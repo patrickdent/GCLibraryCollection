@@ -24,7 +24,7 @@ describe 'Keyword Pages', type: feature do
         visit keyword_path(keyword)
         click_on 'Edit Keyword'
         fill_in('Name', with: 'new keyword')
-        click_on 'Submit'
+        click_on 'submit'
       end
 
       it 'flashes success' do expect(subject).to have_content('Update Successful') end
@@ -40,7 +40,7 @@ describe 'Keyword Pages', type: feature do
       visit keywords_path
       click_on 'New Keyword'
       fill_in('Name', with: 'newer keyword')
-      click_on 'Submit'
+      click_on 'submit'
     end
 
       it 'flashes success' do expect(subject).to have_content('Keyword Created') end
