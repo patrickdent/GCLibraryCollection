@@ -5,7 +5,8 @@ class Book < ActiveRecord::Base
   has_many :book_keywords
   has_many :keywords, through: :book_keywords
   has_many :contributions, through: :book_authors
-  has_namy :users, thtough: :loans
+  has_many :loans
+  has_many :users, through: :loans
 
   validates :title, presence: true 
 

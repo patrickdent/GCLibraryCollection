@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   attr_accessor :login
   validates :username, uniqueness: {case_sensitive: false, allow_nil: true}
+  has_many :loans
   has_many :books, through: :loans
 
   def role
