@@ -4,6 +4,11 @@ class Loan < ActiveRecord::Base
 
   after_create :set_start_date
 
+  def self.loan_book(book, user)
+    book.users << user
+    return book.loans.where(user: user, returned_date: nil).first
+  end
+
   private
 
   def set_start_date
