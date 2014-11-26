@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Loan do
   let(:user) { create :user }
   let(:book) { create :book }
-  let(:loan) { Loan.loan_book(book, user) }
+  let(:loan) { Loan.create(book_id: book.id, user_id: user.id) }
 
   it "has user" do expect(loan.user).to eq(user) end
   it "has book" do expect(loan.book).to eq(book) end
@@ -13,7 +13,7 @@ describe Loan do
   it "has renewal count" do expect(loan).to respond_to(:renewal_count) end
 
   describe "returning books" do
-    before { @loan = Loan.loan_book( (create :book), (create :user) ) }
+    before { @loan = Loan.create( book_id: (create :book).id, user_id: (create :user).id ) }
     
     it "sets a return date" do
       date = @loan.return_book
@@ -23,7 +23,7 @@ describe Loan do
   end
 
   describe "renewing books" do
-    before { @loan = Loan.loan_book( (create :book), (create :user) ) }
+    before { @loan = Loan.create( book_id: (create :book).id, user_id: (create :user).id ) }
     
     it "sets a new return date" do
       old_date = @loan.due_date

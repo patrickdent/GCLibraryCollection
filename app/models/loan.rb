@@ -6,11 +6,6 @@ class Loan < ActiveRecord::Base
 
   DURATION = 30
 
-  def self.loan_book(book, user)
-    book.users << user
-    return book.loans.where(user: user, returned_date: nil).first
-  end
-
   def return_book
     update_attribute(:returned_date, Time.now.to_date)
     return returned_date
