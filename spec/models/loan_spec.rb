@@ -4,6 +4,7 @@ describe Loan do
   let(:user) { create :user }
   let(:book) { create :book }
   let(:loan) { Loan.create(book_id: book.id, user_id: user.id) }
+  before {}
 
   it "has user" do expect(loan.user).to eq(user) end
   it "has book" do expect(loan.book).to eq(book) end

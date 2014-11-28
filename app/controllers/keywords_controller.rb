@@ -1,6 +1,7 @@
 class KeywordsController < ApplicationController
 
   include UserRoleHelper
+  include KeywordHelper
 
   before_filter :authenticate_user!, only: [:new, :create, :edit, :destroy, :update]
   before_filter :find_keyword, only: [:show, :edit, :destroy, :update]
@@ -50,9 +51,5 @@ class KeywordsController < ApplicationController
   private 
   def find_keyword
     @keyword = Keyword.find(params[:id])
-  end 
-
-  def keyword_params
-    params.require(:keyword).permit(:name, :id)
   end 
 end

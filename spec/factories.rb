@@ -61,4 +61,9 @@ FactoryGirl.define do
   factory :contribution, class: Contribution do
     name "illustrator"
   end
+
+  factory :loan, class: Loan do
+    :book
+    :user
+  end
 end

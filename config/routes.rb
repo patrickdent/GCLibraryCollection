@@ -6,6 +6,7 @@ LibraryCollection::Application.routes.draw do
   resources :keywords
   resources :book_uploads, only: [:new, :create]
   resources :users, only: [ :update, :destroy, :edit, :show, :index ], path: 'manage_users'
+  resources :loans, only: [ :update, :edit, :show, :index, :new, :create ]
 
   get 'uploaded_books' => 'book_uploads#uploaded_books'
   get 'search' => 'search#search'
