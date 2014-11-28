@@ -44,24 +44,13 @@ class BooksController < ApplicationController
   end 
 
   def update
-    respond_to do |format|
-      format.html do
-        if @book.update(book_params)
-          flash[:notice] = "Update Successful!"
-          redirect_to book_path(@book)
-        else 
-          flash[:error] = "Update Failed"
-          redirect_to edit_book_path
-        end
-      end
-      format.js do
-        if @book.update(book_params)
-          flash[:notice] = "Update Successful!"
-        else 
-          flash[:error] = "Update Failed"
-        end
-      end
-    end 
+    if @book.update(book_params)
+      flash[:notice] = "Update Successful!"
+      redirect_to book_path(@book)
+    else 
+      flash[:error] = "Update Failed"
+      redirect_to edit_book_path
+    end    
   end 
 
   def list 

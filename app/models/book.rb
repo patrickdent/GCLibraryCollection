@@ -6,8 +6,6 @@ class Book < ActiveRecord::Base
   has_many :keywords, through: :book_keywords
   has_many :contributions, through: :book_authors
 
-  attr_accessor :custom_field
-
   validates :title, presence: true 
 
   def self.search(search)
