@@ -12,7 +12,7 @@ LibraryCollection::Application.routes.draw do
   get 'import' => 'search#import'
   post 'scrape' => 'search#scrape'
   post 'list' => 'books#list', defaults: {format: :json}
-  post 'clear_list' => 'books#clear_list', defaults: {format: :json}
+  get 'clear_list' => 'books#clear_list', defaults: {format: :js}
   get 'show_list' => 'books#show_list'
 
   get 'admin_dashboard' => 'static_pages#admin_dashboard'

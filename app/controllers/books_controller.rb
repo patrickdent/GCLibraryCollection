@@ -75,7 +75,8 @@ class BooksController < ApplicationController
   end 
 
   def clear_list 
-    
+    Book.where(selected: true).update_all(selected: false)
+    render inline: "location.reload();" 
   end 
 
   def show_list 
