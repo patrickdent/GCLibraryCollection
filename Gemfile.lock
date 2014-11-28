@@ -82,6 +82,8 @@ GEM
       railties (>= 3.1.0)
       turbolinks
     json (1.8.1)
+    launchy (2.4.2)
+      addressable (~> 2.3)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -221,6 +223,7 @@ DEPENDENCIES
   jquery-rails
   jquery-tablesorter
   jquery-turbolinks
+  launchy
   pg
   prawn
   pry
