@@ -13,6 +13,7 @@ gem 'figaro'
 gem 'pry'
 gem 'prawn'
 gem 'jquery-tablesorter'
+gem 'jquery-turbolinks'
 
 group :production do
   gem 'pg'
