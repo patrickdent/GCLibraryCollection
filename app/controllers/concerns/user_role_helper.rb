@@ -1,5 +1,6 @@
 module UserRoleHelper
 
+#if you want to redirct
   def is_librarian? 
     if current_user.has_role? :librarian
       return true
@@ -19,5 +20,12 @@ module UserRoleHelper
       redirect_to root_path
     end 
   end
-  
+
+  def is_given_user_or_librarian?(user)
+    if (current_user.has_role? :librarian) || (current_user.has_role? :admin) || (current_user == user) then
+      return true
+    else
+      return false
+    end
+  end
 end

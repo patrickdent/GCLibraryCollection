@@ -72,4 +72,49 @@ describe LoansController do
       end      
     end
   end
+
+  describe "GET show" do
+    context 'as non-librarian' do
+
+      it 'redirects home for other user loans' do
+        @user2 = create :user 
+        sign_in @user2
+        expect(get :show, id: @loan.id).to redirect_to(root_path)
+      end 
+
+      it "doesn't redirect for own loans" do
+        sign_in @user
+        get :show, id: @loan.id
+        expect(response).to_not be_redirect
+      end      
+    end
+
+    context 'as librarian' do
+      before { sign_in @librarian }
+
+      it "doesn't redirect to home" do
+        get :show, id: @loan.id
+        expect(response).to_not be_redirect
+      end      
+    end
+  end
+
+  describe "GET index" do
+    context 'as non-librarian' do
+      before { sign_in @user }
+
+      it 'redirects home' do
+        expect(get :index).to redirect_to(root_path)
+      end    
+    end
+
+    context 'as librarian' do
+      before { sign_in @librarian }
+
+      it "doesn't redirect to home" do
+        get :index
+        expect(response).to_not be_redirect
+      end      
+    end
+  end
 end

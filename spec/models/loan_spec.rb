@@ -17,7 +17,7 @@ describe Loan do
     before { @loan = Loan.create( book_id: (create :book).id, user_id: (create :user).id ) }
     
     it "sets a return date" do
-      date = @loan.return_book
+      date = @loan.return_loan
       expect(date).to_not eq(nil) 
       expect(date).to eq(@loan.returned_date) 
     end

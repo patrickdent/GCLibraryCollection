@@ -3,9 +3,9 @@ class LoansController < ApplicationController
   include UserRoleHelper
   include LoanHelper
 
-  before_filter :is_librarian?, only: [:new, :create, :renew, :return]
-  before_filter :authenticate_user!, only: [:new, :create, :renew]
-  before_filter :find_loan, only: [:renew, :return]
+  before_filter :is_librarian?, only: [:new, :create, :renew, :return, :index]
+  before_filter :authenticate_user!
+  before_filter :find_loan, only: [:renew, :return, :show]
 
   def new
   end
@@ -36,5 +36,16 @@ class LoansController < ApplicationController
       flash[:alert] = "Loan Return Faild"
     end
     redirect_to user_path(@loan.user_id)
+  end
+
+  def show
+    if !is_given_user_or_librarian?(@loan.user) then
+      flash[:error] = "You are not authorized" 
+      redirect_to root_path
+    end
+  end
+
+  def index
+    @loans = Loan.all
   end
 end
