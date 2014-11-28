@@ -50,9 +50,6 @@ describe KeywordsController do
 
       it "creates a new keyword" do
         expect {post :create, keyword: {name: "TestKeyword9000"} }.to change{Keyword.count}.by(1)
-
-
-
       end
 
       it "redirects to index" do

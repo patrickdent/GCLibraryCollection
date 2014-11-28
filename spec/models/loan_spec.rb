@@ -25,7 +25,21 @@ describe Loan do
 
   describe "renewing books" do
     before { @loan = Loan.create( book_id: (create :book).id, user_id: (create :user).id ) }
-    
+
+    it "will not renew for 'do_not_lend' users" do
+      old_date = @loan.due_date
+      @loan.user.do_not_lend = true
+      @loan.renew_loan
+      expect(@loan.due_date).to eq(old_date)
+    end
+
+    it "will not renew for more than twice" do
+      old_date = @loan.due_date
+      @loan.renewal_count = 2
+      @loan.renew_loan
+      expect(@loan.due_date).to eq(old_date)
+    end
+
     it "sets a new return date" do
       old_date = @loan.due_date
       date = @loan.renew_loan

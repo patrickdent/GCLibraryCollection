@@ -8,6 +8,7 @@ describe LoansController do
     @book = create :book
     @user = create :user
     @librarian = create :librarian
+    @loan = create(:loan, user_id: @user.id, book_id: @book.id)
   end 
 
   after do 
@@ -30,9 +31,45 @@ describe LoansController do
     context "as librarian" do
       before { sign_in @librarian }
 
-      it "redirects authorized users to user" do
+      it "redirects to user#show" do
         expect(post :create, loan: {user_id: @user.id, book_id: @book.id}).to redirect_to(user_path(@user))
       end
+    end
+  end
+
+  describe "PUT renew" do
+    context 'as non-librarian' do
+      before { sign_in @user }
+
+      it 'redirects unauthorized user home' do
+        expect(put :renew, id: @loan.id).to redirect_to(root_path)
+      end      
+    end
+
+    context 'as librarian' do
+      before { sign_in @librarian }
+
+      it 'redirects to user#show' do
+        expect(put :renew, id: @loan.id).to redirect_to(user_path(@user.id))
+      end      
+    end
+  end
+
+  describe "PUT return" do
+    context 'as non-librarian' do
+      before { sign_in @user }
+
+      it 'redirects unauthorized user home' do
+        expect(put :return, id: @loan.id).to redirect_to(root_path)
+      end      
+    end
+
+    context 'as librarian' do
+      before { sign_in @librarian }
+
+      it 'redirects to user#show' do
+        expect(put :return, id: @loan.id).to redirect_to(user_path(@user.id))
+      end      
     end
   end
 end
