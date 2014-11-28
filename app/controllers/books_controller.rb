@@ -34,9 +34,13 @@ class BooksController < ApplicationController
   end 
 
   def destroy 
-    @book.destroy 
-    flash[:notice] = "Delete Successful!"
-    redirect_to books_path 
+    if @book.destroy 
+      flash[:notice] = "Delete Successful!"
+      redirect_to books_path 
+    else 
+      flash[:error] = "Delete Failed"
+      redirect_to books_path 
+    end 
   end 
 
   def update
@@ -61,22 +65,25 @@ class BooksController < ApplicationController
   end 
 
   def list 
-    @book = Book.find(params[:book][:id])
-    @book.selected = !@book.selected
-    @book.save!
-    puts @book.inspect
+    @book = Book.find_by(id: params[:book][:id])
+    @book.selected = params[:book][:selected]
+    if @book.save!
+      render json: {status: :success }
+    else 
+      render json: {status: :failure }
+    end    
   end 
 
   def clear_list 
-
+    
   end 
 
   def show_list 
-
+    @books = Book.where(selected: true)
   end 
 
   private 
   def find_book 
-    @book = Book.find(params[:id])
+    @book = Book.find_by(id: params[:id])
   end 
 end

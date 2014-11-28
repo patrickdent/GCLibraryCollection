@@ -14,6 +14,7 @@ $(document).ready ->
       data:
         book:
           id: $(this).val()
+          selected: $(this).is(':checked')
     return
   return
 
