@@ -1,10 +1,4 @@
 @media print {
-  // * {
-  //   clear: both; 
-  //   float: none; 
-  //   overflow: visible; 
-  // }
-
   header{
     display: none;
   }
@@ -29,7 +23,7 @@
   @page {
     margin: 0.5cm;
   }
-  
+
   .wrapper {
     height: auto;
     overflow: visible; 
