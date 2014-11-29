@@ -7,62 +7,54 @@
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <%= csrf_meta_tags %>
 </head>
+
 <body>
 <div class="wrapper">
-  <!-- search column aside -->
   <div class="column-2 left">
-
-      <% flash.each do |name, msg| %>
+    <% flash.each do |name, msg| %>
       <%= content_tag :div, msg, class: name, id:"headerbar" %>
-      <% end %>
+    <% end %>
 
- <%= form_tag "/search", method: "get" do %>
+    <%= form_tag "/search", method: "get" do %>
       <%= label_tag "search" %>
       <%= submit_tag "search", name: nil %>
       <%= text_field_tag :search, params[:search], placeholder:"sparkle" %>
-    
-  <% end %>
+    <% end %>
   
     <h2>browse</h2>
     <h3><%= link_to "by keyword", keywords_path %></h3>
     <h3><%= link_to "by author", authors_path %></h3>
     <h3><%= link_to "by genre", genres_path %></h3>
-
- 
   </div>
 
   <div class="column-6 gray">
     <section class="main">
-      <h1>Library Collection</h1>
-      <nav>
-        <ul>
-        <li><%= link_to "home", root_path %></li> 
-        <li>
-            <a href="mailto:library@example.com?Subject=Inquiry" target="_top">contact the library!</a></li>
-
-        <% if user_signed_in? %>
-          <li id="username">logged in as <strong><%= current_user.email %></strong>
-          </li> 
-          <li><%= link_to 'my profile', user_path(current_user) %></li>  
-          <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>  
-
-          <% if librarian_user? %>
-            <li><%= link_to "admin dashboard", admin_dashboard_path %></li> 
+      <header>
+        <h1>Library Collection</h1>
+        <nav>
+          <ul>
+          <li><%= link_to "home", root_path %></li> 
+          <li><a href="mailto:library@example.com?Subject=Inquiry" target="_top">contact the library!</a></li>
+          <% if user_signed_in? %>
+            <li id="username">logged in as <strong><%= current_user.email %></strong></li> 
+            <li><%= link_to 'my profile', user_path(current_user) %></li>  
+            <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>  
+            <% if librarian_user? %>
+              <li><%= link_to "admin dashboard", admin_dashboard_path %></li> 
+            <% end %>
+          <% else %>
+            <li><%= link_to "login", new_user_session_path %></li> 
           <% end %>
-
-        <% else %>
-
-          <li><%= link_to "login", new_user_session_path %></li> 
-
-        <% end %>
-
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      </header>
     <article><%= yield %></article>
    </div>
+
   <div class="column-2">
     <span class="vertical"><%= location %></span>
   </div>
+
 </div>
 </body>
 </html>
