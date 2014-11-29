@@ -1,16 +1,12 @@
-<h2>User Manageent</h2>
+<h2>User Management</h2>
 
 <table class="index tablesorter">
   <thead>
     <tr>
-      <th></th>
-      <th>User Name</th>
+      <th>role</th>
+      <th>user name</th>
       <th>sort name</th>
-      <th>email</th>
-      <th>phone</th>
       <th>notes</th>
-      <th>address</th>
-      <th>id</th>
       <th>do not lend</th>
     </tr>
   </thead>
@@ -22,11 +18,7 @@
       <td><%= role if role %></td>
       <td><%= link_to (u.name || "user"), user_path(u.id) %></td>
       <td><%= u.sort_by %></td>
-      <td><%= u.email %></td>
-      <td><%= u.phone %></td>
-      <td><%= u.notes %></td>
-      <td><%= u.address %></td>
-      <td><%= u.id %></td>
+      <td><%= "*" if u.notes %></td>
       <td><%= "X" if u.do_not_lend %></td>
       <td>
         <% if librarian_user? %>

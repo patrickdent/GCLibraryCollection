@@ -1,6 +1,6 @@
 ready = ->
   $ ->
-    $(".tablesorter").tablesorter theme: "blue" 
+    $(".tablesorter").tablesorter theme: "metro-dark" 
     return
 
 $(document).ready(ready)
