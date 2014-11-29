@@ -1,0 +1,37 @@
+@media print {
+  // * {
+  //   clear: both; 
+  //   float: none; 
+  //   overflow: visible; 
+  // }
+
+  header{
+    display: none;
+  }
+
+  div.column-2{
+    display: none;
+  }
+
+  div.column-6{
+    width: 100%;
+    overflow: visible;
+  }
+  .gray {
+    overflow: visible;
+    }
+
+  table.index.tablesorter {
+    border: none; 
+    width: 100%;
+  }
+
+  @page {
+    margin: 0.5cm;
+  }
+  
+  .wrapper {
+    height: auto;
+    overflow: visible; 
+  }
+}
