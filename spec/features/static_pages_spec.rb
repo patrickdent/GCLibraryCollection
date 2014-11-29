@@ -104,6 +104,7 @@ describe 'Static Pages', type: feature do
         it 'has manage Authors' do expect(subject).to have_link('Manage Authors') end
         it 'has manage Keywords' do expect(subject).to have_link('Manage Keywords') end
         it 'has manage Users' do expect(subject).to have_link('Manage Users') end
+        it 'has manage Loans' do expect(subject).to have_link('Manage Loans') end
       end
     end
   end
@@ -144,6 +145,7 @@ describe 'Static Pages', type: feature do
         it 'no manage Authors' do expect(subject).to_not have_link('Manage Authors') end
         it 'has manage Keywords' do expect(subject).to have_link('Manage Keywords') end
         it 'has manage Users' do expect(subject).to have_link('Manage Users') end
+        it 'has manage Loans' do expect(subject).to have_link('Manage Loans') end
       end
     end
   end
