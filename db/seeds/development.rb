@@ -74,6 +74,12 @@ u = User.new(
   name: "Marie Purrie")
 u.save!(:validate => false)
 
+#a loan
+l = Loan.new(
+  user_id: User.all.last.id,
+  book_id: Book.all.first.id)
+l.save!(validate: false)
+
 
 # different contributions
 contributions = Contribution.create([{ name: 'Author' },
