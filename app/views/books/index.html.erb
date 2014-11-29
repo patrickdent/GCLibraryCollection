@@ -14,7 +14,12 @@
   <tbody>
     <% @books.each do |b| %>
     <tr>
-      <td> <%= link_to b.title, book_path(b.id) %></td>
+      <td>
+        <% if librarian_user? %>
+          <%=  check_box_tag :selected, b.id, b.selected, id: "book-select_#{b.id}"  %>
+        <% end %>
+        <%= link_to b.title, book_path(b.id) %>
+      </td>
       <td> 
       <% if b.genre %> 
         <%= link_to b.genre.name, genre_path(b.genre) %> 
@@ -31,7 +36,6 @@
           <% if admin_user? %>
             <%= link_to "delete", book_path(b), method: :delete, data: {confirm: "Are you sure you want to delete this book?"} %> 
           <% end %>
-          <%=  check_box_tag :selected, b.id, b.selected, id: "book-select_#{b.id}"  %>
         <% end %>
       </td>
     </tr>

@@ -1,5 +1,6 @@
 <h2>Selected Books</h2>
-<!-- TODO: <button>Print this list!</button> -->
+<!-- TODO: <button>Print this list!</button>
+ <button>Print labels for these books!</button>-->
 
 <table class="index tablesorter">
   <thead>
@@ -12,7 +13,9 @@
   <tbody>
     <% @books.each do |b| %>
     <tr>
-      <td> <%= link_to b.title, book_path(b.id) %></td>
+      <td>
+        <%=  check_box_tag :selected, b.id, b.selected, id: "book-select_#{b.id}"  %>
+        <%= link_to b.title, book_path(b.id) %></td>
       <td> 
       <% if b.genre %> 
         <%= link_to b.genre.name, genre_path(b.genre) %> 
@@ -22,9 +25,6 @@
         <% b.authors.each do |a| %>
           <%= link_to a.name, author_path(a) %>
         <% end %>
-      </td>
-      <td>
-        <%=  check_box_tag :selected, b.id, b.selected, id: "book-select_#{b.id}"  %>
       </td>
     </tr>
     <% end %>
