@@ -1,0 +1,35 @@
+<table class="index tablesorter">
+  <thead>
+    <tr>
+      <% if params[:controller].humanize.downcase == 'users' %>
+      <th>Title</th>
+      <% end %>
+      <% if params[:controller].humanize.downcase == 'books' %>
+      <th>Patron</th>
+      <% end %>
+      <th>Start Date</th>
+      <th>Due Date</th>
+      <th>Returned</th>
+      <th>Renewals</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @source = @user if params[:controller].humanize.downcase == 'users' %>
+    <% @source = @book if params[:controller].humanize.downcase == 'books' %>
+    <% @source.loans.each do |l| %>
+      <tr>
+      <% if params[:controller].humanize.downcase == 'users' %>
+      <td><%= link_to l.book.title, book_path(l.book.id) %></td>
+      <% end %>
+      <% if params[:controller].humanize.downcase == 'books' %>
+      <td><%= link_to l.user.name, user_path(l.user.id) %></td>
+      <% end %>
+      <td><%= l.start_date %>
+      <td><%= l.due_date %>
+      <td><%= l.returned_date ||= 'active' %>
+      <td><%= l.renewal_count %>
+      </tr>
+    <% end %>
+  </tbody>  
+</table>

@@ -23,6 +23,10 @@
     </ul>
 </div>
 
+
+<h3>Loan History:</h3>
+<%= render 'loans/form.html.erb' %>
+
 <br />
 <% if librarian_user? %>
   <%= link_to "Edit This Book", edit_book_path(@book), class: "right btn2" %>

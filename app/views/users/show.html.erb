@@ -12,6 +12,9 @@
   <p><%= "DO NOT LEND" if @user.do_not_lend %>
 </div>
 
+<h3>Loan History:</h3>
+<%= render 'loans/form.html.erb' %>
+
 <% if librarian_user? %>
   <%= link_to "Edit This User", edit_user_path(@user), class: "right btn2" %>
 <% end %>
