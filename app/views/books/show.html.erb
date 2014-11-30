@@ -1,6 +1,9 @@
 <h2>Book: <%= @book.title %></h2>
 
 <div class="show">
+  <% if librarian_user? %>
+    <%=  check_box_tag :selected, @book.id, @book.selected, id: "book-select_#{@book.id}"  %>
+  <% end %>
   <p>Author(s): </p>
     <ul>
     <% @book.authors.each do |a| %>

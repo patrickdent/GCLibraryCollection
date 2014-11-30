@@ -25,7 +25,7 @@ describe "Keyword Pages" do
       end
 
       it "has name field" do expect(subject).to have_field("Name") end
-      it "has delete link" do expect(subject).to have_button("Submit") end
+      it "has a submit button" do expect(subject).to have_button("submit") end
     end
 
     context "as librarian" do
@@ -35,7 +35,7 @@ describe "Keyword Pages" do
       end
 
       it "has name field" do expect(subject).to have_field("Name") end
-      it "has delete link" do expect(subject).to have_button("Submit") end
+      it "has a submit button" do expect(subject).to have_button("submit") end
     end
 
   end
@@ -58,8 +58,8 @@ describe "Keyword Pages" do
         visit keywords_path
       end
 
-      it "has edit link" do expect(subject).to have_link("Edit") end
-      it "has delete link" do expect(subject).to have_link("Delete") end
+      it "has edit link" do expect(subject).to have_link("edit") end
+      it "has delete link" do expect(subject).to have_link("delete") end
     end
 
 
@@ -69,8 +69,8 @@ describe "Keyword Pages" do
         visit keywords_path
       end
 
-      it "has edit link" do expect(subject).to have_link("Edit") end
-      it "has delete link" do expect(subject).to have_link("Delete") end
+      it "has edit link" do expect(subject).to have_link("edit") end
+      it "has delete link" do expect(subject).to have_link("delete") end
     end
 
   end
@@ -90,8 +90,8 @@ describe "Keyword Pages" do
         visit keywords_path
       end
 
-      it "has edit link" do expect(subject).to have_link("Edit") end
-      it "has delete link" do expect(subject).to have_link("Delete") end
+      it "has edit link" do expect(subject).to have_link("edit") end
+      it "has delete link" do expect(subject).to have_link("delete") end
     end
 
 
@@ -101,8 +101,8 @@ describe "Keyword Pages" do
         visit keywords_path
       end
 
-      it "has edit link" do expect(subject).to have_link("Edit") end
-      it "has delete link" do expect(subject).to have_link("Delete") end
+      it "has edit link" do expect(subject).to have_link("edit") end
+      it "has delete link" do expect(subject).to have_link("delete") end
     end
   end
 

@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20141125012130) do
     t.string   "language"
     t.integer  "pages"
     t.string   "location"
+    t.boolean  "selected",          default: false
   end
 
   create_table "contributions", force: true do |t|

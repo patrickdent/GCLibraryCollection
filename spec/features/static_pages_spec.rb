@@ -10,8 +10,8 @@ describe 'Static Pages', type: feature do
     it 'has working author link' do expect(subject).to have_link('by author', href: authors_path) end
     it 'has working keyword link' do expect(subject).to have_link('by keyword', href: keywords_path) end
     it 'does not have admin links' do expect(subject).to_not have_link('admin dashboard') end
-    it 'does not have logout links' do expect(subject).to_not have_link('Logout') end
-    it 'does not have profile links' do expect(subject).to_not have_link('Edit profile') end
+    it 'does not have logout links' do expect(subject).to_not have_link('logout') end
+    it 'does not have profile links' do expect(subject).to_not have_link('edit profile') end
 
     describe 'Search' do
 
@@ -40,21 +40,18 @@ describe 'Static Pages', type: feature do
   end
 
   describe 'Admin' do
-    
     describe 'login' do
-
       context 'with invalid credentials' do
         before do
           visit root_path
           click_on('login')
           fill_in("Login", :with => 'bogus@email.com')
           fill_in("Password", :with => 'nope')
-          click_on("Sign in")
+          click_on("sign in")
         end
 
         it "should flash invalid" do expect(subject).to have_content('Invalid login or password.') end
       end
-
 
       context 'valid credentials' do
         before do
@@ -63,7 +60,7 @@ describe 'Static Pages', type: feature do
             click_on('login')
             fill_in("Login", :with => admin.email)
             fill_in("Password", :with => 'password')
-            click_on("Sign in")
+            click_on("sign in")
         end
 
         it "should flash success" do expect(subject).to have_content('Signed in successfully.') end
@@ -113,12 +110,12 @@ describe 'Static Pages', type: feature do
 
     context 'valid credentials' do
       before do
-          admin = FactoryGirl.create(:librarian, password: "password", email: "email@email.com")
+          admin = FactoryGirl.create(:admin, password: "password", email: "email@email.com")
           visit root_path
           click_on('login')
           fill_in("Login", :with => admin.email)
           fill_in("Password", :with => 'password')
-          click_on("Sign in")
+          click_on("sign in")
       end
 
       it "should flash success" do expect(subject).to have_content('Signed in successfully.') end
@@ -127,11 +124,10 @@ describe 'Static Pages', type: feature do
       it 'has profile links' do expect(subject).to have_link('my profile') end
     end
 
-    describe 'Dashboard' do
+    describe 'Dashboard Access' do
       before do
-          librarian_login
-          visit root_path
-          click_on('admin dashboard')
+        librarian_login
+        visit root_path
       end
 
       after do
@@ -146,6 +142,7 @@ describe 'Static Pages', type: feature do
         it 'has manage Keywords' do expect(subject).to have_link('Manage Keywords') end
         it 'has manage Users' do expect(subject).to have_link('Manage Users') end
         it 'has manage Loans' do expect(subject).to have_link('Manage Loans') end
+        it 'no dashboard' do expect(subject).to_not have_link('admin dashboard') end
       end
     end
   end

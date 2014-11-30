@@ -1,23 +1,72 @@
+.left form {
+		padding-bottom: 3em;
+		}
+
+input, button {
+		font-family: 'Helvetica Neue', Arial, Helvetica, 'Liberation Sans', sans-serif;
+		font-weight: bold;
+		background: none;
+		border: none;
+		}
+
+input:hover, button:hover {
+	color: #95CB15;
+}
+
+.left input[type="submit"] {
+		font-size: 2.5em;
+		text-align: right;
+		}
+
+.main input[type="submit"] {
+		font-size: 1.5em;
+		padding-left: .25em;
+		}
+
+input[type="text"], input[type="password"], input[type="email"] {
+		width: 7rem;
+		height: 2rem;
+		border: 1px solid black;
+		text-align: right;
+		}
+
+input[placeholder] {
+		font-size: 1.5em;
+		color: gray;
+		padding-right: .5em;
+		}
+
+/*calling this after the plain input styles so they don't overwrite */ 
+.main input[type="text"], input[type="password"], input[type="email"] {
+		font-size: 1.5rem;
+		height: 1.5rem;
+		background: white;
+		}
+
+label {
+	font-size: 1.5em;
+}
+
+.btn2 {
+	font-size: 1.5em;
+}
 
 .edit_user form {
 	margin-top: 3em;
 }
 
 .edit_user input {
-	padding: 3px;
 	margin: 1%;
 	display: inline-block;
   float: left;
   vertical-align: baseline;
 }
 
-
 .edit_user {
 	margin-top: 3em;
 }
 
 .edit_user input[type=submit] {
-	// clear: both;
 	margin-bottom: 7em;
 }
 
