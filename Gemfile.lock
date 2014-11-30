@@ -222,10 +222,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   jquery-tablesorter
-<<<<<<< HEAD
-=======
   jquery-turbolinks
->>>>>>> 3e8c715f8935b9b34498e30ba863f04aa52f3cbd
   launchy
   pg
   prawn
