@@ -13,6 +13,7 @@ gem 'figaro'
 gem 'pry'
 gem 'prawn'
 gem 'jquery-tablesorter'
+gem 'jquery-turbolinks'
 
 group :production do
   gem 'pg'
@@ -32,6 +33,7 @@ group :test do
     gem 'factory_girl_rails', '~> 4.0'
     gem 'simplecov', '~> 0.9.0', :require => false
     gem 'webmock'
+    gem 'launchy'
 end
 
 group :doc do
