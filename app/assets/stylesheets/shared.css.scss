@@ -1,8 +1,6 @@
 /*page styles*/
 
-#username {
-	color: #666666;
-}
+
 
 .gray {
 		height: 100%;
@@ -26,19 +24,16 @@ h1 {
 h2 {
 		font-size: 2.5em;
 		color: #999999;
-		// text-align: center;
 		}
 
-a:hover {
-	color: #95CB15;
-	font-size: 110%;
+h3 {
+	text-transform: lowercase;
 }
 
-.main h2 {
-		// float: left;
-		// padding-bottom: .5em;
-		// margin-top: -.5em;
-		}
+.ignore-Caps {
+	text-transform: none;
+}
+
 
 nav {
 		float: left;
@@ -75,11 +70,25 @@ nav li:first-of-type {
 
 nav li > a:hover {
 		color: #E68A00;
+		border-bottom: 1px solid black;
 		}
 
 nav span {
 		color: 	white;
 		}
+
+//basic button styles
+
+.btn, .btn2 {
+	font-size: 1.5em;
+	background: none;
+	border: none;
+}
+
+.btn:hover, .btn2:hover, a:hover {
+	color: #95CB15;
+	border-bottom: 1px solid black;
+}
 
 .main article {
 		margin: 5em 6em;
@@ -91,26 +100,18 @@ nav span {
 		font-weight: normal;
 		}
 
-/*left side area styles*/
 
-.left {
-		margin-top: 12em;
-		text-align: right;
-		}
+/*right side styles*/
 
-.left h2 {
-		font-size: 2.5em;
-		color: black;
-		}
+.right {
+	float: right; 
+	// margin-right: 5%;
+	}
 
-
-.vertical {
-	font-size: 6em;
-	color: #E8E8E8;
-	
-}
 
 span.vertical {
+	font-size: 6em;
+	color: #E8E8E8;
  	display:inline-block; 
 	position:relative;
 	margin-top: 1.25em;
@@ -120,12 +121,13 @@ span.vertical {
  	transform: rotate(90deg);
 }
 
+//table text 
 
-/*right side styles*/
+td, td > a {
+	font-weight: normal;
+}
 
-.right {
-	float: right; 
-	margin-right: 5%;
-	}
-
-
+td > a:hover {
+	color: black;
+	border-bottom: 1px solid black;
+}

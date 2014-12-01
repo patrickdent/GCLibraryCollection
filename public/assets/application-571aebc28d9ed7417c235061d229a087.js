@@ -9054,7 +9054,7 @@ jQuery.extend({
 					return this;
 				},
 
-				// Cancel the request
+				// cancel the request
 				abort: function( statusText ) {
 					var finalText = statusText || strAbort;
 					if ( transport ) {

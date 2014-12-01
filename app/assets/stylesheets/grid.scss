@@ -6,8 +6,11 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: 'Helvetica Neue', Arial, Helvetica, 'Liberation Sans', sans-serif;
-        font-weight: bold;
-}       
+}  
+
+* :not(p) {
+    font-weight: bold;
+}     
 
 a {
     text-decoration: none;

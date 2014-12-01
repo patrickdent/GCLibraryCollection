@@ -34,7 +34,7 @@ describe 'Static Pages', type: feature do
           fill_in('search', :with => @book.title)
           click_on('search')
         end
-        it 'shows matches' do expect(subject).to have_content("Books #{@book.title}") end
+        it 'shows matches' do expect(subject).to have_content("Books: #{@book.title}") end
       end 
     end
   end

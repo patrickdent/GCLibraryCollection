@@ -16,12 +16,12 @@
       <%= content_tag :div, msg, class: name, id:"headerbar" %>
       <% end %>
 
- <%= form_tag "/search", method: "get" do %>
+    <%= form_tag "/search", method: "get" do %>
       <%= label_tag "search" %>
-      <%= submit_tag "search", name: nil %>
+      <%= submit_tag "search", name: nil, class: "btn" %>
       <%= text_field_tag :search, params[:search], placeholder:"sparkle" %>
     
-  <% end %>
+    <% end %>
   
     <h2>browse</h2>
     <h3><%= link_to "by keyword", keywords_path %></h3>

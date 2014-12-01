@@ -2,16 +2,6 @@
 		padding-bottom: 3em;
 		}
 
-input, button {
-		font-family: 'Helvetica Neue', Arial, Helvetica, 'Liberation Sans', sans-serif;
-		font-weight: bold;
-		background: none;
-		border: none;
-		}
-
-input[type="submit"]:hover, button:hover {
-	color: #95CB15;
-}
 
 .left input[type="submit"] {
 		font-size: 2.5em;
@@ -85,9 +75,6 @@ fieldset p {
 	padding: .25em .5em;
 }
 
-.btn, .btn2 {
-	font-size: 1.5em;
-}
 .user_edit .btn2 {
 	margin-top: 1.7em;
 }
