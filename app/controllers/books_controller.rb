@@ -5,16 +5,12 @@ class BooksController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
   before_filter :find_book, only: [:show, :edit, :destroy, :update]
   before_filter :is_admin?, only: [:new, :create, :destroy]
-  before_filter :is_librarian?, only: [:edit, :update] 
+  before_filter :is_librarian?, only: [:edit, :update, :list, :clear_list, :show_list] 
 
   
   def index
     @books = Book.all.order('title ASC')
   end
-
-  # def index(new_book_array)
-  #   @books = Book.find(new_book_array)
-  # end
 
   def new
     @book = Book.new 
@@ -38,9 +34,13 @@ class BooksController < ApplicationController
   end 
 
   def destroy 
-    @book.destroy 
-    flash[:notice] = "Delete Successful!"
-    redirect_to books_path 
+    if @book.destroy 
+      flash[:notice] = "Delete Successful!"
+      redirect_to books_path 
+    else 
+      flash[:error] = "Delete Failed"
+      redirect_to books_path 
+    end 
   end 
 
   def update
@@ -50,11 +50,30 @@ class BooksController < ApplicationController
     else 
       flash[:error] = "Update Failed"
       redirect_to edit_book_path
-    end 
+    end    
+  end 
+
+  def list 
+    @book = Book.find_by(id: params[:book][:id])
+    @book.selected = params[:book][:selected]
+    if @book.save!
+      render json: {status: :success }
+    else 
+      render json: {status: :failure }
+    end    
+  end 
+
+  def clear_list 
+    Book.where(selected: true).update_all(selected: false)
+    render inline: "location.reload();" 
+  end 
+
+  def show_list 
+    @books = Book.where(selected: true)
   end 
 
   private 
   def find_book 
-    @book = Book.find(params[:id])
+    @book = Book.find_by(id: params[:id])
   end 
 end
