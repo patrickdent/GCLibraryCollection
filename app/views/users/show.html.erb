@@ -5,15 +5,19 @@
   <% if current_user == @user %>
   <%= link_to "edit login information", edit_user_registration_path, class: "right" %></p>
   <% end %>
+  <p>name: <%= @user.name %></p>
   <p>phone: <%= @user.phone %></p>
   <p>address: <%= @user.address %></p>
   <p>notes: <%= @user.notes %></p>
-  <p> PLACE HOLDER FOR BORROWING HISTORY </p>
   <p><%= "DO NOT LEND" if @user.do_not_lend %>
 </div>
 
+<% if @user.good_to_borrow? %>
+  <%= link_to "Loan Book", new_loan_path(user_id: @user.id), id: "new-loan-link", remote: true %>
+<% end %> 
+
 <h3>Loan History:</h3>
-<%= render 'loans/form.html.erb' %>
+<%= render 'loans/loan_list.html.erb' %>
 
 <% if librarian_user? %>
   <%= link_to "Edit This User", edit_user_path(@user), class: "right btn2" %>

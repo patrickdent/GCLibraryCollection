@@ -8,10 +8,19 @@ class LoansController < ApplicationController
   before_filter :find_loan, only: [:renew, :return, :show]
 
   def new
+    @user = User.find_by(id: params[:user_id])
+    unless @user.good_to_borrow?
+      flash[:error] = "User Can Not Borrow at This Time"
+      redirect_to user_path(@user.id) and return 
+    end 
   end
 
   def create
     @loan = Loan.new(loan_params)
+    unless @loan.user.good_to_borrow?
+      flash[:error] = "User Can Not Borrow at This Time"
+      redirect_to user_path(@loan.user.id) and return 
+    end 
     if @loan.save 
       flash[:notice] = "Loan Created"
     else 
