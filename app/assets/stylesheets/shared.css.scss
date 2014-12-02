@@ -1,6 +1,8 @@
 /*page styles*/
 
-
+* {
+	text-transform: lowercase;
+}
 
 .gray {
 		height: 100%;
@@ -19,18 +21,17 @@ h1 {
 		color: #9C9C9C;
 		font-size: 4.5em;
 		text-align: center;
+		text-transform: none;
 		}
 
 h2 {
 		font-size: 2.5em;
 		color: #999999;
+		text-transform: none;
 		}
 
-h3 {
-	text-transform: lowercase;
-}
 
-.ignore-Caps {
+.ignore-caps {
 	text-transform: none;
 }
 
@@ -113,12 +114,13 @@ span.vertical {
 	font-size: 6em;
 	color: #E8E8E8;
  	display:inline-block; 
-	position:relative;
-	margin-top: 1.25em;
-	margin-left: -.75em;
+	position:absolute;
+	top: 5.25em;
+	right: 1.65em;
  	-webkit-transform: rotate(90deg);
  	-moz-transform:rotate(90deg);
  	transform: rotate(90deg);
+ 	transform-origin: top right;
 }
 
 //table text 
