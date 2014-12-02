@@ -1,7 +1,5 @@
 class User < ActiveRecord::Base
   rolify
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   attr_accessor :login
@@ -26,5 +24,12 @@ class User < ActiveRecord::Base
       where(conditions).first
     end
   end
+
+  def good_to_borrow?
+    #organization-specific borrowing rules
+    if self.name && (self.email || self.phone) && !self.do_not_lend
+      true 
+    end 
+  end 
 
 end
