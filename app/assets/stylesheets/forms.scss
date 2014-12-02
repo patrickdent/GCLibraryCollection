@@ -8,41 +8,51 @@
 		text-align: right;
 		}
 
+.left input[type="text"] {
+	text-align: right;
+	}
+
 //basic button styles
 
 .btn, .btn2 {
 	font-size: 1.5em;
 	background: none;
 	border: none;
-}
+	}
 
 .btn:hover, .btn2:hover, a:hover {
 	color: #95CB15;
 	border-bottom: 1px solid black;
-}
+	}
 
 .onward {
 	color: green;
-}
+	}
 
 .retreat {
-	color: red;
-}
+	color: #E68A00;
+	}
+
+.retreat:hover {
+	color: #FF0000;
+	}
+
 
 .main input[type="submit"] {
 		font-size: 1.5em;
 		padding-left: .25em;
 		clear: both;
+		color: #AAD544;
 		}
-.main input[type="text"] {
-	width: 80%;
-}
+
+// .main input[type="text"] {
+// 	width: 80%;
+// 	}
 
 input[type="text"], input[type="password"], input[type="email"] {
 		width: 7rem;
 		height: 2rem;
 		border: 1px solid black;
-		text-align: right;
 		}
 
 input[placeholder] {
