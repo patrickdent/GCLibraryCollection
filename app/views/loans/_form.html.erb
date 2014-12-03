@@ -1,1 +1,7 @@
-I'm a form yay
+<%= form_for @loan do |f| %> 
+  <%#= f.hidden_field :user_id, @user.id  %>
+
+  <%#= f.label :book_id %> 
+  <%#= f.select :book_id, options_for_select(Book.all, :title) %>  
+  <%= f.submit %>
+<% end %>

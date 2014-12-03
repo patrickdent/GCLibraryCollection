@@ -13,6 +13,7 @@ class LoansController < ApplicationController
       flash[:error] = "User Can Not Borrow at This Time"
       redirect_to user_path(@user.id) and return 
     end 
+    @loan = Loan.new(user: @user)
   end
 
   def create
