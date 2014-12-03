@@ -1,0 +1,47 @@
+/*left side area styles*/
+.left-content {
+		margin-top: 12em;
+		text-align: right;
+		h2 {
+			font-size: 2.5em;
+		}
+		a:hover {
+			color: $green;
+			font-size: 110%;
+			border: none;
+		}
+}
+
+/*search form*/
+.left-content form {
+  padding-bottom: 3em;
+  input[type="submit"] {
+	  font-size: 2.5em;
+	  text-align: right;
+	  background: none;
+	  border: none;
+	  }
+	input[type="submit"]:hover {
+	  color: $green;
+	}
+	input[type="text"] {
+	  text-align: right;
+	}
+	label {
+	  visibility: hidden;
+	}
+}
+
+/*right side styles*/
+span.vertical {
+	font-size: 6em;
+	color: $lightest_gray;
+ 	display:inline-block; 
+	position:fixed;
+	top: 5.25em;
+	right: 1.65em;
+ 	-webkit-transform: rotate(90deg);
+ 	-moz-transform:rotate(90deg);
+ 	transform: rotate(90deg);
+ 	transform-origin: top right;
+}
