@@ -1,46 +1,17 @@
-//basic button styles
+/*****This file is being saved for historical purposes, but almost everything in it is obsolete. It is not being called in application.scss, so none of the styles in it are being applied. TODO: delete before the next pull request.********/
 
-.btn, .btn2 {
-  font-size: 1.5em;
-  background: none;
-  border: none;
-  }
 
-.btn:hover, .btn2:hover, a:hover {
-  // color: $green;
-  border-bottom: 1px solid black;
-  }
+// input[type="text"], input[type="password"], input[type="email"] {
+//     width: 7rem;
+//     height: 2rem;
+//     border: 1px solid black;
+//     }
 
-.onward {
-  color: green;
-  }
-
-.retreat {
-  color: #E68A00;
-  }
-
-.retreat:hover {
-  color: #FF0000;
-  }
-
-.main input[type="submit"] {
-    font-size: 1.5em;
-    padding-left: .25em;
-    clear: both;
-    color: #AAD544;
-    }
-
-input[type="text"], input[type="password"], input[type="email"] {
-    width: 7rem;
-    height: 2rem;
-    border: 1px solid black;
-    }
-
-input[placeholder] {
-    font-size: 1em;
-    color: gray;
-    padding-right: .5em;
-    }
+// input[placeholder] {
+//     font-size: 1em;
+//     color: gray;
+//     padding-right: .5em;
+//     }
 
 /*calling this after the plain input styles so they don't overwrite */ 
 .main input[type="text"], input[type="password"], input[type="email"] {
@@ -65,19 +36,19 @@ color: rgb(0, 0, 0);
 //    min-width: 7em;
 //    }
 
-fieldset {
-  padding: 7px 0;
-  border: none;
-}
+// fieldset {
+//   padding: 7px 0;
+//   border: none;
+// }
 
-fieldset > input {
-  float: left;
-}
+// fieldset > input {
+//   float: left;
+// }
 
-fieldset p {
-  clear: both;
-  padding: 5px;
-}
+// fieldset p {
+//   clear: both;
+//   padding: 5px;
+// }
 
 
 .book_edit {
