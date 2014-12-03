@@ -1,35 +1,32 @@
 .main {
-	form {
-	    margin-left:auto;
-	    margin-right:auto;
+	form:not(.button_to) {
+	  margin-left:auto;
+	  margin-right:auto;
 
-	    max-width: 500px;
-	    background: $white;
-	    padding: 2rem 2rem 3rem;
-	    box-shadow: rgba(187, 187, 187, 1) 0 0px 20px -1px;
-	    -webkit-box-shadow: rgba(187, 187, 187, 1) 0 0px 20px -1px;
-	}
-
-	form h2 {
+	  max-width: 500px;
+	  background: $white;
+	  padding: 2rem 2rem 3rem;
+	  box-shadow: rgba(187, 187, 187, 1) 0 0px 20px -1px;
+	  -webkit-box-shadow: rgba(187, 187, 187, 1) 0 0px 20px -1px;
+	  h2 {
 	    padding: 0px 0px 10px 40px;
 	    display: block;
 	    border-bottom: 1px solid #F5F5F5;
 	    margin: -10px -30px 10px -30px;
 	    color: #969696;
-	}
-	form fieldset {
+		} 
+		fieldset {
 	    display: block;
 	    margin: 0.75rem 0 0.75rem;
 	    border: none;
-
-	}
-	form label {
+		} 
+		label {
 	    float: left;
 	    width: 20%;
 	    text-align: right;
 	    padding-right: 10px;
-	}
-	input[type="text"], input[type="email"], input[type="password"], textarea, select{
+		}
+		input[type="text"], input[type="email"], input[type="password"], textarea, select{
 	    color: $green;
 	    width: 70%;
 	    text-align: right;
@@ -39,22 +36,23 @@
 	    outline: 0;
 	    -webkit-box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
 	    box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
-	}
-	textarea{
+		}
+		input[type="submit"] {
+	    font-size: 1.5em;
+	    margin-top: .25em;
+	    clear: both;
+	    color: $light_green;
+	    text-align: right;
+	    float: right;
+	  }
+		textarea{
 	    height:100px;
 	    padding: 5px 0px 0px 5px;
 	    width: 70%;
-	}
-	input[type="submit"] {
-    font-size: 1.5em;
-    margin-top: .25em;
-    clear: both;
-    color: $light_green;
-    text-align: right;
-    float: right;
-  }
-	form small {
-		display: inline-block;
-		float: right;
+		}
+		small {
+			display: inline-block;
+			float: right;
+		}
 	}
 }

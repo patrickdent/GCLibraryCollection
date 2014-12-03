@@ -1,41 +1,41 @@
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <%= devise_error_messages! %>
-  
-    <fieldset>
-      <%= f.label :username %>
-      <%= f.text_field :username %>
-    </fieldset>
-    <fieldset><%= f.label :email %>
-      <%= f.email_field :email, autofocus: true %>
-    </fieldset>
-  
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <small>Currently waiting confirmation for: <%= resource.unconfirmed_email %></small>
-    <% end %>
-  
-    <fieldset>
-      <%= f.label :password %>
-      <%= f.password_field :password, autocomplete: "off" %>
-      <small>leave blank if you don't want to change it</small>
-    </fieldset>
-  
-    <fieldset>
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation, autocomplete: "off" %>
-    </fieldset>
-  
-    <fieldset>
-      <%= f.label :current_password %> <small>we need your current password to confirm your changes</small>
-      <%= f.password_field :current_password, autocomplete: "off" %>
-    </fieldset>
-  
-    <%= f.submit "Update" %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <fieldset>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+  </fieldset>
+  <fieldset><%= f.label :email %>
+    <%= f.email_field :email, autofocus: true %>
+  </fieldset>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <small>Currently waiting confirmation for: <%= resource.unconfirmed_email %></small>
   <% end %>
+
+  <fieldset>
+    <%= f.label :password %>
+    <%= f.password_field :password, autocomplete: "off" %>
+    <small>leave blank if you don't want to change it</small>
+  </fieldset>
+
+  <fieldset>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </fieldset>
+
+  <fieldset>
+    <%= f.label :current_password %> <small>we need your current password to confirm your changes</small>
+    <%= f.password_field :current_password, autocomplete: "off" %>
+  </fieldset>
+
+  <%= f.submit "Update" %>
+<% end %>
 
 <h3>cancel my account</h3>
 
-<p>Unhappy? <%= button_to "cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p>Unhappy? <%= button_to "cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "button_to" %></p>
 
 <%= link_to "Back", :back %>
