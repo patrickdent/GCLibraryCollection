@@ -4,7 +4,7 @@
     <%= devise_error_messages! %>
   
     <fieldset>
-      <%= f.label :username %><br />
+      <%= f.label :username %>
       <%= f.text_field :username %>
     </fieldset>
     <fieldset><%= f.label :email %>
@@ -12,21 +12,22 @@
     </fieldset>
   
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <small>Currently waiting confirmation for: <%= resource.unconfirmed_email %></small>
     <% end %>
   
     <fieldset>
-      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+      <%= f.label :password %>
       <%= f.password_field :password, autocomplete: "off" %>
+      <small>leave blank if you don't want to change it</small>
     </fieldset>
   
     <fieldset>
-      <%= f.label :password_confirmation %><br />
+      <%= f.label :password_confirmation %>
       <%= f.password_field :password_confirmation, autocomplete: "off" %>
     </fieldset>
   
     <fieldset>
-      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+      <%= f.label :current_password %> <small>we need your current password to confirm your changes</small>
       <%= f.password_field :current_password, autocomplete: "off" %>
     </fieldset>
   

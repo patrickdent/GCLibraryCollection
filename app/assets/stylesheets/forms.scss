@@ -32,6 +32,7 @@
 	input[type="text"], input[type="email"], input[type="password"], textarea, select{
 	    color: $green;
 	    width: 70%;
+	    text-align: right;
 	    padding: 3px 0px 3px 5px;
 	    border: 1px solid $med_gray;
 	    background: #fbfbfb;
