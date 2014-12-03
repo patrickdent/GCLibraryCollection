@@ -98,12 +98,13 @@ fieldset p {
 	padding: 5px;
 }
 
-// label {
-// 	font-size: 1em;
-// 	text-align: right;
-// 	float: left;
-// 	font-weight: bold;
-// }
+
+.book_edit {
+  padding: 2em;
+	margin: 1em 0 0 0;
+  border: 1px black solid; 
+  background-color: #F5F5F5;
+  }
 
 .book_edit label {
 	display: block;
@@ -114,7 +115,6 @@ fieldset p {
 	float: left;
 	font-weight: bold;
 }
-
 
 .book_edit input {
   display: inline-block;
@@ -135,8 +135,6 @@ fieldset p {
 	margin-top: 3em;
 }
 
-
-
 .edit_user input {
 	margin: 1%;
 	display: inline-block;
@@ -148,9 +146,6 @@ fieldset p {
 	margin-top: 3em;
 }
 
-// .edit_user input[type=submit] {
-// 	margin: 1.5em 0;
-// }
 
 .edit_user label {
 	font-size: .9em;
@@ -177,7 +172,3 @@ small {
 	font-weight: normal;
 	float: right;
 }
-
-
-
-
