@@ -17,9 +17,9 @@ describe Loan do
     before { @loan = Loan.create( book_id: (create :book).id, user_id: (create :user).id ) }
     
     it "sets a return date" do
-      date = @loan.return_loan
-      expect(date).to_not eq(nil) 
-      expect(date).to eq(@loan.returned_date) 
+      @loan.return_loan
+      expect(@loan.returned_date).to_not eq(nil) 
+      expect(Time.now.to_date).to eq(@loan.returned_date) 
     end
   end
 
@@ -42,8 +42,9 @@ describe Loan do
 
     it "sets a new return date" do
       old_date = @loan.due_date
-      date = @loan.renew_loan
-      expect(date).to_not eq(old_date) 
+      date = old_date + Loan::DURATION
+      @loan.renew_loan
+      expect(@loan.due_date).to_not eq(old_date) 
       expect(date).to eq(@loan.due_date) 
     end
 

@@ -34,6 +34,10 @@ describe LoansController do
       it "redirects to user#show" do
         expect(post :create, loan: {user_id: @user.id, book_id: @book.id}).to redirect_to(user_path(@user))
       end
+
+      it "creates a new loan" do
+        expect { post :create, loan: { user_id: @user.id, book_id: @book.id } }.to change(Loan, :count).by(1)
+      end
     end
   end
 
@@ -51,6 +55,12 @@ describe LoansController do
 
       it 'redirects to user#show' do
         expect(put :renew, id: @loan.id).to redirect_to(user_path(@user.id))
+      end
+
+      it 'changes due_date' do
+        original_date = @loan.due_date
+        put :renew, id: @loan.id
+        expect(@loan.reload.due_date).to_not eq(original_date)
       end      
     end
   end
@@ -69,6 +79,11 @@ describe LoansController do
 
       it 'redirects to user#show' do
         expect(put :return, id: @loan.id).to redirect_to(user_path(@user.id))
+      end      
+
+      it 'sets a returned_date' do
+        put :return, id: @loan.id
+        expect(@loan.reload.returned_date).to_not eq(nil)
       end      
     end
   end
