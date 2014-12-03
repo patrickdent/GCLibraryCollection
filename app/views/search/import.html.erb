@@ -1,7 +1,9 @@
 <h2>Import Books</h2>
 
 <%= form_tag("/scrape", method: "post") do |b| %>
-  <%= label_tag :isbn, "enter ISBN", class: "ignore-caps" %>
-  <%= text_field_tag :isbn %>
+  <fieldset>
+    <%= label_tag :isbn, "enter ISBN", class: "ignore-caps" %>
+    <%= text_field_tag :isbn %>
+  </fieldset>  
   <%= submit_tag "import book" %>
 <% end %>
