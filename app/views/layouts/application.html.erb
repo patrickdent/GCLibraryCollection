@@ -12,6 +12,9 @@
 
   <div class="column-2 left-content">
   <!-- search column aside -->
+
+    <h3><%= link_to "home", root_path %></h3>
+    <h3><a href="mailto:library@example.com?Subject=Inquiry" target="_top">contact the library</a></h3>
     <% flash.each do |name, msg| %>
     <%= content_tag :div, msg, class: name, id:"headerbar" %>
     <% end %>
@@ -35,8 +38,8 @@
         <h1>Library Collection</h1>
         <nav>
           <ul>
-          <li><%= link_to "home", root_path %></li> 
-          <li><a href="mailto:library@example.com?Subject=Inquiry" target="_top">contact the library!</a></li>
+          <!-- <li><%= link_to "home", root_path %></li>  -->
+         <!--  <li><a href="mailto:library@example.com?Subject=Inquiry" target="_top">contact the library!</a></li> -->
 
           <% if user_signed_in? %>
             <li id="username">logged in as <strong><%= current_user.email %></strong>

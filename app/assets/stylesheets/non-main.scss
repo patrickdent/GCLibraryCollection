@@ -4,6 +4,7 @@
 		text-align: right;
 		h2 {
 			font-size: 2.5em;
+			color: $black;
 		}
 		a:hover {
 			color: $green;
@@ -14,6 +15,7 @@
 
 /*search form*/
 .left-content form {
+	padding-top: 2em;
   padding-bottom: 3em;
   input[type="submit"] {
 	  font-size: 2.5em;
@@ -26,6 +28,7 @@
 	}
 	input[type="text"] {
 	  text-align: right;
+	  height: 2em;
 	}
 	label {
 	  visibility: hidden;
