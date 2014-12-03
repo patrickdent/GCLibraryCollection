@@ -1,0 +1,40 @@
+/*left side area styles*/
+
+.left-content {
+		margin-top: 12em;
+		text-align: right;
+		}
+
+.left-content h2 {
+		font-size: 2.5em;
+		}
+
+.left-content a:hover {
+	color: $green;
+	font-size: 110%;
+	border: none;
+}
+
+//search form
+.left-content form {
+  padding-bottom: 3em;
+  }
+
+.left-content form input[type="submit"] {
+  font-size: 2.5em;
+  text-align: right;
+  background: none;
+  border: none;
+  }
+
+.left-content form input[type="submit"]:hover {
+  color: $green;
+}
+
+.left-content form input[type="text"] {
+  text-align: right;
+}
+
+.left-content form label {
+  visibility: hidden;
+}

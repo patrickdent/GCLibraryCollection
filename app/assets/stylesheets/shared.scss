@@ -6,7 +6,7 @@
 		height: 100%;
 	  max-height:100%;
 	  overflow: auto;
-	  background: #D6D6D6;
+	  background: $light_gray;
 		}
 
 img {
@@ -16,7 +16,7 @@ img {
     }
 
 h1 {
-		color: #9C9C9C;
+		color: $dark_gray;
 		font-size: 4.5em;
 		text-align: center;
 		text-transform: none;
@@ -24,7 +24,7 @@ h1 {
 
 h2 {
 		font-size: 2.5em;
-		color: #999999;
+		color: $med_gray;
 		text-transform: none;
 		}
 

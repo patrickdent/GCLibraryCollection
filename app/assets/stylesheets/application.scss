@@ -8,9 +8,16 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= requre shared
  *= require_self
- *= require jquery-tablesorter/theme.metro-dark
- *= require_tree .
- *= require print
  */
+
+ @import '_variables.scss';
+ @import '_mixins.scss';
+ @import 'alerts.scss';
+ @import 'forms.scss';
+ @import 'grid.scss';
+ @import 'print.scss';
+ @import 'search.scss';
+ @import 'shared.scss';
+ @import 'users.scss';
+ 
