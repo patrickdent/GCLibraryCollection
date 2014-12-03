@@ -12,4 +12,5 @@
  *= require_self
  *= require jquery-tablesorter/theme.metro-dark
  *= require_tree .
+ *= require print
  */

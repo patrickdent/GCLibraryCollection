@@ -40,9 +40,7 @@ describe 'Static Pages', type: feature do
   end
 
   describe 'Admin' do
-    
     describe 'login' do
-
       context 'with invalid credentials' do
         before do
           visit root_path
@@ -54,7 +52,6 @@ describe 'Static Pages', type: feature do
 
         it "should flash invalid" do expect(subject).to have_content('Invalid login or password.') end
       end
-
 
       context 'valid credentials' do
         before do
@@ -112,7 +109,7 @@ describe 'Static Pages', type: feature do
 
     context 'valid credentials' do
       before do
-          admin = FactoryGirl.create(:librarian, password: "password", email: "email@email.com")
+          admin = FactoryGirl.create(:admin, password: "password", email: "email@email.com")
           visit root_path
           click_on('login')
           fill_in("Login", :with => admin.email)
@@ -126,11 +123,10 @@ describe 'Static Pages', type: feature do
       it 'has profile links' do expect(subject).to have_link('my profile') end
     end
 
-    describe 'Dashboard' do
+    describe 'Dashboard Access' do
       before do
-          librarian_login
-          visit root_path
-          click_on('admin dashboard')
+        librarian_login
+        visit root_path
       end
 
       after do
@@ -138,12 +134,7 @@ describe 'Static Pages', type: feature do
       end
 
       describe 'links' do
-        it 'no upload' do expect(subject).to_not have_link('Upload Books') end
-        it 'no manage Books' do expect(subject).to_not have_link('Manage Books') end
-        it 'no manage Genres' do expect(subject).to_not have_link('Manage Genres') end
-        it 'no manage Authors' do expect(subject).to_not have_link('Manage Authors') end
-        it 'has manage Keywords' do expect(subject).to have_link('Manage Keywords') end
-        it 'has manage Users' do expect(subject).to have_link('Manage Users') end
+        it 'no dashboard' do expect(subject).to_not have_link('admin dashboard') end
       end
     end
   end
