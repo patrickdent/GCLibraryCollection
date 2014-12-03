@@ -1,40 +1,33 @@
 /*left side area styles*/
-
 .left-content {
 		margin-top: 12em;
 		text-align: right;
+		h2 {
+			font-size: 2.5em;
 		}
-
-.left-content h2 {
-		font-size: 2.5em;
+		a:hover {
+			color: $green;
+			font-size: 110%;
+			border: none;
 		}
-
-.left-content a:hover {
-	color: $green;
-	font-size: 110%;
-	border: none;
 }
 
-//search form
+/*search form*/
 .left-content form {
   padding-bottom: 3em;
+  input[type="submit"] {
+	  font-size: 2.5em;
+	  text-align: right;
+	  background: none;
+	  border: none;
+	  }
+	input[type="submit"]:hover {
+	  color: $green;
+	}
+	input[type="text"] {
+	  text-align: right;
+	}
+	label {
+	  visibility: hidden;
+	}
   }
-
-.left-content form input[type="submit"] {
-  font-size: 2.5em;
-  text-align: right;
-  background: none;
-  border: none;
-  }
-
-.left-content form input[type="submit"]:hover {
-  color: $green;
-}
-
-.left-content form input[type="text"] {
-  text-align: right;
-}
-
-.left-content form label {
-  visibility: hidden;
-}

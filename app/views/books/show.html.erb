@@ -28,8 +28,8 @@
 
 <br />
 <% if librarian_user? %>
-  <%= link_to "Edit This Book", edit_book_path(@book), class: "btn" %>
+  <%= link_to "Edit This Book", edit_book_path(@book), class: "" %>
 <% end %>
 <% if admin_user? %>
-  <%= link_to "Delete", book_path(@book), method: :delete, data: {confirm: "Are you sure you want to delete this book?"}, class: "btn retreat" %> 
+  <%= link_to "Delete", book_path(@book), method: :delete, data: {confirm: "Are you sure you want to delete this book?"}, class: "" %> 
 <% end %>
