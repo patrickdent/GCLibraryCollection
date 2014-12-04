@@ -1,6 +1,5 @@
 module UserRoleHelper
 
-#if you want to redirct
   def is_librarian? 
     if current_user
       if current_user.has_role? :librarian
