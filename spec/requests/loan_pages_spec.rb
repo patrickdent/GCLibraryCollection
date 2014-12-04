@@ -52,7 +52,7 @@ describe "Loan Pages" do
     end
   end
 
-  describe 'form' do
+  describe 'loan_list' do
     context 'on user#show' do
       before do
         librarian_login 
