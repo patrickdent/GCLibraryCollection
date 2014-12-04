@@ -37,7 +37,7 @@ describe User do
     end 
 
     it "should require one type of contact information to borrow" do 
-      u = FactoryGirl.create :user, email: "", phone: nil 
+      u = FactoryGirl.create :user, email: "", phone: nil, name: nil 
       expect(u.good_to_borrow?).to be_nil
     end 
 
