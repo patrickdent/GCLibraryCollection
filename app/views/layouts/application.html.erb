@@ -48,9 +48,6 @@
           <% if librarian_user? %>
             <li><%= link_to "view selected books", show_list_path %></li>
             <li><%= link_to "clear selected books", clear_list_path, format: :js, remote: true %></li>
-          <% end %>
-
-          <% if admin_user? %>
             <li><%= link_to "admin dashboard", admin_dashboard_path %></li> 
           <% end %>
 
