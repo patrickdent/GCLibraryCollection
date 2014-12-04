@@ -25,10 +25,10 @@
       <% if params[:controller].downcase == 'books' %>
       <td><%= link_to l.user.name, user_path(l.user.id) %></td>
       <% end %>
-      <td><%= l.start_date %>
-      <td><%= l.due_date %>
-      <td><%= l.returned_date ||= 'active' %>
-      <td><%= l.renewal_count %>
+      <td><%= l.start_date %></td>
+      <td><%= l.due_date %></td>
+      <td><%= l.returned_date ||= 'active' %></td>
+      <td><%= l.renewal_count %></td>
       </tr>
     <% end %>
   </tbody>  

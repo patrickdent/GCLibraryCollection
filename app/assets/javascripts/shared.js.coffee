@@ -7,7 +7,7 @@ $(document).ready(ready)
 $(document).on('page:load', ready)
 
 $(document).ready ->
-  $('[id^="book-select_"').change ->
+  $('[id^="book-select_"]').change ->
     $.ajax
       type: "POST",
       url: '/list.json'
