@@ -52,7 +52,7 @@ describe "Loan Pages" do
     end
   end
 
-  describe 'form' do
+  describe 'loan_list' do
     context 'on user#show' do
       before do
         librarian_login 
@@ -74,8 +74,8 @@ describe "Loan Pages" do
       end
 
       it "shows loan title" do expect(page).to have_link(user.name) end
-      it "displays start date" do expect(page).to have_content(@loan.start_date) end
-      it "displays due date" do expect(page).to have_content(@loan.due_date) end
+      it "displays start date" do expect(page).to have_content(@loan.start_date.to_s) end
+      it "displays due date" do expect(page).to have_content(@loan.due_date.to_s) end
       it "displays renewals" do expect(page).to have_content(@loan.renewal_count) end
     end
   end  

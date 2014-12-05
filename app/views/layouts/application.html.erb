@@ -37,23 +37,23 @@
       <nav>
         <ul>
         <li><%= link_to "home", root_path %></li> 
-        <li>
-            <a href="mailto:library@example.com?Subject=Inquiry" target="_top">contact the library!</a></li>
+        <li><a href="mailto:library@example.com?Subject=Inquiry" target="_top">contact the library!</a></li>
 
         <% if user_signed_in? %>
-          <li>logged in as <strong><%= current_user.email %></strong>
+          <li id="username">logged in as <strong><%= current_user.email %></strong>
           </li> 
           <li><%= link_to 'my profile', user_path(current_user) %></li>  
           <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>  
 
           <% if librarian_user? %>
+            <li><%= link_to "view selected books", show_list_path %></li>
+            <li><%= link_to "clear selected books", clear_list_path, format: :js, remote: true %></li>
             <li><%= link_to "admin dashboard", admin_dashboard_path %></li> 
           <% end %>
 
         <% else %>
-
-          <li><%= link_to "login", new_user_session_path %></li> 
-
+          <li><%= link_to "login", new_user_session_path %></li>
+          <li><%= link_to "sign up", new_user_registration_path %></li> 
         <% end %>
 
         </ul>

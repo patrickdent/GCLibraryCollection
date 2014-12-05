@@ -1,5 +1,8 @@
-
 /*page styles*/
+
+#username {
+	color: #666666;
+}
 
 .gray {
 		height: 100%;
@@ -18,6 +21,22 @@ h1 {
 		color: #9C9C9C;
 		font-size: 4.5em;
 		text-align: center;
+		}
+
+h2 {
+		font-size: 2.5em;
+		color: #999999;
+		// text-align: center;
+		}
+
+a:hover {
+	color: #95CB15;
+}
+
+.main h2 {
+		// float: left;
+		// padding-bottom: .5em;
+		// margin-top: -.5em;
 		}
 
 nav {
@@ -54,7 +73,7 @@ nav li:first-of-type {
 		}
 
 nav li > a:hover {
-		color: orange;
+		color: #E68A00;
 		}
 
 nav span {
@@ -82,36 +101,6 @@ nav span {
 		font-size: 2.5em;
 		}
 
-.left form {
-		padding-bottom: 3em;
-		}
-
-input {
-		font-family: 'Helvetica Neue', Arial, Helvetica, 'Liberation Sans', sans-serif;
-		font-weight: bold;
-		}
-
-input[type="submit"] {
-		font-size: 2.5em;
-		font-weight: bold;
-		background: none;
-		border: none;
-		text-align: right;
-		}
-
-input[type="text"] {
-		width: 7em;
-		height: 2em;
-		/*padding: 1em;*/
-		border: 1px solid black;
-		text-align: right;
-		}
-
-input[placeholder] {
-		font-size: 1.5em;
-		color: gray;
-		padding-right: .5em;
-		}
 
 .vertical {
 	font-size: 6em;
@@ -130,6 +119,7 @@ span.vertical {
 }
 
 
+/*right side styles*/
 
 .right {
 	float: right; 

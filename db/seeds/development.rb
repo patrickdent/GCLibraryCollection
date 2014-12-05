@@ -76,8 +76,8 @@ u.save!(:validate => false)
 
 #a loan
 l = Loan.new(
-  user_id: User.all.last.id,
-  book_id: Book.all.first.id)
+  user_id: User.last.id,
+  book_id: Book.first.id)
 l.save!(validate: false)
 
 

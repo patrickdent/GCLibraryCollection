@@ -9,14 +9,12 @@ class Loan < ActiveRecord::Base
 
   def return_loan
     update_attribute(:returned_date, Time.now.to_date)
-    return returned_date
   end
 
   def renew_loan
-    if renewal_count < 2 && !(user.do_not_lend) then
+    if renewal_count < MAX_RENEWALS && !(user.do_not_lend) then
       update_attribute(:due_date, (due_date + DURATION))
       update_attribute(:renewal_count, ( renewal_count + 1 ) )
-      return due_date
     else
       return false
     end
