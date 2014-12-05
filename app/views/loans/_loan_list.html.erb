@@ -11,6 +11,7 @@
       <th>Due Date</th>
       <th>Returned</th>
       <th>Renewals</th>
+      <th></th>
     </tr>
   </thead>
 
@@ -27,8 +28,21 @@
       <% end %>
       <td><%= l.start_date %></td>
       <td><%= l.due_date %></td>
-      <td><%= l.returned_date ||= 'active' %></td>
-      <td><%= l.renewal_count %></td>
+      <td>
+        <% if l.returned_date %>
+          <%= l.returned_date %>
+        <% else %> 
+          <%= button_to 'return', return_path(id: l.id), data: {confirm: "Are you sure you want to return this book?"} %>
+        <% end %>
+      </td>
+      <td>
+        <%= l.renewal_count %> 
+      </td>
+      <td>  
+        <% if !l.returned_date %>
+          <%= button_to 'renew now', renew_path(id: l.id), data: {confirm: "Are you sure you want to renew this loan?"} %>
+        <% end %>
+      </td>
       </tr>
     <% end %>
   </tbody>  
