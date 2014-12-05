@@ -46,7 +46,7 @@ class LoansController < ApplicationController
     else
       flash[:alert] = "Loan Limit Reached"
     end
-    redirect_to user_path(@loan.user_id)
+    redirect_to :back
   end
 
   def return
@@ -56,7 +56,7 @@ class LoansController < ApplicationController
     else
       flash[:alert] = "Loan Return Faild"
     end
-    redirect_to user_path(@loan.user_id)
+    redirect_to :back 
   end
 
   def show

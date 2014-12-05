@@ -11,6 +11,10 @@ describe LoansController do
     @loan = create(:loan, user_id: @user.id, book_id: @book.id)
   end 
 
+  before(:each) do
+    request.env["HTTP_REFERER"] = root_path
+  end
+
   after do 
     DatabaseCleaner.clean
   end 
@@ -31,8 +35,8 @@ describe LoansController do
     context "as librarian" do
       before { sign_in @librarian }
 
-      it "redirects to user#show" do
-        expect(post :create, loan: {user_id: @user.id, book_id: @book.id}).to redirect_to(user_path(@user))
+      it "redirects to :back" do
+        expect(post :create, loan: {user_id: @user.id, book_id: @book.id}).to redirect_to(root_path)
       end
 
       it "creates a new loan" do
@@ -53,8 +57,8 @@ describe LoansController do
     context 'as librarian' do
       before { sign_in @librarian }
 
-      it 'redirects to user#show' do
-        expect(put :renew, id: @loan.id).to redirect_to(user_path(@user.id))
+      it 'redirects to :back' do
+        expect(put :renew, id: @loan.id).to redirect_to(root_path)
       end
 
       it 'changes due_date' do
@@ -77,8 +81,8 @@ describe LoansController do
     context 'as librarian' do
       before { sign_in @librarian }
 
-      it 'redirects to user#show' do
-        expect(put :return, id: @loan.id).to redirect_to(user_path(@user.id))
+      it 'redirects to :back' do
+        expect(put :return, id: @loan.id).to redirect_to(root_path)
       end      
 
       it 'sets a returned_date' do
