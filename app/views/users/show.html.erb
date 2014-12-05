@@ -13,7 +13,7 @@
 </div>
 
 <% if @user.good_to_borrow? %>
-  <%= link_to "Loan Book", new_loan_path(user_id: @user.id), id: "new-loan-link", remote: true %>
+  <%= link_to "Loan Book", new_loan_path(user_id: @user.id), id: "new-user-loan-link", remote: true %>
 <% end %> 
 
 <h3>Loan History:</h3>

@@ -5,6 +5,6 @@
   <%= l.label :book_id %>
   <%= l.select :book_id, Book.all.collect { |b| [b.title, b.id] }, {}, multiple: false %>
 
-  <%= l.submit "submit", class: "btn2" %>
+  <%= l.submit "submit" %>
 
 <% end %>

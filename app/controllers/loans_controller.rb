@@ -8,12 +8,18 @@ class LoansController < ApplicationController
   before_filter :find_loan, only: [:renew, :return, :show]
 
   def new
-    @user = User.find_by(id: params[:user_id])
-    unless @user.good_to_borrow?
-      flash[:error] = "User Can Not Borrow at This Time"
-      redirect_to user_path(@user.id) and return 
+    if params[:user_id]
+      @user = User.find_by(id: params[:user_id])
+      unless @user.good_to_borrow?
+        flash[:error] = "User Can Not Borrow at This Time"
+        redirect_to user_path(@user.id) and return 
+      end 
+      @loan = Loan.new(user: @user)
+    elsif params[:book_id]
+      @book = Book.find_by(id: params[:book_id])
+      ##TODO: add 'cool to loan' scope to books, check it here
+      @loan = Loan.new(book: @book)
     end 
-    @loan = Loan.new(user: @user)
   end
 
   def create
@@ -27,7 +33,7 @@ class LoansController < ApplicationController
     else 
       flash[:alert] = "Loan Creation Failed"
     end 
-    redirect_to user_path(@loan.user_id)
+    redirect_to :back
   end
 
   def renew

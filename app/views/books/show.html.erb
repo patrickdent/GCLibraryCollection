@@ -26,6 +26,7 @@
     </ul>
 </div>
 
+<%= link_to "Loan Book", new_loan_path(book_id: @book.id), id: "new-book-loan-link", remote: true %>
 
 <h3>Loan History:</h3>
 <%= render 'loans/loan_list.html.erb' %>
