@@ -17,7 +17,10 @@ class LoansController < ApplicationController
       @loan = Loan.new(user: @user)
     elsif params[:book_id]
       @book = Book.find_by(id: params[:book_id])
-      ##TODO: add 'cool to loan' scope to books, check it here
+      unless @book.available 
+        flash[:error] = "Book is Not Available"
+        redirect_to book_path(@book.id) and return 
+      end 
       @loan = Loan.new(book: @book)
     end 
   end
@@ -29,6 +32,7 @@ class LoansController < ApplicationController
       redirect_to user_path(@loan.user.id) and return 
     end 
     if @loan.save 
+      @loan.book.update_availability 
       flash[:notice] = "Loan Created"
     else 
       flash[:alert] = "Loan Creation Failed"
@@ -47,6 +51,7 @@ class LoansController < ApplicationController
 
   def return
     if @loan.return_loan
+      @loan.book.update_availability
       flash[:notice] = "Loan Returned"
     else
       flash[:alert] = "Loan Return Faild"
