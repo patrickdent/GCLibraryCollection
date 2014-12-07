@@ -13,8 +13,8 @@
   <div class="column-2 left-content">
   <!-- search column aside -->
 
-    <h3><%= link_to "home", root_path %></h3>
-    <h3><a href="mailto:library@example.com?Subject=Inquiry" target="_top">contact the library</a></h3>
+    <%= link_to raw("<i class='fa fa-home'></i>"), root_path, class: "large-icon" %>
+    <a href="mailto:library@example.com?Subject=Inquiry" target="_top" class="large-icon"><i class='fa fa-envelope'></i></a>
     <% flash.each do |name, msg| %>
     <%= content_tag :div, msg, class: name, id:"headerbar" %>
     <% end %>

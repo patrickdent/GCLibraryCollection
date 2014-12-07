@@ -52,6 +52,22 @@
 	  	color: $green;
 	  	border-bottom: 1px solid $black;
 	  }
+		::-webkit-input-placeholder {
+    	font-size: 1.25em;
+	  	padding-right: .25em;
+			}
+		:-moz-placeholder {
+    	font-size: 1.25em;
+	  	padding-right: .25em;
+			}
+		::-moz-placeholder {
+    	font-size: 1.25em;
+	  	padding-right: .25em;
+		}
+		:-ms-input-placeholder {
+	  	font-size: 1.25em;
+	  	padding-right: .25em;
+	  }
 		textarea{
 	    height:100px;
 	    padding: 5px 0px 0px 5px;

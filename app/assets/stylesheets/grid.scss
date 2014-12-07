@@ -55,13 +55,7 @@ a {
 /*removes padding from far right column*/
 [class*='column-']:last-of-type {
   padding-right:0;
-} 
-
-.main {
-  height: 100%;
-  padding-top: 2em;
 }
-
 /*optional outside gutters*/
 /*add padding to grid parent*/
 .grid-pad {

@@ -11,6 +11,17 @@
 			font-size: 110%;
 			border: none;
 		}
+    .large-icon {
+      font-size: 2.5em;
+      display: block;
+    }
+		.large-icon:hover {
+			color: $orange;
+      font-size: 2.5em;
+    }
+    .fa:hover {
+      border-bottom: 1px black solid;
+    }
 }
 
 /*search form*/
