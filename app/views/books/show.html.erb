@@ -26,13 +26,13 @@
     </ul>
 </div>
 
+<% if librarian_user? %>
 <%= link_to "Loan Book", new_loan_path(book_id: @book.id), id: "new-book-loan-link", remote: true %>
 
 <h3>Loan History:</h3>
 <%= render 'loans/loan_list.html.erb' %>
 
 <br />
-<% if librarian_user? %>
   <%= link_to "Edit This Book", edit_book_path(@book), class: "right btn2" %>
 <% end %>
 <% if admin_user? %>
