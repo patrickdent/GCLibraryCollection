@@ -1,5 +1,5 @@
 <h2>Book: <%= @book.title %></h2>
-<h3> <%= @book.available ? "available for checkout" : "unavailable for checkout" %> </h3>
+<h3> <%= @book.available ? "#{@book.count - @book.loans.active.count} available for checkout" : "unavailable for checkout" %> </h3>
 
 <div class="show">
   <% if librarian_user? %>
