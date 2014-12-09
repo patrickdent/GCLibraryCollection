@@ -14,6 +14,7 @@ gem 'pry'
 gem 'prawn'
 gem 'jquery-tablesorter'
 gem 'jquery-turbolinks'
+gem 'font-awesome-sass', '~> 4.2.0'
 
 group :production do
   gem 'pg'
