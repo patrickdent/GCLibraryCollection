@@ -77,6 +77,9 @@
 			color: $med_gray;
 			float: right;
 		}
+		.chosen-choices, .chosen-results {
+			left: 0;
+		}
 	}
 }
 #error_explanation:after {
