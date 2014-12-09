@@ -9,9 +9,8 @@ describe "Keyword Pages" do
 
 
   before do
-   book.keywords << keyword
-   book.genre = genre
-   book.authors << author
+    BookAuthor.create(book: book, author: author)
+    BookKeyword.create(book: book, keyword: keyword)
   end
 
   subject { page }

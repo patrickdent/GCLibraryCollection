@@ -19,7 +19,7 @@ class Search
     if authors 
       authors.each do |name|
         a = Author.find_or_create_by(name: name)
-        b.authors << a
+        BookAuthor.create(author: a, book: b)
       end
     end 
     b.save!

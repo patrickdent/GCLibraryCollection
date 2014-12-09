@@ -26,20 +26,16 @@ keywords = Keyword.create([{ name: 'good' },
                            { name: 'bad' },
                            { name: 'furry'}])
 
-@int = 0
-
 #assigns cute name books to cute name authors
 authors.each do |a|
-  a.books << books[(@int += 1) % books.count]
+  BookAuthor.create(book: books[(@int += 1) % books.count], author: a)
 end
-
-@int = 0
 
 #a bunch of extra test books assigned to authors
 (1..4).each do |i|
-  authors[@int % authors.count].books << 
-                          Book.create(title: "Test Book #{i}", 
-                                      genre: genres[(@int += 1) % genres.count])
+  BookAuthor.create(author: authors[i % authors.count], 
+                    book: Book.create(title: "Test Book #{i}", 
+                                      genre: genres[i % genres.count]))
 end
 
 # an admin user 
