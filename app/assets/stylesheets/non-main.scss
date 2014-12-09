@@ -52,10 +52,10 @@ span.vertical {
 	color: $lightest_gray;
  	display:inline-block; 
 	position:fixed;
-	top: 5.25em;
-	right: 1.65em;
+	bottom: 6.5em;
+	left: 10em;
  	-webkit-transform: rotate(90deg);
  	-moz-transform:rotate(90deg);
  	transform: rotate(90deg);
- 	transform-origin: top right;
+ 	transform-origin: bottom left;
 }
