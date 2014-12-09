@@ -3,7 +3,7 @@
   <%= l.hidden_field :book_id %>
 
   <%= l.label :user_id %>
-  <%= l.select :user_id, User.all.collect { |u| [u.name, u.id] }, {}, multiple: false %>
+  <%= l.select :user_id, User.all.collect { |u| [u.name, u.id] }, {}, multiple: false, class: "chosen-select" %>
 
   <%= l.submit "submit" %>
 

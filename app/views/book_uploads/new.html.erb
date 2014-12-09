@@ -3,7 +3,7 @@
 <h3>Upload .csv or .txt File</h3>
 <%= form_for @book_upload do |b| %>
   <fieldset>
-    <%= b.select :genre, Genre.all.collect { |n| n.name }, prompt: "Choose genre", required: true %>
+    <%= b.select :genre, Genre.all.collect { |n| n.name }, prompt: "Choose genre", required: true, class: "chosen-select" %>
     <%= b.file_field :file %>
   </fieldset>
   
