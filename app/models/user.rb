@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   attr_accessor :login
-  validates :username, uniqueness: {case_sensitive: false, allow_nil: true}
+  validates :username, uniqueness: {case_sensitive: false, allow_nil: true, allow_blank: true}
+  validates :email, uniqueness: {case_sensitive: false, allow_nil: true, allow_blank: true}
   has_many :loans
   has_many :books, through: :loans
 

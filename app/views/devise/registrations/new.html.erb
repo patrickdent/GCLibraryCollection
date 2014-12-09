@@ -4,18 +4,20 @@
   <%= devise_error_messages! %>
 
   <fieldset>
-    <%= f.label :username %>
-    <%= f.text_field :username %>
-  </fieldset>
-  <fieldset>
     <%= f.label :email %>
     <%= f.email_field :email%>
-  </fieldset>
   <small>Email address is not required, but if you do not have one, you will not be able to reset your password or recieve overdue reminders.</small>
+  </fieldset>
 
   <fieldset>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+  <small>A username can be used as your identifier when you login, instead of an email address.</small>
+  </fieldset>
+  
+  <fieldset>
+    <%= f.label :name, "Legal Name" %>
+    <%= f.text_field :name, required: true  %>
   </fieldset>
 
   <fieldset>
