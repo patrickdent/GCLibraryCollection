@@ -27,6 +27,7 @@ keywords = Keyword.create([{ name: 'good' },
                            { name: 'furry'}])
 
 #assigns cute name books to cute name authors
+@int = 0
 authors.each do |a|
   BookAuthor.create(book: books[(@int += 1) % books.count], author: a)
 end
