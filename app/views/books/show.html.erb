@@ -1,4 +1,5 @@
 <h2>Book: <%= @book.title %></h2>
+<h3> <%= @book.available ? "available for checkout" : "unavailable for checkout" %> </h3>
 
 <div class="show">
   <% if librarian_user? %>
