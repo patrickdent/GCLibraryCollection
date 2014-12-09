@@ -1,0 +1,10 @@
+<%= form_for @loan do |l| %>
+
+  <%= l.hidden_field :user_id %>
+
+  <%= l.label :book_id %>
+  <%= l.select :book_id, Book.available_to_loan.collect { |b| [b.title, b.id] }, {}, multiple: false %>
+
+  <%= l.submit "submit" %>
+
+<% end %>

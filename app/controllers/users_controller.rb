@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    if !(librarian_user?) && current_user != @user then
+    if !is_given_user_or_librarian?(@user) then
       flash[:error] = "You are not authorized" 
       redirect_to root_path
     end

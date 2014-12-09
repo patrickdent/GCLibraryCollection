@@ -6,11 +6,14 @@ LibraryCollection::Application.routes.draw do
   resources :keywords
   resources :book_uploads, only: [:new, :create]
   resources :users, only: [ :update, :destroy, :edit, :show, :index ], path: 'manage_users'
+  resources :loans, only: [ :show, :index, :new, :create ]
 
   get 'uploaded_books' => 'book_uploads#uploaded_books'
   get 'search' => 'search#search'
   get 'import' => 'search#import'
   post 'scrape' => 'search#scrape'
+  post 'renew' => 'loans#renew'
+  post 'return' => 'loans#return'
   post 'list' => 'books#list', defaults: {format: :json}
   get 'clear_list' => 'books#clear_list', defaults: {format: :js}
   get 'show_list' => 'books#show_list'

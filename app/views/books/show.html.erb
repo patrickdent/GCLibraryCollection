@@ -1,4 +1,5 @@
 <h2>Book: <%= @book.title %></h2>
+<h3> <%= @book.available ? "available for checkout" : "unavailable for checkout" %> </h3>
 
 <div class="show">
   <% if librarian_user? %>
@@ -26,9 +27,14 @@
     </ul>
 </div>
 
-<br />
 <% if librarian_user? %>
-  <%= link_to "Edit This Book", edit_book_path(@book), class: "" %>
+  <%= link_to "Loan Book", new_loan_path(book_id: @book.id), id: "new-book-loan-link", remote: true %>
+
+  <h3>Loan History:</h3>
+  <%= render 'loans/loan_list.html.erb' %>
+
+  <br />
+  <%= link_to "Edit This Book", edit_book_path(@book), class: "right btn2" %>
 <% end %>
 <% if admin_user? %>
   <%= link_to "Delete", book_path(@book), method: :delete, data: {confirm: "Are you sure you want to delete this book?"}, class: "" %> 

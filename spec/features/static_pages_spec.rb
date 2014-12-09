@@ -101,6 +101,7 @@ describe 'Static Pages', type: feature do
         it 'has manage Authors' do expect(subject).to have_link('Manage Authors') end
         it 'has manage Keywords' do expect(subject).to have_link('Manage Keywords') end
         it 'has manage Users' do expect(subject).to have_link('Manage Users') end
+        it 'has manage Loans' do expect(subject).to have_link('Manage Loans') end
       end
     end
   end
@@ -127,6 +128,8 @@ describe 'Static Pages', type: feature do
       before do
         librarian_login
         visit root_path
+        # save_and_open_page
+        click_on('admin dashboard')
       end
 
       after do
@@ -134,7 +137,13 @@ describe 'Static Pages', type: feature do
       end
 
       describe 'links' do
-        it 'no dashboard' do expect(subject).to_not have_link('admin dashboard') end
+        it 'no upload' do expect(subject).to_not have_link('Upload Books') end
+        it 'no manage Books' do expect(subject).to_not have_link('Manage Books') end
+        it 'no manage Genres' do expect(subject).to_not have_link('Manage Genres') end
+        it 'no manage Authors' do expect(subject).to_not have_link('Manage Authors') end
+        it 'has manage Keywords' do expect(subject).to have_link('Manage Keywords') end
+        it 'has manage Users' do expect(subject).to have_link('Manage Users') end
+        it 'has manage Loans' do expect(subject).to have_link('Manage Loans') end
       end
     end
   end
