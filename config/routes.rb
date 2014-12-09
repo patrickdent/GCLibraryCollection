@@ -1,5 +1,5 @@
 LibraryCollection::Application.routes.draw do
-  devise_for :users, path_names: { sign_in: "login", sign_out: "logout" }
+  devise_for :users, path_names: { sign_in: "login", sign_out: "logout" }, :controllers => {:registrations => "registrations"}
   resources :books
   resources :genres
   resources :authors

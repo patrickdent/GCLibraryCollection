@@ -1,5 +1,5 @@
 .error, .alert {
-	color: hsla(13, 100%, 34%, 1);
+	color: $error;
 	border: 2px solid hsla(13, 100%, 34%, 0.9);
 	padding: .5em; 
 	margin: .25em;
@@ -11,7 +11,7 @@
 
 
 .notice {
-	color: hsla(33, 100%, 43%, 1);
+	color: $notice;
 	border: 2px solid hsla(33, 100%, 43%, 1);
 	padding: .5em; 
 	margin: .25em;

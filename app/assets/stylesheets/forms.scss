@@ -74,8 +74,17 @@
 	    width: 70%;
 		}
 		small {
-			display: inline-block;
+			color: $med_gray;
 			float: right;
 		}
 	}
 }
+#error_explanation:after {
+  content: "";
+  display: table;
+  clear: both; 
+}
+
+#error_explanation li {
+		color: $error;
+	}
