@@ -39,7 +39,7 @@
         <nav>
           <ul>
           <% if user_signed_in? %>
-            <li id="username">logged in as <strong><%= current_user.email %></strong>
+            <li id="username">logged in as <strong><%= current_user.name %></strong>
             </li> 
             <li><%= link_to 'my profile', user_path(current_user) %></li>  
             <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>  
