@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   has_many :loans
   has_many :books, through: :loans
 
+  MAX_LOANS = 5
+
   def role
     return roles.first.name.to_sym if roles.first
     nil
@@ -27,7 +29,7 @@ class User < ActiveRecord::Base
 
   def good_to_borrow?
     #organization-specific borrowing rules
-    if self.name && (self.email || self.phone) && !self.do_not_lend
+    if self.name && (self.email || self.phone) && !self.do_not_lend && self.loans.active.count < 5
       true 
     end 
   end 
