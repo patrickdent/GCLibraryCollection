@@ -7,7 +7,6 @@ describe "Author Pages" do
   let(:author)  { create(:author) }
 
   before do
-   # author.books << book
    BookAuthor.create(book: book, author: author)
   end
 
