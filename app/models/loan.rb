@@ -22,6 +22,10 @@ class Loan < ActiveRecord::Base
     end
   end
 
+  def overdue? 
+    (returned_date == nil) && (due_date < Date.today)
+  end 
+
   private
 
   def set_lending_info
