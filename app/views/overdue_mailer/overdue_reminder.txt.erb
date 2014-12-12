@@ -1,0 +1,12 @@
+Hello, <%= @user.name %>
+=========================
+
+This is a friendly reminder that you have some overdue items checked out from the library. Please return them at your soonest possible convenience. 
+
+<% @user.loans.overdue.each do |l| %> 
+<%= l.book.title %>, due: <%= l.due_date %> 
+<% end %>
+
+Thanks for borrowing!
+
+-The Library Team
