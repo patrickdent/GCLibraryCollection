@@ -1,5 +1,7 @@
 <h2>Loans</h2>
-
+<% if @overdue_list_view %>
+  <%= button_to "Send Overdue Reminders", send_reminders_path %>
+<% end %>
 <table class="index tablesorter">
   <thead>
     <tr>

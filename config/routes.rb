@@ -18,6 +18,7 @@ LibraryCollection::Application.routes.draw do
   post 'list' => 'books#list', defaults: {format: :json}
   get 'clear_list' => 'books#clear_list', defaults: {format: :js}
   get 'show_list' => 'books#show_list'
+  post 'send_reminders' => 'users#send_reminders'
 
   get 'admin_dashboard' => 'static_pages#admin_dashboard'
   get 'styleguide' => 'static_pages#styleguide'
