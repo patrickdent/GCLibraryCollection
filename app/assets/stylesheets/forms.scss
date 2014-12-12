@@ -29,6 +29,7 @@
 		input[type="text"], input[type="email"], input[type="password"], textarea, select{
 	    color: $med_gray;
 	    width: 70%;
+	    text-align: left;
 	    padding: 3px 0px 3px 5px;
 	    border: 1px solid $med_gray;
 	    background: #fbfbfb;
@@ -73,6 +74,9 @@
 		small {
 			color: $med_gray;
 			float: right;
+		}
+		.chosen-choices, .chosen-results {
+			left: 0;
 		}
 	}
 }
