@@ -90,3 +90,30 @@ td > a:hover {
 	color: black;
 	border-bottom: 1px solid black;
 }
+
+.go-btn {
+  background: $green ;
+  background-image: -webkit-linear-gradient(top, $green , $dark_green);
+  background-image: -moz-linear-gradient(top, $green , $dark_green);
+  background-image: -ms-linear-gradient(top, $green , $dark_green);
+  background-image: -o-linear-gradient(top, $green , $dark_green);
+  background-image: linear-gradient(to bottom, $green , $dark_green);
+  color: black;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  margin: 0.25rem;
+  border: 1px solid $green;
+}
+
+.go-btn:hover {
+  background: $light_green;
+  background-image: -webkit-linear-gradient(top, $light_green, $green );
+  background-image: -moz-linear-gradient(top, $light_green, $green );
+  background-image: -ms-linear-gradient(top, $light_green, $green );
+  background-image: -o-linear-gradient(top, $light_green, $green );
+  background-image: linear-gradient(to bottom, $light_green, $green );
+  text-decoration: none;
+  color: white;
+  border: 1px solid $light_green;
+}
