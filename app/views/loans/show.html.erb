@@ -1,13 +1,11 @@
 <h2>Loan Information</h2>
 
 <div class="show">
-  <h3><%= @loan.overdue? ? "This book is overdue!" : "" %></h3>
+  <h3><%= "This book is overdue!" if @loan.overdue? %></h3>
   <p>Book: <%= link_to @loan.book.title, book_path(@loan.book.id) %></p>
   <p>Patron: <%= link_to @loan.user.name, user_path(@loan.user.id) %></p>
   <p>Loaned: <%= @loan.start_date %></p>
   <p>Due Date: <%= @loan.due_date %></p>
-  <% if @loan.returned_date %>
-    <p>Returned: <%= @loan.returned_date %></p>
-  <% end %>
+  <p>Returned: <%= @loan.returned_date || "---" %></p>
   <p>Renewals: <%= @loan.renewal_count %></p>
 </div>
