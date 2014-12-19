@@ -2,3 +2,14 @@
   padding-bottom: 2rem;
   margin-left: 2rem;
 }
+
+li.results{
+  list-style: none;
+  &:before {
+  content: "\f006";
+  font-family: FontAwesome;
+  font-size: 0.75rem;
+  color: $orange;
+  padding-right: 0.75rem;
+  }
+}
