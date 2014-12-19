@@ -1,23 +1,23 @@
 require 'spec_helper'
 
-describe BookUploadsController do 
+describe BookUploadsController do
 
   let(:good_file) { fixture_file_upload('files/book_uploads_good_file.txt', 'text/xml') }
   let(:bad_file) { fixture_file_upload('files/book_uploads_bad_file.txt', 'text/xml') }
 
-  before do 
+  before do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
     @user = create :user
-    @admin = create :admin 
-  end 
+    @admin = create :admin
+  end
 
-  after do 
+  after do
     DatabaseCleaner.clean
-  end 
+  end
 
-  after :each do 
-    Warden.test_reset! 
+  after :each do
+    Warden.test_reset!
   end
 
   describe 'as non-admin' do
@@ -25,9 +25,9 @@ describe BookUploadsController do
     before { sign_in @user }
 
     it 'redirects unauthorized users' do
-      expect(get :new).to redirect_to(root_path) 
+      expect(get :new).to redirect_to(root_path)
       expect(post :create).to redirect_to(root_path)
-      expect(get :uploaded_books).to redirect_to(root_path) 
+      expect(get :uploaded_books).to redirect_to(root_path)
     end
   end
 
@@ -44,7 +44,7 @@ describe BookUploadsController do
 
       it 'flashes error' do
         post :create, book_upload: { genre: nil, file: nil }
-        expect(flash[:error]).to eq "Please select a file and genre"
+        expect(flash[:alert]).to eq "Please select a file and genre"
       end
     end
 
