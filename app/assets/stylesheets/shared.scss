@@ -13,7 +13,7 @@
 img {
     width: auto;
     max-width: 100%;
-    height: auto; 
+    height: auto;
     }
 
 h1 {
@@ -32,38 +32,38 @@ h2 {
 .ignore-caps {
 	text-transform: none;
 }
+
 nav {
 	float: left;
 	width: 100%;
 	position: relative;
-	li {
-		display: block;
+	ul {
+		clear: left;
 		float: left;
+		list-style: none;
 		position: relative;
-		right: 50%;
-		font-size: .8em;
-		padding-left: .75em;
-		padding-top: .75em;
-		font-weight: 500;
-		> a:hover {
-			color: #E68A00;
-			border-bottom: 1px solid black;
+		left: 50%;
+		text-align: center;
+		margin: 0;
+		padding: 0;
+		li {
+			display: block;
+			float: left;
+			position: relative;
+			right: 50%;
+			font-size: .8em;
+			padding-left: .75em;
+			padding-top: .75em;
+			font-weight: 500;
+			&::first-of-type {
+				padding-left: 0;
+			}
+			> a:hover {
+				color: #E68A00;
+				border-bottom: 1px solid black;
+			}
 		}
 	}
-	li:first-of-type {
-		padding-left: 0;
-	}
-}
-
-ul {
-	clear: left;
-	float: left;
-	list-style: none;
-	position: relative;
-	left: 50%;
-	text-align: center;
-	margin: 0;
-	padding: 0;		
 }
 
 .main article {
