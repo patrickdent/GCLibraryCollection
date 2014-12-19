@@ -7,10 +7,10 @@
 @mixin flash-message($color) {
   color: $color;
   border: 2px solid $color;
-  padding: .5em;
-  margin: .25em;
+  padding: .5rem;
+  margin: .25rem .25rem 2rem;
   z-index: 500;
-  width: 60%;
+  width: 80%;
   float: right;
   text-align: center;
 }
