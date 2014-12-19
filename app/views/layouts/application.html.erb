@@ -12,7 +12,7 @@
 
   <div class="column-2 left-content">
   <!-- search column aside -->
-
+    <%= link_to raw("<i class='fa fa-users'></i>"), users_path, class: "large-icon" if librarian_user? %>
     <%= link_to raw("<i class='fa fa-home'></i>"), root_path, class: "large-icon" %>
     <a href="mailto:library@example.com?Subject=Inquiry" target="_top" class="large-icon"><i class='fa fa-envelope'></i></a>
     <% flash.each do |name, msg| %>
@@ -22,16 +22,16 @@
     <%= form_tag "/search", method: "get" do %>
       <%= label_tag "search" %>
       <%= submit_tag "search", name: nil %>
-      <%= text_field_tag :search, params[:search], placeholder:"sparkle" %> 
+      <%= text_field_tag :search, params[:search], placeholder:"sparkle" %>
     <% end %>
-  
+
     <h2>browse</h2>
     <h3><%= link_to "by keyword", keywords_path %></h3>
     <h3><%= link_to "by author", authors_path %></h3>
     <h3><%= link_to "by genre", genres_path %></h3>
   </div>
 
-  <div class="column-6 gray">  
+  <div class="column-6 gray">
   <!-- central content area -->
     <section class="main">
       <header>
@@ -40,23 +40,23 @@
           <ul>
           <% if user_signed_in? %>
             <li id="username">logged in as <strong><%= current_user.name %></strong>
-            </li> 
-            <li><%= link_to 'my profile', user_path(current_user) %></li>  
-            <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>  
+            </li>
+            <li><%= link_to 'my profile', user_path(current_user) %></li>
+            <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
             <% if librarian_user? %>
               <li><%= link_to "view selected books", show_list_path %></li>
               <li><%= link_to "clear selected books", clear_list_path, format: :js, remote: true %></li>
-              <li><%= link_to "dashboard", admin_dashboard_path %></li> 
+              <li><%= link_to "dashboard", admin_dashboard_path %></li>
             <% end %>
           <% else %>
             <li><%= link_to "login", new_user_session_path %></li>
-            <li><%= link_to "sign up", new_user_registration_path %></li> 
+            <li><%= link_to "sign up", new_user_registration_path %></li>
           <% end %>
 
           </ul>
         </nav>
       </header>
-      
+
     <article><%= yield %></article>
    </div>
 
