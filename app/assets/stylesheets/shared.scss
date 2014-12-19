@@ -102,3 +102,5 @@ td > a:hover {
 .danger-btn {
 	@include little_button($yellow, $orange, $red);
 }
+
+.clear {clear: both;}

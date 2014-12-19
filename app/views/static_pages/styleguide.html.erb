@@ -15,13 +15,16 @@
 <div style="border: 1px dashed black; padding: 1em">
 	<h3>h3:</h3>
 </div>
-<div style="border: 1px dashed black; padding: 1em">	
+<div style="border: 1px dashed black; padding: 1em">
 	<span class="btn">.btn</span>
 	<p>font-size: 1.5em; background: none; border: none;</p>
 	<span class="btn">.btn:hover, .btn2:hover, a:hover </span>
 	<p>color: #95CB15; border-bottom: 1px solid black;</p>
 </div>
-<div style="border: 1px dashed black; padding: 1em">	
+<div style="border: 1px dashed black; padding: 1em">
 	<%= select_tag "example", options_from_collection_for_select(Genre.all, "id", "name"), class: "chosen-select" %>
 	<p>Cool "Chosen" jquery plugin for selects</p>
 </div>
+
+<a href="#" class="meh-btn">Meh Button</a>
+<a href="#" class="danger-btn">Danger Button</a>
