@@ -1,22 +1,11 @@
-.error, .alert {
-	color: $error;
-	border: 2px solid hsla(13, 100%, 34%, 0.9);
-	padding: .5em; 
-	margin: .25em;
-	z-index: 500;
-	width: 60%;
-	float: right;
-	text-align: center;
+.error{
+	@include flash-message($error);
 }
 
+.alert {
+	@include flash-message($orange);
+}
 
 .notice {
-	color: $notice;
-	border: 2px solid hsla(33, 100%, 43%, 1);
-	padding: .5em; 
-	margin: .25em;
-	z-index: 500;
-	width: 60%;
-	float: right;
-	text-align: center;
+	@include flash-message($green);
 }
