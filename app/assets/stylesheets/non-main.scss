@@ -47,15 +47,17 @@
 }
 
 /*right side styles*/
+.column-2 {
+  position: relative;
+}
 span.vertical {
 	font-size: 6em;
 	color: $lightest_gray;
  	display:inline-block; 
 	position:fixed;
-	bottom: 6.5em;
-	left: 10em;
+	top: -.75em;
+  transform: rotate(90deg);
  	-webkit-transform: rotate(90deg);
  	-moz-transform:rotate(90deg);
- 	transform: rotate(90deg);
  	transform-origin: bottom left;
 }
