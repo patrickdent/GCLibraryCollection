@@ -1,0 +1,3440 @@
+/*************
+Metro Dark Theme
+*************/
+/* overall */
+
+.tablesorter-metro-dark {
+	width: 100%;
+	font: 12px/18px 'Segoe UI Semilight', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+	color: #000;
+	background-color: #333;
+	border-spacing: 0;
+	margin: 10px 0 15px;
+	text-align: left;
+}
+
+.tablesorter-metro-dark tr.dark-row th, .tablesorter-metro-dark tr.dark-row td, .tablesorter-metro-dark caption.dark-row {
+	background-color: #222;
+	color: #fff;
+	padding: 2px;
+	text-align: left;
+	font-size: 14px;
+}
+
+/* header/footer */
+.tablesorter-metro-dark caption,
+.tablesorter-metro-dark th,
+.tablesorter-metro-dark thead td,
+.tablesorter-metro-dark tfoot th,
+.tablesorter-metro-dark tfoot td {
+	font-weight: 300;
+	font-size: 15px;
+	color: #ddd;
+	background-color: #333;
+	padding: 4px;
+}
+
+.tablesorter-metro-dark .header,
+.tablesorter-metro-dark .tablesorter-header {
+	background-image: url(data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQBAMAAADQT4M0AAAAGFBMVEUAAADu7u7u7u7u7u7u7u7u7u7u7u7u7u5jNePWAAAACHRSTlMAMxIHKwEgMWD59H4AAABSSURBVAjXY2BgYFJgAAHzYhDJ6igSAKTYBAUTgJSioKAQAwNzoaCguAFDiCAQuDIkgigxBgiA8cJAVCpQt6AgSL+JoKAzA0gjUBsQqBcBCYhFAAE/CV4zeSzxAAAAAElFTkSuQmCC);
+	background-position: right 5px center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	white-space: normal;
+}
+.tablesorter-metro-dark .tablesorter-header-inner {
+	padding: 0 18px 0 4px;
+}
+.tablesorter-metro-dark thead .headerSortUp,
+.tablesorter-metro-dark thead .tablesorter-headerSortUp,
+.tablesorter-metro-dark thead .tablesorter-headerAsc {
+	background-image: url(data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQBAMAAADQT4M0AAAAIVBMVEUAAADu7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u5meJAOAAAACnRSTlMAMwsqXt+gIBUGxGoDMAAAAFlJREFUCNctzC0SQAAUReEzGNQ3AlHRiSRZFCVZYgeswRL8hLdK7834wj3tAlGP6y7fYHpKS6w6WwbVG0I1NZVnZPG8/DYxOYlnhUYkA06R1s9ESsxR4NIdPhkPFDFYuEnMAAAAAElFTkSuQmCC);
+}
+.tablesorter-metro-dark thead .headerSortDown,
+.tablesorter-metro-dark thead .tablesorter-headerSortDown,
+.tablesorter-metro-dark thead .tablesorter-headerDesc {
+	background-image: url(data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAQBAMAAADQT4M0AAAALVBMVEUAAADu7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7u7i0NViAAAADnRSTlMAMiweCQITTvDctZZqaTlM310AAABcSURBVAjXY2BgYEtgAAFHERDJqigUAKSYBQUNgFSioKAYAwOLIBA4MASBKFUGQxAlzAAF+94BwWuGKBC1lIFl3rt3Lx0YGCzevWsGSjK9e6cAUlT3HKyW9wADAwDRrBiDy6bKzwAAAABJRU5ErkJggg==);
+}
+.tablesorter-metro-dark thead .sorter-false {
+	background-image: none;
+	cursor: default;
+	padding: 4px;
+}
+
+/* tbody */
+.tablesorter-metro-dark td {
+	background-color: #fff;
+	padding: 4px;
+	vertical-align: top;
+}
+
+/* hovered row colors */
+.tablesorter-metro-dark tbody > tr:hover > td,
+.tablesorter-metro-dark tbody > tr.even:hover > td,
+.tablesorter-metro-dark tbody > tr.odd:hover > td {
+	background: #bbb;
+	color: #000;
+}
+
+/* table processing indicator */
+.tablesorter-metro-dark .tablesorter-processing {
+	background-position: center center !important;
+	background-repeat: no-repeat !important;
+	/* background-image: url(../addons/pager/icons/loading.gif) !important; */
+	background-image: url(data:image/gif;base64,R0lGODlhFAAUAKEAAO7u7lpaWgAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQBCgACACwAAAAAFAAUAAACQZRvoIDtu1wLQUAlqKTVxqwhXIiBnDg6Y4eyx4lKW5XK7wrLeK3vbq8J2W4T4e1nMhpWrZCTt3xKZ8kgsggdJmUFACH5BAEKAAIALAcAAAALAAcAAAIUVB6ii7jajgCAuUmtovxtXnmdUAAAIfkEAQoAAgAsDQACAAcACwAAAhRUIpmHy/3gUVQAQO9NetuugCFWAAAh+QQBCgACACwNAAcABwALAAACE5QVcZjKbVo6ck2AF95m5/6BSwEAIfkEAQoAAgAsBwANAAsABwAAAhOUH3kr6QaAcSrGWe1VQl+mMUIBACH5BAEKAAIALAIADQALAAcAAAIUlICmh7ncTAgqijkruDiv7n2YUAAAIfkEAQoAAgAsAAAHAAcACwAAAhQUIGmHyedehIoqFXLKfPOAaZdWAAAh+QQFCgACACwAAAIABwALAAACFJQFcJiXb15zLYRl7cla8OtlGGgUADs=) !important;
+}
+
+/* pager */
+.tablesorter-metro-dark .tablesorter-pager button {
+	background-color: #444;
+	color: #eee;
+	border: #555 1px solid;
+	cursor: pointer;
+}
+.tablesorter-metro-dark .tablesorter-pager button:hover {
+	background-color: #555;
+}
+
+/* Zebra Widget - row alternating colors */
+.tablesorter-metro-dark tr.odd > td {
+	background-color: #eee;
+}
+.tablesorter-metro-dark tr.even > td {
+	background-color: #fff;
+}
+
+/* Column Widget - column sort colors */
+.tablesorter-metro-dark tr.odd td.primary {
+	background-color: #bfbfbf;
+}
+.tablesorter-metro-dark td.primary,
+.tablesorter-metro-dark tr.even td.primary {
+	background-color: #d9d9d9;
+}
+.tablesorter-metro-dark tr.odd td.secondary {
+	background-color: #d9d9d9;
+}
+.tablesorter-metro-dark td.secondary,
+.tablesorter-metro-dark tr.even td.secondary {
+	background-color: #e6e6e6;
+}
+.tablesorter-metro-dark tr.odd td.tertiary {
+	background-color: #e6e6e6;
+}
+.tablesorter-metro-dark td.tertiary,
+.tablesorter-metro-dark tr.even td.tertiary {
+	background-color: #f2f2f2;
+}
+
+/* filter widget */
+.tablesorter-metro-dark .tablesorter-filter-row td {
+	background: #eee;
+	line-height: normal;
+	text-align: center; /* center the input */
+	-webkit-transition: line-height 0.1s ease;
+	-moz-transition: line-height 0.1s ease;
+	-o-transition: line-height 0.1s ease;
+	transition: line-height 0.1s ease;
+}
+/* optional disabled input styling */
+.tablesorter-metro-dark .tablesorter-filter-row .disabled {
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	cursor: not-allowed;
+}
+/* hidden filter row */
+.tablesorter-metro-dark .tablesorter-filter-row.hideme td {
+	/*** *********************************************** ***/
+	/*** change this padding to modify the thickness     ***/
+	/*** of the closed filter row (height = padding x 2) ***/
+	padding: 2px;
+	/*** *********************************************** ***/
+	margin: 0;
+	line-height: 0;
+	cursor: pointer;
+}
+.tablesorter-metro-dark .tablesorter-filter-row.hideme * {
+	height: 1px;
+	min-height: 0;
+	border: 0;
+	padding: 0;
+	margin: 0;
+	/* don't use visibility: hidden because it disables tabbing */
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+/* filters */
+.tablesorter-metro-dark .tablesorter-filter {
+	width: 95%;
+	height: auto;
+	margin: 4px;
+	padding: 4px;
+	background-color: #fff;
+	border: 1px solid #bbb;
+	color: #333;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition: height 0.1s ease;
+	-moz-transition: height 0.1s ease;
+	-o-transition: height 0.1s ease;
+	transition: height 0.1s ease;
+}
+/* rows hidden by filtering (needed for child rows) */
+.tablesorter .filtered {
+	display: none;
+}
+
+/* ajax error row */
+.tablesorter .tablesorter-errorRow td {
+	text-align: center;
+	cursor: pointer;
+	background-color: #e6bf99;
+}
+/* Chosen v1.2.0 | (c) 2011-2014 by Harvest | MIT License, https://github.com/harvesthq/chosen/blob/master/LICENSE.md */
+
+
+.chosen-container{position:relative;display:inline-block;vertical-align:middle;font-size:13px;zoom:1;*display:inline;-webkit-user-select:none;-moz-user-select:none;user-select:none}.chosen-container *{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}.chosen-container .chosen-drop{position:absolute;top:100%;left:-9999px;z-index:1010;width:100%;border:1px solid #aaa;border-top:0;background:#fff;box-shadow:0 4px 5px rgba(0,0,0,.15)}.chosen-container.chosen-with-drop .chosen-drop{left:0}.chosen-container a{cursor:pointer}.chosen-container-single .chosen-single{position:relative;display:block;overflow:hidden;padding:0 0 0 8px;height:25px;border:1px solid #aaa;border-radius:5px;background-color:#fff;background:-webkit-gradient(linear,50% 0,50% 100%,color-stop(20%,#fff),color-stop(50%,#f6f6f6),color-stop(52%,#eee),color-stop(100%,#f4f4f4));background:-webkit-linear-gradient(top,#fff 20%,#f6f6f6 50%,#eee 52%,#f4f4f4 100%);background:-moz-linear-gradient(top,#fff 20%,#f6f6f6 50%,#eee 52%,#f4f4f4 100%);background:-o-linear-gradient(top,#fff 20%,#f6f6f6 50%,#eee 52%,#f4f4f4 100%);background:linear-gradient(top,#fff 20%,#f6f6f6 50%,#eee 52%,#f4f4f4 100%);background-clip:padding-box;box-shadow:0 0 3px #fff inset,0 1px 1px rgba(0,0,0,.1);color:#444;text-decoration:none;white-space:nowrap;line-height:24px}.chosen-container-single .chosen-default{color:#999}.chosen-container-single .chosen-single span{display:block;overflow:hidden;margin-right:26px;text-overflow:ellipsis;white-space:nowrap}.chosen-container-single .chosen-single-with-deselect span{margin-right:38px}.chosen-container-single .chosen-single abbr{position:absolute;top:6px;right:26px;display:block;width:12px;height:12px;background:url(chosen-sprite.png) -42px 1px no-repeat;font-size:1px}.chosen-container-single .chosen-single abbr:hover{background-position:-42px -10px}.chosen-container-single.chosen-disabled .chosen-single abbr:hover{background-position:-42px -10px}.chosen-container-single .chosen-single div{position:absolute;top:0;right:0;display:block;width:18px;height:100%}.chosen-container-single .chosen-single div b{display:block;width:100%;height:100%;background:url(chosen-sprite.png) no-repeat 0 2px}.chosen-container-single .chosen-search{position:relative;z-index:1010;margin:0;padding:3px 4px;white-space:nowrap}.chosen-container-single .chosen-search input[type=text]{margin:1px 0;padding:4px 20px 4px 5px;width:100%;height:auto;outline:0;border:1px solid #aaa;background:#fff url(chosen-sprite.png) no-repeat 100% -20px;background:url(chosen-sprite.png) no-repeat 100% -20px;font-size:1em;font-family:sans-serif;line-height:normal;border-radius:0}.chosen-container-single .chosen-drop{margin-top:-1px;border-radius:0 0 4px 4px;background-clip:padding-box}.chosen-container-single.chosen-container-single-nosearch .chosen-search{position:absolute;left:-9999px}.chosen-container .chosen-results{color:#444;position:relative;overflow-x:hidden;overflow-y:auto;margin:0 4px 4px 0;padding:0 0 0 4px;max-height:240px;-webkit-overflow-scrolling:touch}.chosen-container .chosen-results li{display:none;margin:0;padding:5px 6px;list-style:none;line-height:15px;word-wrap:break-word;-webkit-touch-callout:none}.chosen-container .chosen-results li.active-result{display:list-item;cursor:pointer}.chosen-container .chosen-results li.disabled-result{display:list-item;color:#ccc;cursor:default}.chosen-container .chosen-results li.highlighted{background-color:#3875d7;background-image:-webkit-gradient(linear,50% 0,50% 100%,color-stop(20%,#3875d7),color-stop(90%,#2a62bc));background-image:-webkit-linear-gradient(#3875d7 20%,#2a62bc 90%);background-image:-moz-linear-gradient(#3875d7 20%,#2a62bc 90%);background-image:-o-linear-gradient(#3875d7 20%,#2a62bc 90%);background-image:linear-gradient(#3875d7 20%,#2a62bc 90%);color:#fff}.chosen-container .chosen-results li.no-results{color:#777;display:list-item;background:#f4f4f4}.chosen-container .chosen-results li.group-result{display:list-item;font-weight:700;cursor:default}.chosen-container .chosen-results li.group-option{padding-left:15px}.chosen-container .chosen-results li em{font-style:normal;text-decoration:underline}.chosen-container-multi .chosen-choices{position:relative;overflow:hidden;margin:0;padding:0 5px;width:100%;height:auto!important;height:1%;border:1px solid #aaa;background-color:#fff;background-image:-webkit-gradient(linear,50% 0,50% 100%,color-stop(1%,#eee),color-stop(15%,#fff));background-image:-webkit-linear-gradient(#eee 1%,#fff 15%);background-image:-moz-linear-gradient(#eee 1%,#fff 15%);background-image:-o-linear-gradient(#eee 1%,#fff 15%);background-image:linear-gradient(#eee 1%,#fff 15%);cursor:text}.chosen-container-multi .chosen-choices li{float:left;list-style:none}.chosen-container-multi .chosen-choices li.search-field{margin:0;padding:0;white-space:nowrap}.chosen-container-multi .chosen-choices li.search-field input[type=text]{margin:1px 0;padding:0;height:25px;outline:0;border:0!important;background:transparent!important;box-shadow:none;color:#999;font-size:100%;font-family:sans-serif;line-height:normal;border-radius:0}.chosen-container-multi .chosen-choices li.search-choice{position:relative;margin:3px 5px 3px 0;padding:3px 20px 3px 5px;border:1px solid #aaa;max-width:100%;border-radius:3px;background-color:#eee;background-image:-webkit-gradient(linear,50% 0,50% 100%,color-stop(20%,#f4f4f4),color-stop(50%,#f0f0f0),color-stop(52%,#e8e8e8),color-stop(100%,#eee));background-image:-webkit-linear-gradient(#f4f4f4 20%,#f0f0f0 50%,#e8e8e8 52%,#eee 100%);background-image:-moz-linear-gradient(#f4f4f4 20%,#f0f0f0 50%,#e8e8e8 52%,#eee 100%);background-image:-o-linear-gradient(#f4f4f4 20%,#f0f0f0 50%,#e8e8e8 52%,#eee 100%);background-image:linear-gradient(#f4f4f4 20%,#f0f0f0 50%,#e8e8e8 52%,#eee 100%);background-size:100% 19px;background-repeat:repeat-x;background-clip:padding-box;box-shadow:0 0 2px #fff inset,0 1px 0 rgba(0,0,0,.05);color:#333;line-height:13px;cursor:default}.chosen-container-multi .chosen-choices li.search-choice span{word-wrap:break-word}.chosen-container-multi .chosen-choices li.search-choice .search-choice-close{position:absolute;top:4px;right:3px;display:block;width:12px;height:12px;background:url(chosen-sprite.png) -42px 1px no-repeat;font-size:1px}.chosen-container-multi .chosen-choices li.search-choice .search-choice-close:hover{background-position:-42px -10px}.chosen-container-multi .chosen-choices li.search-choice-disabled{padding-right:5px;border:1px solid #ccc;background-color:#e4e4e4;background-image:-webkit-gradient(linear,50% 0,50% 100%,color-stop(20%,#f4f4f4),color-stop(50%,#f0f0f0),color-stop(52%,#e8e8e8),color-stop(100%,#eee));background-image:-webkit-linear-gradient(top,#f4f4f4 20%,#f0f0f0 50%,#e8e8e8 52%,#eee 100%);background-image:-moz-linear-gradient(top,#f4f4f4 20%,#f0f0f0 50%,#e8e8e8 52%,#eee 100%);background-image:-o-linear-gradient(top,#f4f4f4 20%,#f0f0f0 50%,#e8e8e8 52%,#eee 100%);background-image:linear-gradient(top,#f4f4f4 20%,#f0f0f0 50%,#e8e8e8 52%,#eee 100%);color:#666}.chosen-container-multi .chosen-choices li.search-choice-focus{background:#d4d4d4}.chosen-container-multi .chosen-choices li.search-choice-focus .search-choice-close{background-position:-42px -10px}.chosen-container-multi .chosen-results{margin:0;padding:0}.chosen-container-multi .chosen-drop .result-selected{display:list-item;color:#ccc;cursor:default}.chosen-container-active .chosen-single{border:1px solid #5897fb;box-shadow:0 0 5px rgba(0,0,0,.3)}.chosen-container-active.chosen-with-drop .chosen-single{border:1px solid #aaa;-moz-border-radius-bottomright:0;border-bottom-right-radius:0;-moz-border-radius-bottomleft:0;border-bottom-left-radius:0;background-image:-webkit-gradient(linear,50% 0,50% 100%,color-stop(20%,#eee),color-stop(80%,#fff));background-image:-webkit-linear-gradient(#eee 20%,#fff 80%);background-image:-moz-linear-gradient(#eee 20%,#fff 80%);background-image:-o-linear-gradient(#eee 20%,#fff 80%);background-image:linear-gradient(#eee 20%,#fff 80%);box-shadow:0 1px 0 #fff inset}.chosen-container-active.chosen-with-drop .chosen-single div{border-left:0;background:transparent}.chosen-container-active.chosen-with-drop .chosen-single div b{background-position:-18px 2px}.chosen-container-active .chosen-choices{border:1px solid #5897fb;box-shadow:0 0 5px rgba(0,0,0,.3)}.chosen-container-active .chosen-choices li.search-field input[type=text]{color:#222!important}.chosen-disabled{opacity:.5!important;cursor:default}.chosen-disabled .chosen-single{cursor:default}.chosen-disabled .chosen-choices .search-choice .search-choice-close{cursor:default}.chosen-rtl{text-align:right}.chosen-rtl .chosen-single{overflow:visible;padding:0 8px 0 0}.chosen-rtl .chosen-single span{margin-right:0;margin-left:26px;direction:rtl}.chosen-rtl .chosen-single-with-deselect span{margin-left:38px}.chosen-rtl .chosen-single div{right:auto;left:3px}.chosen-rtl .chosen-single abbr{right:auto;left:26px}.chosen-rtl .chosen-choices li{float:right}.chosen-rtl .chosen-choices li.search-field input[type=text]{direction:rtl}.chosen-rtl .chosen-choices li.search-choice{margin:3px 5px 3px 0;padding:3px 5px 3px 19px}.chosen-rtl .chosen-choices li.search-choice .search-choice-close{right:auto;left:4px}.chosen-rtl.chosen-container-single-nosearch .chosen-search,.chosen-rtl .chosen-drop{left:9999px}.chosen-rtl.chosen-container-single .chosen-results{margin:0 0 4px 4px;padding:0 4px 0 0}.chosen-rtl .chosen-results li.group-option{padding-right:15px;padding-left:0}.chosen-rtl.chosen-container-active.chosen-with-drop .chosen-single div{border-right:0}.chosen-rtl .chosen-search input[type=text]{padding:4px 5px 4px 20px;background:#fff url(chosen-sprite.png) no-repeat -30px -20px;background:url(chosen-sprite.png) no-repeat -30px -20px;direction:rtl}.chosen-rtl.chosen-container-single .chosen-single div b{background-position:6px 2px}.chosen-rtl.chosen-container-single.chosen-with-drop .chosen-single div b{background-position:-12px 2px}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min-resolution:144dpi){.chosen-rtl .chosen-search input[type=text],.chosen-container-single .chosen-single abbr,.chosen-container-single .chosen-single div b,.chosen-container-single .chosen-search input[type=text],.chosen-container-multi .chosen-choices .search-choice .search-choice-close,.chosen-container .chosen-results-scroll-down span,.chosen-container .chosen-results-scroll-up span{background-image:url(chosen-sprite@2x.png)!important;background-size:52px 37px!important;background-repeat:no-repeat!important}}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+
+
+
+ */
+/*!
+ *  Font Awesome 4.2.0 by @davegandy - http://fontawesome.io - @fontawesome
+ *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
+ */
+/* FONT PATH
+ * -------------------------- */
+@font-face {
+  font-family: 'FontAwesome';
+  src: url("/assets/font-awesome/fontawesome-webfont.eot");
+  src: url("/assets/font-awesome/fontawesome-webfont.eot?#iefix") format("embedded-opentype"), url("/assets/font-awesome/fontawesome-webfont.woff") format("woff"), url("/assets/font-awesome/fontawesome-webfont.ttf") format("truetype"), url("/assets/font-awesome/fontawesome-webfont.svg#fontawesomeregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* line 4, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_core.scss */
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* makes the font 33% larger relative to the icon container */
+/* line 6, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_larger.scss */
+.fa-lg {
+  font-size: 1.33333em;
+  line-height: 0.75em;
+  vertical-align: -15%;
+}
+
+/* line 11, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_larger.scss */
+.fa-2x {
+  font-size: 2em;
+}
+
+/* line 12, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_larger.scss */
+.fa-3x {
+  font-size: 3em;
+}
+
+/* line 13, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_larger.scss */
+.fa-4x {
+  font-size: 4em;
+}
+
+/* line 14, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_larger.scss */
+.fa-5x {
+  font-size: 5em;
+}
+
+/* line 3, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_fixed-width.scss */
+.fa-fw {
+  width: 1.28571em;
+  text-align: center;
+}
+
+/* line 4, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_list.scss */
+.fa-ul {
+  padding-left: 0;
+  margin-left: 2.14286em;
+  list-style-type: none;
+}
+/* line 8, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_list.scss */
+.fa-ul > li {
+  position: relative;
+}
+
+/* line 10, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_list.scss */
+.fa-li {
+  position: absolute;
+  left: -2.14286em;
+  width: 2.14286em;
+  top: 0.14286em;
+  text-align: center;
+}
+/* line 16, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_list.scss */
+.fa-li.fa-lg {
+  left: -1.85714em;
+}
+
+/* line 4, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_bordered-pulled.scss */
+.fa-border {
+  padding: .2em .25em .15em;
+  border: solid 0.08em #eeeeee;
+  border-radius: .1em;
+}
+
+/* line 10, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_bordered-pulled.scss */
+.pull-right {
+  float: right;
+}
+
+/* line 11, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_bordered-pulled.scss */
+.pull-left {
+  float: left;
+}
+
+/* line 14, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_bordered-pulled.scss */
+.fa.pull-left {
+  margin-right: .3em;
+}
+/* line 15, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_bordered-pulled.scss */
+.fa.pull-right {
+  margin-left: .3em;
+}
+
+/* line 4, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_spinning.scss */
+.fa-spin {
+  -webkit-animation: fa-spin 2s infinite linear;
+  animation: fa-spin 2s infinite linear;
+}
+
+@-webkit-keyframes fa-spin {
+  /* line 10, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_spinning.scss */
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  /* line 14, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_spinning.scss */
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes fa-spin {
+  /* line 21, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_spinning.scss */
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  /* line 25, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_spinning.scss */
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+/* line 4, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_rotated-flipped.scss */
+.fa-rotate-90 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+/* line 5, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_rotated-flipped.scss */
+.fa-rotate-180 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+/* line 6, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_rotated-flipped.scss */
+.fa-rotate-270 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  -webkit-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  transform: rotate(270deg);
+}
+
+/* line 8, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_rotated-flipped.scss */
+.fa-flip-horizontal {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+  -webkit-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+}
+
+/* line 9, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_rotated-flipped.scss */
+.fa-flip-vertical {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  -webkit-transform: scale(1, -1);
+  -ms-transform: scale(1, -1);
+  transform: scale(1, -1);
+}
+
+/* line 18, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_rotated-flipped.scss */
+:root .fa-rotate-90,
+:root .fa-rotate-180,
+:root .fa-rotate-270,
+:root .fa-flip-horizontal,
+:root .fa-flip-vertical {
+  filter: none;
+}
+
+/* line 4, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_stacked.scss */
+.fa-stack {
+  position: relative;
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  line-height: 2em;
+  vertical-align: middle;
+}
+
+/* line 12, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_stacked.scss */
+.fa-stack-1x, .fa-stack-2x {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+/* line 18, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_stacked.scss */
+.fa-stack-1x {
+  line-height: inherit;
+}
+
+/* line 19, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_stacked.scss */
+.fa-stack-2x {
+  font-size: 2em;
+}
+
+/* line 20, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_stacked.scss */
+.fa-inverse {
+  color: white;
+}
+
+/* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
+   readers do not read off random characters that represent icons */
+/* line 5, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-glass:before {
+  content: "\f000";
+}
+
+/* line 6, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-music:before {
+  content: "\f001";
+}
+
+/* line 7, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-search:before {
+  content: "\f002";
+}
+
+/* line 8, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-envelope-o:before {
+  content: "\f003";
+}
+
+/* line 9, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-heart:before {
+  content: "\f004";
+}
+
+/* line 10, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-star:before {
+  content: "\f005";
+}
+
+/* line 11, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-star-o:before {
+  content: "\f006";
+}
+
+/* line 12, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-user:before {
+  content: "\f007";
+}
+
+/* line 13, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-film:before {
+  content: "\f008";
+}
+
+/* line 14, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-th-large:before {
+  content: "\f009";
+}
+
+/* line 15, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-th:before {
+  content: "\f00a";
+}
+
+/* line 16, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-th-list:before {
+  content: "\f00b";
+}
+
+/* line 17, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-check:before {
+  content: "\f00c";
+}
+
+/* line 20, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-remove:before,
+.fa-close:before,
+.fa-times:before {
+  content: "\f00d";
+}
+
+/* line 21, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-search-plus:before {
+  content: "\f00e";
+}
+
+/* line 22, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-search-minus:before {
+  content: "\f010";
+}
+
+/* line 23, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-power-off:before {
+  content: "\f011";
+}
+
+/* line 24, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-signal:before {
+  content: "\f012";
+}
+
+/* line 26, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-gear:before,
+.fa-cog:before {
+  content: "\f013";
+}
+
+/* line 27, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-trash-o:before {
+  content: "\f014";
+}
+
+/* line 28, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-home:before {
+  content: "\f015";
+}
+
+/* line 29, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-file-o:before {
+  content: "\f016";
+}
+
+/* line 30, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-clock-o:before {
+  content: "\f017";
+}
+
+/* line 31, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-road:before {
+  content: "\f018";
+}
+
+/* line 32, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-download:before {
+  content: "\f019";
+}
+
+/* line 33, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-arrow-circle-o-down:before {
+  content: "\f01a";
+}
+
+/* line 34, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-arrow-circle-o-up:before {
+  content: "\f01b";
+}
+
+/* line 35, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-inbox:before {
+  content: "\f01c";
+}
+
+/* line 36, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-play-circle-o:before {
+  content: "\f01d";
+}
+
+/* line 38, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-rotate-right:before,
+.fa-repeat:before {
+  content: "\f01e";
+}
+
+/* line 39, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-refresh:before {
+  content: "\f021";
+}
+
+/* line 40, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-list-alt:before {
+  content: "\f022";
+}
+
+/* line 41, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-lock:before {
+  content: "\f023";
+}
+
+/* line 42, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-flag:before {
+  content: "\f024";
+}
+
+/* line 43, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-headphones:before {
+  content: "\f025";
+}
+
+/* line 44, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-volume-off:before {
+  content: "\f026";
+}
+
+/* line 45, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-volume-down:before {
+  content: "\f027";
+}
+
+/* line 46, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-volume-up:before {
+  content: "\f028";
+}
+
+/* line 47, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-qrcode:before {
+  content: "\f029";
+}
+
+/* line 48, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-barcode:before {
+  content: "\f02a";
+}
+
+/* line 49, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-tag:before {
+  content: "\f02b";
+}
+
+/* line 50, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-tags:before {
+  content: "\f02c";
+}
+
+/* line 51, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-book:before {
+  content: "\f02d";
+}
+
+/* line 52, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-bookmark:before {
+  content: "\f02e";
+}
+
+/* line 53, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-print:before {
+  content: "\f02f";
+}
+
+/* line 54, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-camera:before {
+  content: "\f030";
+}
+
+/* line 55, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-font:before {
+  content: "\f031";
+}
+
+/* line 56, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-bold:before {
+  content: "\f032";
+}
+
+/* line 57, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-italic:before {
+  content: "\f033";
+}
+
+/* line 58, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-text-height:before {
+  content: "\f034";
+}
+
+/* line 59, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-text-width:before {
+  content: "\f035";
+}
+
+/* line 60, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-align-left:before {
+  content: "\f036";
+}
+
+/* line 61, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-align-center:before {
+  content: "\f037";
+}
+
+/* line 62, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-align-right:before {
+  content: "\f038";
+}
+
+/* line 63, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-align-justify:before {
+  content: "\f039";
+}
+
+/* line 64, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-list:before {
+  content: "\f03a";
+}
+
+/* line 66, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-dedent:before,
+.fa-outdent:before {
+  content: "\f03b";
+}
+
+/* line 67, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-indent:before {
+  content: "\f03c";
+}
+
+/* line 68, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-video-camera:before {
+  content: "\f03d";
+}
+
+/* line 71, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-photo:before,
+.fa-image:before,
+.fa-picture-o:before {
+  content: "\f03e";
+}
+
+/* line 72, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-pencil:before {
+  content: "\f040";
+}
+
+/* line 73, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-map-marker:before {
+  content: "\f041";
+}
+
+/* line 74, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-adjust:before {
+  content: "\f042";
+}
+
+/* line 75, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-tint:before {
+  content: "\f043";
+}
+
+/* line 77, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-edit:before,
+.fa-pencil-square-o:before {
+  content: "\f044";
+}
+
+/* line 78, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-share-square-o:before {
+  content: "\f045";
+}
+
+/* line 79, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-check-square-o:before {
+  content: "\f046";
+}
+
+/* line 80, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-arrows:before {
+  content: "\f047";
+}
+
+/* line 81, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-step-backward:before {
+  content: "\f048";
+}
+
+/* line 82, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-fast-backward:before {
+  content: "\f049";
+}
+
+/* line 83, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-backward:before {
+  content: "\f04a";
+}
+
+/* line 84, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-play:before {
+  content: "\f04b";
+}
+
+/* line 85, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-pause:before {
+  content: "\f04c";
+}
+
+/* line 86, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-stop:before {
+  content: "\f04d";
+}
+
+/* line 87, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-forward:before {
+  content: "\f04e";
+}
+
+/* line 88, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-fast-forward:before {
+  content: "\f050";
+}
+
+/* line 89, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-step-forward:before {
+  content: "\f051";
+}
+
+/* line 90, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-eject:before {
+  content: "\f052";
+}
+
+/* line 91, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-chevron-left:before {
+  content: "\f053";
+}
+
+/* line 92, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-chevron-right:before {
+  content: "\f054";
+}
+
+/* line 93, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-plus-circle:before {
+  content: "\f055";
+}
+
+/* line 94, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-minus-circle:before {
+  content: "\f056";
+}
+
+/* line 95, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-times-circle:before {
+  content: "\f057";
+}
+
+/* line 96, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-check-circle:before {
+  content: "\f058";
+}
+
+/* line 97, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-question-circle:before {
+  content: "\f059";
+}
+
+/* line 98, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-info-circle:before {
+  content: "\f05a";
+}
+
+/* line 99, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-crosshairs:before {
+  content: "\f05b";
+}
+
+/* line 100, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-times-circle-o:before {
+  content: "\f05c";
+}
+
+/* line 101, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-check-circle-o:before {
+  content: "\f05d";
+}
+
+/* line 102, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-ban:before {
+  content: "\f05e";
+}
+
+/* line 103, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-arrow-left:before {
+  content: "\f060";
+}
+
+/* line 104, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-arrow-right:before {
+  content: "\f061";
+}
+
+/* line 105, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-arrow-up:before {
+  content: "\f062";
+}
+
+/* line 106, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-arrow-down:before {
+  content: "\f063";
+}
+
+/* line 108, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-mail-forward:before,
+.fa-share:before {
+  content: "\f064";
+}
+
+/* line 109, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-expand:before {
+  content: "\f065";
+}
+
+/* line 110, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-compress:before {
+  content: "\f066";
+}
+
+/* line 111, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-plus:before {
+  content: "\f067";
+}
+
+/* line 112, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-minus:before {
+  content: "\f068";
+}
+
+/* line 113, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-asterisk:before {
+  content: "\f069";
+}
+
+/* line 114, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-exclamation-circle:before {
+  content: "\f06a";
+}
+
+/* line 115, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-gift:before {
+  content: "\f06b";
+}
+
+/* line 116, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-leaf:before {
+  content: "\f06c";
+}
+
+/* line 117, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-fire:before {
+  content: "\f06d";
+}
+
+/* line 118, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-eye:before {
+  content: "\f06e";
+}
+
+/* line 119, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-eye-slash:before {
+  content: "\f070";
+}
+
+/* line 121, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-warning:before,
+.fa-exclamation-triangle:before {
+  content: "\f071";
+}
+
+/* line 122, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-plane:before {
+  content: "\f072";
+}
+
+/* line 123, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-calendar:before {
+  content: "\f073";
+}
+
+/* line 124, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-random:before {
+  content: "\f074";
+}
+
+/* line 125, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-comment:before {
+  content: "\f075";
+}
+
+/* line 126, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-magnet:before {
+  content: "\f076";
+}
+
+/* line 127, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-chevron-up:before {
+  content: "\f077";
+}
+
+/* line 128, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-chevron-down:before {
+  content: "\f078";
+}
+
+/* line 129, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-retweet:before {
+  content: "\f079";
+}
+
+/* line 130, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-shopping-cart:before {
+  content: "\f07a";
+}
+
+/* line 131, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-folder:before {
+  content: "\f07b";
+}
+
+/* line 132, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-folder-open:before {
+  content: "\f07c";
+}
+
+/* line 133, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-arrows-v:before {
+  content: "\f07d";
+}
+
+/* line 134, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-arrows-h:before {
+  content: "\f07e";
+}
+
+/* line 136, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-bar-chart-o:before,
+.fa-bar-chart:before {
+  content: "\f080";
+}
+
+/* line 137, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-twitter-square:before {
+  content: "\f081";
+}
+
+/* line 138, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-facebook-square:before {
+  content: "\f082";
+}
+
+/* line 139, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-camera-retro:before {
+  content: "\f083";
+}
+
+/* line 140, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-key:before {
+  content: "\f084";
+}
+
+/* line 142, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-gears:before,
+.fa-cogs:before {
+  content: "\f085";
+}
+
+/* line 143, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-comments:before {
+  content: "\f086";
+}
+
+/* line 144, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-thumbs-o-up:before {
+  content: "\f087";
+}
+
+/* line 145, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-thumbs-o-down:before {
+  content: "\f088";
+}
+
+/* line 146, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-star-half:before {
+  content: "\f089";
+}
+
+/* line 147, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-heart-o:before {
+  content: "\f08a";
+}
+
+/* line 148, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-sign-out:before {
+  content: "\f08b";
+}
+
+/* line 149, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-linkedin-square:before {
+  content: "\f08c";
+}
+
+/* line 150, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-thumb-tack:before {
+  content: "\f08d";
+}
+
+/* line 151, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-external-link:before {
+  content: "\f08e";
+}
+
+/* line 152, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-sign-in:before {
+  content: "\f090";
+}
+
+/* line 153, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-trophy:before {
+  content: "\f091";
+}
+
+/* line 154, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-github-square:before {
+  content: "\f092";
+}
+
+/* line 155, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-upload:before {
+  content: "\f093";
+}
+
+/* line 156, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-lemon-o:before {
+  content: "\f094";
+}
+
+/* line 157, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-phone:before {
+  content: "\f095";
+}
+
+/* line 158, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-square-o:before {
+  content: "\f096";
+}
+
+/* line 159, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-bookmark-o:before {
+  content: "\f097";
+}
+
+/* line 160, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-phone-square:before {
+  content: "\f098";
+}
+
+/* line 161, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-twitter:before {
+  content: "\f099";
+}
+
+/* line 162, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-facebook:before {
+  content: "\f09a";
+}
+
+/* line 163, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-github:before {
+  content: "\f09b";
+}
+
+/* line 164, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-unlock:before {
+  content: "\f09c";
+}
+
+/* line 165, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-credit-card:before {
+  content: "\f09d";
+}
+
+/* line 166, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-rss:before {
+  content: "\f09e";
+}
+
+/* line 167, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-hdd-o:before {
+  content: "\f0a0";
+}
+
+/* line 168, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-bullhorn:before {
+  content: "\f0a1";
+}
+
+/* line 169, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-bell:before {
+  content: "\f0f3";
+}
+
+/* line 170, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-certificate:before {
+  content: "\f0a3";
+}
+
+/* line 171, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-hand-o-right:before {
+  content: "\f0a4";
+}
+
+/* line 172, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-hand-o-left:before {
+  content: "\f0a5";
+}
+
+/* line 173, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-hand-o-up:before {
+  content: "\f0a6";
+}
+
+/* line 174, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-hand-o-down:before {
+  content: "\f0a7";
+}
+
+/* line 175, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-arrow-circle-left:before {
+  content: "\f0a8";
+}
+
+/* line 176, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-arrow-circle-right:before {
+  content: "\f0a9";
+}
+
+/* line 177, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-arrow-circle-up:before {
+  content: "\f0aa";
+}
+
+/* line 178, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-arrow-circle-down:before {
+  content: "\f0ab";
+}
+
+/* line 179, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-globe:before {
+  content: "\f0ac";
+}
+
+/* line 180, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-wrench:before {
+  content: "\f0ad";
+}
+
+/* line 181, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-tasks:before {
+  content: "\f0ae";
+}
+
+/* line 182, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-filter:before {
+  content: "\f0b0";
+}
+
+/* line 183, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-briefcase:before {
+  content: "\f0b1";
+}
+
+/* line 184, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-arrows-alt:before {
+  content: "\f0b2";
+}
+
+/* line 186, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-group:before,
+.fa-users:before {
+  content: "\f0c0";
+}
+
+/* line 188, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-chain:before,
+.fa-link:before {
+  content: "\f0c1";
+}
+
+/* line 189, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-cloud:before {
+  content: "\f0c2";
+}
+
+/* line 190, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-flask:before {
+  content: "\f0c3";
+}
+
+/* line 192, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-cut:before,
+.fa-scissors:before {
+  content: "\f0c4";
+}
+
+/* line 194, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-copy:before,
+.fa-files-o:before {
+  content: "\f0c5";
+}
+
+/* line 195, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-paperclip:before {
+  content: "\f0c6";
+}
+
+/* line 197, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-save:before,
+.fa-floppy-o:before {
+  content: "\f0c7";
+}
+
+/* line 198, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-square:before {
+  content: "\f0c8";
+}
+
+/* line 201, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-navicon:before,
+.fa-reorder:before,
+.fa-bars:before {
+  content: "\f0c9";
+}
+
+/* line 202, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-list-ul:before {
+  content: "\f0ca";
+}
+
+/* line 203, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-list-ol:before {
+  content: "\f0cb";
+}
+
+/* line 204, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-strikethrough:before {
+  content: "\f0cc";
+}
+
+/* line 205, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-underline:before {
+  content: "\f0cd";
+}
+
+/* line 206, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-table:before {
+  content: "\f0ce";
+}
+
+/* line 207, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-magic:before {
+  content: "\f0d0";
+}
+
+/* line 208, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-truck:before {
+  content: "\f0d1";
+}
+
+/* line 209, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-pinterest:before {
+  content: "\f0d2";
+}
+
+/* line 210, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-pinterest-square:before {
+  content: "\f0d3";
+}
+
+/* line 211, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-google-plus-square:before {
+  content: "\f0d4";
+}
+
+/* line 212, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-google-plus:before {
+  content: "\f0d5";
+}
+
+/* line 213, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-money:before {
+  content: "\f0d6";
+}
+
+/* line 214, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-caret-down:before {
+  content: "\f0d7";
+}
+
+/* line 215, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-caret-up:before {
+  content: "\f0d8";
+}
+
+/* line 216, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-caret-left:before {
+  content: "\f0d9";
+}
+
+/* line 217, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-caret-right:before {
+  content: "\f0da";
+}
+
+/* line 218, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-columns:before {
+  content: "\f0db";
+}
+
+/* line 220, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-unsorted:before,
+.fa-sort:before {
+  content: "\f0dc";
+}
+
+/* line 222, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-sort-down:before,
+.fa-sort-desc:before {
+  content: "\f0dd";
+}
+
+/* line 224, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-sort-up:before,
+.fa-sort-asc:before {
+  content: "\f0de";
+}
+
+/* line 225, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-envelope:before {
+  content: "\f0e0";
+}
+
+/* line 226, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-linkedin:before {
+  content: "\f0e1";
+}
+
+/* line 228, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-rotate-left:before,
+.fa-undo:before {
+  content: "\f0e2";
+}
+
+/* line 230, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-legal:before,
+.fa-gavel:before {
+  content: "\f0e3";
+}
+
+/* line 232, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-dashboard:before,
+.fa-tachometer:before {
+  content: "\f0e4";
+}
+
+/* line 233, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-comment-o:before {
+  content: "\f0e5";
+}
+
+/* line 234, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-comments-o:before {
+  content: "\f0e6";
+}
+
+/* line 236, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-flash:before,
+.fa-bolt:before {
+  content: "\f0e7";
+}
+
+/* line 237, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-sitemap:before {
+  content: "\f0e8";
+}
+
+/* line 238, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-umbrella:before {
+  content: "\f0e9";
+}
+
+/* line 240, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-paste:before,
+.fa-clipboard:before {
+  content: "\f0ea";
+}
+
+/* line 241, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-lightbulb-o:before {
+  content: "\f0eb";
+}
+
+/* line 242, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-exchange:before {
+  content: "\f0ec";
+}
+
+/* line 243, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-cloud-download:before {
+  content: "\f0ed";
+}
+
+/* line 244, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-cloud-upload:before {
+  content: "\f0ee";
+}
+
+/* line 245, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-user-md:before {
+  content: "\f0f0";
+}
+
+/* line 246, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-stethoscope:before {
+  content: "\f0f1";
+}
+
+/* line 247, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-suitcase:before {
+  content: "\f0f2";
+}
+
+/* line 248, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-bell-o:before {
+  content: "\f0a2";
+}
+
+/* line 249, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-coffee:before {
+  content: "\f0f4";
+}
+
+/* line 250, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-cutlery:before {
+  content: "\f0f5";
+}
+
+/* line 251, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-file-text-o:before {
+  content: "\f0f6";
+}
+
+/* line 252, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-building-o:before {
+  content: "\f0f7";
+}
+
+/* line 253, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-hospital-o:before {
+  content: "\f0f8";
+}
+
+/* line 254, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-ambulance:before {
+  content: "\f0f9";
+}
+
+/* line 255, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-medkit:before {
+  content: "\f0fa";
+}
+
+/* line 256, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-fighter-jet:before {
+  content: "\f0fb";
+}
+
+/* line 257, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-beer:before {
+  content: "\f0fc";
+}
+
+/* line 258, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-h-square:before {
+  content: "\f0fd";
+}
+
+/* line 259, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-plus-square:before {
+  content: "\f0fe";
+}
+
+/* line 260, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-angle-double-left:before {
+  content: "\f100";
+}
+
+/* line 261, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-angle-double-right:before {
+  content: "\f101";
+}
+
+/* line 262, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-angle-double-up:before {
+  content: "\f102";
+}
+
+/* line 263, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-angle-double-down:before {
+  content: "\f103";
+}
+
+/* line 264, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-angle-left:before {
+  content: "\f104";
+}
+
+/* line 265, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-angle-right:before {
+  content: "\f105";
+}
+
+/* line 266, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-angle-up:before {
+  content: "\f106";
+}
+
+/* line 267, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-angle-down:before {
+  content: "\f107";
+}
+
+/* line 268, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-desktop:before {
+  content: "\f108";
+}
+
+/* line 269, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-laptop:before {
+  content: "\f109";
+}
+
+/* line 270, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-tablet:before {
+  content: "\f10a";
+}
+
+/* line 272, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-mobile-phone:before,
+.fa-mobile:before {
+  content: "\f10b";
+}
+
+/* line 273, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-circle-o:before {
+  content: "\f10c";
+}
+
+/* line 274, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-quote-left:before {
+  content: "\f10d";
+}
+
+/* line 275, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-quote-right:before {
+  content: "\f10e";
+}
+
+/* line 276, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-spinner:before {
+  content: "\f110";
+}
+
+/* line 277, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-circle:before {
+  content: "\f111";
+}
+
+/* line 279, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-mail-reply:before,
+.fa-reply:before {
+  content: "\f112";
+}
+
+/* line 280, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-github-alt:before {
+  content: "\f113";
+}
+
+/* line 281, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-folder-o:before {
+  content: "\f114";
+}
+
+/* line 282, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-folder-open-o:before {
+  content: "\f115";
+}
+
+/* line 283, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-smile-o:before {
+  content: "\f118";
+}
+
+/* line 284, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-frown-o:before {
+  content: "\f119";
+}
+
+/* line 285, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-meh-o:before {
+  content: "\f11a";
+}
+
+/* line 286, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-gamepad:before {
+  content: "\f11b";
+}
+
+/* line 287, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-keyboard-o:before {
+  content: "\f11c";
+}
+
+/* line 288, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-flag-o:before {
+  content: "\f11d";
+}
+
+/* line 289, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-flag-checkered:before {
+  content: "\f11e";
+}
+
+/* line 290, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-terminal:before {
+  content: "\f120";
+}
+
+/* line 291, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-code:before {
+  content: "\f121";
+}
+
+/* line 293, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-mail-reply-all:before,
+.fa-reply-all:before {
+  content: "\f122";
+}
+
+/* line 296, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-star-half-empty:before,
+.fa-star-half-full:before,
+.fa-star-half-o:before {
+  content: "\f123";
+}
+
+/* line 297, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-location-arrow:before {
+  content: "\f124";
+}
+
+/* line 298, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-crop:before {
+  content: "\f125";
+}
+
+/* line 299, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-code-fork:before {
+  content: "\f126";
+}
+
+/* line 301, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-unlink:before,
+.fa-chain-broken:before {
+  content: "\f127";
+}
+
+/* line 302, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-question:before {
+  content: "\f128";
+}
+
+/* line 303, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-info:before {
+  content: "\f129";
+}
+
+/* line 304, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-exclamation:before {
+  content: "\f12a";
+}
+
+/* line 305, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-superscript:before {
+  content: "\f12b";
+}
+
+/* line 306, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-subscript:before {
+  content: "\f12c";
+}
+
+/* line 307, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-eraser:before {
+  content: "\f12d";
+}
+
+/* line 308, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-puzzle-piece:before {
+  content: "\f12e";
+}
+
+/* line 309, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-microphone:before {
+  content: "\f130";
+}
+
+/* line 310, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-microphone-slash:before {
+  content: "\f131";
+}
+
+/* line 311, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-shield:before {
+  content: "\f132";
+}
+
+/* line 312, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-calendar-o:before {
+  content: "\f133";
+}
+
+/* line 313, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-fire-extinguisher:before {
+  content: "\f134";
+}
+
+/* line 314, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-rocket:before {
+  content: "\f135";
+}
+
+/* line 315, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-maxcdn:before {
+  content: "\f136";
+}
+
+/* line 316, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-chevron-circle-left:before {
+  content: "\f137";
+}
+
+/* line 317, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-chevron-circle-right:before {
+  content: "\f138";
+}
+
+/* line 318, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-chevron-circle-up:before {
+  content: "\f139";
+}
+
+/* line 319, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-chevron-circle-down:before {
+  content: "\f13a";
+}
+
+/* line 320, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-html5:before {
+  content: "\f13b";
+}
+
+/* line 321, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-css3:before {
+  content: "\f13c";
+}
+
+/* line 322, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-anchor:before {
+  content: "\f13d";
+}
+
+/* line 323, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-unlock-alt:before {
+  content: "\f13e";
+}
+
+/* line 324, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-bullseye:before {
+  content: "\f140";
+}
+
+/* line 325, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-ellipsis-h:before {
+  content: "\f141";
+}
+
+/* line 326, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-ellipsis-v:before {
+  content: "\f142";
+}
+
+/* line 327, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-rss-square:before {
+  content: "\f143";
+}
+
+/* line 328, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-play-circle:before {
+  content: "\f144";
+}
+
+/* line 329, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-ticket:before {
+  content: "\f145";
+}
+
+/* line 330, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-minus-square:before {
+  content: "\f146";
+}
+
+/* line 331, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-minus-square-o:before {
+  content: "\f147";
+}
+
+/* line 332, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-level-up:before {
+  content: "\f148";
+}
+
+/* line 333, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-level-down:before {
+  content: "\f149";
+}
+
+/* line 334, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-check-square:before {
+  content: "\f14a";
+}
+
+/* line 335, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-pencil-square:before {
+  content: "\f14b";
+}
+
+/* line 336, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-external-link-square:before {
+  content: "\f14c";
+}
+
+/* line 337, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-share-square:before {
+  content: "\f14d";
+}
+
+/* line 338, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-compass:before {
+  content: "\f14e";
+}
+
+/* line 340, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-toggle-down:before,
+.fa-caret-square-o-down:before {
+  content: "\f150";
+}
+
+/* line 342, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-toggle-up:before,
+.fa-caret-square-o-up:before {
+  content: "\f151";
+}
+
+/* line 344, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-toggle-right:before,
+.fa-caret-square-o-right:before {
+  content: "\f152";
+}
+
+/* line 346, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-euro:before,
+.fa-eur:before {
+  content: "\f153";
+}
+
+/* line 347, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-gbp:before {
+  content: "\f154";
+}
+
+/* line 349, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-dollar:before,
+.fa-usd:before {
+  content: "\f155";
+}
+
+/* line 351, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-rupee:before,
+.fa-inr:before {
+  content: "\f156";
+}
+
+/* line 355, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-cny:before,
+.fa-rmb:before,
+.fa-yen:before,
+.fa-jpy:before {
+  content: "\f157";
+}
+
+/* line 358, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-ruble:before,
+.fa-rouble:before,
+.fa-rub:before {
+  content: "\f158";
+}
+
+/* line 360, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-won:before,
+.fa-krw:before {
+  content: "\f159";
+}
+
+/* line 362, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-bitcoin:before,
+.fa-btc:before {
+  content: "\f15a";
+}
+
+/* line 363, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-file:before {
+  content: "\f15b";
+}
+
+/* line 364, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-file-text:before {
+  content: "\f15c";
+}
+
+/* line 365, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-sort-alpha-asc:before {
+  content: "\f15d";
+}
+
+/* line 366, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-sort-alpha-desc:before {
+  content: "\f15e";
+}
+
+/* line 367, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-sort-amount-asc:before {
+  content: "\f160";
+}
+
+/* line 368, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-sort-amount-desc:before {
+  content: "\f161";
+}
+
+/* line 369, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-sort-numeric-asc:before {
+  content: "\f162";
+}
+
+/* line 370, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-sort-numeric-desc:before {
+  content: "\f163";
+}
+
+/* line 371, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-thumbs-up:before {
+  content: "\f164";
+}
+
+/* line 372, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-thumbs-down:before {
+  content: "\f165";
+}
+
+/* line 373, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-youtube-square:before {
+  content: "\f166";
+}
+
+/* line 374, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-youtube:before {
+  content: "\f167";
+}
+
+/* line 375, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-xing:before {
+  content: "\f168";
+}
+
+/* line 376, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-xing-square:before {
+  content: "\f169";
+}
+
+/* line 377, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-youtube-play:before {
+  content: "\f16a";
+}
+
+/* line 378, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-dropbox:before {
+  content: "\f16b";
+}
+
+/* line 379, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-stack-overflow:before {
+  content: "\f16c";
+}
+
+/* line 380, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-instagram:before {
+  content: "\f16d";
+}
+
+/* line 381, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-flickr:before {
+  content: "\f16e";
+}
+
+/* line 382, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-adn:before {
+  content: "\f170";
+}
+
+/* line 383, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-bitbucket:before {
+  content: "\f171";
+}
+
+/* line 384, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-bitbucket-square:before {
+  content: "\f172";
+}
+
+/* line 385, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-tumblr:before {
+  content: "\f173";
+}
+
+/* line 386, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-tumblr-square:before {
+  content: "\f174";
+}
+
+/* line 387, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-long-arrow-down:before {
+  content: "\f175";
+}
+
+/* line 388, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-long-arrow-up:before {
+  content: "\f176";
+}
+
+/* line 389, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-long-arrow-left:before {
+  content: "\f177";
+}
+
+/* line 390, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-long-arrow-right:before {
+  content: "\f178";
+}
+
+/* line 391, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-apple:before {
+  content: "\f179";
+}
+
+/* line 392, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-windows:before {
+  content: "\f17a";
+}
+
+/* line 393, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-android:before {
+  content: "\f17b";
+}
+
+/* line 394, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-linux:before {
+  content: "\f17c";
+}
+
+/* line 395, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-dribbble:before {
+  content: "\f17d";
+}
+
+/* line 396, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-skype:before {
+  content: "\f17e";
+}
+
+/* line 397, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-foursquare:before {
+  content: "\f180";
+}
+
+/* line 398, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-trello:before {
+  content: "\f181";
+}
+
+/* line 399, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-female:before {
+  content: "\f182";
+}
+
+/* line 400, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-male:before {
+  content: "\f183";
+}
+
+/* line 401, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-gittip:before {
+  content: "\f184";
+}
+
+/* line 402, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-sun-o:before {
+  content: "\f185";
+}
+
+/* line 403, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-moon-o:before {
+  content: "\f186";
+}
+
+/* line 404, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-archive:before {
+  content: "\f187";
+}
+
+/* line 405, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-bug:before {
+  content: "\f188";
+}
+
+/* line 406, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-vk:before {
+  content: "\f189";
+}
+
+/* line 407, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-weibo:before {
+  content: "\f18a";
+}
+
+/* line 408, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-renren:before {
+  content: "\f18b";
+}
+
+/* line 409, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-pagelines:before {
+  content: "\f18c";
+}
+
+/* line 410, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-stack-exchange:before {
+  content: "\f18d";
+}
+
+/* line 411, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-arrow-circle-o-right:before {
+  content: "\f18e";
+}
+
+/* line 412, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-arrow-circle-o-left:before {
+  content: "\f190";
+}
+
+/* line 414, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-toggle-left:before,
+.fa-caret-square-o-left:before {
+  content: "\f191";
+}
+
+/* line 415, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-dot-circle-o:before {
+  content: "\f192";
+}
+
+/* line 416, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-wheelchair:before {
+  content: "\f193";
+}
+
+/* line 417, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-vimeo-square:before {
+  content: "\f194";
+}
+
+/* line 419, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-turkish-lira:before,
+.fa-try:before {
+  content: "\f195";
+}
+
+/* line 420, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-plus-square-o:before {
+  content: "\f196";
+}
+
+/* line 421, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-space-shuttle:before {
+  content: "\f197";
+}
+
+/* line 422, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-slack:before {
+  content: "\f198";
+}
+
+/* line 423, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-envelope-square:before {
+  content: "\f199";
+}
+
+/* line 424, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-wordpress:before {
+  content: "\f19a";
+}
+
+/* line 425, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-openid:before {
+  content: "\f19b";
+}
+
+/* line 428, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-institution:before,
+.fa-bank:before,
+.fa-university:before {
+  content: "\f19c";
+}
+
+/* line 430, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-mortar-board:before,
+.fa-graduation-cap:before {
+  content: "\f19d";
+}
+
+/* line 431, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-yahoo:before {
+  content: "\f19e";
+}
+
+/* line 432, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-google:before {
+  content: "\f1a0";
+}
+
+/* line 433, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-reddit:before {
+  content: "\f1a1";
+}
+
+/* line 434, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-reddit-square:before {
+  content: "\f1a2";
+}
+
+/* line 435, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-stumbleupon-circle:before {
+  content: "\f1a3";
+}
+
+/* line 436, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-stumbleupon:before {
+  content: "\f1a4";
+}
+
+/* line 437, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-delicious:before {
+  content: "\f1a5";
+}
+
+/* line 438, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-digg:before {
+  content: "\f1a6";
+}
+
+/* line 439, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-pied-piper:before {
+  content: "\f1a7";
+}
+
+/* line 440, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-pied-piper-alt:before {
+  content: "\f1a8";
+}
+
+/* line 441, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-drupal:before {
+  content: "\f1a9";
+}
+
+/* line 442, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-joomla:before {
+  content: "\f1aa";
+}
+
+/* line 443, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-language:before {
+  content: "\f1ab";
+}
+
+/* line 444, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-fax:before {
+  content: "\f1ac";
+}
+
+/* line 445, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-building:before {
+  content: "\f1ad";
+}
+
+/* line 446, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-child:before {
+  content: "\f1ae";
+}
+
+/* line 447, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-paw:before {
+  content: "\f1b0";
+}
+
+/* line 448, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-spoon:before {
+  content: "\f1b1";
+}
+
+/* line 449, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-cube:before {
+  content: "\f1b2";
+}
+
+/* line 450, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-cubes:before {
+  content: "\f1b3";
+}
+
+/* line 451, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-behance:before {
+  content: "\f1b4";
+}
+
+/* line 452, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-behance-square:before {
+  content: "\f1b5";
+}
+
+/* line 453, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-steam:before {
+  content: "\f1b6";
+}
+
+/* line 454, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-steam-square:before {
+  content: "\f1b7";
+}
+
+/* line 455, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-recycle:before {
+  content: "\f1b8";
+}
+
+/* line 457, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-automobile:before,
+.fa-car:before {
+  content: "\f1b9";
+}
+
+/* line 459, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-cab:before,
+.fa-taxi:before {
+  content: "\f1ba";
+}
+
+/* line 460, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-tree:before {
+  content: "\f1bb";
+}
+
+/* line 461, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-spotify:before {
+  content: "\f1bc";
+}
+
+/* line 462, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-deviantart:before {
+  content: "\f1bd";
+}
+
+/* line 463, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-soundcloud:before {
+  content: "\f1be";
+}
+
+/* line 464, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-database:before {
+  content: "\f1c0";
+}
+
+/* line 465, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-file-pdf-o:before {
+  content: "\f1c1";
+}
+
+/* line 466, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-file-word-o:before {
+  content: "\f1c2";
+}
+
+/* line 467, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-file-excel-o:before {
+  content: "\f1c3";
+}
+
+/* line 468, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-file-powerpoint-o:before {
+  content: "\f1c4";
+}
+
+/* line 471, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-file-photo-o:before,
+.fa-file-picture-o:before,
+.fa-file-image-o:before {
+  content: "\f1c5";
+}
+
+/* line 473, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-file-zip-o:before,
+.fa-file-archive-o:before {
+  content: "\f1c6";
+}
+
+/* line 475, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-file-sound-o:before,
+.fa-file-audio-o:before {
+  content: "\f1c7";
+}
+
+/* line 477, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-file-movie-o:before,
+.fa-file-video-o:before {
+  content: "\f1c8";
+}
+
+/* line 478, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-file-code-o:before {
+  content: "\f1c9";
+}
+
+/* line 479, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-vine:before {
+  content: "\f1ca";
+}
+
+/* line 480, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-codepen:before {
+  content: "\f1cb";
+}
+
+/* line 481, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-jsfiddle:before {
+  content: "\f1cc";
+}
+
+/* line 486, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-life-bouy:before,
+.fa-life-buoy:before,
+.fa-life-saver:before,
+.fa-support:before,
+.fa-life-ring:before {
+  content: "\f1cd";
+}
+
+/* line 487, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-circle-o-notch:before {
+  content: "\f1ce";
+}
+
+/* line 489, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-ra:before,
+.fa-rebel:before {
+  content: "\f1d0";
+}
+
+/* line 491, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-ge:before,
+.fa-empire:before {
+  content: "\f1d1";
+}
+
+/* line 492, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-git-square:before {
+  content: "\f1d2";
+}
+
+/* line 493, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-git:before {
+  content: "\f1d3";
+}
+
+/* line 494, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-hacker-news:before {
+  content: "\f1d4";
+}
+
+/* line 495, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-tencent-weibo:before {
+  content: "\f1d5";
+}
+
+/* line 496, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-qq:before {
+  content: "\f1d6";
+}
+
+/* line 498, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-wechat:before,
+.fa-weixin:before {
+  content: "\f1d7";
+}
+
+/* line 500, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-send:before,
+.fa-paper-plane:before {
+  content: "\f1d8";
+}
+
+/* line 502, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-send-o:before,
+.fa-paper-plane-o:before {
+  content: "\f1d9";
+}
+
+/* line 503, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-history:before {
+  content: "\f1da";
+}
+
+/* line 504, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-circle-thin:before {
+  content: "\f1db";
+}
+
+/* line 505, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-header:before {
+  content: "\f1dc";
+}
+
+/* line 506, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-paragraph:before {
+  content: "\f1dd";
+}
+
+/* line 507, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-sliders:before {
+  content: "\f1de";
+}
+
+/* line 508, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-share-alt:before {
+  content: "\f1e0";
+}
+
+/* line 509, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-share-alt-square:before {
+  content: "\f1e1";
+}
+
+/* line 510, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-bomb:before {
+  content: "\f1e2";
+}
+
+/* line 512, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-soccer-ball-o:before,
+.fa-futbol-o:before {
+  content: "\f1e3";
+}
+
+/* line 513, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-tty:before {
+  content: "\f1e4";
+}
+
+/* line 514, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-binoculars:before {
+  content: "\f1e5";
+}
+
+/* line 515, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-plug:before {
+  content: "\f1e6";
+}
+
+/* line 516, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-slideshare:before {
+  content: "\f1e7";
+}
+
+/* line 517, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-twitch:before {
+  content: "\f1e8";
+}
+
+/* line 518, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-yelp:before {
+  content: "\f1e9";
+}
+
+/* line 519, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-newspaper-o:before {
+  content: "\f1ea";
+}
+
+/* line 520, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-wifi:before {
+  content: "\f1eb";
+}
+
+/* line 521, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-calculator:before {
+  content: "\f1ec";
+}
+
+/* line 522, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-paypal:before {
+  content: "\f1ed";
+}
+
+/* line 523, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-google-wallet:before {
+  content: "\f1ee";
+}
+
+/* line 524, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-cc-visa:before {
+  content: "\f1f0";
+}
+
+/* line 525, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-cc-mastercard:before {
+  content: "\f1f1";
+}
+
+/* line 526, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-cc-discover:before {
+  content: "\f1f2";
+}
+
+/* line 527, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-cc-amex:before {
+  content: "\f1f3";
+}
+
+/* line 528, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-cc-paypal:before {
+  content: "\f1f4";
+}
+
+/* line 529, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-cc-stripe:before {
+  content: "\f1f5";
+}
+
+/* line 530, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-bell-slash:before {
+  content: "\f1f6";
+}
+
+/* line 531, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-bell-slash-o:before {
+  content: "\f1f7";
+}
+
+/* line 532, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-trash:before {
+  content: "\f1f8";
+}
+
+/* line 533, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-copyright:before {
+  content: "\f1f9";
+}
+
+/* line 534, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-at:before {
+  content: "\f1fa";
+}
+
+/* line 535, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-eyedropper:before {
+  content: "\f1fb";
+}
+
+/* line 536, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-paint-brush:before {
+  content: "\f1fc";
+}
+
+/* line 537, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-birthday-cake:before {
+  content: "\f1fd";
+}
+
+/* line 538, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-area-chart:before {
+  content: "\f1fe";
+}
+
+/* line 539, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-pie-chart:before {
+  content: "\f200";
+}
+
+/* line 540, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-line-chart:before {
+  content: "\f201";
+}
+
+/* line 541, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-lastfm:before {
+  content: "\f202";
+}
+
+/* line 542, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-lastfm-square:before {
+  content: "\f203";
+}
+
+/* line 543, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-toggle-off:before {
+  content: "\f204";
+}
+
+/* line 544, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-toggle-on:before {
+  content: "\f205";
+}
+
+/* line 545, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-bicycle:before {
+  content: "\f206";
+}
+
+/* line 546, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-bus:before {
+  content: "\f207";
+}
+
+/* line 547, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-ioxhost:before {
+  content: "\f208";
+}
+
+/* line 548, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-angellist:before {
+  content: "\f209";
+}
+
+/* line 549, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-cc:before {
+  content: "\f20a";
+}
+
+/* line 552, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-shekel:before,
+.fa-sheqel:before,
+.fa-ils:before {
+  content: "\f20b";
+}
+
+/* line 553, /Users/Gargantua/.rvm/gems/ruby-2.0.0-p451/gems/font-awesome-sass-4.2.2/assets/stylesheets/font-awesome/_icons.scss */
+.fa-meanpath:before {
+  content: "\f20c";
+}
+
+/* line 1, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/alerts.scss */
+.error, .alert {
+  color: #ad2600;
+  border: 2px solid rgba(173, 38, 0, 0.9);
+  padding: .5em;
+  margin: .25em;
+  z-index: 500;
+  width: 60%;
+  float: right;
+  text-align: center;
+}
+
+/* line 13, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/alerts.scss */
+.notice {
+  color: #db7900;
+  border: 2px solid #db7900;
+  padding: .5em;
+  margin: .25em;
+  z-index: 500;
+  width: 60%;
+  float: right;
+  text-align: center;
+}
+
+/* line 2, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/forms.scss */
+.main form:not(.button_to) {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 500px;
+  background: white;
+  padding: 2rem 2rem 3rem;
+  box-shadow: #bbbbbb 0 0px 20px -1px;
+  -webkit-box-shadow: #bbbbbb 0 0px 20px -1px;
+}
+/* line 11, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/forms.scss */
+.main form:not(.button_to) h2 {
+  padding: 0px 0px 10px 40px;
+  display: block;
+  border-bottom: 1px solid #F5F5F5;
+  margin: -10px -30px 10px -30px;
+  color: #969696;
+}
+/* line 18, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/forms.scss */
+.main form:not(.button_to) fieldset {
+  display: block;
+  margin: 0.75rem 0 0.75rem;
+  border: none;
+}
+/* line 23, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/forms.scss */
+.main form:not(.button_to) label {
+  float: left;
+  width: 20%;
+  text-align: right;
+  padding-right: 10px;
+}
+/* line 29, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/forms.scss */
+.main form:not(.button_to) input[type="text"], .main form:not(.button_to) input[type="email"], .main form:not(.button_to) input[type="password"], .main form:not(.button_to) textarea, .main form:not(.button_to) select {
+  color: #999999;
+  width: 70%;
+  text-align: right;
+  padding: 3px 0px 3px 5px;
+  border: 1px solid #999999;
+  background: #fbfbfb;
+  outline: 0;
+  -webkit-box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
+  box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
+}
+/* line 40, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/forms.scss */
+.main form:not(.button_to) input[type="submit"] {
+  font-size: 1em;
+  margin-top: .25em;
+  clear: both;
+  color: black;
+  text-align: right;
+  float: right;
+  border: none;
+  padding: .25em;
+  background-color: white;
+}
+/* line 51, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/forms.scss */
+.main form:not(.button_to) input[type="submit"]:hover {
+  color: #95cb15;
+  border-bottom: 1px solid black;
+}
+/* line 55, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/forms.scss */
+.main form:not(.button_to) ::-webkit-input-placeholder {
+  font-size: 1.25em;
+  padding-right: .25em;
+}
+/* line 59, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/forms.scss */
+.main form:not(.button_to) :-moz-placeholder {
+  font-size: 1.25em;
+  padding-right: .25em;
+}
+/* line 63, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/forms.scss */
+.main form:not(.button_to) ::-moz-placeholder {
+  font-size: 1.25em;
+  padding-right: .25em;
+}
+/* line 67, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/forms.scss */
+.main form:not(.button_to) :-ms-input-placeholder {
+  font-size: 1.25em;
+  padding-right: .25em;
+}
+/* line 71, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/forms.scss */
+.main form:not(.button_to) textarea {
+  height: 100px;
+  padding: 5px 0px 0px 5px;
+  width: 70%;
+}
+/* line 76, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/forms.scss */
+.main form:not(.button_to) small {
+  color: #999999;
+  float: right;
+}
+
+/* line 82, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/forms.scss */
+#error_explanation:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* line 88, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/forms.scss */
+#error_explanation li {
+  color: #ad2600;
+}
+
+/* line 3, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/grid.scss */
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', Arial, Helvetica, 'Liberation Sans', sans-serif;
+}
+
+/* line 10, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/grid.scss */
+* :not(p) {
+  font-weight: bold;
+}
+
+/* line 14, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/grid.scss */
+a {
+  text-decoration: none;
+  color: black;
+}
+
+/* line 21, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/grid.scss */
+*,
+*:after,
+*:before {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 29, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/grid.scss */
+.wrapper {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/*clearfix*/
+/* line 40, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/grid.scss */
+.clearfix:after,
+.wrapper:after,
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* line 46, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/grid.scss */
+[class*='column-'] {
+  float: left;
+  padding-right: .5em;
+  width: 100%;
+  min-height: 1px;
+  height: 100%;
+}
+
+/*removes padding from far right column*/
+/* line 55, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/grid.scss */
+[class*='column-']:last-of-type {
+  padding-right: 0;
+}
+
+/*optional outside gutters*/
+/*add padding to grid parent*/
+/* line 60, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/grid.scss */
+.grid-pad {
+  padding: .5em 0 .5em .5em;
+}
+
+/*restore right padding to last column*/
+/* line 65, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/grid.scss */
+.grid-pad > [class*='column-']:last-of-type {
+  padding-right: .5em;
+}
+
+/*will have columns on screens larger than 30ems*/
+@media only screen and (min-width: 30em) {
+  /* line 71, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/grid.scss */
+  .wrapper {
+    width: 100%;
+    max-width: 1500px;
+    height: 100%;
+  }
+
+  /* line 76, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/grid.scss */
+  .column-1 {
+    width: 8.56%;
+  }
+
+  /* line 79, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/grid.scss */
+  .column-2 {
+    width: 18.72%;
+  }
+
+  /* line 82, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/grid.scss */
+  .column-3 {
+    width: 28.88%;
+  }
+
+  /* line 85, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/grid.scss */
+  .column-4 {
+    width: 39.04%;
+  }
+
+  /* line 88, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/grid.scss */
+  .column-5 {
+    width: 49.2%;
+  }
+
+  /* line 91, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/grid.scss */
+  .column-6 {
+    width: 59.36%;
+  }
+
+  /* line 94, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/grid.scss */
+  .column-7 {
+    width: 69.52%;
+  }
+
+  /* line 97, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/grid.scss */
+  .column-8 {
+    width: 79.68%;
+  }
+
+  /* line 100, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/grid.scss */
+  .column-9 {
+    width: 89.84%;
+  }
+
+  /* line 103, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/grid.scss */
+  .column-10 {
+    width: 100%;
+  }
+}
+@media print {
+  /* line 2, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/print.scss */
+  header {
+    display: none;
+  }
+
+  /* line 6, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/print.scss */
+  div.column-2 {
+    display: none;
+  }
+
+  /* line 10, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/print.scss */
+  div.column-6 {
+    width: 100%;
+    overflow: visible;
+  }
+
+  /* line 14, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/print.scss */
+  .gray {
+    overflow: visible;
+  }
+
+  /* line 18, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/print.scss */
+  table.index.tablesorter {
+    border: none;
+    width: 100%;
+  }
+
+  @page {
+    margin: 0.5cm;
+}
+
+  /* line 27, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/print.scss */
+  .wrapper {
+    height: auto;
+    overflow: visible;
+  }
+}
+/*left side area styles*/
+/* line 3, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/non-main.scss */
+.left-content {
+  margin-top: 12em;
+  text-align: right;
+}
+/* line 6, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/non-main.scss */
+.left-content h2 {
+  font-size: 2.5em;
+  color: black;
+}
+/* line 10, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/non-main.scss */
+.left-content a:hover {
+  color: #95cb15;
+  font-size: 110%;
+  border: none;
+}
+/* line 15, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/non-main.scss */
+.left-content .large-icon {
+  font-size: 2.5rem;
+  display: block;
+}
+/* line 19, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/non-main.scss */
+.left-content .large-icon:hover {
+  color: #e68a00;
+  font-size: 2.5rem;
+}
+/* line 23, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/non-main.scss */
+.left-content .fa:hover {
+  border-bottom: 1px black solid;
+}
+
+/*search form*/
+/* line 29, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/non-main.scss */
+.left-content form {
+  padding-top: 2em;
+  padding-bottom: 3em;
+}
+/* line 32, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/non-main.scss */
+.left-content form input[type="submit"] {
+  font-size: 2.5em;
+  text-align: right;
+  background: none;
+  border: none;
+}
+/* line 38, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/non-main.scss */
+.left-content form input[type="submit"]:hover {
+  color: #95cb15;
+}
+/* line 41, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/non-main.scss */
+.left-content form input[type="text"] {
+  text-align: right;
+  height: 2em;
+}
+/* line 45, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/non-main.scss */
+.left-content form label {
+  visibility: hidden;
+}
+
+/*right side styles*/
+/* line 51, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/non-main.scss */
+span.vertical {
+  font-size: 6em;
+  color: #e8e8e8;
+  display: inline-block;
+  position: fixed;
+  top: 5.25em;
+  right: 1.65em;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  transform: rotate(90deg);
+  transform-origin: top right;
+}
+
+/* line 1, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/shared.scss */
+* :not(p) {
+  text-transform: lowercase;
+}
+
+/* line 5, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/shared.scss */
+.main {
+  height: 100%;
+  max-height: 100%;
+  overflow: auto;
+  padding-top: 2em;
+  background: #d6d6d6;
+}
+
+/* line 13, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/shared.scss */
+img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+}
+
+/* line 19, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/shared.scss */
+h1 {
+  color: #9c9c9c;
+  font-size: 4.5em;
+  text-align: center;
+  text-transform: none;
+}
+
+/* line 26, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/shared.scss */
+h2 {
+  font-size: 2.5em;
+  color: #999999;
+  text-transform: none;
+}
+
+/* line 32, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/shared.scss */
+.ignore-caps {
+  text-transform: none;
+}
+
+/* line 35, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/shared.scss */
+nav {
+  float: left;
+  width: 100%;
+  position: relative;
+}
+/* line 39, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/shared.scss */
+nav li {
+  display: block;
+  float: left;
+  position: relative;
+  right: 50%;
+  font-size: .8em;
+  padding-left: .75em;
+  padding-top: .75em;
+  font-weight: 500;
+}
+/* line 48, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/shared.scss */
+nav li > a:hover {
+  color: #E68A00;
+  border-bottom: 1px solid black;
+}
+/* line 53, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/shared.scss */
+nav li:first-of-type {
+  padding-left: 0;
+}
+
+/* line 58, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/shared.scss */
+ul {
+  clear: left;
+  float: left;
+  list-style: none;
+  position: relative;
+  left: 50%;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 69, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/shared.scss */
+.main article {
+  margin: 5em 6em;
+  height: 100%;
+}
+
+/* line 74, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/shared.scss */
+.main p {
+  margin: 1em 0;
+  font-weight: normal;
+  text-transform: none;
+}
+
+/* line 80, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/shared.scss */
+.right {
+  float: right;
+}
+
+/* line 85, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/shared.scss */
+td, td > a {
+  font-weight: normal;
+}
+
+/* line 89, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/shared.scss */
+td > a:hover {
+  color: black;
+  border-bottom: 1px solid black;
+}
+
+/* line 1, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/users.scss */
+#username {
+  color: #666666;
+}
+
+/* line 5, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/users.scss */
+.show {
+  padding: .75em;
+  margin-top: 3.0em;
+  margin-bottom: 1em;
+  width: 85%;
+  border: 1px black solid;
+  background-color: #F5F5F5;
+}
+
+/* line 14, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/users.scss */
+.show > ul {
+  float: none;
+  list-style: none;
+  position: static;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+/* line 3, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/buttons.scss */
+.btn, .btn2 {
+  font-size: 1.5em;
+  background: none;
+  border: none;
+}
+
+/* line 9, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/buttons.scss */
+.btn:hover, .btn2:hover, a:hover {
+  color: #95cb15;
+  border-bottom: 1px solid black;
+}
+
+/* line 14, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/buttons.scss */
+.onward {
+  color: green;
+}
+
+/* line 18, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/buttons.scss */
+.retreat {
+  color: #e68a00;
+  margin-left: 2em;
+}
+
+/* line 23, /Users/Gargantua/Worky/LibraryCollection/app/assets/stylesheets/buttons.scss */
+.retreat:hover {
+  color: red;
+}

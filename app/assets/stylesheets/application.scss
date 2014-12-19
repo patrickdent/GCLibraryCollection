@@ -12,10 +12,9 @@
  *= require chosen.min.css
  *= require_self
  */
- 
- @import 'font-awesome-sprockets';
- @import 'font-awesome';
+
  @import '_variables.scss';
+ @import '_mixins.scss';
  @import 'alerts.scss';
  @import 'forms.scss';
  @import 'grid.scss';
