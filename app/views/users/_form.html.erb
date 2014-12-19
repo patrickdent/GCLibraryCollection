@@ -1,29 +1,33 @@
 <%= form_for @user do |u| %>
   <fieldset>
-    <%= u.label :name %> 
-    <%= u.text_field :name %> 
-  </fieldset>
-  <fieldset>  
-    <%= u.label :sort_by %> 
-    <%= u.text_field :sort_by %>
-  </fieldset>
-  <fieldset>  
-    <%= u.label :phone %> 
-    <%= u.text_field :phone %> 
-  </fieldset>
-  <fieldset>  
-    <%= u.label :address %> 
-    <%= u.text_field :address %>
-  </fieldset>
-  <fieldset>  
-    <%= u.label :notes %> 
-    <%= u.text_field :notes %> 
+    <%= u.label :name %>
+    <%= u.text_field :name %>
   </fieldset>
   <fieldset>
-    <%= u.label :do_not_lend %> 
+    <%= u.label :sort_by %>
+    <%= u.text_field :sort_by %>
+  </fieldset>
+  <fieldset>
+    <%= u.label :phone %>
+    <%= u.text_field :phone %>
+  </fieldset>
+  <fieldset>
+    <%= u.label :address %>
+    <%= u.text_field :address %>
+  </fieldset>
+  <fieldset>
+    <%= u.label :notes %>
+    <%= u.text_field :notes %>
+  </fieldset>
+  <fieldset>
+    <%= u.label :do_not_lend %>
     <%= u.check_box :do_not_lend %>
   </fieldset>
   <% if admin_user? %>
+    <fieldset>
+    <br >
+    <%= label_tag :role %>
+    </fieldset>
     <fieldset>
       <%= u.label :role, "admin" %>
       <%= u.radio_button(:role, :admin, {}) %>
