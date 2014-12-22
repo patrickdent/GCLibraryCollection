@@ -28,10 +28,12 @@ class SearchController < ApplicationController
 
   def scrape
     isbn = params[:isbn]
-    isbn = isbn.delete(" ")
+    isbn.gsub!(/[^a-zA-Z0-9]/,'')
 
-    @book = Search.scrape(isbn)
-    redirect_to edit_book_path(@book) and return if @book
+    if isbn.length == 10
+      @book = Search.scrape(isbn)
+      redirect_to edit_book_path(@book) and return if @book
+    end
 
     flash[:error] = "Book Upload Failed"
     redirect_to import_path
