@@ -14,49 +14,52 @@ class GenresController < ApplicationController
 
   def new
     @genre = Genre.new
-  end 
+  end
 
   def create
     @genre = Genre.new(genre_params)
-    if @genre.save 
+    if @genre.save
       respond_to do |format|
-        format.html do 
+        format.html do
             flash[:notice] = "Genre added"
             redirect_to genres_path
-        end 
+        end
         format.js {}
       end
     else
-      flash[:alert] = "Genre failed to save"
+      flash[:error] = "Genre failed to save"
       redirect_to new_genre_path
     end
-  end 
+  end
 
   def edit
-  end 
+  end
 
   def update
     if @genre.update(genre_params)
-      flash[:notice] = "Update Successful!"
+      flash[:notice] = "Update Successful"
       redirect_to genre_path(@genre)
-    else 
+    else
       flash[:error] = "Update Failed"
       redirect_to edit_genre_path
-    end 
-  end 
+    end
+  end
 
-  def destroy 
-    @genre.destroy 
-    flash[:notice] = "Delete Successful!"
-    redirect_to genres_path 
-  end 
+  def destroy
+    if @genre.destroy
+      flash[:notice] = "Delete Successful"
+    else
+      flash[:error] = "Delete Failed"
+    end
+    redirect_to genres_path
+  end
 
   private
   def genre_params
     params.require(:genre).permit(:name, :abbreviation, :id)
-  end 
+  end
 
   def find_genre
     @genre = Genre.find(params[:id])
-  end 
+  end
 end

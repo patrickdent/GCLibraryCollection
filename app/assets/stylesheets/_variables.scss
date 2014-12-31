@@ -1,8 +1,8 @@
 // grid variables
 $grid-columns: 12;
 $grid-max-width: 65em;
- 
- 
+
+
 // breakpoints
 $breakpoint-small: "only screen and (min-width: 20em)";
 $breakpoint-medium: "only screen and (min-width: 30em)";
@@ -10,16 +10,23 @@ $breakpoint-medium: "only screen and (min-width: 30em)";
 //fonts
 $sans-serif-font: 'Helvetica Neue', Arial, Helvetica, 'Liberation Sans', sans-serif;
 
-// colors 
+// colors
 $white: #fff;
 $black: #000;
-$green: #95CB15;
+
 $light_green: #AAD544;
+$green: #95CB15;
+$dark_green: #87b514;
+
+$yellow: #F5EE2A;
 $orange: #E68A00;
 $red: #FF0000;
+
 $lightest_gray: #E8E8E8;
 $light_gray: #D6D6D6;
 $med_gray: #999999;
 $dark_gray: #9C9C9C;
+$darkest_gray: #6B6B6B;
+
 $error: hsla(13, 100%, 34%, 1);
 $notice: hsla(33, 100%, 43%, 1);

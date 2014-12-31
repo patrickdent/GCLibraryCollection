@@ -7,51 +7,54 @@ class AuthorsController < ApplicationController
 
   def index
     @authors = Author.all.order('sort_by ASC')
-  end 
+  end
 
   def new
-    @author = Author.new 
-  end 
+    @author = Author.new
+  end
 
   def create
     @author = Author.new(author_params)
-    if @author.save 
+    if @author.save
       flash[:notice] = "Author Created"
       redirect_to authors_path
-    else 
-      flash[:alert] = "Author Creation Failed"
+    else
+      flash[:error] = "Author Creation Failed"
       redirect_to new_author_path
-    end 
-  end 
+    end
+  end
 
   def edit
-  end 
+  end
 
   def update
     if @author.update(author_params)
       flash[:notice] = "Update Successful!"
       redirect_to author_path(@author)
-    else 
+    else
       flash[:error] = "Update Failed"
       redirect_to edit_author_path
-    end 
-  end 
+    end
+  end
 
   def show
-  end 
+  end
 
   def destroy
-    @author.destroy 
-    flash[:notice] = "Delete Successful!"
+    if @author.destroy
+      flash[:notice] = "Delete Successful!"
+    else
+      flash[:error] = "Delete Failed"
+    end
     redirect_to authors_path
-  end 
+  end
 
-  private 
+  private
   def find_author
     @author = Author.find(params[:id])
-  end 
+  end
 
   def author_params
     params.require(:author).permit(:name, :id, :sort_by)
-  end 
+  end
 end

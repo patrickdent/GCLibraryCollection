@@ -1,6 +1,6 @@
 <h2>All Books</h2>
 <% if admin_user? %>
-  <%= link_to "New Book", new_book_path, class: "" %>
+  <%= link_to "New Book", new_book_path, class: "go-btn right" %>
 <% end %>
 
 <table class="index tablesorter">
@@ -20,10 +20,10 @@
         <% end %>
         <%= link_to b.title, book_path(b.id) %>
       </td>
-      <td> 
-      <% if b.genre %> 
-        <%= link_to b.genre.name, genre_path(b.genre) %> 
-      <% end %> 
+      <td>
+      <% if b.genre %>
+        <%= link_to b.genre.name, genre_path(b.genre) %>
+      <% end %>
       </td>
       <td>
         <% b.authors.each do |a| %>
@@ -32,9 +32,9 @@
       </td>
       <td>
         <% if librarian_user? %>
-          <%= link_to "edit", edit_book_path(b) %> 
+          <%= link_to "edit", edit_book_path(b) %>
           <% if admin_user? %>
-            <%= link_to "delete", book_path(b), method: :delete, data: {confirm: "Are you sure you want to delete this book?"} %> 
+            <%= link_to "delete", book_path(b), method: :delete, data: {confirm: "Are you sure you want to delete this book?"} %>
           <% end %>
         <% end %>
       </td>
