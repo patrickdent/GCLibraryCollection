@@ -14,10 +14,25 @@
     <%= f.text_field :username %>
   <small>A username can be used as your identifier when you login, instead of an email address.</small>
   </fieldset>
-  
+
   <fieldset>
     <%= f.label :name, "Legal Name" %>
     <%= f.text_field :name, required: true  %>
+  </fieldset>
+
+  <fieldset>
+    <%= f.label :preferred_first_name %>
+    <%= f.text_field :preferred_first_name  %>
+  </fieldset>
+
+  <fieldset>
+    <%= f.label :address, "Mailing Address" %>
+    <%= f.text_field :address, required: true  %>
+  </fieldset>
+
+  <fieldset>
+    <%= f.label :phone %>
+    <%= f.text_field :phone, required: true  %>
   </fieldset>
 
   <fieldset>
@@ -30,7 +45,13 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </fieldset>
 
-  <%= f.submit "Sign up", class: "" %>
+  <fieldset>
+    <%= f.submit "sign up", class: "" %>
+  </fieldset>
 <% end %>
+
+<small>Note: before you can borrow your first book, you'll need to show a photo ID to a librarian. If you don't have a state-issued ID, talk to the librarian about alternatives.</small>
+
+<br>
 
 <%= render "devise/shared/links" %>

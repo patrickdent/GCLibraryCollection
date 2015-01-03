@@ -16,8 +16,8 @@
     <% role = "admin" if u.has_role? :admin %>
     <tr>
       <td><%= role || "patron" %></td>
-      <td><%= link_to (u.preferred_first_name|| u.name.split.first), user_path(u.id) %></td>
-      <td><%= link_to (u.name || "user"), user_path(u.id) %></td>
+      <td><%= link_to u.pref_name, user_path(u.id) %></td>
+      <td><%= link_to u.name, user_path(u.id) %></td>
       <td><%= "*" if u.notes %></td>
       <td><%= "X" if u.do_not_lend %></td>
       <td>
