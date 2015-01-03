@@ -5,10 +5,12 @@ LibraryCollection::Application.routes.draw do
   resources :authors
   resources :keywords
   resources :book_uploads, only: [:new, :create]
+  resources :user_uploads, only: [:new, :create]
   resources :users, only: [ :update, :destroy, :edit, :show, :index ], path: 'manage_users'
   resources :loans, only: [ :show, :index, :new, :create ]
 
   get 'uploaded_books' => 'book_uploads#uploaded_books'
+  get 'uploaded_users' => 'user_uploads#uploaded_users'
   get 'search' => 'search#search'
   get 'import' => 'search#import'
   post 'scrape' => 'search#scrape'
