@@ -9,8 +9,8 @@ describe "Loan Pages" do
 
   describe 'index' do
     before do
-      librarian_login 
-      @loan = create(:loan, user_id: user.id, book_id: book.id) 
+      librarian_login
+      @loan = create(:loan, user_id: user.id, book_id: book.id)
       visit loans_path
     end
 
@@ -21,14 +21,14 @@ describe "Loan Pages" do
     it "displays due date" do expect(page).to have_content(@loan.due_date) end
     it "displays return date" do expect(page).to have_content(@loan.returned_date) end
     it "displays renewals" do expect(page).to have_content(@loan.renewal_count) end
-  end 
+  end
 
   describe 'show' do
 
     context 'active loan' do
       before do
-        librarian_login 
-        @loan = create(:loan, user_id: user.id, book_id: book.id) 
+        librarian_login
+        @loan = create(:loan, user_id: user.id, book_id: book.id)
         visit loan_path(@loan.id)
       end
 
@@ -37,13 +37,12 @@ describe "Loan Pages" do
       it "displays start date" do expect(page).to have_content(@loan.start_date) end
       it "displays due date" do expect(page).to have_content(@loan.due_date) end
       it "displays renewals" do expect(page).to have_content(@loan.renewal_count) end
-      it "doesn't display return date" do expect(page).to_not have_content('Returned:') end
     end
 
     context 'returned loan' do
       before do
-        librarian_login 
-        @loan = create(:loan, user_id: user.id, book_id: book.id) 
+        librarian_login
+        @loan = create(:loan, user_id: user.id, book_id: book.id)
         @loan.return_loan
         visit loan_path(@loan.id)
       end
@@ -55,8 +54,8 @@ describe "Loan Pages" do
   describe 'loan_list' do
     context 'on user#show' do
       before do
-        librarian_login 
-        @loan = create(:loan, user_id: user.id, book_id: book.id) 
+        librarian_login
+        @loan = create(:loan, user_id: user.id, book_id: book.id)
         visit user_path(user.id)
       end
 
@@ -68,8 +67,8 @@ describe "Loan Pages" do
 
     context 'on book#show' do
       before do
-        librarian_login 
-        @loan = create(:loan, user_id: user.id, book_id: book.id) 
+        librarian_login
+        @loan = create(:loan, user_id: user.id, book_id: book.id)
         visit book_path(book.id)
       end
 
@@ -78,5 +77,5 @@ describe "Loan Pages" do
       it "displays due date" do expect(page).to have_content(@loan.due_date.to_s) end
       it "displays renewals" do expect(page).to have_content(@loan.renewal_count) end
     end
-  end  
+  end
 end
