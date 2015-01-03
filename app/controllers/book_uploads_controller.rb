@@ -10,10 +10,10 @@ class BookUploadsController < ApplicationController
 
   def new
     @book_upload = BookUpload.new
-    @genre = Genre.new 
+    @genre = Genre.new
   end
 
-  def create  
+  def create
      if BookUpload.import_requirements?(params)
       @book_upload = BookUpload.new(book_uploads_params)
       genre = Genre.find_by(name: params[:book_upload][:genre])
@@ -25,7 +25,7 @@ class BookUploadsController < ApplicationController
         redirect_to new_book_upload_path
       end
     else
-      flash[:error] = "Please select a file and genre"
+      flash[:alert] = "Please select a file and genre"
       redirect_to new_book_upload_path
     end
   end

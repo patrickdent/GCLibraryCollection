@@ -1,8 +1,8 @@
 <h2>Author: <%= @author.name %></h2>
 
 <% if admin_user? %>
-  <%= link_to "Edit Author", edit_author_path(@author) %>
-  <%= link_to "Delete", author_path(@author), method: :delete, data: {confirm: "Are you sure you want to delete this author?"}, class: "" %> 
+  <%= link_to "Edit Author", edit_author_path(@author), class: "meh-btn right"  %>
+  <%= link_to "Delete", author_path(@author), method: :delete, data: {confirm: "Are you sure you want to delete this author?"}, class: "danger-btn right" %>
 <% end %>
 
 <table class="index tablesorter">
@@ -25,17 +25,17 @@
         <td>
           <% if b.genre %>
             <%= link_to b.genre.name, genre_path(b.genre) %>
-          <% end %> 
+          <% end %>
         </td>
         <td>
           <% if librarian_user? %>
-            <%= link_to "edit", edit_book_path(b) %> 
+            <%= link_to "edit", edit_book_path(b) %>
             <% if admin_user? %>
-              <%= link_to "delete", book_path(b), method: :delete, data: {confirm: "Are you sure you want to delete this book?"} %> 
+              <%= link_to "delete", book_path(b), method: :delete, data: {confirm: "Are you sure you want to delete this book?"} %>
             <% end %>
         <% end %>
         </td>
       </tr>
     <% end %>
-  </tbody>  
+  </tbody>
 </table>

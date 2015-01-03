@@ -71,6 +71,7 @@ describe "User Pages" do
 
         it "displays user name" do expect(subject).to have_selector('h2', text: @librarian.name) end
         it "has edit login link" do expect(subject).to have_link("edit login information") end
+        it "doesn't have notes field" do expect(subject).to_not have_content("notes:") end
       end
 
       context "as admin" do
@@ -83,11 +84,13 @@ describe "User Pages" do
         it "displays user name" do expect(subject).to have_selector('h2', text: @admin.name) end
         it "has edit login link" do expect(subject).to have_link("edit login information") end
         it "doesn't have delete link" do expect(subject).to_not have_link("Delete") end
+        it "doesn't have notes field" do expect(subject).to_not have_content("notes:") end
       end
 
       context "as patron" do
 
         before do
+          create(:loan, user_id: @user.id, book_id: (create :book).id )
           login_as(@user, scope: :user)
           visit user_path(@user.id)
         end
@@ -95,6 +98,9 @@ describe "User Pages" do
         it "displays user name" do expect(subject).to have_selector('h2', text: @user.name) end
         it "has edit login link" do expect(subject).to have_link("edit login information") end
         it "doesn't flash error" do expect(subject).to_not have_content("You are not authorized") end
+        it "doesn't have notes field" do expect(subject).to_not have_content("notes:") end
+        it "doesn't have renew button" do expect(subject).to_not have_button("renew") end
+        it "doesn't have return button" do expect(subject).to_not have_button("return") end
       end
     end
   end

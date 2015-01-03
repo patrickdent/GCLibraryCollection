@@ -20,21 +20,23 @@ keywords = Keyword.create([{ name: 'good' },
 
 @int = 0
 books.each do |b|
-  b.keywords << keywords[(@int += 1) % keywords.count]
-  b.keywords << keywords[(@int += 1) % keywords.count]
+  BookKeyword.create(book: b, keyword: keywords[(@int += 1) % keywords.count])
+  BookKeyword.create(book: b, keyword: keywords[(@int += 1) % keywords.count])
 end
 
-@int = 0
+
+#assigns a couple cute name books to cute name authors
 authors.each do |a|
-  a.books << books[(@int += 1) % books.count]
-  a.books << books[(@int += 1) % books.count]
+  BookAuthor.create(book: books[(@int += 1) % books.count], author: a)
+  BookAuthor.create(book: books[(@int += 1) % books.count], author: a)
 end
 
-@int = 0
+
+#a bunch of extra test books assigned to authors
 (1..100).each do |i|
-  authors[@int % authors.count].books << 
-                          Book.create(title: "Test Book #{i}", 
-                                      genre: genres[(@int += 1) % genres.count])
+  BookAuthor.create(author: authors[i % authors.count], 
+                    book: Book.create(title: "Test Book #{i}", 
+                                      genre: genres[i % genres.count]))
 end
 
 u = User.new(

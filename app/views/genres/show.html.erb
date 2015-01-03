@@ -1,8 +1,8 @@
 <h2>Genre: <%= @genre.name %> <% if @genre.abbreviation then %> | <%= @genre.abbreviation%> <% end %></h2>
 
 <% if admin_user? %>
-  <%= link_to "Edit Genre", edit_genre_path(@genre), class: "" %>
-  <%= link_to "Delete", genre_path(@genre), method: :delete, data: {confirm: "Are you sure you want to delete this genre?"}, class: "" %> 
+  <%= link_to "Edit Genre", edit_genre_path(@genre), class: "meh-btn right" %>
+  <%= link_to "Delete", genre_path(@genre), method: :delete, data: {confirm: "Are you sure you want to delete this genre?"}, class: "danger-btn right" %>
 <% end %>
 
 <table class="index tablesorter">
@@ -28,13 +28,13 @@
         </td>
         <td>
           <% if librarian_user? %>
-            <%= link_to "edit", edit_book_path(b) %> 
+            <%= link_to "edit", edit_book_path(b)  %>
             <% if admin_user? %>
-              <%= link_to "delete", book_path(b), method: :delete, data: {confirm: "Are you sure you want to delete this book?"} %> 
+              <%= link_to "delete", book_path(b), method: :delete, data: {confirm: "Are you sure you want to delete this book?"} %>
             <% end %>
           <% end %>
         </td>
       </tr>
     <% end %>
-  </tbody>  
+  </tbody>
 </table>

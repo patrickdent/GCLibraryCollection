@@ -1,57 +1,58 @@
 # spec/controllers/search_controller_spec.rb
-require 'spec_helper' 
+require 'spec_helper'
 require 'support/api_utilities'
 
 describe SearchController do
 
-  describe '#search' do 
+  describe '#search' do
 
-    it 'returns results for good search terms' do 
+    it 'returns results for good search terms' do
       keyword = FactoryGirl.create(:keyword)
       get :search, "search" => "boogers"
       response.should be_ok
       expect(assigns[:keywords]).to include(keyword)
-    end 
+    end
 
-    it 'returns results for good, multi-word search terms' do 
+    it 'returns results for good, multi-word search terms' do
       book = FactoryGirl.create(:book, title: "The True Story of Those Boots")
       get :search, "search" => "True Boots"
       response.should be_ok
       expect(assigns[:books]).to include(book)
-    end 
+    end
 
-    it 'returns nothing for unsuccessful searches' do 
+    it 'returns nothing for unsuccessful searches' do
       get :search, search: "Pegasus"
       response.should be_ok
       expect(assigns[:authors].empty?).to be_true
-    end 
+    end
 
-    it 'redirects with notice for nil search terms' do 
+    it 'redirects with alert for nil search terms' do
       get :search, search: ""
-      flash[:notice].should_not be_nil
+      flash[:alert].should_not be_nil
       response.should redirect_to root_url
-    end 
+    end
 
-  end 
+  end
 
   describe 'scrape' do
 
-  before do 
+  before do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
     @user = create :user
-    @admin = create :admin 
+    @admin = create :admin
     @isbn = "1234567890"
+    @bad_input = "1234567890 1-2"
     create_google_stub(create_google_url(@isbn), "exists")
-  end 
+  end
 
-  after do 
+  after do
     DatabaseCleaner.clean
-  end 
+  end
 
-  after :each do 
-    Warden.test_reset! 
-  end 
+  after :each do
+    Warden.test_reset!
+  end
 
 
     context 'as non-admin' do
@@ -69,6 +70,13 @@ describe SearchController do
 
       before { sign_in @admin }
 
+      describe 'validations' do
+        it 'for isbn 10' do
+          post :scrape, isbn: @bad_input
+          expect(response).to redirect_to(import_path)
+        end
+      end
+
       context 'success' do
         it 'redirects to edit book' do
           post :scrape, isbn: @isbn
@@ -85,4 +93,4 @@ describe SearchController do
       end
     end
   end
-end 
+end

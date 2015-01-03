@@ -1,27 +1,27 @@
 /*left side area styles*/
 .left-content {
-		margin-top: 12em;
-		text-align: right;
-		h2 {
-			font-size: 2.5em;
-			color: $black;
-		}
-		a:hover {
-			color: $green;
-			font-size: 110%;
-			border: none;
-		}
-    .large-icon {
-      font-size: 2.5rem;
-      display: block;
-    }
-		.large-icon:hover {
-			color: $orange;
-      font-size: 2.5rem;
-    }
-    .fa:hover {
-      border-bottom: 1px black solid;
-    }
+	margin-top: 6rem;
+	text-align: right;
+	h2 {
+		font-size: 2.5em;
+		color: $black;
+	}
+	a:hover {
+		color: $green;
+		font-size: 110%;
+		border: none;
+	}
+  .large-icon {
+    font-size: 2.5rem;
+    display: block;
+  }
+	.large-icon:hover {
+		color: $orange;
+    font-size: 2.5rem;
+  }
+  .fa:hover {
+    border-bottom: 1px black solid;
+  }
 }
 
 /*search form*/
@@ -47,15 +47,17 @@
 }
 
 /*right side styles*/
+.column-2 {
+  position: relative;
+}
 span.vertical {
 	font-size: 6em;
 	color: $lightest_gray;
- 	display:inline-block; 
+ 	display:inline-block;
 	position:fixed;
-	top: 5.25em;
-	right: 1.65em;
+	top: -.75em;
+  transform: rotate(90deg);
  	-webkit-transform: rotate(90deg);
  	-moz-transform:rotate(90deg);
- 	transform: rotate(90deg);
- 	transform-origin: top right;
+ 	transform-origin: bottom left;
 }
