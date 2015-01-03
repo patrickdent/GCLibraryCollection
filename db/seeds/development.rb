@@ -38,24 +38,33 @@ end
 u = User.new(
   email: "admin@example.com",
   password: "password",
+  password_confirmation: "password",
   preferred_first_name: "Adonis",
-  name: "Ad Meownistrator")
+  name: "Ad Meownistrator",
+  address: "99 SoftPaws Ln, Seattle, WA 98122",
+  phone: "206-999-0909")
 u.add_role :admin
-u.save!(:validate => false)
+u.save!
 
 u = User.new(
   email: "librarian@example.com",
   password: "password",
-  name: "Dewey Decimeowl")
+  password_confirmation: "password",
+  name: "Dewey Decimeowl",
+  address: "99 SoftPaws Ln, Seattle, WA 98122",
+  phone: "206-999-0909")
 u.add_role :librarian
-u.save!(:validate => false)
+u.save!
 
 u = User.new(
   email:  "user@example.com",
   password: "password",
+  password_confirmation: "password",
   preferred_first_name: "Murray",
-  name: "Marie Purrie")
-u.save!(:validate => false)
+  name: "Marie Purrie",
+  address: "99 SoftPaws Ln, Seattle, WA 98122",
+  phone: "206-999-0909")
+u.save!
 
 l = Loan.new(
   user_id: User.last.id,

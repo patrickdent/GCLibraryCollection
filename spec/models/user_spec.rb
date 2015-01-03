@@ -31,19 +31,9 @@ describe User do
   end
 
   describe "borrowing requirements" do
-    it "should require name to borrow" do
-      u = FactoryGirl.create :user, email: "purr@example.com", name: nil
-      expect(u.good_to_borrow?).to be_nil
-    end
-
-    it "should require one type of contact information to borrow" do
-      u = FactoryGirl.create :user, email: "", phone: nil, name: nil
-      expect(u.good_to_borrow?).to be_nil
-    end
-
     it "should require that do_not_lend is not true to borrow" do
       u = FactoryGirl.create :user, do_not_lend: true
-      expect(u.good_to_borrow?).to be_nil
+      expect(u.good_to_borrow?).to be_false
     end
   end
 end

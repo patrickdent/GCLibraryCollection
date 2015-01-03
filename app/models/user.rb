@@ -5,6 +5,10 @@ class User < ActiveRecord::Base
   attr_accessor :login
   validates :username, uniqueness: {case_sensitive: false, allow_nil: true, allow_blank: true}
   validates :email, uniqueness: {case_sensitive: false, allow_nil: true, allow_blank: true}
+  validates :name, presence: true
+  validates :address, presence: true
+  validates :phone, presence: true
+
   has_many :loans
   has_many :books, through: :loans
 
@@ -30,9 +34,7 @@ class User < ActiveRecord::Base
 
   def good_to_borrow?
     #organization-specific borrowing rules
-    if self.name && (self.email || self.phone) && !self.do_not_lend && self.loans.active.count < 5
-      true
-    end
+    self.name && (self.email || self.phone) && !self.do_not_lend && self.loans.active.count < 5
   end
 
   def pref_name
