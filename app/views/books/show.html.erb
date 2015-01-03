@@ -9,33 +9,29 @@
     <ul>
     <% @book.authors.each do |a| %>
       <li><%= link_to a.name, author_path(a) %> </li>
-      <% end %> 
+      <% end %>
     </ul>
 
   <p>ISBN: <%= @book.isbn %></p>
   <p>
-  Genre: 
+  Genre:
   <% if @book.genre %>
     <%= link_to @book.genre.name, genre_path(@book.genre) %>
-  <% end %> 
+  <% end %>
   </p>
   <p>Keyword(s): </p>
     <ul>
     <% @book.keywords.each do |k| %>
       <li><%= link_to k.name, keyword_path(k) %> </li>
-      <% end %> 
+      <% end %>
     </ul>
 </div>
 
+  <%= link_to "Loan Book", new_loan_path(book_id: @book.id), id: "new-book-loan-link", remote: true, class: "go-btn right" if librarian_user? %>
+  <%= link_to "Delete", book_path(@book), method: :delete, class: "danger-btn right", data: {confirm: "Are you sure you want to delete this book?"} if admin_user? %>
+  <%= link_to "Edit This Book", edit_book_path(@book), class: "right meh-btn" if librarian_user? %>
+
 <% if librarian_user? %>
-  <%= link_to "Loan Book", new_loan_path(book_id: @book.id), id: "new-book-loan-link", remote: true %>
-
-  <h3>Loan History:</h3>
+  <h3 class="clear">Loan History:</h3>
   <%= render 'loans/loan_list.html.erb' %>
-
-  <br />
-  <%= link_to "Edit This Book", edit_book_path(@book), class: "right btn2" %>
-<% end %>
-<% if admin_user? %>
-  <%= link_to "Delete", book_path(@book), method: :delete, data: {confirm: "Are you sure you want to delete this book?"}, class: "" %> 
 <% end %>

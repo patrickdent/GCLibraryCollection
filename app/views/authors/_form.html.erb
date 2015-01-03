@@ -1,17 +1,17 @@
 <%= form_for @author do |f| %>
-    <fieldset>
-    	<%= f.label :name %> 
-    	<%= f.text_field :name %> 
-    </fieldset>
+  <fieldset>
+  	<%= f.label :name %>
+  	<%= f.text_field :name %>
+  </fieldset>
 
-    <fieldset>
-    	<%= f.label :sort_by %>
-    	<% if params[:action] == "new" %>
-    	  <%= f.text_field :sort_by %> 
-    	<% else %>
-    	  <%= f.select :sort_by, collection: @author.name.split %>  
-    	<% end %> 
-    </fieldset>
-    
-    	<%= f.submit "submit"%>
+  <fieldset>
+  	<%= f.label :sort_by %>
+  	<% if params[:action] == "new" %>
+  	  <%= f.text_field :sort_by %>
+  	<% else %>
+  	  <%= f.select :sort_by, @author.name.split %>
+  	<% end %>
+  </fieldset>
+
+  	<%= f.submit "submit"%>
 <% end %>
