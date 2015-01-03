@@ -1,0 +1,10 @@
+<h2>Upload Users</h2>
+
+<h3>Upload .csv or .txt File</h3>
+<%= form_for @user_upload do |u| %>
+  <fieldset>
+    <%= u.file_field :file %>
+  </fieldset>
+  
+  <%= u.submit "upload file" %>
+<% end %>
