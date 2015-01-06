@@ -88,16 +88,6 @@ td > a:hover {
 	border-bottom: 1px solid black;
 }
 
-.go-btn {
-	@include big_button($light_green, $green, $dark_green);
-}
 
-.meh-btn {
-	@include little_button($light_gray, $med_gray, $darkest_gray);
-}
-
-.danger-btn {
-	@include little_button($yellow, $orange, $red);
-}
 
 .clear {clear: both;}

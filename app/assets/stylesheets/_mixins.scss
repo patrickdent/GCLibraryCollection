@@ -28,6 +28,7 @@
   text-decoration: none;
   margin: 0.25rem;
   border: 1px solid $med;
+  border-radius: 6px;
   &:hover {
     background: $light;
     background-image: -webkit-linear-gradient(top, $light, $med );
@@ -54,6 +55,7 @@
   text-decoration: none;
   margin: 0.25rem;
   border: 1px solid $med;
+  border-radius: 6px;
   &:hover {
     background: $light;
     background-image: -webkit-linear-gradient(top, $light, $med );
