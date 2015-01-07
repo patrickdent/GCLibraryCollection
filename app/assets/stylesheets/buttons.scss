@@ -1,37 +1,24 @@
 //basic button styles
 
-.btn, .btn2 {
+.btn {
   font-size: 1.5em;
   background: none;
   border: none;
 }
 
-.btn:hover, .btn2:hover, a:hover {
+.btn:hover, a:hover {
   color: $green;
   border-bottom: 1px solid black;
 }
 
-.onward {
-  color: green;
-}
-
-.retreat {
-  color: $orange;
-  margin-left: 2em;
-}
-
-.retreat:hover {
-  color: $red;
-}
-
 .go-btn {
-  @include little_button($light_green, $green, $dark_green);
+  @include little_button($green, $dark_green);
 }
 
 .meh-btn {
-  @include little_button($light_gray, $med_gray, $darkest_gray);
+  @include little_button($med_gray, $darkest_gray);
 }
 
 .danger-btn {
-  @include little_button($yellow, $orange, $red);
+  @include little_button($orange, $red);
 }
