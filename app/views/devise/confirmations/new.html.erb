@@ -8,7 +8,9 @@
     <%= f.email_field :email, autofocus: true %>
   </fieldset>
 
-  <%= f.submit "Resend confirmation instructions" %>
+  <fieldset>
+    <%= f.submit "Resend confirmation instructions" %>
+  </fieldset>
 <% end %>
 
 <%= render "devise/shared/links" %>

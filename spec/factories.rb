@@ -31,6 +31,8 @@ FactoryGirl.define do
     sequence :name do |n|
       "Meowlexander the #{n}"
     end
+    address "99 SoftPaws Ln, Seattle, WA 98122"
+    phone "206-999-0909"
     password "password"
     password_confirmation "password"
   end
@@ -39,6 +41,11 @@ FactoryGirl.define do
     sequence :email do |n|
       "librarianuser#{n}@example.com"
     end
+    sequence :name do |n|
+      "Walt Whiskman the #{n}"
+    end
+    address "99 SoftPaws Ln, Seattle, WA 98122"
+    phone "206-999-0909"
     password "password"
     password_confirmation "password"
     after(:create) {|user| user.add_role(:librarian) }
@@ -48,6 +55,11 @@ FactoryGirl.define do
     sequence :email do |n|
       "adminuser#{n}@example.com"
     end
+    sequence :name do |n|
+      "Genghis Yawn the #{n}"
+    end
+    address "99 SoftPaws Ln, Seattle, WA 98122"
+    phone "206-999-0909"
     password "password"
     password_confirmation "password"
     after(:create) {|user| user.add_role(:admin) }
