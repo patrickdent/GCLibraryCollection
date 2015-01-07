@@ -1,14 +1,18 @@
 <h2><%= @user.name %></h2>
 
 <div class="show">
-  <p>email: <%= @user.email %>
   <% if current_user == @user %>
-  <%= link_to "edit login information", edit_user_registration_path, class: "right" %></p>
+    <p><%= link_to "edit login information", edit_user_registration_path, class: "right" %></p>
   <% end %>
+  <p>email: <%= @user.email %></p>
+  <p>preferred first name: <%= @user.preferred_first_name %></p>
   <p>name: <%= @user.name %></p>
   <p>phone: <%= @user.phone %></p>
   <p>address: <%= @user.address %></p>
+  <p>id: <%= @user.identification %></p>
+  <% if current_user != @user %>
   <p>notes: <%= @user.notes %></p>
+  <% end %>
   <p><%= "DO NOT LEND" if @user.do_not_lend %>
 </div>
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141209061157) do
+ActiveRecord::Schema.define(version: 20150103182435) do
 
   create_table "authors", force: true do |t|
     t.string   "name"
@@ -116,7 +116,7 @@ ActiveRecord::Schema.define(version: 20141209061157) do
     t.text     "notes"
     t.string   "name"
     t.string   "phone"
-    t.string   "sort_by"
+    t.string   "preferred_first_name"
     t.text     "address"
     t.string   "identification"
     t.boolean  "do_not_lend"

@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all.order('sort_by ASC')
+    @users = User.all.order('name ASC')
   end
 
   def update
@@ -54,6 +54,20 @@ class UsersController < ApplicationController
       flash[:error] = "Delete Failed"
       redirect_to users_path
     end
+  end
+
+  def send_reminders
+    User.all.each do |u|
+      if !u.loans.overdue.empty?
+        if !u.email.blank?
+          OverdueMailer.overdue_reminder(u).deliver
+        else
+          # add user to a list, return that list with the success view/popup
+        end
+      end
+    end
+    flash[:notice] = "Mail successfully sent"
+    redirect_to :back
   end
 
   private

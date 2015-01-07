@@ -31,7 +31,7 @@
       <td>
         <% if l.returned_date %>
           <%= l.returned_date %>
-        <% else %> 
+        <% elsif librarian_user? %> 
           <%= button_to 'return', return_path(id: l.id), data: {confirm: "Are you sure you want to return this book?"} %>
         <% end %>
       </td>
@@ -39,7 +39,7 @@
         <%= l.renewal_count %> 
       </td>
       <td>  
-        <% if !l.returned_date && (l.renewal_count < Loan::MAX_RENEWALS) %>
+        <% if !l.returned_date && (l.renewal_count < Loan::MAX_RENEWALS) && librarian_user? %>
           <%= button_to 'renew now', renew_path(id: l.id), data: {confirm: "Are you sure you want to renew this loan?"} %>
         <% end %>
       </td>

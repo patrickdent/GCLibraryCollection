@@ -69,4 +69,10 @@ class LoansController < ApplicationController
   def index
     @loans = Loan.all
   end
+
+  def overdue_list 
+    @loans = Loan.overdue 
+    @overdue_list_view = true 
+    render :index 
+  end 
 end

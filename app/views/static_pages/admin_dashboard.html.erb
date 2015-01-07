@@ -1,7 +1,7 @@
 <h2>Dashboard</h2>
 
 <div class="show">
-  <ul>
+  <ul class="dashboard-links">
     <% if admin_user? %>
     <li><%= link_to "Upload Books From File", new_book_upload_path %></li>
     <li><%= link_to "Import Books From Web", import_path %></li>
@@ -12,5 +12,6 @@
     <li><%= link_to "Manage Keywords", keywords_path %></li>
     <li><%= link_to "Manage Users", users_path %></li>
     <li><%= link_to "Manage Loans", loans_path %></li>
+    <li><%= link_to "View Overdue Loans", overdue_list_path %></li>
   </ul>
 </div>
