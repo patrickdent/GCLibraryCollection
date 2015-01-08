@@ -42,14 +42,12 @@ class UserUpload < ActiveRecord::Base
     return if User.find_by_email(user_data["e-mail"])
     if user_data["e-mail"]
       user = User.create( name: user_data["name"],
-                          sort_by: user_data["sort by"],
                           address: user_data["address"],
                           email: user_data["e-mail"],
                           phone: user_data["phone"],
                           password: "password" )
     else
       user = User.create( name: user_data["name"],
-                    sort_by: user_data["sort by"],
                     address: user_data["address"],
                     username: user_data["name"].join,
                     phone: user_data["phone"],
