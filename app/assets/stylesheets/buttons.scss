@@ -22,3 +22,7 @@
 .danger-btn {
   @include little_button($orange, $red);
 }
+
+.cancel {
+  margin-left: 2rem;
+}
