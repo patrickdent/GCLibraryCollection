@@ -41,6 +41,7 @@ end
 
 # an admin user 
 u = User.new(
+  name: "Ani Meowl-Oakly",
   email: "admin@example.com",
   password: 'password')
 u.add_role :admin

@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
   end
 
   def pref_name
-    preferred_first_name|| name.split.first
+    preferred_first_name || name.split.first
   end
 
 end
