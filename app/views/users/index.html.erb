@@ -4,8 +4,8 @@
   <thead>
     <tr>
       <th>role</th>
-      <th>user name</th>
-      <th>sort name</th>
+      <th>preferred name</th>
+      <th>legal name</th>
       <th>notes</th>
       <th>do not lend</th>
     </tr>
@@ -16,8 +16,8 @@
     <% role = "admin" if u.has_role? :admin %>
     <tr>
       <td><%= role || "patron" %></td>
-      <td><%= link_to (u.name || "user"), user_path(u.id) %></td>
-      <td><%= u.sort_by %></td>
+      <td><%= link_to u.pref_name, user_path(u.id) %></td>
+      <td><%= link_to u.name, user_path(u.id) %></td>
       <td><%= "*" if u.notes %></td>
       <td><%= "X" if u.do_not_lend %></td>
       <td>

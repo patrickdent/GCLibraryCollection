@@ -22,6 +22,9 @@
   .fa:hover {
     border-bottom: 1px black solid;
   }
+  .fa-home {
+    font-size: 1.25em;
+  }
 }
 
 /*search form*/
@@ -40,6 +43,9 @@
 	input[type="text"] {
 	  text-align: right;
 	  height: 2em;
+    width: 80%;
+    padding: .5em;
+    font-size: 1em;
 	}
 	label {
 	  visibility: hidden;

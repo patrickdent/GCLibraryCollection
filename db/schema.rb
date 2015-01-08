@@ -122,7 +122,7 @@ ActiveRecord::Schema.define(version: 20150103182654) do
     t.text     "notes"
     t.string   "name"
     t.string   "phone"
-    t.string   "sort_by"
+    t.string   "preferred_first_name"
     t.text     "address"
     t.string   "identification"
     t.boolean  "do_not_lend"

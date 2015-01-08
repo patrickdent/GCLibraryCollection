@@ -40,7 +40,7 @@
 		input[type="submit"] {
 			clear: both;
 			float: right;
-			@include big_button($light_green, $green, $dark_green);
+			@include little_button($green, $dark_green);
 	  }
 		::-webkit-input-placeholder {
     	font-size: 1.25em;

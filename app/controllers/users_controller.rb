@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all.order('sort_by ASC')
+    @users = User.all.order('name ASC')
   end
 
   def update
