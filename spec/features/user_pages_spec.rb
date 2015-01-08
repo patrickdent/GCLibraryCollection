@@ -8,7 +8,7 @@ describe 'User Pages', type: feature do
       admin_login
       visit users_path
       expect(page).to have_content("patron")
-      expect(page.all('table tbody tr').count).to eq(2)
+      expect(page.all('table tbody tr').count).to eq(User.all.length)
     end
   end
 end
