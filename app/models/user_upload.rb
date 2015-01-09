@@ -49,7 +49,7 @@ class UserUpload < ActiveRecord::Base
     else
       user = User.create( name: user_data["name"],
                     address: user_data["address"],
-                    username: user_data["name"].join,
+                    username: user_data["name"].delete(" "),
                     phone: user_data["phone"],
                     password: "password" )
     end
