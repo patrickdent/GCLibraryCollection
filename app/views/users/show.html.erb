@@ -1,6 +1,9 @@
 <h2><%= @user.name %></h2>
 
 <div class="show">
+  <% if librarian_user? && !@user.identification %>
+    <p class= "highlighted_text">PLEASE CHECK AND ENTER USER'S ID NUMBER</p>
+  <% end %>
   <% if current_user == @user %>
     <p><%= link_to "edit login information", edit_user_registration_path, class: "right" %></p>
   <% end %>
