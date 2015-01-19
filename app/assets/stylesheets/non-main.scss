@@ -1,8 +1,10 @@
 /*left side area styles*/
 .left-content {
 	margin-top: 4.5rem;
-  margin-bottom: 1em;
+  margin-bottom: 2em;
 	text-align: right;
+  overflow: auto;
+  height: 100%;
 	h2 {
 		font-size: 2.5em;
 		color: $black;
