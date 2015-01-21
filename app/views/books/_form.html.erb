@@ -6,7 +6,7 @@
     	<%= f.text_field :title, disabled: disabled %>
     </fieldset>
     <fieldset>
-    	<%= f.label :genre %> 
+    	<%= f.label :category %> 
     	<%= f.select :genre_id, Genre.all.collect { |n| [n.name, n.id] }, {}, multiple: false, class: "chosen-select" %>
     </fieldset>
     <fieldset>
