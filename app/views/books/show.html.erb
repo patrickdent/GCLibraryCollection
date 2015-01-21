@@ -14,7 +14,7 @@
 
   <p>ISBN: <%= @book.isbn %></p>
   <p>
-  Genre:
+  Category:
   <% if @book.genre %>
     <%= link_to @book.genre.name, genre_path(@book.genre) %>
   <% end %>
