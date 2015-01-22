@@ -2,26 +2,27 @@ require 'spec_helper'
 
 describe LoansController do
 
-  before do 
+  before do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
     @book = create :book
     @user = create :user
+    @complete_user = create :user, identification: "MIAO-MIAO-99"
     @librarian = create :librarian
     @loan = create(:loan, user_id: @user.id, book_id: @book.id)
-  end 
+  end
 
   before(:each) do
     request.env["HTTP_REFERER"] = root_path
   end
 
-  after do 
+  after do
     DatabaseCleaner.clean
-  end 
+  end
 
-  after :each do 
-    Warden.test_reset! 
-  end 
+  after :each do
+    Warden.test_reset!
+  end
 
   describe "POST 'create'" do
     context "as non-librarian" do
@@ -36,11 +37,15 @@ describe LoansController do
       before { sign_in @librarian }
 
       it "redirects to :back" do
-        expect(post :create, loan: {user_id: @user.id, book_id: @book.id}).to redirect_to(root_path)
+        expect(post :create, loan: {user_id: @complete_user.id, book_id: @book.id}).to redirect_to(root_path)
       end
 
-      it "creates a new loan" do
-        expect { post :create, loan: { user_id: @user.id, book_id: @book.id } }.to change(Loan, :count).by(1)
+      it "creates a new loan for a user who's good to borrow" do
+        expect { post :create, loan: { user_id: @complete_user.id, book_id: @book.id } }.to change(Loan, :count).by(1)
+      end
+
+      it "doesn't create a new loan for a user who isn't good to borrow" do
+        expect { post :create, loan: { user_id: @user.id, book_id: @book.id } }.to change(Loan, :count).by(0)
       end
     end
   end
@@ -51,7 +56,7 @@ describe LoansController do
 
       it 'redirects unauthorized user home' do
         expect(put :renew, id: @loan.id).to redirect_to(root_path)
-      end      
+      end
     end
 
     context 'as librarian' do
@@ -65,7 +70,7 @@ describe LoansController do
         original_date = @loan.due_date
         put :renew, id: @loan.id
         expect(@loan.reload.due_date).to_not eq(original_date)
-      end      
+      end
     end
   end
 
@@ -75,7 +80,7 @@ describe LoansController do
 
       it 'redirects unauthorized user home' do
         expect(put :return, id: @loan.id).to redirect_to(root_path)
-      end      
+      end
     end
 
     context 'as librarian' do
@@ -83,12 +88,12 @@ describe LoansController do
 
       it 'redirects to :back' do
         expect(put :return, id: @loan.id).to redirect_to(root_path)
-      end      
+      end
 
       it 'sets a returned_date' do
         put :return, id: @loan.id
         expect(@loan.reload.returned_date).to_not eq(nil)
-      end      
+      end
     end
   end
 
@@ -96,16 +101,16 @@ describe LoansController do
     context 'as non-librarian' do
 
       it 'redirects home for other user loans' do
-        @user2 = create :user 
+        @user2 = create :user
         sign_in @user2
         expect(get :show, id: @loan.id).to redirect_to(root_path)
-      end 
+      end
 
       it "doesn't redirect for own loans" do
         sign_in @user
         get :show, id: @loan.id
         expect(response).to_not be_redirect
-      end      
+      end
     end
 
     context 'as librarian' do
@@ -114,7 +119,7 @@ describe LoansController do
       it "doesn't redirect to home" do
         get :show, id: @loan.id
         expect(response).to_not be_redirect
-      end      
+      end
     end
   end
 
@@ -124,7 +129,7 @@ describe LoansController do
 
       it 'redirects home' do
         expect(get :index).to redirect_to(root_path)
-      end    
+      end
     end
 
     context 'as librarian' do
@@ -133,7 +138,7 @@ describe LoansController do
       it "doesn't redirect to home" do
         get :index
         expect(response).to_not be_redirect
-      end      
+      end
     end
   end
 end
