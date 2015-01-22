@@ -43,6 +43,6 @@ class User < ActiveRecord::Base
 
   def self.search(search)
     search_length = search.split.length
-    where([(['lower(pref_name) LIKE lower(?)'] * search_length).join(' AND ')] + search.split.map { |search| "%#{search}%" })
+    where([(['lower(preferred_first_name) LIKE lower(?)'] * search_length).join(' AND ')] + search.split.map { |search| "%#{search}%" })
   end
 end
