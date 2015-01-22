@@ -2,7 +2,7 @@
   <h2> Search Results </h2>
 
 
-  <% if @authors || @books || @genres || @keywords %>
+  <% if @authors || @books || @genres || @keywords || @users %>
     <h3>Authors:</h3>
     <div class="search-results">
       <ul>
@@ -40,6 +40,17 @@
         <% end %>
       </ul>
     </div>
+
+    <% if librarian_user? %>
+      <h3>Users:</h3>
+      <div class="search-results">
+        <ul>
+          <% @users.each do |k| %>
+            <li class="results"><%= link_to k.name, user_path(k.id) %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
   <% else %>
     <p> Your search yeilded no results. </p>
