@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
 
   def good_to_borrow?
     #organization-specific borrowing rules
-    self.name && (self.email || self.phone) && !self.do_not_lend && self.loans.active.count < 5
+    self.name && (self.email || self.phone) && self.identification && !self.do_not_lend && self.loans.active.count < 5
   end
 
   def pref_name

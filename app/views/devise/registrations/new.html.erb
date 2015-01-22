@@ -1,5 +1,7 @@
 <h2>Sign up</h2>
 
+<p>Create an account to borrow books from the library and view your borrowing history online.</p>
+
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
@@ -16,13 +18,20 @@
   </fieldset>
 
   <fieldset>
-    <%= f.label :name, "Legal Name" %>
-    <%= f.text_field :name, required: true  %>
+    <%= f.label :password %>
+    <%= f.password_field :password, autocomplete: "off" %>
   </fieldset>
 
   <fieldset>
-    <%= f.label :preferred_first_name %>
-    <%= f.text_field :preferred_first_name  %>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </fieldset>
+
+  <br>
+
+  <fieldset>
+    <%= f.label :name, "Full Legal Name" %>
+    <%= f.text_field :name, required: true  %>
   </fieldset>
 
   <fieldset>
@@ -36,13 +45,8 @@
   </fieldset>
 
   <fieldset>
-    <%= f.label :password %>
-    <%= f.password_field :password, autocomplete: "off" %>
-  </fieldset>
-
-  <fieldset>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%= f.label :preferred_first_name %>
+    <%= f.text_field :preferred_first_name  %>
   </fieldset>
 
   <fieldset>

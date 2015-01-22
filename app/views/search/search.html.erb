@@ -17,7 +17,12 @@
     <div class="search-results">
     <ul>
       <% @books.each do |b| %>
-        <li class="results"><%= link_to b.title, book_path(b.id) %></li>
+        <li class="results">
+        <% if librarian_user? %>
+          <%=  check_box_tag :selected, b.id, b.selected, id: "book-select_#{b.id}"  %>
+        <% end %>
+        <%= link_to b.title, book_path(b.id) %>
+        </li>
       <% end %>
     </ul>
     </div>
