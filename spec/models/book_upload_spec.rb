@@ -35,7 +35,7 @@ describe BookUpload do
     context 'with good file' do
 
       it 'returns an array of hashes' do
-        expect(@good_upload.load_imported_books.first).to have_key("title")
+        expect(@good_upload.load_uploaded_data.first).to have_key("title")
       end
     end 
   end

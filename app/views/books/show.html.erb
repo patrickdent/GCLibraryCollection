@@ -1,10 +1,10 @@
 <h2>Book: <%= @book.title %></h2>
 <h3> <%= @book.available ? "#{@book.count - @book.loans.active.count} available for checkout" : "unavailable for checkout" %> </h3>
+  <% if librarian_user? %>
+    <%=  check_box_tag :selected, @book.id, @book.selected, id: "book-select_#{@book.id}"  %> <small>Add to selected books</small>
+  <% end %>
 
 <div class="show">
-  <% if librarian_user? %>
-    <%=  check_box_tag :selected, @book.id, @book.selected, id: "book-select_#{@book.id}"  %>
-  <% end %>
   <p>Author(s): </p>
     <ul>
     <% @book.authors.each do |a| %>
@@ -14,7 +14,7 @@
 
   <p>ISBN: <%= @book.isbn %></p>
   <p>
-  Genre:
+  Category:
   <% if @book.genre %>
     <%= link_to @book.genre.name, genre_path(@book.genre) %>
   <% end %>
