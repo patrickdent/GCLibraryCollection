@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
     if @user.update(user_params)
       flash[:notice] = "Update Successful!"
-      redirect_to users_path
+      redirect_to user_path(@user)
     else
       flash[:error] = "Update Failed"
       redirect_to :back

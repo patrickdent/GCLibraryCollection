@@ -36,7 +36,7 @@ describe UserUpload do
     context 'with good file' do
 
       it 'returns an array of hashes' do
-        expect(@good_upload.load_uploaded_users.first).to have_key("name")
+        expect(@good_upload.load_uploaded_data.first).to have_key("name")
       end
     end 
   end

@@ -2,21 +2,21 @@
 <% disabled = false if admin_user? %>
 <%= form_for @book do |f| %>
     <fieldset>
-    	<%= f.label :title %> 
+    	<%= f.label :title %>
     	<%= f.text_field :title, disabled: disabled %>
     </fieldset>
     <fieldset>
-    	<%= f.label :genre %> 
-    	<%= f.select :genre_id, Genre.all.collect { |n| [n.name, n.id] }, {}, multiple: false, class: "chosen-select" %>
+    	<%= f.label :genre, "Category" %>
+    	<%= f.select :genre_id, Genre.all.collect { |n| [n.name, n.id] }, {}, multiple: false, class: "chosen-select", disabled: disabled %>
     </fieldset>
     <fieldset>
     	<%= f.label :author %>
-    	<%= f.select :author_ids, Author.all.collect { |a| [a.name, a.id] }, {}, multiple: true, class: "chosen-select" %>
+    	<%= f.select :author_ids, Author.all.collect { |a| [a.name, a.id] }, {}, multiple: true, class: "chosen-select", disabled: disabled %>
     </fieldset>
     <fieldset>
     	<%= f.label :keyword %>
     	<%= f.select :keyword_ids, Keyword.all.collect { |k| [k.name, k.id] }, {}, multiple: true, class: "chosen-select" %>
     </fieldset>
 
-    <%= f.submit "submit", class: "" %>
+    <%= f.submit "submit" %>
 <% end %>

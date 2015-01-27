@@ -28,9 +28,10 @@
       <% end %>
 
       <h2>browse</h2>
-      <h3><%= link_to "by keyword", keywords_path %></h3>
+      <h3><%= link_to "by title", books_path %></h3>
       <h3><%= link_to "by author", authors_path %></h3>
-      <h3><%= link_to "by genre", genres_path %></h3>
+      <h3><%= link_to "by keyword", keywords_path %></h3>
+      <h3><%= link_to "by category", genres_path %></h3>
     </div>
   </div>
 
@@ -53,7 +54,7 @@
             <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
           <% else %>
             <li><%= link_to "login", new_user_session_path %></li>
-            <li><%= link_to "sign up", new_user_registration_path %></li>
+            <li><%= link_to "create an account", new_user_registration_path %></li>
           <% end %>
 
           </ul>
