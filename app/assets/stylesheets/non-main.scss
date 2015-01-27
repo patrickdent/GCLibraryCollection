@@ -1,7 +1,12 @@
 /*left side area styles*/
 .left-content {
-	margin-top: 6rem;
+	margin-top: 5.5rem;
+  padding-right: .5em;
+  margin-bottom: 2em;
 	text-align: right;
+  overflow: auto;
+  height: 100%;
+  clear: both;
 	h2 {
 		font-size: 2.5em;
 		color: $black;
@@ -67,3 +72,4 @@ span.vertical {
  	-moz-transform:rotate(90deg);
  	transform-origin: bottom left;
 }
+
