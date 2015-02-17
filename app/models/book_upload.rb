@@ -31,7 +31,7 @@ class BookUpload < ActiveRecord::Base
   end
 
   def find_or_make_genre(genre_data)
-    if genre != "" && genre.downcase != "unassigned" then
+    if genre != "" && genre != "Unassigned" then
       return Genre.find_by_name(genre)
     end 
     genre_data = genre_data.split('/')
@@ -45,7 +45,7 @@ class BookUpload < ActiveRecord::Base
   end
   
   def self.import_requirements?(params)
-    params[:book_upload].has_key?(:file)
+    params[:book_upload].has_key?(:file) && params[:book_upload][:file] != nil
   end
 end
 
