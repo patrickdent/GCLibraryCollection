@@ -23,8 +23,11 @@
     <ul>
     <% @book.keywords.each do |k| %>
       <li><%= link_to k.name, keyword_path(k) %> </li>
-      <% end %>
+    <% end %>
     </ul>
+  <% if @book.location && @book.location != "" %>
+    <p>Location: <%= @book.location %></p>
+  <% end %>
 </div>
 
   <%= link_to "Loan Book", new_loan_path(book_id: @book.id), id: "new-book-loan-link", remote: true, class: "go-btn right" if librarian_user? %>
