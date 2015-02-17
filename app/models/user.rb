@@ -41,6 +41,10 @@ class User < ActiveRecord::Base
     preferred_first_name || name.split.first
   end
 
+  def self.able_to_borrow
+    User.all.select{|u| u.good_to_borrow? }
+  end
+
   def self.search(search)
     search_length = search.split.length
     where([(['lower(preferred_first_name) LIKE lower(?)'] * search_length).join(' AND ')] + search.split.map { |search| "%#{search}%" }) +
