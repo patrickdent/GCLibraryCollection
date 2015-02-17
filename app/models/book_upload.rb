@@ -30,23 +30,22 @@ class BookUpload < ActiveRecord::Base
     names.split(';').map! { |name| Author.find_or_create_by(name: name) }
   end
 
-  def find_or_make_genre(genre)
-    genre = genre.split('/')
-    genre.each { |g| genre = g if g.downcase != "missing" }
-    if g = Genre.find_by_name(genre)
+  def find_or_make_genre(genre_data)
+    if genre != "" && genre.downcase != "unassigned" then
+      return Genre.find_by_name(genre)
+    end 
+    genre_data = genre_data.split('/')
+    genre_data.each { |g| genre_data = g if g.downcase != "missing" }
+    if g = Genre.find_by_name(genre_data)
       return g
     else
-      g = Genre.create(name: genre, abbreviation: genre)
+      g = Genre.create(name: genre_data, abbreviation: genre_data)
     end
     return g
   end
   
   def self.import_requirements?(params)
-    if params[:book_upload].has_key?(:file) && !params[:book_upload][:genre].blank?
-      true
-    else
-      false
-    end
+    params[:book_upload].has_key?(:file)
   end
 end
 
