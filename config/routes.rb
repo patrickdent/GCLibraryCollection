@@ -14,6 +14,7 @@ LibraryCollection::Application.routes.draw do
   get 'search' => 'search#search'
   get 'import' => 'search#import'
   post 'scrape' => 'search#scrape'
+  post 'loan_multi' => 'loans#loan_multi'
   post 'renew' => 'loans#renew'
   post 'return' => 'loans#return'
   get 'overdue_list' => 'loans#overdue_list'

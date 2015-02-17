@@ -25,6 +25,12 @@ class LoansController < ApplicationController
     end 
   end
 
+  def loan_multi
+    params[:book_ids].each do |b|
+      Loan.create(book_id: b, user_id: params[:user_id])
+    end
+  end
+
   def create
     @loan = Loan.new(loan_params)
     unless @loan.user.good_to_borrow?
