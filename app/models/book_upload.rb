@@ -12,7 +12,7 @@ class BookUpload < ActiveRecord::Base
     end
 
     book = Book.create( title:  book_data["title"],
-                        genre:  Genre.find_by_name(genre),
+                        genre:  find_or_make_genre(book_data["genre"]),
                         publisher: book_data["publisher"],
                         publish_date:  book_data["publish date"],
                         isbn: book_data["isbn"])
@@ -28,6 +28,17 @@ class BookUpload < ActiveRecord::Base
 
   def make_authors(names)
     names.split(';').map! { |name| Author.find_or_create_by(name: name) }
+  end
+
+  def find_or_make_genre(genre)
+    genre = genre.split('/')
+    genre.each { |g| genre = g if g.downcase != "missing" }
+    if g = Genre.find_by_name(genre)
+      return g
+    else
+      g = Genre.create(name: genre, abbreviation: genre)
+    end
+    return g
   end
   
   def self.import_requirements?(params)
