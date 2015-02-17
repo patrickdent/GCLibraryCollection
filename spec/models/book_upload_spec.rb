@@ -45,7 +45,7 @@ describe BookUpload do
     context 'with good file' do
 
       it 'returns ids of created books' do
-        expect(@good_upload.save.length).to eq 20
+        expect(@good_upload.save.length).to eq 5
       end
     end 
   end

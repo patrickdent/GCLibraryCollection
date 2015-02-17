@@ -23,7 +23,7 @@ class BookUpload < ActiveRecord::Base
       make_authors(book_data["author"]).each do |auth| 
         BookAuthor.create(book: book, author: auth)
       end
-    end
+    end 
   end
 
   def make_authors(names)
