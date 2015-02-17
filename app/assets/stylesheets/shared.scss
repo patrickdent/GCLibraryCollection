@@ -5,6 +5,12 @@
   overflow-x: hidden;
   padding: 2rem 1rem;
   background: $light_gray;
+  h1 {
+    color: $dark_gray;
+    font-size: 4rem;
+    text-align: center;
+    text-transform: none;
+  }
   .logo {
   	max-width: 25%;
   	float: left;
