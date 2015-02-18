@@ -12,37 +12,48 @@ class LoansController < ApplicationController
       @user = User.find_by(id: params[:user_id])
       unless @user.good_to_borrow?
         flash[:error] = "User Can Not Borrow at This Time"
-        redirect_to user_path(@user.id) and return 
-      end 
+        redirect_to user_path(@user.id) and return
+      end
       @loan = Loan.new(user: @user)
     elsif params[:book_id]
       @book = Book.find_by(id: params[:book_id])
-      unless @book.available 
+      unless @book.available
         flash[:error] = "Book is Not Available"
-        redirect_to book_path(@book.id) and return 
-      end 
+        redirect_to book_path(@book.id) and return
+      end
       @loan = Loan.new(book: @book)
-    end 
+    end
   end
 
   def loan_multi
-    params[:book_ids].each do |b|
-      Loan.create(book_id: b, user_id: params[:user_id])
+    user = User.find(params[:user_id])
+    if user
+      params[:book_ids].each do |b|
+        book = Book.find(b)
+        Loan.create(book_id: b, user_id: user.id) if book.available && user.good_to_borrow?
+        book.update_availability
+      end
+      flash[:notice] = "Loan Created"
+      redirect_to user_path(user) and return
+    else
+      flash[:alert] = "Loan Creation Failed"
+      redirect_to :back and return
     end
+
   end
 
   def create
     @loan = Loan.new(loan_params)
     unless @loan.user.good_to_borrow?
       flash[:error] = "User Can Not Borrow at This Time"
-      redirect_to user_path(@loan.user.id) and return 
-    end 
-    if @loan.save 
-      @loan.book.update_availability 
+      redirect_to user_path(@loan.user.id) and return
+    end
+    if @loan.save
+      @loan.book.update_availability
       flash[:notice] = "Loan Created"
-    else 
+    else
       flash[:alert] = "Loan Creation Failed"
-    end 
+    end
     redirect_to :back
   end
 
@@ -62,12 +73,12 @@ class LoansController < ApplicationController
     else
       flash[:alert] = "Loan Return Faild"
     end
-    redirect_to :back 
+    redirect_to :back
   end
 
   def show
     if !is_given_user_or_librarian?(@loan.user) then
-      flash[:error] = "You are not authorized" 
+      flash[:error] = "You are not authorized"
       redirect_to root_path
     end
   end
@@ -76,9 +87,9 @@ class LoansController < ApplicationController
     @loans = Loan.all
   end
 
-  def overdue_list 
-    @loans = Loan.overdue 
-    @overdue_list_view = true 
-    render :index 
-  end 
+  def overdue_list
+    @loans = Loan.overdue
+    @overdue_list_view = true
+    render :index
+  end
 end
