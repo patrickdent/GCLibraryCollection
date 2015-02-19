@@ -25,6 +25,9 @@ class LoansController < ApplicationController
     end
   end
 
+  def new_multi
+  end
+
   def loan_multi
     user = User.find(params[:user_id])
     if user

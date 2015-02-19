@@ -31,12 +31,4 @@
   </tbody>
 </table>
 
-<% if @multi_loan_available %>
-  <%= form_tag(loan_multi_path, method: "post") do %>
-    <% @books.each do |b| %>
-      <%= hidden_field_tag("book_ids[]", b.id) %>
-    <% end %>
-    <%= select_tag(:user_id, options_from_collection_for_select(User.all, :id, :name), multiple: false, class: "chosen-select") %>
-    <%= submit_tag("submit") %>
-  <% end %>
-<% end %>
+<%= link_to "Loan Books", new_multi_path(books: @books.map { |b| b.id  }), id: "new-multi-loan-link", remote: true, class: "go-btn right" if (librarian_user?) %>
