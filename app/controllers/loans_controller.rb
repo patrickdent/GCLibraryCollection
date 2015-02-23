@@ -30,19 +30,24 @@ class LoansController < ApplicationController
 
   def loan_multi
     user = User.find(params[:user_id])
+    books = params[:book_ids].map { |b| Book.find(b) }
 
     unless user.good_to_borrow?(params[:book_ids].count)
-      flash[:alert] = "User can only borrow #{5 - user.loans.active.count} more books."
+      flash[:alert] = "User can only borrow #{5 - user.loans.active.count} more items."
       redirect_to :back and return
     end
 
-    if user
-      params[:book_ids].each do |b|
-        book = Book.find(b)
-        Loan.create(book_id: b, user_id: user.id) if book.available && user.good_to_borrow?
+    unless (books.reject { |b| b.available }).empty?
+      flash[:alert] = "One or more of the selected items is unavailable."
+      redirect_to :back and return
+    end
+
+    if user && !books.empty?
+      books.each do |book|
+        Loan.create(book_id: book.id, user_id: user.id)
         book.update_availability
       end
-      flash[:notice] = "Loan Created"
+      flash[:notice] = "Loan#{params[:book_ids].count > 1 ? "s" : ""} Created"
       redirect_to user_path(user) and return
     else
       flash[:alert] = "Loan Creation Failed"

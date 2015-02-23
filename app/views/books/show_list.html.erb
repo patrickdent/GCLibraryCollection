@@ -31,4 +31,4 @@
   </tbody>
 </table>
 
-<%= link_to "Loan Books", new_multi_path(books: @books.map { |b| b.id  }), id: "new-multi-loan-link", remote: true, class: "go-btn right" if (librarian_user?) %>
+<%= link_to "Loan Books", new_multi_path, id: "new-multi-loan-link", remote: true, class: "go-btn right" if (librarian_user?) %>
