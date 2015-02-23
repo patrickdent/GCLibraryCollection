@@ -1,0 +1,3 @@
+tr.on-loan td {background-color: lighten($darkblue, 25%);}
+
+tr.on-loan.overdue td {background-color: lighten($hotpink, 25%);}
