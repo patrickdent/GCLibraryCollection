@@ -141,4 +141,28 @@ describe LoansController do
       end
     end
   end
+
+  describe 'POST multi loan' do
+    before do
+      @books = [@book, (create :book), (create :book), (create :book), (create :book), (create :book)].map { |b| b.id }
+      sign_in @librarian
+    end
+
+    context 'with good data' do
+      it 'creates all loans' do
+        expect { post :loan_multi, {user_id: @complete_user.id, book_ids: @books[0..4]} }.to change(Loan, :count).by(5)
+      end
+    end
+
+    context 'with too many loans' do
+      it 'doesn\'t accept more than max loans' do
+        expect { post :loan_multi, {user_id: @complete_user.id, book_ids: @books} }.to change(Loan, :count).by(0)
+      end
+
+      it 'doesn\'t create more than max loans' do
+        post :loan_multi, {user_id: @complete_user.id, book_ids: @books[0..3]}
+        expect { post :loan_multi, {user_id: @complete_user.id, book_ids: @books[4..5]} }.to change(Loan, :count).by(0)
+      end
+    end
+  end
 end

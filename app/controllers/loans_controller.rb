@@ -3,7 +3,7 @@ class LoansController < ApplicationController
   include UserRoleHelper
   include LoanHelper
 
-  before_filter :is_librarian?, only: [:new, :create, :renew, :return, :index]
+  before_filter :is_librarian?, only: [:new, :create, :renew, :return, :index, :new_multi, :loan_multi]
   before_filter :authenticate_user!
   before_filter :find_loan, only: [:renew, :return, :show]
 
@@ -45,13 +45,13 @@ class LoansController < ApplicationController
 
   def loan_multi
 
+    @user = User.find(params[:user_id]) if params[:user_id]
+    @books = params[:book_ids].map { |b| Book.find(b) } if params[:book_ids]
+
     if message = missing_elements?
       flash[:alert] = message
       redirect_to :back and return
     end
-
-    @user = User.find(params[:user_id])
-    @books = params[:book_ids].map { |b| Book.find(b) }
 
     if @user && !@books.empty?
       @books.each do |book|
@@ -80,7 +80,8 @@ class LoansController < ApplicationController
     end
 
     unless @user.good_to_borrow?(params[:book_ids].count)
-      return "User can only borrow #{5 - user.loans.active.count} more items."
+      puts "User can only borrow #{5 - @user.loans.active.count} more items."
+      return "User can only borrow #{5 - @user.loans.active.count} more items."
     end
 
     false
