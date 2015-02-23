@@ -32,9 +32,10 @@ class User < ActiveRecord::Base
     end
   end
 
-  def good_to_borrow?
+  def good_to_borrow?(books_to_borrow = 1)
     #organization-specific borrowing rules
-    self.name && (self.email || self.phone) && (self.identification && !self.identification.blank?) && !self.do_not_lend && self.loans.active.count < 5
+    self.name && (self.email || self.phone) && (self.identification &&
+    !self.identification.blank?) && !self.do_not_lend && self.loans.active.count + books_to_borrow < 6
   end
 
   def pref_name

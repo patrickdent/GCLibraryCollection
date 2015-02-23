@@ -30,6 +30,12 @@ class LoansController < ApplicationController
 
   def loan_multi
     user = User.find(params[:user_id])
+
+    unless user.good_to_borrow?(params[:book_ids].count)
+      flash[:alert] = "User can only borrow #{5 - user.loans.active.count} more books."
+      redirect_to show_list_path and return
+    end
+
     if user
       params[:book_ids].each do |b|
         book = Book.find(b)
@@ -42,7 +48,6 @@ class LoansController < ApplicationController
       flash[:alert] = "Loan Creation Failed"
       redirect_to :back and return
     end
-
   end
 
   def create
