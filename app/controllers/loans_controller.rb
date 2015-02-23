@@ -33,7 +33,7 @@ class LoansController < ApplicationController
 
     unless user.good_to_borrow?(params[:book_ids].count)
       flash[:alert] = "User can only borrow #{5 - user.loans.active.count} more books."
-      redirect_to show_list_path and return
+      redirect_to :back and return
     end
 
     if user
