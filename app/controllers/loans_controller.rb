@@ -80,7 +80,7 @@ class LoansController < ApplicationController
     end
 
     unless @user.good_to_borrow?(params[:book_ids].count)
-      return "User can only borrow #{5 - @user.loans.active.count} more items."
+      return "User can only borrow #{User::MAX_LOANS - @user.loans.active.count} more items."
     end
 
     false

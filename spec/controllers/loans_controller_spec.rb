@@ -144,13 +144,17 @@ describe LoansController do
 
   describe 'POST multi loan' do
     before do
-      @books = [@book, (create :book), (create :book), (create :book), (create :book), (create :book)].map { |b| b.id }
+      @books = [@book]
+      User::MAX_LOANS.times do
+        @books << (create :book)
+      end
+      @books.map { |b| b.id }
       sign_in @librarian
     end
 
     context 'with good data' do
       it 'creates all loans' do
-        expect { post :loan_multi, {user_id: @complete_user.id, book_ids: @books[0..4]} }.to change(Loan, :count).by(5)
+        expect { post :loan_multi, {user_id: @complete_user.id, book_ids: @books[0..(User::MAX_LOANS - 1)]} }.to change(Loan, :count).by(User::MAX_LOANS)
       end
     end
 
@@ -160,8 +164,8 @@ describe LoansController do
       end
 
       it 'doesn\'t create more than max loans' do
-        post :loan_multi, {user_id: @complete_user.id, book_ids: @books[0..3]}
-        expect { post :loan_multi, {user_id: @complete_user.id, book_ids: @books[4..5]} }.to change(Loan, :count).by(0)
+        post :loan_multi, {user_id: @complete_user.id, book_ids: @books[0..(User::MAX_LOANS - 1)]}
+        expect { post :loan_multi, {user_id: @complete_user.id, book_ids: [@books[User::MAX_LOANS]]} }.to change(Loan, :count).by(0)
       end
 
       it 'doesn\'t accept nil user' do
