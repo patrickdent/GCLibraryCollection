@@ -61,7 +61,7 @@ class LoansController < ApplicationController
       flash[:notice] = "Loan#{params[:book_ids].count > 1 ? "s" : ""} Created"
       redirect_to user_path(@user) and return
     else
-      flash[:alert] = "Loan Creation Failed"
+      flash[:alert] = "Loan creation failed."
       redirect_to :back and return
     end
   end
@@ -80,7 +80,6 @@ class LoansController < ApplicationController
     end
 
     unless @user.good_to_borrow?(params[:book_ids].count)
-      puts "User can only borrow #{5 - @user.loans.active.count} more items."
       return "User can only borrow #{5 - @user.loans.active.count} more items."
     end
 

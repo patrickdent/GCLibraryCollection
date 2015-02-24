@@ -154,7 +154,7 @@ describe LoansController do
       end
     end
 
-    context 'with too many loans' do
+    context 'with incorrect data' do
       it 'doesn\'t accept more than max loans' do
         expect { post :loan_multi, {user_id: @complete_user.id, book_ids: @books} }.to change(Loan, :count).by(0)
       end
@@ -162,6 +162,42 @@ describe LoansController do
       it 'doesn\'t create more than max loans' do
         post :loan_multi, {user_id: @complete_user.id, book_ids: @books[0..3]}
         expect { post :loan_multi, {user_id: @complete_user.id, book_ids: @books[4..5]} }.to change(Loan, :count).by(0)
+      end
+
+      it 'doesn\'t accept nil user' do
+        expect { post :loan_multi, {user_id: nil, book_ids: [@books[0]]} }.to change(Loan, :count).by(0)
+      end
+
+      it 'doesn\'t accept blank book' do
+        expect { post :loan_multi, {user_id: @complete_user.id, book_ids: []} }.to change(Loan, :count).by(0)
+      end
+
+      context 'flash messages' do
+        before do
+          sign_in @librarian
+          visit root_path
+        end
+
+        it 'for no selected books' do
+          post :loan_multi, {user_id: @complete_user.id}
+          expect(flash[:alert]).to eq("No items selected.")
+        end
+
+        it 'for blank user' do
+          post :loan_multi, {book_ids: [@books[0]]}
+          expect(flash[:alert]).to eq("No user selected.")
+        end
+
+        it 'for unavailable book' do
+          Book.find(@books[5]).update_attribute(:available, false)
+          post :loan_multi, {user_id: @complete_user.id, book_ids: [@books[5]]}
+          expect(flash[:alert]).to eq("One or more of the selected items is unavailable.")
+        end
+
+        it 'for nil books' do
+          post :loan_multi, {user_id: @complete_user.id, book_ids: []}
+          expect(flash[:alert]).to eq("Loan creation failed.")
+        end
       end
     end
   end
