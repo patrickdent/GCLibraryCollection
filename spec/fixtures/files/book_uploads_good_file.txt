@@ -1,6 +1,4 @@
 ﻿Title,Full Title 1,Full Title 2,Author,Editor,Genre,ISBN,LCCN,Copyright Date,Publish Date,Pages,Location
-1 Last Chance at Paradise,1 Last Chance at Paradise,1 Last Chance at Paradise,,,DVD,8.87937E+11,,,,0,
-Date & Switch,Date & Switch,Date & Switch,,,DVD,31398188940,,,,0,
-Dream on,Dream on,Dream on,,,DVD,8.07839E+11,,,,0,
+Dream on,Dream on,Dream on,Example Author,,Unassigned missing,8.07839E+11,,,,0,
 Dtla,Dtla,Dtla,,,DVD,7.73849E+11,,,,0,
-Fun in Girls Shorts,Fun in Girls Shorts,Fun in Girls Shorts,,,DVD,7.12268E+11,,,,0,
+Fun in Girls Shorts,Fun in Girls Shorts,Fun in Girls Shorts,,,,7.12268E+11,,,,0,

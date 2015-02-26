@@ -31,17 +31,15 @@ class BookUpload < ActiveRecord::Base
   end
 
   def find_or_make_genre(genre_data)
-    if genre != "" && genre != "Unassigned" then
-      return Genre.find_by_name(genre)
-    end 
-    genre_data = genre_data.split('/')
-    genre_data.each { |g| genre_data = g if g.downcase != "missing" }
-    if g = Genre.find_by_name(genre_data)
-      return g
-    else
-      g = Genre.create(name: genre_data, abbreviation: genre_data)
-    end
-    return g
+    return Genre.find_by_name("Unassigned") if genre_data == nil
+
+    genre_data.gsub!('missing', '')
+    genre_data.strip!
+
+    genre = Genre.find_by_name("Unassigned") if genre_data == "" || genre_data == "Unassigned"
+    genre = Genre.find_by_name(genre_data) || genre = Genre.create(name: genre_data, abbreviation: genre_data)
+    
+    return genre
   end
   
   def self.import_requirements?(params)
