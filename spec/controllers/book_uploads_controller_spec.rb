@@ -69,7 +69,7 @@ describe BookUploadsController do
 
       it 'redirects to uploaded books' do
         post :create, book_upload: { genre: create(:genre), file: good_file }
-        expect(response).to redirect_to('/uploaded_books?new_books=5')
+        expect(response).to redirect_to('/uploaded_books?new_books=3')
       end
 
       it 'flashes success' do

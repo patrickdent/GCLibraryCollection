@@ -37,7 +37,7 @@ class BookUpload < ActiveRecord::Base
     genre_data.strip!
 
     genre = Genre.find_by_name("Unassigned") if genre_data == "" || genre_data == "Unassigned"
-    genre = Genre.find_by_name(genre_data) || genre = Genre.create(name: genre_data, abbreviation: genre_data)
+    genre ||= (Genre.find_by_name(genre_data) || Genre.create(name: genre_data, abbreviation: genre_data))
     
     return genre
   end
