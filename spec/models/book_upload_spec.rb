@@ -49,6 +49,7 @@ describe BookUpload do
       end
 
       it 'assigns genre to unassigned books' do
+        create(:genre, name: 'Unassigned', abbreviation: 'UA') unless Genre.find_by_name("Unassigned")
         unassigned_count = Genre.find_by_name("Unassigned").books.count
         @good_upload.save
         expect(Genre.find_by_name("Unassigned").books.count).to eq(unassigned_count + 2)
