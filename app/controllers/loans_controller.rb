@@ -44,10 +44,8 @@ class LoansController < ApplicationController
   end
 
   def loan_multi
-
     @user = User.find(params[:user_id]) if params[:user_id]
     @books = params[:book_ids].map { |b| Book.find(b) } if params[:book_ids]
-
     if message = missing_elements?
       flash[:alert] = message
       redirect_to :back and return
