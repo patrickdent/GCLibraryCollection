@@ -1,4 +1,4 @@
-Genre.create(name: "Unassigned")
+Genre.create(name: "Unassigned", abbreviation: 'UA')
 
 u = User.new(
   email: "admin@example.com",
