@@ -3,7 +3,7 @@
     <% Book.where(selected: true).each do |b| %>
       <%= hidden_field_tag("book_ids[]", b.id) %>
     <% end %>
-    <%= select_tag(:user_id, options_from_collection_for_select(User.all, :id, :name), multiple: false, class: "chosen-select") %>
+    <%= select_tag(:user_id, options_from_collection_for_select(User.able_to_borrow, :id, :name), multiple: false, class: "chosen-select") %>
     <%= submit_tag("submit") %>
   <% end %>
 <% end %>
