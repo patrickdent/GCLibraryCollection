@@ -16,14 +16,14 @@ class BookUpload < ActiveRecord::Base
                         publisher: book_data["publisher"],
                         publish_date:  book_data["publish date"],
                         isbn: book_data["isbn"])
-    
+
     @new_objects << book.id
 
     if book_data["author"]
-      make_authors(book_data["author"]).each do |auth| 
+      make_authors(book_data["author"]).each do |auth|
         BookAuthor.create(book: book, author: auth)
       end
-    end 
+    end
   end
 
   def make_authors(names)
@@ -38,10 +38,8 @@ class BookUpload < ActiveRecord::Base
 
     genre = Genre.find_by_name("Unassigned") if genre_data == "" || genre_data == "Unassigned"
     genre ||= (Genre.find_by_name(genre_data) || Genre.create(name: genre_data, abbreviation: genre_data))
-    
-    return genre
   end
-  
+
   def self.import_requirements?(params)
     params[:book_upload].has_key?(:file) && params[:book_upload][:file] != nil
   end
