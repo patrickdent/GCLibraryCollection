@@ -8,18 +8,21 @@
       <th>legal name</th>
       <th>notes</th>
       <th>do not lend</th>
+      <th>identification</th>
     </tr>
   </thead>
   <tbody>
     <% @users.each do |u| %>
     <% role = "librarian" if u.has_role? :librarian %>
     <% role = "admin" if u.has_role? :admin %>
-    <tr>
+    <% cannot_borrow = "cannot_borrow" if !u.good_to_borrow? %>
+    <tr class="<%= cannot_borrow %>">
       <td><%= role || "patron" %></td>
       <td><%= link_to u.pref_name, user_path(u.id) %></td>
       <td><%= link_to u.name, user_path(u.id) %></td>
       <td><%= "*" if u.notes %></td>
       <td><%= "X" if u.do_not_lend %></td>
+      <td><%= u.identification %></td>
       <td>
         <% if librarian_user? %>
             <%= link_to "Edit", edit_user_path(u) %>

@@ -16,10 +16,10 @@
       <td>
         <%=  check_box_tag :selected, b.id, b.selected, id: "book-select_#{b.id}"  %>
         <%= link_to b.title, book_path(b.id) %></td>
-      <td> 
-      <% if b.genre %> 
-        <%= link_to b.genre.name, genre_path(b.genre) %> 
-      <% end %> 
+      <td>
+      <% if b.genre %>
+        <%= link_to b.genre.name, genre_path(b.genre) %>
+      <% end %>
       </td>
       <td>
         <% b.authors.each do |a| %>
@@ -30,3 +30,5 @@
     <% end %>
   </tbody>
 </table>
+
+<%= link_to "Loan Books", new_multi_path, id: "new-multi-loan-link", remote: true, class: "go-btn right" if (librarian_user?) %>
