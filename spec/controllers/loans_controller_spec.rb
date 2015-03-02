@@ -45,7 +45,8 @@ describe LoansController do
       end
 
       it "doesn't create a new loan for a user who isn't good to borrow" do
-        expect { post :create, loan: { user_id: @user.id, book_id: @book.id } }.to change(Loan, :count).by(0)
+        bad_user = create :user, identification: ''
+        expect { post :create, loan: { user_id: bad_user.id, book_id: @book.id } }.to change(Loan, :count).by(0)
       end
     end
   end
@@ -144,7 +145,8 @@ describe LoansController do
 
   describe 'POST multi loan' do
     before do
-      @books = [@book]
+      @complete_user = create :user
+      @books = [(create :book)]
       User::MAX_LOANS.times do
         @books << (create :book)
       end

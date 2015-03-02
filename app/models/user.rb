@@ -34,7 +34,17 @@ class User < ActiveRecord::Base
 
   def good_to_borrow?(books_to_borrow = 1)
     #organization-specific borrowing rules
-    (self.name && (self.email || self.phone) && (self.identification && !self.identification.blank?) && !self.do_not_lend && (self.loans.active.count + books_to_borrow) < MAX_LOANS) == true
+    if !do_not_lend && contains_field?(name) && (contains_field?(email) || contains_field?(phone)) &&
+        contains_field?(identification) && (loans.active.count + books_to_borrow) < (User::MAX_LOANS + 1)
+      return true
+    else
+      return false
+    end  
+  end
+
+  def contains_field?(string)
+    return false if string.nil? || string.blank? 
+    true
   end
 
   def pref_name
