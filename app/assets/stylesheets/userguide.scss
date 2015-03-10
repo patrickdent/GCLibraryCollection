@@ -1,0 +1,28 @@
+.userguide {
+  line-height: 1.2em;
+  h2 {margin-top: 1.5rem;}
+  ul {
+    list-style: none;
+    li {margin-top: .75rem;}
+    h3 {
+      margin-left: -1.25rem;
+      font-weight: bold;
+    }
+  }
+  .abilities {
+    h3 {
+        margin-left: -1.25rem;
+        font-weight: bold;
+      }
+    li{
+      margin-top: 0;
+      &:before {
+        content: "\f006";
+        font-family: FontAwesome;
+        font-size: 0.75rem;
+        color: $orange;
+        padding-right: 0.75rem;
+      }
+    }
+  }
+}
