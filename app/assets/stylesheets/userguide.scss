@@ -1,0 +1,39 @@
+.userguide {
+  line-height: 1.2em;
+  .guide-section {
+    margin: 3.5rem -2rem;
+    padding: 1rem 2.5rem;
+    background: rgba(white, 0.5);
+  }
+  h2 {color: $hotpink;}
+  ul {
+    list-style: none;
+    li {margin-top: .75rem;}
+    h3 {
+      margin-left: -1.25rem;
+      font-weight: bold;
+    }
+  img {
+    border: 3px solid $darkest_gray;
+    display: block;
+    margin: 4px auto;
+    max-width: 80%;
+    }
+  }
+  .abilities {
+    h3 {
+        margin-left: -1.25rem;
+        font-weight: bold;
+      }
+    li{
+      margin-top: 0;
+      &:before {
+        content: "\f006";
+        font-family: FontAwesome;
+        font-size: 0.75rem;
+        color: $orange;
+        padding-right: 0.75rem;
+      }
+    }
+  }
+}

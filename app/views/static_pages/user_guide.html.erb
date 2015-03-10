@@ -1,0 +1,197 @@
+<div class="unbold userguide">
+  <div class="guide-section">
+    <h2>For Patrons</h2>
+    <br>
+    <ul>
+      <li>
+        <h3>Creating an Account</h3>
+        <ol>
+          <li>
+            Using a public access or your home computer, sign up for a library account.
+
+            <%= image_tag 'userguide/create-account-link.png' %>
+            <%= image_tag 'userguide/signup-form.png' %>
+          </li>
+          <li>If you're on a public computer, be sure to log out after you create your account.</li>
+          <li>Before borrowing for the first time, show a librarian your photo ID. State-issued ID is preferred, but if you don't have that, talk to the librarian about other options.</li>
+          <li>You'll be eligible to borrow items from the library as long as we have contact information and an ID number on file for you, you have fewer than five items checked out, and your account is in good standing (no missing items that haven't been resolved).</li>
+        </ol>
+      </li>
+
+      <li>
+        <h3>Viewing Loan History</h3>
+        <ol>
+          <li>Log into the library app.</li>
+          <li>From the top menu, select 'my profile'.
+          <%= image_tag 'userguide/my-profile-link.png' %></li>
+          <li>On this page, you'll see a list of all your loans. Loans that are active are highlighted blue. Loans that are currently overdue are highlighted pink.
+          <%= image_tag 'userguide/loan-history.png' %></li>
+        </ol>
+      </li>
+
+       <li>
+        <h3>Changing Account Details</h3>
+        <ol>
+          <li>Log into the library app.</li>
+          <li>From the top menu, select 'my profile'.
+          <%= image_tag 'userguide/my-profile-link.png' %></li>
+          <li>Select 'edit login information'.
+          <%= image_tag 'userguide/edit-login-link.png' %></li>
+          <li>Make whatever changes you like, re-enter your current password at the bottom of the form to verify your identity, then click 'update' button.
+          <%= image_tag 'userguide/edit-login-form.png' %></li>
+        </ol>
+      </li>
+    </ul>
+  </div>
+
+  <div class="guide-section">
+    <h2>For Librarians</h2>
+    <small>You must be logged in as a librarian for these steps to work.</small>
+    <br>
+    <ul>
+      <li>
+        <h3>Getting a New Patron Ready to Borrow</h3>
+        <ol>
+          <li>The patron needs to have created an account for themselves, this way they're the only one who knows their password. If they haven't already, you can help them do this on a public access computer.</li>
+          <li>Click the people icon or go to 'admin dashboard', 'manage users' to get to the Manage Users page.</li>
+          <li>Find the patron in the list, and click the 'edit' link by their name.</li>
+          <li>Check their photo ID, and enter its number into the appropriate field. Make sure that they also have at least one form of contact information (phone number or email address).
+          <%= image_tag 'userguide/user-edit-form.png' %></li>
+          <li>Click 'update'.</li>
+          <li>Now when you view the user's profile, the 'new loan' button should be visible.
+          <%= image_tag 'userguide/user-show-view.png' %></li>
+        </ol>
+      </li>
+
+      <li>
+        <h3>Loaning a Book, from the Book Page</h3>
+        <ol>
+          <li>Use the search box or browse pages to find the item you want to loan.</li>
+          <li>From the item's page, click the 'new loan' button.
+          <%= image_tag 'userguide/book-show-view.png' %></li>
+          <li>From the drop down list, select the user you want to loan it to.
+          <%= image_tag 'userguide/book-loan-view.png' %></li>
+          <li>Click 'submit'.</li>
+        </ol>
+      </li>
+
+      <li>
+        <h3>Loaning a Book, from the User Page</h3>
+        <ol>
+          <li>Using the search box or Manage Users page to find the user you want to loan items to.</li>
+          <li>From the user's page, click the 'new loan' button.
+          <%= image_tag 'userguide/user-show-view.png' %></li>
+          <li>From the drop down list, select the title of the item you want to loan. Remember that you can also start typing a title in this box to filter the list.
+          <%= image_tag 'userguide/user-loan-view.png' %></li>
+          <li>Click 'submit'.</li>
+        </ol>
+      </li>
+
+      <li>
+        <h3>Loaning a Book, from the Selected Items Page</h3>
+        <ol>
+          <li>Using the search box or browse pages, find the items you wish to loan. For each item, check the box next to its title.
+          <%= image_tag 'userguide/selecting-books.png' %></li>
+          <li>When all items have been selected, choose 'view selected items' from top menu.
+          <%= image_tag 'userguide/view-selected-link.png' %></li>
+          <li>Review the items listed on this page, and un-check any that you don't wish to loan at this time.</li>
+          <li>If there are five or less items selected, and they are all available to loan, you'll see the 'new loan' button- click it.
+          <%= image_tag 'userguide/selected-books.png' %></li>
+          <li>From the drop down list, select the patron you want to loan these items to.
+          <%= image_tag 'userguide/selected-books-loan.png' %></li>
+          <li>Click 'submit'.</li>
+          <li>If the loan fails because the patron can not borrow that many books, you'll be redirected back to the 'view selected items' page with an error message that says how many more books the patron can borrow. If this happens, ask the patron to pick the books they'd like to borrow, un-check all the rest from the list, and create the loan again.
+          <%= image_tag 'userguide/selected-books-error.png' %></li>
+          <li>When the loan is successfully created, you'll be redirected back to the patron's page with a success message.
+          <%= image_tag 'userguide/selected-books-success.png' %></li>
+        </ol>
+      </li>
+
+      <li>
+        <h3>Renewing or Returning a Loan, from the Book Page</h3>
+        <ol>
+          <li>Using the search box or browse pages, find the item you wish to return or renew.</li>
+          <li>On the item's page, there is a loan history list.</li>
+          <li>From the proper loan item in this list, click the 'return' or 'renew' button, as appropriate. Renewing moves the due date to be 30 days later than it was. Items can only be renewed twice.
+          <%= image_tag 'userguide/book-return-view.png' %></li>
+        </ol>
+      </li>
+
+      <li>
+        <h3>Renewing or Returning a Loan, from the User Page</h3>
+        <ol>
+          <li>Using the search box or manage user page, find the patron who wishes to return or renew an item.</li>
+          <li>On the patron's page, there is a loan history list.</li>
+          <li>From the proper loan item in this list, click the 'return' or 'renew' button, as appropriate. Renewing moves the due date to be 30 days later than it was. Items can only be renewed twice.
+          <%= image_tag 'userguide/user-return-view.png' %></li>
+        </ol>
+      </li>
+    </ul>
+  </div>
+
+  <div class="guide-section">
+    <h2>For Administrators</h2>
+    <small>You must be logged in as an administrator for these steps to work.</small>
+    <br>
+    <ul>
+      <li>
+        <h3>Changing a User's Role</h3>
+        <small>Most volunteers will be librarians, only leads and staff need to be admins.</small>
+        <ol>
+          <li>Navigate to the Edit User page: either click 'edit' next to their name in the Manage Users page, or click the 'edit user' button on the user's profile page.</li>
+          <li>Select the radio button next to the role you wish to assign them.</li>
+          <li>Click 'submit' button.
+          <%= image_tag 'userguide/user-edit-form.png' %></li>
+        </ol>
+      </li>
+
+      <li>
+        <h3>Deleting a User</h3>
+        <ol>
+          <li>Using the search box or manage user page, find the user you want to delete.</li>
+          <li>From their user page, click the 'delete this user' button. Select 'ok' on the popup confirmation.
+          <%= image_tag 'userguide/user-delete-conf.png' %></li>
+          <li>This is not a reversible action.</li>
+        </ol>
+      </li>
+    </ul>
+  </div>
+
+  <div class="abilities guide-section">
+    <h2>User Roles and Abilities</h2>
+    <br>
+    <h3>anyone can:</h3>
+    <ul>
+      <li>browse by keyword/genre/author or search the collection and see which items are available to borrow</li>
+    </ul>
+
+    <h3>patrons can:</h3>
+    <ul>
+      <li>view their own information including borrowing history</li>
+      <li>edit their own login information</li>
+    </ul>
+
+    <h3>librarians can:</h3>
+    <ul>
+      <li>do anything a patron can do</li>
+      <li>view user information (excluding password)</li>
+      <li>edit user information (excluding email and password)</li>
+      <li>manage keywords (edit/create/delete)</li>
+      <li>add keywords to books</li>
+      <li>check-out items</li>
+      <li>renew and return loans</li>
+    </ul>
+
+    <h3>admin users can:</h3>
+    <ul>
+      <li>do anything a librarian or patron can do</li>
+      <li>delete users</li>
+      <li>change users' roles</li>
+      <li>manage authors (edit/create/delete)</li>
+      <li>manage books (edit/create/delete)</li>
+      <li>manage genres (edit/create/delete)</li>
+      <li>import books from the web via ISBN 10</li>
+      <li>upload items to the database via a CSV file (as exported by BookCat)</li>
+    </ul>
+  </div>
+</div>
