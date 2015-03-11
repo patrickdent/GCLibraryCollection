@@ -1,5 +1,5 @@
 class Loan < ActiveRecord::Base
-  belongs_to :book 
+  belongs_to :book
   belongs_to :user
 
   after_create :set_lending_info
@@ -23,9 +23,13 @@ class Loan < ActiveRecord::Base
     end
   end
 
-  def overdue? 
-    (returned_date == nil) && (due_date < Date.today)
-  end 
+  def overdue?
+    active? && (due_date < Date.today)
+  end
+
+  def active?
+    returned_date == nil
+  end
 
   def self.find_overdue
     Loan.active.select { |l| l.overdue? }
@@ -35,7 +39,7 @@ class Loan < ActiveRecord::Base
 
   def set_lending_info
     update_attribute(:start_date, Time.now.to_date) unless start_date
-    update_attribute(:due_date, DURATION.days.from_now) unless due_date 
+    update_attribute(:due_date, DURATION.days.from_now) unless due_date
     update_attribute(:renewal_count, 0) unless renewal_count
   end
 end
