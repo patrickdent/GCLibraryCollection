@@ -44,6 +44,7 @@
     </ul>
   </div>
 
+  <% if librarian_user? %>
   <div class="guide-section">
     <h2>For Librarians</h2>
     <small>You must be logged in as a librarian for these steps to work.</small>
@@ -126,6 +127,16 @@
           <%= image_tag 'userguide/user-return-view.png' %></li>
         </ol>
       </li>
+
+      <li>
+        <h3>Sending Overdue Notices</h3>
+        <ol>
+          <li>Navigate the the Dashboard, and select 'View Overdue Loans'.
+          <%= image_tag 'userguide/dashboard-view.png' %></li>
+          <li>On the Overdue Loans page, click the 'Send Overdue Reminders' button.
+          <%= image_tag 'userguide/overdue-loans-view.png' %></li>
+        </ol>
+      </li>
     </ul>
   </div>
 
@@ -178,6 +189,7 @@
       <li>edit user information (excluding email and password)</li>
       <li>manage keywords (edit/create/delete)</li>
       <li>add keywords to books</li>
+      <li>send overdue notices</li>
       <li>check-out items</li>
       <li>renew and return loans</li>
     </ul>
@@ -194,4 +206,5 @@
       <li>upload items to the database via a CSV file (as exported by BookCat)</li>
     </ul>
   </div>
+  <% end %>
 </div>

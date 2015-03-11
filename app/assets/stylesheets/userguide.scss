@@ -8,18 +8,16 @@
   h2 {color: $hotpink;}
   ul {
     list-style: none;
-    li {margin-top: .75rem;}
-    h3 {
-      margin-left: -1.25rem;
-      font-weight: bold;
-    }
+    h3 {font-weight: bold;}
   img {
     border: 3px solid $darkest_gray;
     display: block;
-    margin: 4px auto;
+    margin: 8px auto;
     max-width: 80%;
     }
   }
+  ul > li {margin-top: .75rem;}
+  ol > li {margin-left: 1.5rem;}
   .abilities {
     h3 {
         margin-left: -1.25rem;
