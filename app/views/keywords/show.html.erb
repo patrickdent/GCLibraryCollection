@@ -18,6 +18,7 @@
   <tbody>
     <% @keyword.books.each do |b| %>
       <% on_loan = "on-loan" if !b.available %>
+      <% in_storage = "in-storage" if b.in_storage %>
       <tr class="<%= on_loan %>">
         <td>
           <% if librarian_user? %>
@@ -36,7 +37,8 @@
         </td>
         <td>
           <span class="<%= on_loan %>"></span>
-          <!-- icon shows up here if book is on loan -->
+          <span class="<%= in_storage %>"></span>
+          <!-- icon shows up here if book is on loan/in storage -->
         </td>
         <td>
           <% if librarian_user? %>
