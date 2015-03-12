@@ -18,6 +18,10 @@
     	<%= f.select :keyword_ids, Keyword.all.collect { |k| [k.name, k.id] }, {}, multiple: true, class: "chosen-select" %>
     </fieldset>
     <fieldset>
+        <%= f.label :in_storage %>
+        <%= f.check_box :in_storage %>
+    </fieldset>
+    <fieldset>
         <%= f.label :location %>
         <%= f.text_field :location %>
     </fieldset>
