@@ -57,6 +57,8 @@ class UsersController < ApplicationController
   end
 
   def send_reminders
+    puts OverdueMailer.last_sent
+    puts "-----------------------------------"
     User.all.each do |u|
       if !u.loans.overdue.empty?
         if !u.email.blank?
@@ -66,6 +68,9 @@ class UsersController < ApplicationController
         end
       end
     end
+    OverdueMailer.last_sent = Date.today
+    puts OverdueMailer.last_sent
+    puts "-----------------------------------"
     flash[:notice] = "Mail successfully sent"
     redirect_to :back
   end

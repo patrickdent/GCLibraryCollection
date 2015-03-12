@@ -1,6 +1,9 @@
-<h2>Loans</h2>
 <% if @overdue_list_view %>
+  <h2>Overdue Loans</h2>
   <%= button_to "Send Overdue Reminders", send_reminders_path %>
+  <p>Reminders last sent on <%= OverdueMailer.last_sent.strftime("%m/%d/%Y") %></p>
+<% else %>
+  <h2>Loans</h2>
 <% end %>
 <table class="index tablesorter">
   <thead>
