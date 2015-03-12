@@ -39,11 +39,11 @@ class User < ActiveRecord::Base
       return true
     else
       return false
-    end  
+    end
   end
 
   def contains_field?(string)
-    return false if string.nil? || string.blank? 
+    return false if string.nil? || string.blank?
     true
   end
 
@@ -59,6 +59,5 @@ class User < ActiveRecord::Base
     search_length = search.split.length
     where([(['lower(preferred_first_name) LIKE lower(?)'] * search_length).join(' AND ')] + search.split.map { |search| "%#{search}%" }) +
     where([(['lower(name) LIKE lower(?)'] * search_length).join(' AND ')] + search.split.map { |search| "%#{search}%" })
-
   end
 end
