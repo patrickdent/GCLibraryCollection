@@ -1,0 +1,34 @@
+<h2>User Management</h2>
+
+<table class="index tablesorter">
+  <thead>
+    <tr>
+      <th>role</th>
+      <th>user name</th>
+      <th>sort name</th>
+      <th>notes</th>
+      <th>do not lend</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @new_users.each do |u| %>
+    <% role = "librarian" if u.has_role? :librarian %>
+    <% role = "admin" if u.has_role? :admin %>
+    <tr>
+      <td><%= role if role %></td>
+      <td><%= link_to (u.name || "user"), user_path(u.id) %></td>
+      <td><%= u.pref_name %></td>
+      <td><%= "*" if u.notes %></td>
+      <td><%= "X" if u.do_not_lend %></td>
+      <td>
+        <% if librarian_user? %>
+            <%= link_to "Edit", edit_user_path(u) %>
+        <% end %>
+        <% if admin_user? && current_user != u %> 
+            <%= link_to "Delete", user_path(u), method: :delete, data: {confirm: "Are you sure you want to delete this user?"} %> 
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
