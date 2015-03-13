@@ -1,0 +1,16 @@
+tr.on-loan td {background-color: lighten($darkblue, 25%); color: white;}
+tr.on-loan a, tr.on-loan span {color: white;}
+
+tr.on-loan.overdue td, tr.cannot_borrow td {background-color: lighten($hotpink, 20%);}
+
+td span.on-loan:after {
+  font-family: FontAwesome;
+  content: "\f05e";
+  font-size: 1.1rem;
+  padding-left: 40%;}
+
+td span.in-storage:after {
+  font-family: FontAwesome;
+  content: "\f187";
+  font-size: 1.4rem;
+  padding-left: 40%;}

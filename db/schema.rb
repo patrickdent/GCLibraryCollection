@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150128224244) do
+ActiveRecord::Schema.define(version: 20150312192044) do
 
   create_table "authors", force: true do |t|
     t.string   "name"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20150128224244) do
     t.boolean  "selected",          default: false
     t.boolean  "available",         default: true
     t.integer  "count",             default: 1
+    t.boolean  "in_storage",        default: false
   end
 
   create_table "contributions", force: true do |t|
