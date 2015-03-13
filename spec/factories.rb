@@ -31,10 +31,15 @@ FactoryGirl.define do
     sequence :name do |n|
       "Meowlexander the #{n}"
     end
-    address "99 SoftPaws Ln, Seattle, WA 98122"
+    address "99 SoftPaws Ln"
+    city "Seattle"
+    state "WA"
+    zip "98102"
     phone "206-999-0909"
     password "password"
     password_confirmation "password"
+    do_not_lend false
+    identification "valid"
   end
 
   factory :librarian, class: User do
@@ -44,7 +49,10 @@ FactoryGirl.define do
     sequence :name do |n|
       "Walt Whiskman the #{n}"
     end
-    address "99 SoftPaws Ln, Seattle, WA 98122"
+    address "99 SoftPaws Ln"
+    city "Seattle"
+    state "WA"
+    zip "98102"
     phone "206-999-0909"
     password "password"
     password_confirmation "password"
@@ -58,7 +66,10 @@ FactoryGirl.define do
     sequence :name do |n|
       "Genghis Yawn the #{n}"
     end
-    address "99 SoftPaws Ln, Seattle, WA 98122"
+    address "99 SoftPaws Ln"
+    city "Seattle"
+    state "WA"
+    zip "98102"
     phone "206-999-0909"
     password "password"
     password_confirmation "password"

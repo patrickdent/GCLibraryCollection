@@ -14,6 +14,8 @@ LibraryCollection::Application.routes.draw do
   get 'search' => 'search#search'
   get 'import' => 'search#import'
   post 'scrape' => 'search#scrape'
+  get 'new_multi' => 'loans#new_multi'
+  post 'loan_multi' => 'loans#loan_multi'
   post 'renew' => 'loans#renew'
   post 'return' => 'loans#return'
   get 'overdue_list' => 'loans#overdue_list'
@@ -24,7 +26,8 @@ LibraryCollection::Application.routes.draw do
 
   get 'admin_dashboard' => 'static_pages#admin_dashboard'
   get 'styleguide' => 'static_pages#styleguide'
-  
+  get 'user_guide' => 'static_pages#user_guide'
+
   root to: 'static_pages#home'
-  
+
 end

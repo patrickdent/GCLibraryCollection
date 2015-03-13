@@ -30,10 +30,44 @@ describe User do
     end
   end
 
-  describe "borrowing requirements" do
+  describe "good to borrow?" do
     it "should require that do_not_lend is not true to borrow" do
-      u = FactoryGirl.create :user, do_not_lend: true
-      expect(u.good_to_borrow?).to be_false
+      bad_user = FactoryGirl.create :user, do_not_lend: true
+      expect(bad_user.good_to_borrow?).to be_false
+    end
+
+    it "should require a name" do
+      bad_user = FactoryGirl.create :user
+      bad_user.name = ''
+      bad_user_2 = FactoryGirl.create :user
+      bad_user_2.name = nil
+      expect(bad_user.good_to_borrow?).to be_false
+      expect(bad_user_2.good_to_borrow?).to be_false
+    end
+
+    it "should require contact info" do
+      bad_user = FactoryGirl.create :user
+      bad_user.email = nil
+      bad_user.phone = nil
+      bad_user_2 = FactoryGirl.create :user
+      bad_user_2.email = ''
+      bad_user_2.phone = ''
+      expect(bad_user.good_to_borrow?).to be_false
+      expect(bad_user_2.good_to_borrow?).to be_false
+    end
+
+    it "should require identification" do
+      bad_user = FactoryGirl.create :user
+      bad_user.identification = nil
+      bad_user_2 = FactoryGirl.create :user
+      bad_user_2.identification = ''
+      expect(bad_user.good_to_borrow?).to be_false
+      expect(bad_user_2.good_to_borrow?).to be_false
+    end
+
+    it "should not lend beyond MAX_LOANS" do
+      bad_user = FactoryGirl.create :user
+      expect(bad_user.good_to_borrow?(User::MAX_LOANS + 1)).to be_false
     end
   end
 end
