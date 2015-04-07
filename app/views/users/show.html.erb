@@ -2,7 +2,7 @@
 
 <div class="show">
   <% if librarian_user? && (!@user.identification || @user.identification.blank?) %>
-    <p class= "highlighted_text">Before this patron can borrow books, you must check their identification and edit their profile to include it.</p>
+    <p class= "highlighted_text">Before this patron can borrow books, you must check their identification and edit their profile to include their ID number.</p>
   <% end %>
   <% if current_user == @user %>
     <p><%= link_to "edit login information", edit_user_registration_path, class: "right" %></p>

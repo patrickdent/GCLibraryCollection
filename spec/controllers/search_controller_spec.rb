@@ -4,24 +4,24 @@ require 'support/api_utilities'
 
 describe SearchController do
 
-  before do 
+  before do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
     @user = create :user
     @librarian = create :librarian
-  end 
+  end
 
   before(:each) do
     request.env["HTTP_REFERER"] = root_path
   end
 
-  after do 
+  after do
     DatabaseCleaner.clean
-  end 
+  end
 
-  after :each do 
-    Warden.test_reset! 
-  end 
+  after :each do
+    Warden.test_reset!
+  end
 
   describe '#search' do
 
@@ -57,7 +57,7 @@ describe SearchController do
 
     it 'returns nothing for unsuccessful searches' do
       get :search, search: "Pegasus"
-      response.should be_ok
+      response.should be_redirect
       expect(assigns[:authors].empty?).to be_true
     end
 
