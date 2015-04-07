@@ -15,7 +15,8 @@ class Book < ActiveRecord::Base
   def self.search(search)
     search_length = search.split.length
     where([(['lower(title) LIKE lower(?)'] * search_length).join(' AND ')] + search.split.map { |search| "%#{search}%" }) +
-    where([(['lower(isbn) LIKE lower(?)'] * search_length).join(' AND ')] + search.split.map { |search| "%#{search}%" })
+    where([(['isbn LIKE lower(?)'] * search_length).join(' AND ')] + search.split.map { |search| "%#{search}%" }) +
+    where([(['lower(location) LIKE lower(?)'] * search_length).join(' AND ')] + search.split.map { |search| "%#{search}%" })
   end
 
   def update_availability

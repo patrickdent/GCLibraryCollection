@@ -25,6 +25,7 @@
       <li><%= link_to k.name, keyword_path(k) %> </li>
     <% end %>
     </ul>
+  <p><%= "*in storage*" if @book.in_storage %></p>
   <% if @book.location && @book.location != "" %>
     <p>Location: <%= @book.location %></p>
   <% end %>
