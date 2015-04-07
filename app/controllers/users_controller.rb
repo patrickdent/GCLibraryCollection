@@ -66,6 +66,7 @@ class UsersController < ApplicationController
         end
       end
     end
+    OverdueMailer.last_sent = Date.today
     flash[:notice] = "Mail successfully sent"
     redirect_to :back
   end
