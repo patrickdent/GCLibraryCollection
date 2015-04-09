@@ -69,6 +69,7 @@ class BooksController < ApplicationController
 
   def show_list
     @books = Book.where(selected: true)
+    @multi_loan_available = is_librarian? && (@books - Book.available_to_loan).empty? && (@books.length < 6)
   end
 
   private

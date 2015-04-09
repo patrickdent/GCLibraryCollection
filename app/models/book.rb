@@ -10,11 +10,13 @@ class Book < ActiveRecord::Base
 
   scope :available_to_loan, -> { where(available: true ) }
 
-  validates :title, presence: true 
+  validates :title, presence: true
 
   def self.search(search)
     search_length = search.split.length
-    where([(['lower(title) LIKE lower(?)'] * search_length).join(' AND ')] + search.split.map { |search| "%#{search}%" })
+    where([(['lower(title) LIKE lower(?)'] * search_length).join(' AND ')] + search.split.map { |search| "%#{search}%" }) +
+    where([(['isbn LIKE lower(?)'] * search_length).join(' AND ')] + search.split.map { |search| "%#{search}%" }) +
+    where([(['lower(location) LIKE lower(?)'] * search_length).join(' AND ')] + search.split.map { |search| "%#{search}%" })
   end
 
   def update_availability
@@ -22,7 +24,7 @@ class Book < ActiveRecord::Base
       update_attribute(:available, false)
     elsif self.count > self.loans.active.count
       update_attribute(:available, true)
-    end 
-  end 
+    end
+  end
 
 end

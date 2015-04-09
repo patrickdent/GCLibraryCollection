@@ -3,13 +3,13 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <fieldset>
     <%= f.label :login %>
-    <%= f.text_field :login, autofocus: true %>
+    <%= f.text_field :login, autofocus: true, required: true %>
     <small>Username or email address</small>
   </fieldset>
 
   <fieldset>
     <%= f.label :password %>
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password, autocomplete: "off", required: true %>
   </fieldset>
 
   <% if devise_mapping.rememberable? -%>

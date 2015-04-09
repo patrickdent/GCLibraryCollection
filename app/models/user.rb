@@ -32,19 +32,32 @@ class User < ActiveRecord::Base
     end
   end
 
-  def good_to_borrow?
+  def good_to_borrow?(books_to_borrow = 1)
     #organization-specific borrowing rules
-    self.name && (self.email || self.phone) && (self.identification && !self.identification.blank?) && !self.do_not_lend && self.loans.active.count < 5
+    if !do_not_lend && contains_field?(name) && (contains_field?(email) || contains_field?(phone)) &&
+        contains_field?(identification) && (loans.active.count + books_to_borrow) < (User::MAX_LOANS + 1)
+      return true
+    else
+      return false
+    end
+  end
+
+  def contains_field?(string)
+    return false if string.nil? || string.blank?
+    true
   end
 
   def pref_name
     preferred_first_name || name.split.first
   end
 
+  def self.able_to_borrow
+    User.all.select{|u| u.good_to_borrow? }
+  end
+
   def self.search(search)
     search_length = search.split.length
     where([(['lower(preferred_first_name) LIKE lower(?)'] * search_length).join(' AND ')] + search.split.map { |search| "%#{search}%" }) +
     where([(['lower(name) LIKE lower(?)'] * search_length).join(' AND ')] + search.split.map { |search| "%#{search}%" })
-
   end
 end
