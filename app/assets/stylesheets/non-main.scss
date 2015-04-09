@@ -1,8 +1,8 @@
 /*left side area styles*/
 .left-content {
-	margin-top: 5.5rem;
-  padding-right: .5em;
-  margin-bottom: 2em;
+	margin-top: 11rem;
+  padding-right: 1em;
+  margin-bottom: 4em;
 	text-align: right;
   overflow: auto;
   height: 100%;
@@ -55,18 +55,19 @@
 }
 
 /*right side styles*/
-.column-2 {
+.right-content {
   position: relative;
+  span.vertical {
+    font-size: 6em;
+    color: $lightest_gray;
+    display:inline-block;
+    position:fixed;
+    top: -.75em;
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -moz-transform:rotate(90deg);
+    transform-origin: bottom left;
+  }
 }
-span.vertical {
-	font-size: 6em;
-	color: $lightest_gray;
- 	display:inline-block;
-	position:fixed;
-	top: -.75em;
-  transform: rotate(90deg);
- 	-webkit-transform: rotate(90deg);
- 	-moz-transform:rotate(90deg);
- 	transform-origin: bottom left;
-}
+
 
