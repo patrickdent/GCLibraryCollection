@@ -45,7 +45,8 @@ describe LoansController do
       end
 
       it "doesn't create a new loan for a user who isn't good to borrow" do
-        expect { post :create, loan: { user_id: @user.id, book_id: @book.id } }.to change(Loan, :count).by(0)
+        bad_user = create :user, identification: ''
+        expect { post :create, loan: { user_id: bad_user.id, book_id: @book.id } }.to change(Loan, :count).by(0)
       end
     end
   end
@@ -138,6 +139,71 @@ describe LoansController do
       it "doesn't redirect to home" do
         get :index
         expect(response).to_not be_redirect
+      end
+    end
+  end
+
+  describe 'POST multi loan' do
+    before do
+      @complete_user = create :user
+      @books = [(create :book)]
+      User::MAX_LOANS.times do
+        @books << (create :book)
+      end
+      @books.map { |b| b.id }
+      sign_in @librarian
+    end
+
+    context 'with good data' do
+      it 'creates all loans' do
+        expect { post :loan_multi, {user_id: @complete_user.id, book_ids: @books[0..(User::MAX_LOANS - 1)]} }.to change(Loan, :count).by(User::MAX_LOANS)
+      end
+    end
+
+    context 'with incorrect data' do
+      it 'doesn\'t accept more than max loans' do
+        expect { post :loan_multi, {user_id: @complete_user.id, book_ids: @books} }.to change(Loan, :count).by(0)
+      end
+
+      it 'doesn\'t create more than max loans' do
+        post :loan_multi, {user_id: @complete_user.id, book_ids: @books[0..(User::MAX_LOANS - 1)]}
+        expect { post :loan_multi, {user_id: @complete_user.id, book_ids: [@books[User::MAX_LOANS]]} }.to change(Loan, :count).by(0)
+      end
+
+      it 'doesn\'t accept nil user' do
+        expect { post :loan_multi, {user_id: nil, book_ids: [@books[0]]} }.to change(Loan, :count).by(0)
+      end
+
+      it 'doesn\'t accept blank book' do
+        expect { post :loan_multi, {user_id: @complete_user.id, book_ids: []} }.to change(Loan, :count).by(0)
+      end
+
+      context 'flash messages' do
+        before do
+          sign_in @librarian
+          visit root_path
+        end
+
+        it 'for no selected books' do
+          post :loan_multi, {user_id: @complete_user.id}
+          expect(flash[:alert]).to eq("No items selected.")
+        end
+
+        it 'for blank user' do
+          post :loan_multi, {book_ids: [@books[0]]}
+          expect(flash[:alert]).to eq("No user selected.")
+        end
+
+        it 'for unavailable book' do
+          Book.find(@books[5]).update_attribute(:available, false)
+          post :loan_multi, {user_id: @complete_user.id, book_ids: [@books[5]]}
+          expect(flash[:alert]).to eq("One or more of the selected items is unavailable.")
+        end
+
+        it 'for nil books' do
+          post :loan_multi, {user_id: @complete_user.id, book_ids: []}
+          expect(flash[:alert]).to eq("Loan creation failed.")
+        end
       end
     end
   end

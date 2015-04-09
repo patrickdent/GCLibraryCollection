@@ -38,6 +38,8 @@ FactoryGirl.define do
     phone "206-999-0909"
     password "password"
     password_confirmation "password"
+    do_not_lend false
+    identification "valid"
   end
 
   factory :librarian, class: User do

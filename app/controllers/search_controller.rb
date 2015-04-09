@@ -8,7 +8,7 @@ class SearchController < ApplicationController
   def search
     if params[:search] == ""
       flash[:alert] = "Please enter a search term."
-      redirect_to root_path
+      redirect_to :back
       return
     else
       @authors = Author.search(params[:search])
@@ -20,6 +20,7 @@ class SearchController < ApplicationController
 
     if @authors.blank? && @books.blank? && @genres.blank? && @keywords.blank? && @users.blank?
       flash[:alert] = "Your search yielded no results."
+      redirect_to :back
     end
 
   end

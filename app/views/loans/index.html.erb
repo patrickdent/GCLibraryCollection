@@ -1,6 +1,9 @@
-<h2>Loans</h2>
 <% if @overdue_list_view %>
+  <h2>Overdue Loans</h2>
   <%= button_to "Send Overdue Reminders", send_reminders_path %>
+  <p>Reminders last sent on <%= OverdueMailer.last_sent.strftime("%m/%d/%Y") %></p>
+<% else %>
+  <h2>Loans</h2>
 <% end %>
 <table class="index tablesorter">
   <thead>
@@ -15,14 +18,15 @@
   </thead>
   <tbody>
     <% @loans.each do |l| %>
-    <tr>
-      <td><%= link_to l.book.title, book_path(l.book.id) %></td>
-      <td><%= link_to l.user.name, user_path(l.user.id) %></td>
-      <td><%= l.start_date %>
-      <td><%= l.due_date %>
-      <td><%= l.returned_date %>
-      <td><%= l.renewal_count %>
-      <td> <%= link_to 'view', loan_path(l.id) %></td>
+      <% overdue = "overdue" if l.overdue?; on_loan = "on-loan" if l.active? %>
+      <tr class="<%= overdue %> <%= on_loan %>">
+        <td><%= link_to l.book.title, book_path(l.book.id) %></td>
+        <td><%= link_to l.user.name, user_path(l.user.id) %></td>
+        <td><%= l.start_date %></td>
+        <td><%= l.due_date %></td>
+        <td><%= l.returned_date %></td>
+        <td><%= l.renewal_count %></td>
+        <td><%= link_to 'view', loan_path(l.id) %></td>
     </tr>
     <% end %>
   </tbody>

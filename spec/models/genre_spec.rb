@@ -8,18 +8,25 @@ describe Genre do
 
   describe "accessible attributes" do
     it "include name" do expect(subject).to respond_to(:name) end
-    it "include abbreviation" do expect(subject).to respond_to(:abbreviation) end 
+    it "include abbreviation" do expect(subject).to respond_to(:abbreviation) end
   end
 
   describe "validations" do
-    it "will not create a second genre with exact same name" do 
-      FactoryGirl.create(:genre, name: "Cool Genre") 
+    it "will not create a second genre with exact same name" do
+      FactoryGirl.create(:genre, name: "Cool Genre")
       expect(FactoryGirl.build(:genre, name: "Cool Genre")).to_not be_valid
     end
 
-    it "will not create an genre without a name" do 
+    it "will not create an genre without a name" do
       expect(FactoryGirl.build(:genre, name: "")).to_not be_valid
-    end  
-  end 
+    end
+  end
+
+  describe "search" do
+    it "searches genres by name" do
+      genre = FactoryGirl.create(:genre, name: "Snacks" )
+      expect(Genre.search("SNACKS")).to eq([genre])
+    end
+  end
 
 end
