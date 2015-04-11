@@ -116,7 +116,5 @@ class LoansController < ApplicationController
 
   def overdue_list
     @loans = Loan.overdue
-    @overdue_list_view = true
-    render :index
   end
 end
