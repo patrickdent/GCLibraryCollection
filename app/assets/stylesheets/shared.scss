@@ -66,13 +66,22 @@ h3 {
 
 .main article {
 	margin: 5em 2em;
-	height: 100%;
+	// height: 100%;
 }
 
 .main p {
   margin: 1em 0;
   font-weight: normal;
   text-transform: none;
+}
+
+#sponsor-link img{
+  display: block;
+  height: 5rem;
+  margin: 0 auto;
+}
+.sponsor{
+  text-align: center;
 }
 
 .right {
