@@ -22,6 +22,7 @@
     <%= link_to raw("<i class='fa fa-users'></i>"), users_path, class: "large-icon" if librarian_user? %>
     <%= link_to raw("<i class='fa fa-home'></i>"), root_path, class: "large-icon" %>
     <a href="mailto:resources@gaycity.org?Subject=Inquiry" target="_top" class="large-icon"><i class='fa fa-envelope'></i></a>
+    <%= link_to raw("<i class='fa fa-question'></i>"), user_guide_path, class: "large-icon" %>
 
     <%= form_tag "/search", method: "get" do %>
       <%= label_tag "search" %>
