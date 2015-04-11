@@ -10,13 +10,17 @@ class UserUpload < ActiveRecord::Base
                           address: user_data["address"],
                           email: user_data["e-mail"],
                           phone: user_data["phone"],
+                          notes: user_data["notes"],
                           password: "password" )
+      ImportedUserMailer.welcome_email.deliver_later(user)
     else
       user = User.create( name: user_data["name"],
                     address: user_data["address"],
                     username: user_data["name"].delete(" "),
                     phone: user_data["phone"],
+                    notes: user_data["notes"],
                     password: "password" )
+      ImportedUserMailer.welcome_email.deliver_later(user)
     end
     @new_objects << user
   end
