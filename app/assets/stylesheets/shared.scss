@@ -3,17 +3,15 @@
   max-height:100%;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 2rem 1rem;
+  padding: 2rem 0;
   background: $light_gray;
   h1 {
     color: $dark_gray;
-    font-size: 4rem;
+    font-size: 2rem;
     text-align: center;
     text-transform: none;
-  }
-  .logo {
-  	max-width: 25%;
-  	float: left;
+    padding-top: 3rem;
+    margin-bottom: 1rem;
   }
   nav{
     display: block;

@@ -12,6 +12,7 @@
 
   <div class="column-2 left-content">
   <!-- search column aside -->
+    <%= image_tag("gc20logo.png", class: "logo") %>
     <% flash.each do |name, msg| %>
       <%= content_tag :div, msg, class: name, id:"headerbar" %>
     <% end %>
@@ -38,7 +39,7 @@
   <!-- central content area -->
     <section class="main">
       <header>
-        <%= image_tag("gc20logo.png", class: "logo") %>
+        
         <h1>Michael C. Weidemann LGBT Library Catalog</h1>
         <nav>
           <ul>
