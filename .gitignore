@@ -15,14 +15,18 @@
 /log/*.log
 /tmp
 
-# Ignore SimpleCov output 
+# Ignore SimpleCov output
 coverage
 
-# Ignore mac generated nonsense 
+# Ignore mac generated nonsense
 .DS_Store
 
 #Ignore figaro fil
 /config/application.yml
 
-#Ignore test pdf files 
+#Ignore test pdf files
 /*.pdf
+
+#Ignore stuff that's only necessary on production server
+public/assets/*
+vendor/bundle/*
