@@ -4,6 +4,7 @@ module Uploadable
 
   def save
     @new_objects = Array.new
+
     if uploaded_data.each { |i| make_object(i) }
       @new_objects
     else
