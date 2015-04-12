@@ -13,22 +13,31 @@
     </ul>
 
   <p>ISBN: <%= @book.isbn %></p>
+
   <p>
   Category:
   <% if @book.genre %>
     <%= link_to @book.genre.name, genre_path(@book.genre) %>
   <% end %>
   </p>
+
+  <p>Publisher: <%= @book.publisher %></p>
+
+  <p>Publish Date: <%= @book.publish_date %></p>
+
   <p>Keyword(s): </p>
     <ul>
     <% @book.keywords.each do |k| %>
       <li><%= link_to k.name, keyword_path(k) %> </li>
     <% end %>
     </ul>
+
   <p><%= "*in storage*" if @book.in_storage %></p>
+
   <% if @book.location && @book.location != "" %>
     <p>Location: <%= @book.location %></p>
   <% end %>
+
 </div>
 
   <%= link_to "Loan Book", new_loan_path(book_id: @book.id), id: "new-book-loan-link", remote: true, class: "go-btn right" if (librarian_user? && @book.available) %>

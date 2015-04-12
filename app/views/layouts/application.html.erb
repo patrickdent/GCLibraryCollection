@@ -21,6 +21,8 @@
       <%= link_to raw("<i class='fa fa-home'></i>"), root_path, class: "large-icon" %>
       <a href="mailto:library@example.com?Subject=Inquiry" target="_top" class="large-icon"><i class='fa fa-envelope'></i></a>
 
+      <%= link_to raw("<i class='fa fa-question'></i>"), user_guide_path, class: "large-icon" %>
+
       <%= form_tag "/search", method: "get" do %>
         <%= label_tag "search" %>
         <%= submit_tag "search", name: nil %>
