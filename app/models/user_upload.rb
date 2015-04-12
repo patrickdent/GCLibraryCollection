@@ -10,12 +10,14 @@ class UserUpload < ActiveRecord::Base
                           address: user_data["address"],
                           email: user_data["e-mail"],
                           phone: user_data["phone"],
+                          notes: user_data["notes"],
                           password: "password" )
     else
       user = User.create( name: user_data["name"],
                     address: user_data["address"],
                     username: user_data["name"].delete(" "),
                     phone: user_data["phone"],
+                    notes: user_data["notes"],
                     password: "password" )
     end
     @new_objects << user
