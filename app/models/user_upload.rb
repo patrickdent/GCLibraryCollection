@@ -12,7 +12,7 @@ class UserUpload < ActiveRecord::Base
                           phone: user_data["phone"],
                           notes: user_data["notes"],
                           password: "password" )
-      ImportedUserMailer.welcome_email.deliver_later(user)
+      ImportedUserMailer.welcome_email(user).deliver
     else
       user = User.create( name: user_data["name"],
                     address: user_data["address"],
@@ -20,7 +20,7 @@ class UserUpload < ActiveRecord::Base
                     phone: user_data["phone"],
                     notes: user_data["notes"],
                     password: "password" )
-      ImportedUserMailer.welcome_email.deliver_later(user)
+      ImportedUserMailer.welcome_email(user).deliver
     end
     @new_objects << user
   end
