@@ -31,6 +31,7 @@ class BookUpload < ActiveRecord::Base
   end
 
   def find_or_make_genre(genre_data)
+    return Genre.find(self.genre.to_i) if self.genre
     return Genre.find_by_name("Unassigned") if genre_data == nil
 
     genre_data.gsub!('missing', '')

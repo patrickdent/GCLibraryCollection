@@ -22,3 +22,5 @@ u = User.new(
   phone: "206-999-0909")
 u.save
 u.add_role :librarian
+
+Genre.create(name: "Unassigned", abbreviation: "UA")
