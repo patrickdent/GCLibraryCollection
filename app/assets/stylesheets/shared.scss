@@ -5,12 +5,17 @@
   overflow-x: hidden;
   padding: 2rem 0;
   background: $light_gray;
+  .logo {
+    display: block;
+    max-width: 20%;
+    margin: 0 auto;
+  }
   h1 {
     color: $dark_gray;
     font-size: 2rem;
     text-align: center;
     text-transform: none;
-    padding-top: 3rem;
+    padding-top: 1rem;
     margin-bottom: 1rem;
   }
   nav{
@@ -76,13 +81,21 @@ h3 {
   text-transform: none;
 }
 
+footer {
+  text-align: center;
+}
+
 #sponsor-link img{
-  display: block;
-  height: 5rem;
+  height: 3rem;
   margin: 0 auto;
+  opacity: .75;
+  position: relative;
+  top: 1rem;
 }
 .sponsor{
-  text-align: center;
+  display: inline;
+  font-size: 1rem;
+  font-weight: 800;
 }
 
 .right {

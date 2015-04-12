@@ -12,7 +12,6 @@
 
   <div class="column-2 left-content">
   <!-- search column aside -->
-    <%= image_tag("gc20logo.png", class: "logo") %>
 
     <div id="flashes">
       <% flash.each do |name, msg| %>
@@ -44,6 +43,7 @@
   <!-- central content area -->
     <section class="main">
       <header>
+        <%= image_tag("gc20logo.png", class: "logo") %>
         <h1>Michael C. Weidemann LGBT Library Catalog</h1>
         <nav>
           <ul>
@@ -67,8 +67,8 @@
       </header>
 
     <article><%= yield %></article>
-    <footer class="sponsor">
-      <p>Hosted by:</p>
+    <footer>
+      <p class="sponsor">Generously hosted by </p>
       <a href="http://nird.us/managed-rails-hosting" id="sponsor-link">
       <%= image_tag("nird-logo.png") %>
       </a>
