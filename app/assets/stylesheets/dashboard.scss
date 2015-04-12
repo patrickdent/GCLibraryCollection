@@ -1,0 +1,31 @@
+// Admin dashboard styles
+
+.dashboard-links div {
+  border: 2px solid black;
+  border-bottom: none;
+  padding: .5em;
+}
+
+.dashboard-links:last-child {
+  border-bottom: 2px solid black;
+}
+
+.dashboard-links a:hover {
+  color: black;
+}
+
+.dashboard-links .fa {
+  padding: 0 .25rem;
+}
+.adminAdd {
+  background: lighten( $hotpink, 30% )
+}
+
+.adminManage {
+  background: lighten( $green, 30% )
+}
+
+.librarianTasks {
+  background: lighten( $orange, 20% );
+}
+
