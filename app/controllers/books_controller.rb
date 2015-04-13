@@ -20,7 +20,7 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     if @book.save
       flash[:notice] = "Book Created"
-      redirect_to books_path
+      redirect_to root_path
     else
       flash[:error] = "Book Creation Failed"
       redirect_to new_book_path
@@ -39,7 +39,7 @@ class BooksController < ApplicationController
     else
       flash[:error] = "Delete Failed"
     end
-      redirect_to books_path
+      redirect_to root_path
   end
 
   def update
