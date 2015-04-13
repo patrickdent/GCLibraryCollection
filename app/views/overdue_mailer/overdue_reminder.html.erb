@@ -4,12 +4,12 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Hello, <%= @user.name %></h1>
+    <h1>Hello, <%= @user.pref_name %></h1>
     <p>
-      This is a friendly reminder that you have some overdue items checked out from the library. Please return them at your soonest possible convenience. 
+      This is a friendly reminder that you have some overdue items checked out from the library. Please return them at your soonest possible convenience.
     </p>
-    <% @user.loans.overdue.each do |l| %> 
-      <%= l.book.title %>, due: <%= l.due_date %> 
+    <% @user.loans.overdue.each do |l| %>
+      <%= l.book.title %>, due: <%= l.due_date %>
     <% end %>
     <p>Thanks for borrowing!</p>
 
