@@ -3,6 +3,7 @@ class UserUpload < ActiveRecord::Base
   include Uploadable
 
   def make_object(user_data)
+
     if !user_data["e-mail"].blank?
       # return if User.find_by_email(user_data["e-mail"])
       user = User.create( name: user_data["name"],

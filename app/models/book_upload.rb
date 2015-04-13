@@ -4,6 +4,7 @@ class BookUpload < ActiveRecord::Base
 
   def make_object(book_data)
     return false if book_data["title"] == false
+
     unless book_data["isbn"].empty? || book_data["isbn"].nil?
       if (book = Book.find_by_isbn(book_data["isbn"]))
         book.count += 1
