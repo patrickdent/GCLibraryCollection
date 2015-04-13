@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150312192044) do
+ActiveRecord::Schema.define(version: 20150413164911) do
 
   create_table "authors", force: true do |t|
     t.string   "name"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20150312192044) do
     t.datetime "updated_at"
     t.string   "sort_by"
   end
+
+  add_index "authors", ["name"], name: "index_authors_on_name"
 
   create_table "book_authors", force: true do |t|
     t.integer  "book_id"
@@ -28,12 +30,18 @@ ActiveRecord::Schema.define(version: 20150312192044) do
     t.integer  "contribution_id"
   end
 
+  add_index "book_authors", ["author_id"], name: "index_book_authors_on_author_id"
+  add_index "book_authors", ["book_id"], name: "index_book_authors_on_book_id"
+
   create_table "book_keywords", force: true do |t|
     t.integer  "book_id"
     t.integer  "keyword_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "book_keywords", ["book_id"], name: "index_book_keywords_on_book_id"
+  add_index "book_keywords", ["keyword_id"], name: "index_book_keywords_on_keyword_id"
 
   create_table "book_uploads", force: true do |t|
     t.datetime "created_at"
@@ -60,6 +68,11 @@ ActiveRecord::Schema.define(version: 20150312192044) do
     t.boolean  "in_storage",        default: false
   end
 
+  add_index "books", ["genre_id"], name: "index_books_on_genre_id"
+  add_index "books", ["isbn"], name: "index_books_on_isbn"
+  add_index "books", ["location"], name: "index_books_on_location"
+  add_index "books", ["title"], name: "index_books_on_title"
+
   create_table "contributions", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -73,11 +86,15 @@ ActiveRecord::Schema.define(version: 20150312192044) do
     t.string   "abbreviation", null: false
   end
 
+  add_index "genres", ["name"], name: "index_genres_on_name"
+
   create_table "keywords", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "keywords", ["name"], name: "index_keywords_on_name"
 
   create_table "loans", force: true do |t|
     t.integer  "user_id"
@@ -89,6 +106,9 @@ ActiveRecord::Schema.define(version: 20150312192044) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "loans", ["book_id"], name: "index_loans_on_book_id"
+  add_index "loans", ["user_id"], name: "index_loans_on_user_id"
 
   create_table "roles", force: true do |t|
     t.string   "name"
@@ -133,7 +153,11 @@ ActiveRecord::Schema.define(version: 20150312192044) do
     t.string   "zip"
   end
 
+  add_index "users", ["email"], name: "index_users_on_email"
+  add_index "users", ["name"], name: "index_users_on_name"
+  add_index "users", ["preferred_first_name"], name: "index_users_on_preferred_first_name"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["username"], name: "index_users_on_username"
 
   create_table "users_roles", id: false, force: true do |t|
     t.integer "user_id"
