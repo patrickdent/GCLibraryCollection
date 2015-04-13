@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
   validates :username, uniqueness: {case_sensitive: false, allow_nil: true, allow_blank: true}
   validates :email, uniqueness: {case_sensitive: false, allow_nil: true, allow_blank: true}
   validates :name, presence: true
-  validates :address, presence: true
-  validates :phone, presence: true
+  #validates :address, presence: true
+  #validates :phone, presence: true
 
   has_many :loans
   has_many :books, through: :loans

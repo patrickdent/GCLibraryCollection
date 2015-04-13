@@ -3,14 +3,14 @@ class UserUpload < ActiveRecord::Base
   include Uploadable
 
   def make_object(user_data)
-
-    return if User.find_by_email(user_data["e-mail"])
-    if user_data["e-mail"]
+    if !user_data["e-mail"].blank?
+      # return if User.find_by_email(user_data["e-mail"])
       user = User.create( name: user_data["name"],
                           address: user_data["address"],
                           email: user_data["e-mail"],
                           phone: user_data["phone"],
                           notes: user_data["notes"],
+                          identification: user_data["barcode"],
                           password: "gaycitylibrary" )
     else
       user = User.create( name: user_data["name"],
@@ -18,6 +18,7 @@ class UserUpload < ActiveRecord::Base
                     username: user_data["name"].delete(" "),
                     phone: user_data["phone"],
                     notes: user_data["notes"],
+                    identification: user_data["barcode"],
                     password: "gaycitylibrary" )
     end
     @new_objects << user
