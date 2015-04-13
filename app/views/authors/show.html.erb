@@ -15,7 +15,7 @@
   </thead>
 
   <tbody>
-    <% @author.books.each do |b| %>
+    <% @books.each do |b| %>
       <% on_loan = "on-loan" if !b.available %>
       <% in_storage = "in-storage" if b.in_storage %>
       <tr class="<%= on_loan %>">
