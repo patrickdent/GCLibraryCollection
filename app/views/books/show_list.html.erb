@@ -13,9 +13,11 @@
   </thead>
   <tbody>
     <% @books.each do |b| %>
-      <% on_loan = "on-loan" if !b.available %>
+      <% missing = "missing" if b.missing %>
+      <% on_loan = "on-loan" unless b.available || missing %>
       <% in_storage = "in-storage" if b.in_storage %>
       <tr class="<%= on_loan %>">
+      <tr class="<%= missing %>">
         <td>
           <%=  check_box_tag :selected, b.id, b.selected, id: "book-select_#{b.id}"  %>
           <%= link_to b.title, book_path(b.id) %>
@@ -31,9 +33,12 @@
           <% end %>
         </td>
         <td>
-          <span class="<%= on_loan %>"></span> <span class="<%= in_storage %>"></span>
-          <!-- icon shows up here if book is on loan/in storage -->
+          <span class="<%= on_loan %>"></span> 
+          <span class="<%= in_storage %>"></span>
+          <span class="<%= missing %>"></span>
+          <!-- icon shows up here if book is on loan/in storage/missing -->
         </td>
+      </tr>
       </tr>
     <% end %>
   </tbody>

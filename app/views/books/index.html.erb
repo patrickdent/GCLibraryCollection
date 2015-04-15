@@ -14,9 +14,11 @@
   </thead>
   <tbody>
     <% @books.each do |b| %>
-      <% on_loan = "on-loan" if !b.available %>
+      <% missing = "missing" if b.missing %>
+      <% on_loan = "on-loan" unless b.available || missing %>
       <% in_storage = "in-storage" if b.in_storage %>
       <tr class="<%= on_loan %>">
+      <tr class="<%= missing %>">
         <td>
           <% if librarian_user? %>
             <%=  check_box_tag :selected, b.id, b.selected, id: "book-select_#{b.id}"  %>
@@ -36,7 +38,8 @@
         <td>
           <span class="<%= on_loan %>"></span>
           <span class="<%= in_storage %>"></span>
-          <!-- icon shows up here if book is on loan/in storage -->
+          <span class="<%= missing %>"></span>
+          <!-- icon shows up here if book is on loan/in storage/missing -->
         </td>
         <td>
           <% if librarian_user? %>
@@ -46,6 +49,7 @@
             <% end %>
           <% end %>
         </td>
+      </tr>
       </tr>
     <% end %>
   </tbody>
