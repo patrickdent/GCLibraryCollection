@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Book Pages', type: feature do
   
-  let(:book) { FactoryGirl.create(:book) }
+  let(:book) { FactoryGirl.create(:book, title: "completely Unique") }
   let(:genre) { create(:genre) }
   let(:author) { create(:author) }
   let(:keyword) { create(:keyword) }
