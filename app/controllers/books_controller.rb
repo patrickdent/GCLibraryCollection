@@ -44,6 +44,7 @@ class BooksController < ApplicationController
 
   def update
     if @book.update(book_params)
+      @book.update_availability
       flash[:notice] = "Update Successful!"
       redirect_to book_path(@book)
     else
