@@ -11,10 +11,11 @@ class DocumentGenerator
   def generate_document(info)
     case @format
     when :label
-      make_labels(info)
+      document = make_labels(info)
     else
       puts "FAILURE IN generate_document"
     end
+    document.render_file "collection_reports/#{@format.to_s}.pdf"
   end
 
   private
@@ -77,8 +78,7 @@ class DocumentGenerator
         @x += ( 1.75.in + 0.3.in )   
       end
     end      
- 
-    document.render_file "test.pdf"
+    return document
   end
 
   def new_label(info, x, y, document)
