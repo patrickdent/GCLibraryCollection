@@ -11,7 +11,8 @@ class DocumentGenerator
   def generate_document(info)
     case @format
     when :label
-      document = make_labels(info)
+      books = info.collect { |id| Book.find(id) }
+      document = make_labels(books)
     else
       puts "FAILURE IN generate_document"
     end
@@ -48,7 +49,7 @@ class DocumentGenerator
     @dimensions[:columns] = 4
   end
 
-  def make_labels(info)
+  def make_labels(books)
     document = Prawn::Document.new({page_size: "LETTER",
                                     margin: [@dimensions[:top_margin].in, 
                                              @dimensions[:right_margin].in,
@@ -62,7 +63,7 @@ class DocumentGenerator
     @x = 0
     @y = document.cursor
 
-    info.each do |i|
+    books.each do |i|
       new_label(i, @x, @y, document)
       @label_count += 1
       #change 4 to @dimensions[:columns]
@@ -81,13 +82,13 @@ class DocumentGenerator
     return document
   end
 
-  def new_label(info, x, y, document)
+  def new_label(book, x, y, document)
     float do
       document.bounding_box([x, y], width: 1.75.in, height: 0.66.in) do
         #use padding instead of a new line here if you can
         #genre.abbr, 1st 4 of auth's last n
-        document.text_box( "#{info.genre.abbreviation.upcase}
-                            #{info.authors.first.name[0..3]}
+        document.text_box( "#{book.genre.abbreviation.upcase}
+                            #{book.authors.first.name[0..3]}
                             ", 
                             overflow: :shrink_to_fit )
       end
