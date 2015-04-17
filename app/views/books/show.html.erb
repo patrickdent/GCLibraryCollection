@@ -32,6 +32,7 @@
     <% end %>
     </ul>
 
+  <p><%= "*missing*" if @book.missing %></p>
   <p><%= "*in storage*" if @book.in_storage %></p>
 
   <% if @book.location && @book.location != "" %>

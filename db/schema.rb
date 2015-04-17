@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150413164911) do
+ActiveRecord::Schema.define(version: 20150415193538) do
 
   create_table "authors", force: true do |t|
     t.string   "name"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20150413164911) do
     t.boolean  "available",         default: true
     t.integer  "count",             default: 1
     t.boolean  "in_storage",        default: false
+    t.boolean  "missing",           default: false
   end
 
   add_index "books", ["genre_id"], name: "index_books_on_genre_id"
