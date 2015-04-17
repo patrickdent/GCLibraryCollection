@@ -20,7 +20,7 @@ class Book < ActiveRecord::Base
   end
 
   def update_availability
-    if self.count <= self.loans.active.count
+    if self.count <= self.loans.active.count || self.missing
       update_attribute(:available, false)
     elsif self.count > self.loans.active.count
       update_attribute(:available, true)
