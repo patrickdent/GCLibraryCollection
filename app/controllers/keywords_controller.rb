@@ -8,7 +8,7 @@ class KeywordsController < ApplicationController
   before_filter :is_librarian?, only: [:new, :create, :edit, :destroy, :update]
 
   def index
-    @keywords = Keyword.all.order('name ASC')
+    @keywords = Keyword.all.order('name ASC').paginate(:page => params[:page], :per_page => 50)
   end
 
   def new 

@@ -29,7 +29,7 @@ authors.each do |a|
   BookAuthor.create(book: books[(@int += 1) % books.count], author: a)
 end
 
-(1..100).each do |i|
+(1..7000).each do |i|
   BookAuthor.create(author: authors[i % authors.count],
                     book: Book.create(title: "Test Book #{i}",
                                       genre: genres[i % genres.count]))

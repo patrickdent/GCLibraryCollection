@@ -9,7 +9,7 @@ class BooksController < ApplicationController
 
 
   def index
-    @books = Book.all.order('title ASC')
+    @books = Book.all.order('title ASC').paginate(:page => params[:page], :per_page => 50)
   end
 
   def new
@@ -68,7 +68,7 @@ class BooksController < ApplicationController
   end
 
   def show_list
-    @books = Book.where(selected: true)
+    @books = Book.where(selected: true).order('title ASC').paginate(:page => params[:page], :per_page => 50)
     @multi_loan_available = is_librarian? && (@books - Book.available_to_loan).empty? && (@books.length < 6)
   end
 

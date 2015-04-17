@@ -38,5 +38,5 @@
     <% end %>
   </tbody>
 </table>
-
+<%= will_paginate @books %>
 <%= link_to "Loan Books", new_multi_path, id: "new-multi-loan-link", remote: true, class: "go-btn right" if (librarian_user?) %>
