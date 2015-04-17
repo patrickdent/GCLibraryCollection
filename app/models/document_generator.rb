@@ -90,7 +90,7 @@ class DocumentGenerator
         document.text_box( "#{book.genre.abbreviation.upcase}
                             #{book.authors.first.name[0..3]}
                             ", 
-                            overflow: :shrink_to_fit )
+                            overflow: :shrink_to_fit, align: :center )
       end
     end
   end
