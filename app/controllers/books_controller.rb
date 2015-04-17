@@ -9,7 +9,7 @@ class BooksController < ApplicationController
 
 
   def index
-    @books = Book.includes(:authors, :genre).order('title ASC')
+    @books = Book.includes(:authors, :genre).order('title ASC').paginate(:page => params[:page], :per_page => 50)
   end
 
   def new
@@ -44,6 +44,7 @@ class BooksController < ApplicationController
 
   def update
     if @book.update(book_params)
+      @book.update_availability
       flash[:notice] = "Update Successful!"
       redirect_to book_path(@book)
     else
@@ -68,7 +69,7 @@ class BooksController < ApplicationController
   end
 
   def show_list
-    @books = Book.includes(:authors, :genre).where(selected: true)
+    @books = Book.includes(:authors, :genre).where(selected: true).order('title ASC').paginate(:page => params[:page], :per_page => 50)
     @multi_loan_available = is_librarian? && (@books - Book.available_to_loan).empty? && (@books.length < 6)
   end
 

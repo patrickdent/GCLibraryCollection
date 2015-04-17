@@ -79,16 +79,18 @@ describe UsersController do
     end
 
     it "DELETE 'destroy'" do
-      expect{delete :destroy, id: @user}.to change{User.count}.by(-1)
+      expect{delete :destroy, id: @user.id}.to change{@user.reload.deactivated}.to(true)
     end
 
     it "can't DELETE 'destroy' self" do
-      expect{delete :destroy, id: @admin}.to_not change{User.count}
+      expect{delete :destroy, id: @admin.id}.to_not change{@admin.deactivated}
     end
 
     it "GET 'index'" do
+      @deactivated_user = FactoryGirl.create(:user, deactivated: true)
       get :index
       expect(assigns[:users]).to include @user
+      expect(assigns[:users]).to_not include @deactivated_user
     end
 
     it "PUT 'update'" do

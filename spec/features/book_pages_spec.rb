@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Book Pages', type: feature do
   
-  let(:book) { FactoryGirl.create(:book) }
+  let(:book) { FactoryGirl.create(:book, title: "completely Unique") }
   let(:genre) { create(:genre) }
   let(:author) { create(:author) }
   let(:keyword) { create(:keyword) }
@@ -19,7 +19,7 @@ describe 'Book Pages', type: feature do
     end
 
     it 'displays title' do expect(subject).to have_selector('h1', 'Edit Book') end
-    
+
     context 'making changes' do
 
       before do
@@ -27,11 +27,11 @@ describe 'Book Pages', type: feature do
         visit book_path(book)
         click_on 'Edit This Book'
         fill_in('Title', with: 'new title')
-        
+
 #Can't get capybara to see select boxes
 
-        # select(genre.name, from: 'Genre') 
-        # select(author.name, from: 'Author') 
+        # select(genre.name, from: 'Genre')
+        # select(author.name, from: 'Author')
         # select(keyword.name, from: 'Keyword')
         click_on 'submit'
 
@@ -48,10 +48,10 @@ describe 'Book Pages', type: feature do
 
     end
   end
-  
+
   describe 'new' do
 
-    before do 
+    before do
       admin_login
       visit books_path
       click_on 'New Book'
@@ -59,20 +59,18 @@ describe 'Book Pages', type: feature do
 
 #Can't get capybara to see select boxes
 
-      # select(Genre.all[0].name, from: 'Genre') 
-      # select(Author.all[0].name, from: 'Author') 
+      # select(Genre.all[0].name, from: 'Genre')
+      # select(Author.all[0].name, from: 'Author')
       # select(Keyword.all[0].name, from: 'Keyword')
       click_on 'submit'
     end
 
       it 'flashes success' do expect(subject).to have_content('Book Created') end
-      it 'lists in index' do expect(subject).to have_content('new title') end
-
   end
 
   describe 'delete' do
 
-    before do 
+    before do
       admin_login
       visit book_path(book)
       click_on "Delete"
