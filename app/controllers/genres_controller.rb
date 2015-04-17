@@ -6,10 +6,11 @@ class GenresController < ApplicationController
   before_filter :is_admin?, only: [:new, :create, :edit, :destroy, :update]
 
   def index
-    @genres = Genre.all.order('name ASC')
+    @genres = Genre.all.order('name ASC').paginate(:page => params[:page], :per_page => 50)
   end
 
   def show
+    @books = @genre.books.includes(:authors)
   end
 
   def new

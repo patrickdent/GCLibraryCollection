@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_many :loans
   has_many :books, through: :loans
 
+  scope :active, -> {where(deactivated: false)}
+
   MAX_LOANS = 5
 
   def role
@@ -39,11 +41,11 @@ class User < ActiveRecord::Base
       return true
     else
       return false
-    end  
+    end
   end
 
   def contains_field?(string)
-    return false if string.nil? || string.blank? 
+    return false if string.nil? || string.blank?
     true
   end
 
@@ -52,13 +54,16 @@ class User < ActiveRecord::Base
   end
 
   def self.able_to_borrow
-    User.all.select{|u| u.good_to_borrow? }
+    active.select{|u| u.good_to_borrow? }
   end
 
   def self.search(search)
     search_length = search.split.length
-    where([(['lower(preferred_first_name) LIKE lower(?)'] * search_length).join(' AND ')] + search.split.map { |search| "%#{search}%" }) +
-    where([(['lower(name) LIKE lower(?)'] * search_length).join(' AND ')] + search.split.map { |search| "%#{search}%" })
+    active.where([(['lower(preferred_first_name) LIKE lower(?)'] * search_length).join(' AND ')] + search.split.map { |search| "%#{search}%" }) +
+    active.where([(['lower(name) LIKE lower(?)'] * search_length).join(' AND ')] + search.split.map { |search| "%#{search}%" })
+  end
 
+  def deactivate
+    update_attributes(deactivated: true)
   end
 end

@@ -5,8 +5,7 @@ class Search
     return nil if Book.find_by(isbn: isbn)
 
     google_info = google_api(isbn)
-    
-    return nil if google_info == nil 
+    return nil if google_info == nil
 
     b = Book.new
     b.title = google_info["title"]
@@ -16,12 +15,12 @@ class Search
     b.pages = google_info["pageCount"]
     b.isbn = isbn
     authors = google_info["authors"]
-    if authors 
+    if authors
       authors.each do |name|
         a = Author.find_or_create_by(name: name)
         BookAuthor.create(author: a, book: b)
       end
-    end 
+    end
     b.save!
 
     return b
@@ -39,11 +38,11 @@ class Search
     body = response.body
     temp_hash = JSON.parse(body)
 
-    return nil if temp_hash["totalItems"] == 0        
+    return nil if temp_hash["totalItems"] == 0
 
     book_hash = temp_hash["items"].first["volumeInfo"]
 
-    google_info = Hash.new 
+    google_info = Hash.new
     google_info["title"] = book_hash["title"]
     google_info["publisher"] = book_hash["publisher"]
     google_info["publish_date"] = book_hash["publishedDate"]

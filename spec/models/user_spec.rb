@@ -70,4 +70,18 @@ describe User do
       expect(bad_user.good_to_borrow?(User::MAX_LOANS + 1)).to be_false
     end
   end
+
+  describe "search" do
+    it "searches users by name and preferred name" do
+      user = FactoryGirl.create(:user, name: "Jingles Butterworth", preferred_first_name: "Theodore")
+      expect(User.search("Butterworth")).to eq([user])
+      expect(User.search("Theodore")).to eq([user])
+    end
+    it "does not search deactivated users" do
+      user = FactoryGirl.create(:user, name: "Jingles Butterworth", preferred_first_name: "Theodore")
+      deactivated_user = FactoryGirl.create(:user, name: "Jingles Jones", deactivated: true)
+      expect(User.search("Jingles")).to eq([user])
+    end
+  end
+
 end

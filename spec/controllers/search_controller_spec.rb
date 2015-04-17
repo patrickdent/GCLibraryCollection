@@ -4,24 +4,24 @@ require 'support/api_utilities'
 
 describe SearchController do
 
-  before do 
+  before do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
     @user = create :user
     @librarian = create :librarian
-  end 
+  end
 
   before(:each) do
     request.env["HTTP_REFERER"] = root_path
   end
 
-  after do 
+  after do
     DatabaseCleaner.clean
-  end 
+  end
 
-  after :each do 
-    Warden.test_reset! 
-  end 
+  after :each do
+    Warden.test_reset!
+  end
 
   describe '#search' do
 
@@ -57,7 +57,7 @@ describe SearchController do
 
     it 'returns nothing for unsuccessful searches' do
       get :search, search: "Pegasus"
-      response.should be_ok
+      response.should be_redirect
       expect(assigns[:authors].empty?).to be_true
     end
 
@@ -77,7 +77,6 @@ describe SearchController do
     @user = create :user
     @admin = create :admin
     @isbn = "1234567890"
-    @bad_input = "1234567890 1-2"
     create_google_stub(create_google_url(@isbn), "exists")
   end
 
@@ -105,13 +104,6 @@ describe SearchController do
 
       before { sign_in @admin }
 
-      describe 'validations' do
-        it 'for isbn 10' do
-          post :scrape, isbn: @bad_input
-          expect(response).to redirect_to(import_path)
-        end
-      end
-
       context 'success' do
         it 'redirects to edit book' do
           post :scrape, isbn: @isbn
@@ -120,7 +112,7 @@ describe SearchController do
       end
 
       context 'failure' do
-        it 'redirects to import' do
+        it 'redirects to import if book is already in the system' do
           Search.scrape(@isbn)
           post :scrape, isbn: @isbn
           expect(response).to redirect_to(import_path)

@@ -3,10 +3,11 @@
 <h3>Upload .csv or .txt File</h3>
 <%= form_for @book_upload do |b| %>
   <fieldset>
-    <%= b.select :genre, Genre.all.collect { |n| n.name }, prompt: "Choose category", required: false, class: "chosen-select" %>
+    <%= b.select :genre, Genre.all.collect { |n| [n.name, n.id] }, prompt: "Choose category", required: false, class: "chosen-select" %>
+    <small>* Note: If you select a category, it will override category information in the file.</small>
     <%= b.file_field :file %>
   </fieldset>
-  
+
   <%= b.submit "upload file" %>
 <% end %>
 

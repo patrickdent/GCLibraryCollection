@@ -8,7 +8,7 @@ class SearchController < ApplicationController
   def search
     if params[:search] == ""
       flash[:alert] = "Please enter a search term."
-      redirect_to root_path
+      redirect_to :back
       return
     else
       @authors = Author.search(params[:search])
@@ -20,6 +20,7 @@ class SearchController < ApplicationController
 
     if @authors.blank? && @books.blank? && @genres.blank? && @keywords.blank? && @users.blank?
       flash[:alert] = "Your search yielded no results."
+      redirect_to :back
     end
 
   end
@@ -28,13 +29,10 @@ class SearchController < ApplicationController
   end
 
   def scrape
-    isbn = params[:isbn]
-    isbn.gsub!(/[^a-zA-Z0-9]/,'')
+    isbn = params[:isbn].strip.gsub("-", "")
 
-    if isbn.length == 10
-      @book = Search.scrape(isbn)
-      redirect_to edit_book_path(@book) and return if @book
-    end
+    @book = Search.scrape(isbn)
+    redirect_to edit_book_path(@book) and return if @book
 
     flash[:error] = "Book Upload Failed"
     redirect_to import_path

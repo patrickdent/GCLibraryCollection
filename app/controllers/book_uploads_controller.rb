@@ -14,9 +14,9 @@ class BookUploadsController < ApplicationController
   end
 
   def create
-     if BookUpload.import_requirements?(params)
+    if BookUpload.import_requirements?(params)
       @book_upload = BookUpload.new(book_uploads_params)
-      genre = Genre.find_by(name: params[:book_upload][:genre])
+
       if @new_books = @book_upload.save
         flash[:notice] = "Upload successful"
         redirect_to uploaded_books_path(new_books: @new_books.length)

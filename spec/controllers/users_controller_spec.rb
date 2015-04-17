@@ -2,21 +2,21 @@ require 'spec_helper'
 
 describe UsersController do
 
-  before do 
+  before do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
     @user = create :user
     @librarian = create :librarian
-    @admin = create :admin 
-  end 
+    @admin = create :admin
+  end
 
-  after do 
+  after do
     DatabaseCleaner.clean
-  end 
+  end
 
-  after :each do 
-    Warden.test_reset! 
-  end 
+  after :each do
+    Warden.test_reset!
+  end
 
   describe 'as non-admin' do
 
@@ -34,7 +34,10 @@ describe UsersController do
 
   describe 'as librarian' do
 
-    before { sign_in @librarian }
+    before do
+      sign_in @librarian
+      request.env["HTTP_REFERER"] = "http://test.com/"
+    end
 
     it 'redirects unauthorized users' do
       expect(delete :destroy, id: @user.id).to redirect_to(root_path)
@@ -54,15 +57,19 @@ describe UsersController do
 
     it "GET 'edit'" do
       get :edit, id: @user
-      expect(response.status).to eq(200) 
+      expect(response.status).to eq(200)
+    end
+
+    it "resets last_sent variable when sending overdue reminders" do
+      expect{post :send_reminders}.to change{OverdueMailer.last_sent}
     end
   end
 
 
   describe 'as admin' do
 
-    before do 
-      sign_in @admin 
+    before do
+      sign_in @admin
       request.env["HTTP_REFERER"] = "http://test.com/"
     end
 
@@ -72,16 +79,18 @@ describe UsersController do
     end
 
     it "DELETE 'destroy'" do
-      expect{delete :destroy, id: @user}.to change{User.count}.by(-1)
+      expect{delete :destroy, id: @user.id}.to change{@user.reload.deactivated}.to(true)
     end
 
     it "can't DELETE 'destroy' self" do
-      expect{delete :destroy, id: @admin}.to_not change{User.count}
+      expect{delete :destroy, id: @admin.id}.to_not change{@admin.deactivated}
     end
 
     it "GET 'index'" do
+      @deactivated_user = FactoryGirl.create(:user, deactivated: true)
       get :index
       expect(assigns[:users]).to include @user
+      expect(assigns[:users]).to_not include @deactivated_user
     end
 
     it "PUT 'update'" do
@@ -92,7 +101,7 @@ describe UsersController do
 
     it "GET 'edit'" do
       get :edit, id: @user
-      expect(response.status).to eq(200) 
+      expect(response.status).to eq(200)
     end
   end
 end

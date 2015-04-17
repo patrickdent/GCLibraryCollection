@@ -24,6 +24,8 @@
       <%= link_to raw("<i class='fa fa-home'></i>"), root_path, class: "large-icon" %>
       <a href="mailto:library@example.com?Subject=Inquiry" target="_top" class="large-icon"><i class='fa fa-envelope'></i></a>
 
+      <%= link_to raw("<i class='fa fa-question'></i>"), user_guide_path, class: "large-icon" %>
+
       <%= form_tag "/search", method: "get" do %>
         <%= label_tag "search" %>
         <%= submit_tag "search", name: nil %>
@@ -31,7 +33,6 @@
       <% end %>
 
       <h2>browse</h2>
-      <h3><%= link_to "by title", books_path %></h3>
       <h3><%= link_to "by author", authors_path %></h3>
       <h3><%= link_to "by keyword", keywords_path %></h3>
       <h3><%= link_to "by category", genres_path %></h3>

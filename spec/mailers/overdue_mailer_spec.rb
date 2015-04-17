@@ -37,4 +37,12 @@ describe OverdueMailer, type: :mailer do
     expect(@mail.body).to include("This is a friendly reminder ")
   end
 
+  it "has a last_sent class instance variable that is accessible" do
+    expect(OverdueMailer.last_sent).to_not be nil
+
+    expect(OverdueMailer.last_sent).to_not eq(Date.parse("2000-1-2"))
+    OverdueMailer.last_sent = Date.new(2000, 1, 2)
+    expect(OverdueMailer.last_sent).to eq(Date.parse("2000-1-2"))
+  end
+
 end

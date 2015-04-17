@@ -6,7 +6,7 @@ class AuthorsController < ApplicationController
 
 
   def index
-    @authors = Author.all.order('sort_by ASC')
+    @authors = Author.includes(:books).order('sort_by ASC').paginate(:page => params[:page], :per_page => 50)
   end
 
   def new
@@ -38,6 +38,7 @@ class AuthorsController < ApplicationController
   end
 
   def show
+    @books = @author.books.includes(:genre)
   end
 
   def destroy

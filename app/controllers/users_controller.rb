@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all.order('name ASC')
+    @users = User.active.order('name ASC').paginate(:page => params[:page], :per_page => 50)
   end
 
   def update
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
     if current_user == @user then
       flash[:error] = "You cannot delete yourself"
       redirect_to :back
-    elsif @user.destroy then
+    elsif @user.deactivate then
       flash[:notice] = "Delete Successful!"
       redirect_to users_path
     else
@@ -66,6 +66,7 @@ class UsersController < ApplicationController
         end
       end
     end
+    OverdueMailer.last_sent = Date.today
     flash[:notice] = "Mail successfully sent"
     redirect_to :back
   end
@@ -74,4 +75,5 @@ class UsersController < ApplicationController
   def find_user
     @user = User.find_by(id: params[:id])
   end
+
 end
