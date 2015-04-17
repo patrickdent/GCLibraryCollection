@@ -9,7 +9,7 @@ class BooksController < ApplicationController
 
 
   def index
-    @books = Book.all.order('title ASC')
+    @books = Book.includes(:authors, :genre).order('title ASC')
   end
 
   def new
@@ -20,7 +20,7 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     if @book.save
       flash[:notice] = "Book Created"
-      redirect_to books_path
+      redirect_to root_path
     else
       flash[:error] = "Book Creation Failed"
       redirect_to new_book_path
@@ -39,7 +39,7 @@ class BooksController < ApplicationController
     else
       flash[:error] = "Delete Failed"
     end
-      redirect_to books_path
+      redirect_to root_path
   end
 
   def update
@@ -69,7 +69,7 @@ class BooksController < ApplicationController
   end
 
   def show_list
-    @books = Book.where(selected: true)
+    @books = Book.includes(:authors, :genre).where(selected: true)
     @multi_loan_available = is_librarian? && (@books - Book.available_to_loan).empty? && (@books.length < 6)
   end
 
