@@ -23,6 +23,7 @@ LibraryCollection::Application.routes.draw do
   get 'clear_list' => 'books#clear_list', defaults: {format: :js}
   get 'show_list' => 'books#show_list'
   post 'send_reminders' => 'users#send_reminders'
+  post 'generate_report' => 'document_generator#new_report'
 
   get 'admin_dashboard' => 'static_pages#admin_dashboard'
   get 'styleguide' => 'static_pages#styleguide'

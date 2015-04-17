@@ -45,3 +45,5 @@
 </table>
 
 <%= link_to "Loan Books", new_multi_path, id: "new-multi-loan-link", remote: true, class: "go-btn right" if (librarian_user?) %>
+
+<%= button_to "Create Labels", generate_report_path(type: :label, subjects: @books.to_a), class: "go-btn right" if (librarian_user?) %>
