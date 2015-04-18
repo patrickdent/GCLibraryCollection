@@ -33,15 +33,25 @@ class LocationUpdater
   end
 
   def update_storage_book(book_info)
-    if book = Book.find_by_title_and_isbn(book_info["title"], book_info["isbn"])
+    if book_info["isbn"]
+      book_info["isbn"] = "0" + book_info["isbn"] if book_info["isbn"].length == 9
+    else
+      book_info["isbn"] = ""
+    end
+    if book = Book.where(title: book_info["title"],isbn: book_info["isbn"]).first
       book.update_attributes(in_storage: true, location: book_info["owner"])
     else
-      failures << [book_info["title"], book_info["isbn"], book_info["location"]]
+      failures << [book_info["title"], book_info["isbn"], book_info["location"], book_info["owner"]]
     end
   end
 
   def update_missing_book(book_info)
-    if book = Book.find_by_title_and_isbn(book_info["title"], book_info["isbn"])
+    if book_info["isbn"]
+      book_info["isbn"] = "0" + book_info["isbn"] if book_info["isbn"].length == 9
+    else
+      book_info["isbn"] = ""
+    end
+    if book = Book.where(title: book_info["title"],isbn: book_info["isbn"]).first
       book.update_attributes(missing: true, available: false)
     else
       failures << [book_info["title"], book_info["isbn"], book_info["location"]]
