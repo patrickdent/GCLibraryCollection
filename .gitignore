@@ -27,5 +27,6 @@ coverage
 #Ignore test pdf files
 /*.pdf
 
-#Ignore generated labels
-coolection_reports/
+#Ignore stuff that's only necessary on production server
+public/assets/*
+vendor/bundle/*
