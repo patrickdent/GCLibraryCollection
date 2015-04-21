@@ -35,9 +35,17 @@ describe Author do
   end
 
   describe "search" do
+    before :all do
+      @author1 = FactoryGirl.create(:author, name: "Jingles Butterworth" )
+      @author2 = FactoryGirl.create(:author, name: "Jingles Zipperz" )
+    end
+
     it "searches authors by name" do
-      author = FactoryGirl.create(:author, name: "Jingles Butterworth" )
-      expect(Author.search("Butterworth")).to eq([author])
+      expect(Author.search("Butterworth")).to eq([@author1])
+    end
+
+    it "returns results alphabetized by name" do
+      expect(Author.search("Jingles")).to eq([@author1, @author2])
     end
   end
 
