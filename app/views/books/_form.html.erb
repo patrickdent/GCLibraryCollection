@@ -1,3 +1,4 @@
+<small>If the author of this book cannot be found in the drop down, you can create them in the author form at the bottom of this page. Note that this will cause the form to refresh.</small>
 <% disabled ||= true %>
 <% disabled = false if admin_user? %>
 <%= form_for @book do |f| %>
@@ -58,3 +59,7 @@
 
     <%= f.submit "submit" %>
 <% end %>
+
+<br>
+<br>
+<%= render "authors/ajax_form" %>
