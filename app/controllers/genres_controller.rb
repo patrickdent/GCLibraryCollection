@@ -10,7 +10,7 @@ class GenresController < ApplicationController
   end
 
   def show
-    @books = @genre.books.includes(:authors)
+    @books = @genre.books.includes(:authors).paginate(:page => params[:page], :per_page => 50)
   end
 
   def new
