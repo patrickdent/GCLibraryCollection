@@ -26,9 +26,17 @@ describe Keyword  do
   end
 
   describe "search" do
+    before :all do
+      @keyword1 = FactoryGirl.create(:keyword, name: "yawn")
+      @keyword2 = FactoryGirl.create(:keyword, name: "yarn")
+    end
+
     it "searches keywords by name" do
-      keyword = FactoryGirl.create(:keyword, name: "yawn")
-      expect(Keyword.search("YaWN")).to eq([keyword])
+      expect(Keyword.search("YaWN")).to eq([@keyword1])
+    end
+
+    it "returns results alphabetized by name" do
+      expect(Keyword.search("ya")).to eq([@keyword2, @keyword1])
     end
   end
 end
