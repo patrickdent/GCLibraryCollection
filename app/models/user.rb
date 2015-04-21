@@ -49,8 +49,12 @@ class User < ActiveRecord::Base
     true
   end
 
-  def pref_name
-    preferred_first_name || name.split.first
+  def pref_name(chosen_name_only = false)
+    if !preferred_first_name || preferred_first_name.empty?
+      return name.split.first unless chosen_name_only
+      return nil
+    end
+    return preferred_first_name 
   end
 
   def self.able_to_borrow
