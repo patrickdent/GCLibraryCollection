@@ -23,9 +23,17 @@ describe Genre do
   end
 
   describe "search" do
+    before :all do
+      @genre1 = FactoryGirl.create(:genre, name: "Snacky" )
+      @genre2 = FactoryGirl.create(:genre, name: "SnackTime" )
+    end
+
     it "searches genres by name" do
-      genre = FactoryGirl.create(:genre, name: "Snacks" )
-      expect(Genre.search("SNACKS")).to eq([genre])
+      expect(Genre.search("SNACKY")).to eq([@genre1])
+    end
+
+    it "returns results alphabetized by name" do
+      expect(Genre.search("snack")).to eq([@genre2, @genre1])
     end
   end
 
