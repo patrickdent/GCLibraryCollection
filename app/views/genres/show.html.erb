@@ -15,7 +15,7 @@
   </thead>
 
   <tbody>
-    <% @genre.books.each do |b| %>
+    <% @books.each do |b| %>
       <% missing = "missing" if b.missing %>
       <% on_loan = "on-loan" unless b.available || missing %>
       <% in_storage = "in-storage" if b.in_storage %>
@@ -50,3 +50,4 @@
     <% end %>
   </tbody>
 </table>
+<%= will_paginate @books %>
