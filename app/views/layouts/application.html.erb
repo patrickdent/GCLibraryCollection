@@ -49,7 +49,7 @@
         <nav>
           <ul>
           <% if user_signed_in? %>
-            <li id="username">logged in as <strong><%= current_user.name %></strong>
+            <li id="username">logged in as <strong><%= current_user.pref_name %></strong>
             </li>
             <li><%= link_to 'my profile', user_path(current_user) %></li>
             <% if librarian_user? %>

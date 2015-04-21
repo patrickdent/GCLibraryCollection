@@ -1,4 +1,4 @@
-<h2><%= @user.name %></h2>
+<h2><%= @name + " | " if @name = @user.pref_name(true) %> <%= @user.name %></h2>
 
 <div class="show">
   <% if librarian_user? && (!@user.identification || @user.identification.blank?) %>
