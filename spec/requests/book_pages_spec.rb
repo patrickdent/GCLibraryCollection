@@ -6,7 +6,7 @@ describe "Book Pages" do
   let(:book)    { create(:book, genre: genre) }
   let(:author)  { create(:author) }
   let(:keyword) { create(:keyword) }
-  
+
 
   before do
     BookAuthor.create(book: book, author: author)
@@ -20,7 +20,7 @@ describe "Book Pages" do
       before { visit books_path }
 
       it "links to books" do expect(subject).to have_link(book.title) end
-      it "links to author" do expect(subject).to have_link(book.authors.first.name) end
+      it "links to author" do expect(subject).to have_link(book.authors.first.display_name) end
       it "links to genre" do expect(subject).to have_link(book.genre.name) end
     end
 
@@ -41,11 +41,11 @@ describe "Book Pages" do
       before { visit book_path(book) }
 
       it "title" do expect(subject).to have_selector('h2', text: book.title) end
-      it "author" do expect(subject).to have_link(author.name) end
+      it "author" do expect(subject).to have_link(author.display_name) end
       it "genre" do expect(subject).to have_link(genre.name) end
       it "keyword" do expect(subject).to have_link(keyword.name) end
       it "no edit" do expect(subject).to_not have_content("Edit") end
-      #not all books have ISBNs, so not testing for presence 
+      #not all books have ISBNs, so not testing for presence
     end
 
     context "as admin" do

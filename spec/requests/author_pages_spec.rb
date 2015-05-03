@@ -16,7 +16,7 @@ describe "Author Pages" do
 
    before { visit authors_path }
 
-   it { should have_link(author.name, author_path(author.id)) }
+   it { should have_link(author.display_name, author_path(author.id)) }
 
   end
 
@@ -24,7 +24,7 @@ describe "Author Pages" do
 
     before do
       visit author_path(author.id)
-      # save_and_open_page 
+      # save_and_open_page
     end
 
    it { should have_selector('h2', text: author.name) }
