@@ -1,8 +1,9 @@
 require 'spec_helper'
 
-describe UserUpload do 
-
+describe UserUpload do
   before do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.start
     @good_file = File.new(Rails.root + 'spec/fixtures/files/user_upload_test.csv')
     @good_upload = UserUpload.new( { file: ActionDispatch::Http::UploadedFile.new(tempfile: @good_file, filename: File.basename(@good_file))} )
     @good_file.close
@@ -14,10 +15,14 @@ describe UserUpload do
     @bad_type_file.close
   end
 
+  after :all do
+    DatabaseCleaner.clean
+  end
+
   describe 'open spreadsheet' do
 
     context 'with wrong file type' do
-  
+
       it 'raises error' do
         expect{@wrong_type_upload.open_spreadsheet}.to raise_error(UserUpload::InvalidFileError)
       end
@@ -28,7 +33,7 @@ describe UserUpload do
       it 'returns an array' do
         expect((@good_upload.open_spreadsheet).class).to eq Array
       end
-    end 
+    end
   end
 
   describe 'load imported books' do
@@ -38,7 +43,7 @@ describe UserUpload do
       it 'returns an array of hashes' do
         expect(@good_upload.load_uploaded_data.first).to have_key("name")
       end
-    end 
+    end
   end
 
   describe 'save' do
@@ -48,6 +53,6 @@ describe UserUpload do
       it 'returns ids of created books' do
         expect(@good_upload.save.length).to eq 2
       end
-    end 
+    end
   end
 end

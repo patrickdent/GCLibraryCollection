@@ -1,7 +1,14 @@
 require 'spec_helper'
 
 describe 'Book Pages', type: feature do
-  
+  before :all do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.start
+  end
+  after :all do
+    DatabaseCleaner.clean
+  end
+
   let(:book) { FactoryGirl.create(:book, title: "completely Unique") }
   let(:genre) { create(:genre) }
   let(:author) { create(:author) }

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe LoansController do
 
-  before do
+  before :all do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
     @book = create :book
@@ -11,13 +11,12 @@ describe LoansController do
     @librarian = create :librarian
     @loan = create(:loan, user_id: @user.id, book_id: @book.id)
   end
-
-  before(:each) do
-    request.env["HTTP_REFERER"] = root_path
+  after :all do
+    DatabaseCleaner.clean
   end
 
-  after do
-    DatabaseCleaner.clean
+  before :each do
+    request.env["HTTP_REFERER"] = root_path
   end
 
   after :each do

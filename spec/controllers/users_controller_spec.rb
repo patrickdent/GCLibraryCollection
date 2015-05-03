@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe UsersController do
 
-  before do
+  before :all do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
     @user = create :user
@@ -10,7 +10,7 @@ describe UsersController do
     @admin = create :admin
   end
 
-  after do
+  after :all do
     DatabaseCleaner.clean
   end
 
@@ -18,11 +18,11 @@ describe UsersController do
     Warden.test_reset!
   end
 
-  describe 'as non-admin' do
-
-    before { sign_in @user }
+  describe 'as a patron' do
 
     it 'redirects unauthorized users' do
+      sign_in @user
+
       expect(get :index).to redirect_to(root_path)
       expect(get :edit, id: @user.id).to redirect_to(root_path)
       expect(post :update, id: @user.id).to redirect_to(root_path)

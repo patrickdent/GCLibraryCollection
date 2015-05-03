@@ -1,9 +1,17 @@
 require 'spec_helper'
 
-describe 'Static Pages', type: feature do 
+describe 'Static Pages', type: feature do
+  before :all do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.start
+  end
+  after :all do
+    DatabaseCleaner.clean
+  end
+
   subject { page }
 
-  describe 'Home Page' do 
+  describe 'Home Page' do
     before { visit root_path }
 
     it 'has working genre link' do expect(subject).to have_link('by category', href: genres_path) end
@@ -21,7 +29,7 @@ describe 'Static Pages', type: feature do
       end
 
       context 'with non-matching term' do
-        before do 
+        before do
           fill_in('search', :with => 'XXXXXXXXXXXX!XXX')
           click_on('search')
         end
@@ -29,13 +37,13 @@ describe 'Static Pages', type: feature do
       end
 
       context 'with matching term' do
-        before do 
+        before do
           @book = FactoryGirl.create(:book)
           fill_in('search', :with => @book.title)
           click_on('search')
         end
         it 'shows matches' do expect(subject).to have_content("Books: #{@book.title}") end
-      end 
+      end
     end
   end
 
@@ -146,4 +154,4 @@ describe 'Static Pages', type: feature do
       end
     end
   end
-end 
+end

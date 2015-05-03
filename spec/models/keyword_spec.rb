@@ -1,6 +1,14 @@
 require 'spec_helper'
 
 describe Keyword  do
+  before :all do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.start
+  end
+  after :all do
+    DatabaseCleaner.clean
+  end
+
   let(:keyword) { FactoryGirl.create(:keyword) }
 
   subject { keyword }
