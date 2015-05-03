@@ -9,6 +9,10 @@ describe 'User Pages', type: feature do
     DatabaseCleaner.clean
   end
 
+  after :each do
+    Warden.test_reset!
+  end
+
   let!(:user) { create(:user) }
 
   describe 'index' do

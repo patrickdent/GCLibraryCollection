@@ -9,6 +9,10 @@ describe 'Static Pages', type: feature do
     DatabaseCleaner.clean
   end
 
+  after :each do
+    Warden.test_reset!
+  end
+
   subject { page }
 
   describe 'Home Page' do
@@ -137,10 +141,6 @@ describe 'Static Pages', type: feature do
         librarian_login
         visit root_path
         click_on('dashboard')
-      end
-
-      after do
-        Warden.test_reset!
       end
 
       describe 'links' do

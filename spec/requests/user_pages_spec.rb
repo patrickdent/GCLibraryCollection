@@ -12,6 +12,10 @@ describe "User Pages" do
     DatabaseCleaner.clean
   end
 
+  after :each do
+    Warden.test_reset!
+  end
+
   subject { page }
 
   describe "index" do

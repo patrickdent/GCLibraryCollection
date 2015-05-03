@@ -10,17 +10,23 @@ describe UsersController do
     @admin = create :admin
   end
 
-  after :all do
-    DatabaseCleaner.clean
-  end
+describe 'as a visitor' do
+    before do
+      Warden.test_reset!
+    end
+    it 'all actions require authentication' do
 
-  after :each do
-    Warden.test_reset!
+      expect(get :index).to redirect_to(new_user_session_path)
+      expect(get :edit, id: @user.id).to redirect_to(new_user_session_path)
+      expect(post :update, id: @user.id).to redirect_to(new_user_session_path)
+      expect(delete :destroy, id: @user.id).to redirect_to(new_user_session_path)
+      expect(get :show, id: @librarian.id).to redirect_to(new_user_session_path)
+      expect(post :send_reminders).to redirect_to(new_user_session_path)
+    end
   end
 
   describe 'as a patron' do
-
-    it 'redirects unauthorized users' do
+    it 'does not allow patrons to do anything with users' do
       sign_in @user
 
       expect(get :index).to redirect_to(root_path)
@@ -28,6 +34,10 @@ describe UsersController do
       expect(post :update, id: @user.id).to redirect_to(root_path)
       expect(delete :destroy, id: @user.id).to redirect_to(root_path)
       expect(get :show, id: @librarian.id).to redirect_to(root_path)
+      expect(post :send_reminders).to redirect_to(root_path)
+    end
+    after do
+      Warden.test_reset!
     end
   end
 
@@ -37,6 +47,9 @@ describe UsersController do
     before do
       sign_in @librarian
       request.env["HTTP_REFERER"] = "http://test.com/"
+    end
+    after do
+      Warden.test_reset!
     end
 
     it 'redirects unauthorized users' do
@@ -71,6 +84,9 @@ describe UsersController do
     before do
       sign_in @admin
       request.env["HTTP_REFERER"] = "http://test.com/"
+    end
+    after do
+      Warden.test_reset!
     end
 
     it "can change user roles" do

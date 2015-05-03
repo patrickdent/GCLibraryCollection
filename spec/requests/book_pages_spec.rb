@@ -18,6 +18,9 @@ describe "Book Pages" do
     DatabaseCleaner.clean
   end
 
+  after :each do
+    Warden.test_reset!
+  end
 
   describe 'index' do
     context "as non-admin" do

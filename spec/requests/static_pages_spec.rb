@@ -9,6 +9,10 @@ describe StaticPagesController do
     DatabaseCleaner.clean
   end
 
+  after :each do
+    Warden.test_reset!
+  end
+
   it "should have a current_user" do
     login_user
     visit root_path

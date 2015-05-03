@@ -9,6 +9,10 @@ describe 'Author Pages', type: feature do
     DatabaseCleaner.clean
   end
 
+  after :each do
+    DatabaseCleaner.clean
+  end
+
   let(:author) { create(:author) }
 
   subject { page }

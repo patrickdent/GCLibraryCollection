@@ -9,6 +9,10 @@ describe 'Keyword Pages', type: feature do
     DatabaseCleaner.clean
   end
 
+  after :each do
+    DatabaseCleaner.clean
+  end
+
   let(:keyword) { create(:keyword) }
 
   subject { page }

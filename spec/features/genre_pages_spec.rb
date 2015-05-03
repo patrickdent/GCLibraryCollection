@@ -9,6 +9,10 @@ describe 'Genre Pages', type: feature do
     DatabaseCleaner.clean
   end
 
+  after :each do
+    DatabaseCleaner.clean
+  end
+
   let(:genre) { create(:genre) }
 
   subject { page }

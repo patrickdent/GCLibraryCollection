@@ -10,6 +10,10 @@ describe "Genre Pages" do
     DatabaseCleaner.clean
   end
 
+  after :each do
+    Warden.test_reset!
+  end
+
   let(:genre)   { create(:genre)}
   let(:book)    { create(:book, genre: genre) }
   let(:author)  { create(:author) }

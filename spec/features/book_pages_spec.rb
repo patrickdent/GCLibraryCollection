@@ -9,6 +9,10 @@ describe 'Book Pages', type: feature do
     DatabaseCleaner.clean
   end
 
+  after :each do
+    DatabaseCleaner.clean
+  end
+
   let(:book) { FactoryGirl.create(:book, title: "completely Unique") }
   let(:genre) { create(:genre) }
   let(:author) { create(:author) }
