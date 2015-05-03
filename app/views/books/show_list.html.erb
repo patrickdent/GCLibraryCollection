@@ -29,11 +29,11 @@
         </td>
         <td>
           <% b.authors.each do |a| %>
-            <%= link_to a.name, author_path(a) %>
+            <%= link_to a.display_name, author_path(a) %>
           <% end %>
         </td>
         <td>
-          <span class="<%= on_loan %>"></span> 
+          <span class="<%= on_loan %>"></span>
           <span class="<%= in_storage %>"></span>
           <span class="<%= missing %>"></span>
           <!-- icon shows up here if book is on loan/in storage/missing -->
