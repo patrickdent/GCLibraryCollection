@@ -2,7 +2,11 @@ class Search
   require 'net/http'
 
   def self.scrape(isbn)
-    return nil if Book.find_by(isbn: isbn)
+    if (book = Book.find_by(isbn: isbn)) then
+      book.update_attributes(count: book.count + 1)
+      return book
+    end
+
 
     google_info = google_api(isbn)
     return nil if google_info == nil
