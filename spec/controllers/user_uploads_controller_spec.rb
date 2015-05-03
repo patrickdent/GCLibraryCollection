@@ -1,33 +1,32 @@
 require 'spec_helper'
 
-describe UserUploadsController do 
-
-  let(:good_file) { fixture_file_upload('files/user_upload_test.csv', 'text/xml') }
-  let(:bad_file) { fixture_file_upload('files/user_upload_test_bad.csv', 'text/xml') }
-
-  before do 
+describe UserUploadsController do
+  before :all do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
     @user = create :user
-    @admin = create :admin 
-  end 
-
-  after do 
-    DatabaseCleaner.clean
-  end 
-
-  after :each do 
-    Warden.test_reset! 
+    @admin = create :admin
   end
+
+  after :all do
+    DatabaseCleaner.clean
+  end
+
+  after :each do
+    Warden.test_reset!
+  end
+
+  let(:good_file) { fixture_file_upload('files/user_upload_test.csv', 'text/xml') }
+  let(:bad_file) { fixture_file_upload('files/user_upload_test_bad.csv', 'text/xml') }
 
   describe 'as non-admin' do
 
     before { sign_in @user }
 
     it 'redirects unauthorized users' do
-      expect(get :new).to redirect_to(root_path) 
+      expect(get :new).to redirect_to(root_path)
       expect(post :create).to redirect_to(root_path)
-      expect(get :uploaded_users).to redirect_to(root_path) 
+      expect(get :uploaded_users).to redirect_to(root_path)
     end
   end
 

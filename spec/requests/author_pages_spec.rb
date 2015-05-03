@@ -1,14 +1,18 @@
 require 'spec_helper'
 
 describe "Author Pages" do
+  before do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.start
+    BookAuthor.create(book: book, author: author)
+  end
+  after do
+    DatabaseCleaner.clean
+  end
 
   let(:genre)   { create(:genre)}
   let(:book)    { create(:book, genre: genre) }
   let(:author)  { create(:author) }
-
-  before do
-   BookAuthor.create(book: book, author: author)
-  end
 
   subject { page }
 
@@ -24,7 +28,7 @@ describe "Author Pages" do
 
     before do
       visit author_path(author.id)
-      # save_and_open_page 
+      # save_and_open_page
     end
 
    it { should have_selector('h2', text: author.name) }

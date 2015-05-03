@@ -1,7 +1,14 @@
 require 'spec_helper'
 
 describe 'Keyword Pages', type: feature do
-  
+  before :all do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.start
+  end
+  after :all do
+    DatabaseCleaner.clean
+  end
+
   let(:keyword) { create(:keyword) }
 
   subject { page }
@@ -16,7 +23,7 @@ describe 'Keyword Pages', type: feature do
     end
 
     it 'displays title' do expect(subject).to have_selector('h1', 'Edit Keyword') end
-    
+
     context 'making changes' do
 
       before do
@@ -32,10 +39,10 @@ describe 'Keyword Pages', type: feature do
 
     end
   end
-  
+
   describe 'new' do
 
-    before do 
+    before do
       admin_login
       visit keywords_path
       click_on 'New Keyword'
@@ -50,7 +57,7 @@ describe 'Keyword Pages', type: feature do
 
   describe 'delete' do
 
-    before do 
+    before do
       admin_login
       visit keyword_path(keyword)
       click_on "Delete"

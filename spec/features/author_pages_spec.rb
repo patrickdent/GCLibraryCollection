@@ -1,11 +1,17 @@
 require 'spec_helper'
 
 describe 'Author Pages', type: feature do
-  
+  before :all do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.start
+  end
+  after :all do
+    DatabaseCleaner.clean
+  end
+
   let(:author) { create(:author) }
 
   subject { page }
-
 
   describe 'edit' do
 
@@ -16,7 +22,7 @@ describe 'Author Pages', type: feature do
     end
 
     it 'displays title' do expect(subject).to have_selector('h1', 'Edit Author') end
-    
+
     context 'making changes' do
 
       before do
@@ -32,10 +38,10 @@ describe 'Author Pages', type: feature do
 
     end
   end
-  
+
   describe 'new' do
 
-    before do 
+    before do
       admin_login
       visit authors_path
       click_on 'New Author'
@@ -50,7 +56,7 @@ describe 'Author Pages', type: feature do
 
   describe 'delete' do
 
-    before do 
+    before do
       admin_login
       visit author_path(author)
       click_on "Delete"

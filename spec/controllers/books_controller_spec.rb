@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe BooksController do
 
-  before do
+  before :all do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
     @book = create :book
@@ -15,7 +15,7 @@ describe BooksController do
     @unselected_book = create :book
   end
 
-  after do
+  after :all do
     DatabaseCleaner.clean
   end
 

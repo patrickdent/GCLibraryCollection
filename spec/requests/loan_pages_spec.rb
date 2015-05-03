@@ -1,6 +1,13 @@
 require 'spec_helper'
 
 describe "Loan Pages" do
+  before do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.start
+  end
+  after do
+    DatabaseCleaner.clean
+  end
 
   let(:user)   { create(:user)}
   let(:book)    { create(:book) }

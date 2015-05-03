@@ -1,6 +1,14 @@
 require 'spec_helper'
 
 describe Contribution do
+  before :all do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.start
+  end
+  after :all do
+    DatabaseCleaner.clean
+  end
+
   let(:contribution) { FactoryGirl.create(:contribution) }
   let(:author) { FactoryGirl.create(:author) }
   let(:book) { FactoryGirl.create(:book) }
@@ -9,7 +17,7 @@ describe Contribution do
   before do
     contribution.authors << author
   end
-  
+
   subject { contribution }
 
   describe "accessible attributes" do
@@ -23,21 +31,21 @@ describe Contribution do
   end
 
   describe "validations" do
-    it "will not create a contribution without a name" do  
+    it "will not create a contribution without a name" do
       FactoryGirl.build(:contribution, name: "").should_not be_valid
-    end 
+    end
 
-    it "will not create a contribution with a duplicate name" do  
+    it "will not create a contribution with a duplicate name" do
       FactoryGirl.build(:contribution, name: contribution.name).should_not be_valid
-    end 
-  end 
+    end
+  end
 
-    
+
 
   describe "associations" do
 
     describe "should have an association to author" do
-      
+
       it "via contribution" do
         contribution.authors.should include author
       end
