@@ -109,13 +109,11 @@ describe SearchController do
           post :scrape, isbn: @isbn
           expect(response).to redirect_to(edit_book_path(Book.last))
         end
-      end
 
-      context 'failure' do
-        it 'redirects to import if book is already in the system' do
-          Search.scrape(@isbn)
+         it 'redirects to edit if book is already in the system' do
+          book = Search.scrape(@isbn)
           post :scrape, isbn: @isbn
-          expect(response).to redirect_to(import_path)
+          expect(response).to redirect_to(edit_book_path(book))
         end
       end
     end
