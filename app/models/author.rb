@@ -14,7 +14,11 @@ class Author < ActiveRecord::Base
   end
 
   def sort_by_name
-    update_attribute(:sort_by, name.split(" ").last) unless sort_by
+    update_attribute(:sort_by, name.split(" ").last) unless (sort_by && !sort_by.empty?)
     return sort_by
+  end
+
+  def display_name
+    "#{sort_by_name}, #{name.split(" ").first}"
   end
 end

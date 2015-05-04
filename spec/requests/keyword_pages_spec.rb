@@ -48,7 +48,7 @@ describe "Keyword Pages" do
       it "keyword as h2" do expect(subject).to have_selector('h2', text: keyword.name) end
       it "books" do expect(subject).to have_content(book.title) end
       it "genre" do expect(subject).to have_content(genre.name) end
-      it "author" do expect(subject).to have_content(author.name) end
+      it "author" do expect(subject).to have_content(author.display_name) end
     end
 
     context "as admin" do
@@ -77,7 +77,7 @@ describe "Keyword Pages" do
   describe "index" do
 
     context "as guest/patron" do
-      
+
       before { visit keywords_path }
 
       it "has link to keyword" do expect(subject).to have_link(keyword.name, keyword_path(keyword.id)) end

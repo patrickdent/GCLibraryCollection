@@ -13,7 +13,7 @@
   <tbody>
     <% @authors.each do |a| %>
     <tr>
-      <td> <%= link_to a.name, author_path(a.id) %></td>
+      <td> <%= link_to a.display_name, author_path(a.id) %></td>
       <td><%= a.books.count %></td>
       <% if admin_user? %>
         <td>

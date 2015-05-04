@@ -7,7 +7,7 @@
     <div class="search-results">
       <ul>
         <% @authors.each do |a| %>
-          <li class="results"><%= link_to a.name, author_path(a.id) %>, titles: <%= a.books.count %></li>
+          <li class="results"><%= link_to a.display_name, author_path(a.id) %>, titles: <%= a.books.count %></li>
         <% end %>
       </ul>
     </div>
