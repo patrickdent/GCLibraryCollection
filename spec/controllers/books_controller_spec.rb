@@ -75,6 +75,14 @@ describe BooksController do
       @book.reload
       expect(@book.count).to eq(1)
     end
+
+    it "doesn't decrease count if non-admin" do
+      sign_in @librarian
+      @book.update_attributes(count: 2)
+      post :remove_copy, id: @book.id
+      @book.reload
+      expect(@book.count).to eq(2)
+    end
   end
 
   describe "POST 'update'" do

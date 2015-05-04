@@ -4,7 +4,7 @@ class BooksController < ApplicationController
 
   before_filter :authenticate_user!, except: [:index, :show]
   before_filter :find_book, only: [:show, :edit, :destroy, :update, :remove_copy]
-  before_filter :is_admin?, only: [:new, :create, :destroy]
+  before_filter :is_admin?, only: [:new, :create, :destroy, :remove_copy]
   before_filter :is_librarian?, only: [:edit, :update, :list, :clear_list, :show_list]
 
 
