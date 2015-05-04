@@ -28,7 +28,7 @@
           <%= link_to b.title, book_path(b.id) %>
         </td>
         <td><% b.authors.each do |a| %>
-              <%= link_to a.name, author_path(a) %>
+              <%= link_to a.display_name, author_path(a) %>
             <% end %>
         </td>
         <td>

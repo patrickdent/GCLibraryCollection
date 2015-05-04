@@ -16,7 +16,7 @@
     </fieldset>
     <fieldset>
     	<%= f.label :author %>
-    	<%= f.select :author_ids, Author.all.collect { |a| [a.name, a.id] }, {}, multiple: true, class: "chosen-select", disabled: disabled %>
+    	<%= f.select :author_ids, Author.all.collect { |a| [a.display_name, a.id] }, {}, multiple: true, class: "chosen-select", disabled: disabled %>
     </fieldset>
     <fieldset>
     	<%= f.label :keyword %>
