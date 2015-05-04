@@ -8,7 +8,7 @@
   <p>Author(s): </p>
     <ul>
     <% @book.authors.each do |a| %>
-      <li><%= link_to a.name, author_path(a) %> </li>
+      <li><%= link_to a.display_name, author_path(a) %> </li>
       <% end %>
     </ul>
 

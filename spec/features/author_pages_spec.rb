@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'Author Pages', type: feature do
-  
+
   let(:author) { create(:author) }
 
   subject { page }
@@ -16,7 +16,7 @@ describe 'Author Pages', type: feature do
     end
 
     it 'displays title' do expect(subject).to have_selector('h1', 'Edit Author') end
-    
+
     context 'making changes' do
 
       before do
@@ -32,25 +32,25 @@ describe 'Author Pages', type: feature do
 
     end
   end
-  
+
   describe 'new' do
 
-    before do 
+    before do
       admin_login
       visit authors_path
       click_on 'New Author'
-      fill_in('Name', with: 'newer author')
+      fill_in('Name', with: 'Real Cool Writer')
       click_on 'submit'
     end
 
       it 'flashes success' do expect(subject).to have_content('Author Created') end
-      it 'lists in index' do expect(subject).to have_content('newer author') end
+      it 'lists in index' do expect(subject).to have_content('Writer, Real') end
 
   end
 
   describe 'delete' do
 
-    before do 
+    before do
       admin_login
       visit author_path(author)
       click_on "Delete"

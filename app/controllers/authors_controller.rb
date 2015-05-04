@@ -18,8 +18,8 @@ class AuthorsController < ApplicationController
     if @author.save
       respond_to do |format|
         format.html do
-            flash[:notice] = "Author Created"
-            redirect_to authors_path
+          flash[:notice] = "Author Created"
+          redirect_to authors_path
         end
         format.js {}
       end

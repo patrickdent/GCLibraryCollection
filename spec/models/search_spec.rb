@@ -9,7 +9,7 @@ describe Search do
 
     context "good info" do
 
-      # the example Json respons has three authors, on of whom is made into the @author variable below
+      # the example Json response has three authors, on of whom is made into the @author variable below
       before do 
         create_google_stub(create_google_url(isbn), "exists")
         @author = create(:author, name: "Fen Osler Hampson")
@@ -21,10 +21,15 @@ describe Search do
         expect(@book).to eq Book.last
       end 
 
+      it "will increase book count on existing books" do
+        book = Search.scrape(isbn)
+        expect(book.count).to eq(2)
+      end
+
       # one was made in the before block, so author count should only be two larger
       it "will find or make authors from good info" do  
         expect(@author_count).to eq (Author.all.length - 2)
-      end 
+      end
     end 
 
     it "will return nil if no book info comes back" do  
@@ -35,12 +40,6 @@ describe Search do
     it "will not error if no author info present" do  
       create_google_stub(create_google_url(isbn), "no authors")
       expect(Search.scrape(isbn)).to be_valid
-    end 
-
-    it "will return nil if book with isbn already exists" do 
-      create_google_stub(create_google_url(isbn), "exists")
-      Search.scrape(isbn)
-      expect(Search.scrape(isbn)).to eq nil
     end 
   end 
 end
