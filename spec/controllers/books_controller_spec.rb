@@ -57,6 +57,26 @@ describe BooksController do
     end
   end
 
+  describe "POST 'remove addtional copy'" do
+    before { request.env["HTTP_REFERER"] = book_path(@book) }
+
+    it "decreases count if more than one copy" do
+      sign_in @admin
+      @book.update_attributes(count: 2)
+      post :remove_copy, id: @book.id
+      @book.reload
+      expect(@book.count).to eq(1)
+    end
+
+    it "doesn't decrease count if less than 2 copies" do
+      sign_in @admin
+      @book.update_attributes(count: 1)
+      post :remove_copy, id: @book.id
+      @book.reload
+      expect(@book.count).to eq(1)
+    end
+  end
+
   describe "POST 'update'" do
     context 'when no admin is logged in' do
       it "does not allow unauthorized users to make changes" do
