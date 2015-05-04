@@ -115,6 +115,6 @@ class LoansController < ApplicationController
   end
 
   def overdue_list
-    @loans = Loan.overdue.order('due_date ASC').paginate(:page => params[:page], :per_page => 50)
+    @loans = Loan.overdue.paginate(:page => params[:page], :per_page => 50)
   end
 end
