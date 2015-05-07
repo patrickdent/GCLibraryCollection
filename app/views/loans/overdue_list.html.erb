@@ -2,7 +2,7 @@
 <%= button_to "Send Overdue Reminders", send_reminders_path %>
 <p>Reminders last sent on <%= OverdueMailer.last_sent.strftime("%m/%d/%Y") %></p>
 
-<table class="index tablesorter">
+<table class="index">
   <thead>
     <tr>
       <th>Book Title</th>
