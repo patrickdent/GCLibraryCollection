@@ -22,3 +22,17 @@ td span.in-storage:after {
   padding-left: 20%;}
 
 .pagination { margin-bottom: 8rem;}
+
+.index th .current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+.index th .asc {
+  background-image: url(http://png-3.findicons.com/files/icons/2117/nuove/128/2uparrow.png);
+}
+
+.index th .desc {
+  background-image: url(http://png-3.findicons.com/files/icons/2117/nuove/128/2downarrow.png);
+}

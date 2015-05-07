@@ -6,8 +6,8 @@
 <table class="index">
   <thead>
     <tr>
-      <th>Author Name</th>
-      <th>Number of Books</th>
+      <th><%= sortable "name", "Author Name" %></th>
+      <th><%= sortable "books.count", "Number of Books" %></th>
     </tr>
   </thead>
   <tbody>
@@ -25,4 +25,4 @@
     <% end %>
   </tbody>
 </table>
-<%= will_paginate @authors %>
+<%#= will_paginate @authors %>
