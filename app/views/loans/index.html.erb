@@ -1,31 +1,3 @@
 <h2>Loans</h2>
 
-<table class="index">
-  <thead>
-    <tr>
-      <!-- unimplemented -->
-      <th>Book Title</th>
-      <!-- unimplemented -->
-      <th>User</th>
-      <th><%= sortable "start_date", "Start Date" %></th>
-      <th><%= sortable "due_date", "Due Date" %></th>
-      <th><%= sortable "returned_date", "Returned" %></th>
-      <th><%= sortable "renewal_count", "Renewals" %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @loans.each do |l| %>
-      <% overdue = "overdue" if l.overdue?; on_loan = "on-loan" if l.active? %>
-      <tr class="<%= overdue %> <%= on_loan %>">
-        <td><%= link_to l.book.title, book_path(l.book.id) %></td>
-        <td><%= link_to l.user.name, user_path(l.user.id) %></td>
-        <td><%= l.start_date %></td>
-        <td><%= l.due_date %></td>
-        <td><%= l.returned_date %></td>
-        <td><%= l.renewal_count %></td>
-        <td><%= link_to 'view', loan_path(l.id) %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= will_paginate @loans %>
+<div id="sortable-table"><%= render 'index_table' %></div>
