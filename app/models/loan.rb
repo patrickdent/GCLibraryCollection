@@ -5,7 +5,7 @@ class Loan < ActiveRecord::Base
   after_create :set_lending_info
 
   scope :active, -> { where(returned_date: nil) }
-  scope :overdue, -> { Loan.find_overdue }
+  scope :overdue, -> { active.where("due_date < ?", Date.today).order(:start_date) }
 
   DURATION = 30
   MAX_RENEWALS = 2
@@ -29,10 +29,6 @@ class Loan < ActiveRecord::Base
 
   def active?
     returned_date == nil
-  end
-
-  def self.find_overdue
-    Loan.active.select { |l| l.overdue? }
   end
 
   private

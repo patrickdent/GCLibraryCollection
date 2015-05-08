@@ -30,10 +30,18 @@ describe Book do
   end
 
   describe "search" do
+    before :all do
+      @book1 = FactoryGirl.create(:book, title: "Boogers and Their Uses", isbn: "9988998899" )
+      @book2 = FactoryGirl.create(:book, title: "My Boy Boogers", isbn: "998888383" )
+    end
+
     it "searches books by title and isbn" do
-      newbook = FactoryGirl.create(:book, title: "Boogers", isbn: "9988998899" )
-      expect(Book.search("Boogers")).to eq([newbook])
-      expect(Book.search("9988998899")).to eq([newbook])
+      expect(Book.search("Their Uses")).to eq([@book1])
+      expect(Book.search("9988998899")).to eq([@book1])
+    end
+
+    it "returns results alphabetized by title" do
+      expect(Book.search("Boogers")).to eq([@book1, @book2])
     end
   end
 end

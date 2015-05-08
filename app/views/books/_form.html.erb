@@ -1,3 +1,4 @@
+<small>If the author of this book cannot be found in the drop down, you can create them in the author form at the bottom of this page. Note that this will cause the form to refresh.</small>
 <% disabled ||= true %>
 <% disabled = false if admin_user? %>
 <%= form_for @book do |f| %>
@@ -6,30 +7,59 @@
     	<%= f.text_field :title, disabled: disabled %>
     </fieldset>
     <fieldset>
+      <%= f.label :isbn %>
+      <%= f.text_field :isbn %>
+    </fieldset>
+    <fieldset>
     	<%= f.label :genre, "Category" %>
     	<%= f.select :genre_id, Genre.all.collect { |n| [n.name, n.id] }, {}, multiple: false, class: "chosen-select", disabled: disabled %>
     </fieldset>
     <fieldset>
     	<%= f.label :author %>
-    	<%= f.select :author_ids, Author.all.collect { |a| [a.name, a.id] }, {}, multiple: true, class: "chosen-select", disabled: disabled %>
+    	<%= f.select :author_ids, Author.all.collect { |a| [a.display_name, a.id] }, {}, multiple: true, class: "chosen-select", disabled: disabled %>
     </fieldset>
     <fieldset>
     	<%= f.label :keyword %>
     	<%= f.select :keyword_ids, Keyword.all.collect { |k| [k.name, k.id] }, {}, multiple: true, class: "chosen-select" %>
     </fieldset>
     <fieldset>
-        <%= f.label :missing %>
-        <%= f.check_box :missing %>
+      <%= f.label :language %>
+      <%= f.text_field :language %>
     </fieldset>
     <fieldset>
-        <%= f.label :in_storage %>
-        <%= f.check_box :in_storage %>
+      <%= f.label :publisher %>
+      <%= f.text_field :publisher %>
     </fieldset>
     <fieldset>
-        <%= f.label :location %>
-        <%= f.text_field :location %>
+      <%= f.label :publish_date %>
+      <%= f.text_field :publish_date %>
+    </fieldset>
+    <fieldset>
+      <%= f.label :publication_place %>
+      <%= f.text_field :publication_place %>
+    </fieldset>
+    <fieldset>
+      <%= f.label :pages %>
+      <%= f.text_field :pages %>
+    </fieldset>
+    <br>
+    <fieldset>
+      <%= f.label :missing %>
+      <%= f.check_box :missing %>
+    </fieldset>
+    <fieldset>
+      <%= f.label :in_storage %>
+      <%= f.check_box :in_storage %>
+    </fieldset>
+    <fieldset>
+      <%= f.label :location %>
+      <%= f.text_field :location %>
     </fieldset>
 
 
     <%= f.submit "submit" %>
 <% end %>
+
+<br>
+<br>
+<%= render "authors/ajax_form" %>

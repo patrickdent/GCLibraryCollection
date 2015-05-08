@@ -17,8 +17,7 @@
       <% missing = "missing" if b.missing %>
       <% on_loan = "on-loan" unless b.available || missing %>
       <% in_storage = "in-storage" if b.in_storage %>
-      <tr class="<%= on_loan %>">
-      <tr class="<%= missing %>">
+      <tr class="<%= on_loan %> <%= missing %>">
         <td>
           <% if librarian_user? %>
             <%=  check_box_tag :selected, b.id, b.selected, id: "book-select_#{b.id}"  %>
@@ -32,7 +31,7 @@
         </td>
         <td>
           <% b.authors.each do |a| %>
-            <%= link_to a.name, author_path(a) %>
+            <%= link_to a.display_name, author_path(a) %>
           <% end %>
         </td>
         <td>
@@ -49,7 +48,6 @@
             <% end %>
           <% end %>
         </td>
-      </tr>
       </tr>
     <% end %>
   </tbody>

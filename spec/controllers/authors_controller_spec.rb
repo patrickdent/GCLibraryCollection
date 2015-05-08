@@ -2,47 +2,40 @@ require 'spec_helper'
 
 describe AuthorsController do
 
-  before do 
+  before do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
     @author = create :author, name: "Abbie Abberson"
-    @author2 = create :author, name: "Zed Zebrafish" 
-    @author3 = create :author, sort_by: "Moo"
+    @author2 = create :author, name: "Zed Zzzz"
     @user = create :user
-    @admin = create :admin 
-  end 
+    @admin = create :admin
+  end
 
-  after do 
+  after do
     DatabaseCleaner.clean
-  end 
+  end
 
-  after :each do 
-    Warden.test_reset! 
-  end 
+  after :each do
+    Warden.test_reset!
+  end
 
-  describe "GET 'index'" do 
-    it "shows all Authors" do 
-      get :index 
+  describe "GET 'index'" do
+    it "shows all Authors in alphabetical order" do
 
-      expect(assigns[:authors]).to include @author
-    end 
-
-    it "shows all Authors in alphabetical order" do 
-      get :index 
+      get :index
 
       expect(assigns[:authors].first).to eq @author
-      expect(assigns[:authors]).to include @author3
       expect(assigns[:authors].last).to eq @author2
-    end 
+    end
 
-  end 
+  end
 
-  describe "GET 'show'" do 
-    it "shows the specified author" do 
-      get :show, id: @author.id 
+  describe "GET 'show'" do
+    it "shows the specified author" do
+      get :show, id: @author.id
 
-      expect(assigns[:author]).to eq @author 
-    end 
+      expect(assigns[:author]).to eq @author
+    end
   end
 
   describe "POST 'create'" do
@@ -70,7 +63,7 @@ describe AuthorsController do
       it "redirects to index" do
         expect(post :create, author: FactoryGirl.attributes_for(:author, name: 'testname1')).to redirect_to(authors_path)
       end
-    end 
+    end
   end
 
   describe "DELETE destroy" do
@@ -86,7 +79,7 @@ describe AuthorsController do
     context 'as admin' do
       before { sign_in @admin }
 
-      it 'removes a author' do 
+      it 'removes a author' do
         expect{delete :destroy, id: @author}.to change{Author.count}.by(-1)
       end
 
@@ -103,19 +96,19 @@ describe AuthorsController do
 
       it 'redirects unauthorized user' do
         expect(put :update, id: @author).to redirect_to(root_path)
-      end      
+      end
     end
 
     context 'as admin' do
       before { sign_in @admin }
 
-      it "does not update with invalid params" do 
+      it "does not update with invalid params" do
         post :update, id: @author.id, author: { name: "" }
-        @author.reload 
+        @author.reload
 
         expect(@author.name).to_not eq("")
         expect(response.status).to eq(302)
-      end 
+      end
 
       it 'changes the name' do
         put :update, id: @author, author: FactoryGirl.attributes_for(:author, name: "new and unique")

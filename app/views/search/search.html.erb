@@ -7,7 +7,7 @@
     <div class="search-results">
       <ul>
         <% @authors.each do |a| %>
-          <li class="results"><%= link_to a.name, author_path(a.id) %>, titles: <%= a.books.count %></li>
+          <li class="results"><%= link_to a.display_name, author_path(a.id) %>, titles: <%= a.books.count %></li>
         <% end %>
       </ul>
     </div>
@@ -51,7 +51,9 @@
       <div class="search-results">
         <ul>
           <% @users.each do |k| %>
-            <li class="results"><%= link_to k.name, user_path(k.id) %></li>
+            <% @name = nil %>
+            <% @name = @preferred_name + " | " + k.name if @preferred_name = k.pref_name(true) %>
+            <li class="results"><%= link_to @name ? @name : k.name, user_path(k.id) %></li>
           <% end %>
         </ul>
       </div>

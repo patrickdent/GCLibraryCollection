@@ -14,6 +14,7 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
+    @author = Author.new
   end
 
   def create
@@ -31,6 +32,8 @@ class BooksController < ApplicationController
   end
 
   def edit
+    @author = Author.new
+
   end
 
   def destroy

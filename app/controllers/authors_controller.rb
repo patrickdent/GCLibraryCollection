@@ -16,8 +16,13 @@ class AuthorsController < ApplicationController
   def create
     @author = Author.new(author_params)
     if @author.save
-      flash[:notice] = "Author Created"
-      redirect_to authors_path
+      respond_to do |format|
+        format.html do
+          flash[:notice] = "Author Created"
+          redirect_to authors_path
+        end
+        format.js {}
+      end
     else
       flash[:error] = "Author Creation Failed"
       redirect_to new_author_path
