@@ -105,7 +105,7 @@ describe BooksController do
       end
 
       it "redirects to index" do
-        expect(post :create, book: FactoryGirl.attributes_for(:book, name: 'testname1')).to redirect_to(root_path)
+        expect(post :create, book: FactoryGirl.attributes_for(:book, title: 'testname1')).to redirect_to(root_path)
       end
     end
   end

@@ -1,8 +1,8 @@
 <h2>Book: <%= @book.title %></h2>
 <h3> <%= @book.available ? "#{@book.count - @book.loans.active.count} available for checkout" : "unavailable for checkout" %> </h3>
-  <% if librarian_user? %>
-    <%=  check_box_tag :selected, @book.id, @book.selected, id: "book-select_#{@book.id}"  %> <small>Add to selected books</small>
-  <% end %>
+<% if librarian_user? %>
+  <%=  check_box_tag :selected, @book.id, @book.selected, id: "book-select_#{@book.id}"  %> <small>Add to selected books</small>
+<% end %>
 
 <div class="show">
   <p>Author(s): </p>
@@ -14,16 +14,13 @@
 
   <p>ISBN: <%= @book.isbn %></p>
 
-  <p>
-  Category:
-  <% if @book.genre %>
-    <%= link_to @book.genre.name, genre_path(@book.genre) %>
-  <% end %>
-  </p>
+  <p>Category: <%= link_to @book.genre.name, genre_path(@book.genre) if @book.genre %></p>
 
-  <p>Publisher: <%= @book.publisher %></p>
+  <p>Publication Info: <%= @book.publisher %> <%= @book.publish_date %> <%= @book.publication_place %></p>
 
-  <p>Publish Date: <%= @book.publish_date %></p>
+  <p>Language: <%= @book.language %></p>
+
+  <p>Pages: <%= @book.pages %></p>
 
   <p>Keyword(s): </p>
     <ul>
@@ -32,13 +29,11 @@
     <% end %>
     </ul>
 
-  <p><%= "*missing*" if @book.missing %></p>
-  <p><%= "*in storage*" if @book.in_storage %></p>
-
-  <% if @book.location && @book.location != "" %>
+  <% if librarian_user? %>
     <p>Location: <%= @book.location %></p>
+    <p><%= "*missing*" if @book.missing %></p>
+    <p><%= "*in storage*" if @book.in_storage %></p>
   <% end %>
-
 </div>
 
   <%= link_to "Loan Book", new_loan_path(book_id: @book.id), id: "new-book-loan-link", remote: true, class: "go-btn right" if (librarian_user? && @book.available) %>
