@@ -3,12 +3,13 @@
 <table class="index">
   <thead>
     <tr>
+      <!-- unimplemented -->
       <th>role</th>
-      <th>preferred name</th>
-      <th>legal name</th>
-      <th>notes</th>
-      <th>do not lend</th>
-      <th>identification</th>
+      <th><%= sortable "preferred_first_name", "preferred name"%></th>
+      <th><%= sortable "name", "legal name"%></th>
+      <th><%= sortable "notes", "notes" %></th>
+      <th><%= sortable "do_not_lend", "do not lend" %></th>
+      <th><%= sortable "identification", "identification" %></th>
     </tr>
   </thead>
   <tbody>

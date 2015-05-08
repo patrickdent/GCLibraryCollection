@@ -44,7 +44,7 @@ class AuthorsController < ApplicationController
   end
 
   def show
-    @books = @author.books.includes(:genre)
+    @books = @author.books.includes(:genre).order(sort_column("title") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
   end
 
   def destroy
@@ -65,9 +65,8 @@ class AuthorsController < ApplicationController
     params.require(:author).permit(:name, :id, :sort_by)
   end
 
-  def sort_column
-    # Author.column_names.include?(params[:sort]) ? params[:sort] : "name"
-    params[:sort] ? params[:sort] : "name"
+  def sort_column(default = "name")
+    params[:sort] ? params[:sort] : default
   end
   
   def sort_direction
