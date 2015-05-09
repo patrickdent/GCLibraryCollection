@@ -3,7 +3,7 @@
   max-height:100%;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 2rem 1rem;
+  padding: 2rem 0;
   background: $light_gray;
   .logo {
   	max-width: 25%;
@@ -61,7 +61,7 @@ h3 {
 }
 
 .main article {
-	margin: 5em 2em;
+	margin: 4em 2em;
 	height: 100%;
 }
 
@@ -87,4 +87,3 @@ td > a:hover {
 
 .clear {clear: both;}
 
-.dashboard-links {line-height: 2rem;}

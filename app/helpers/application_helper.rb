@@ -7,6 +7,8 @@ def location
       'library'
     when 'devise/sessions'
       'login'
+    when 'genres'
+      'categories'
     when 'search'
       if request.original_url.include?('/import') then
         'import'
