@@ -22,6 +22,7 @@ LibraryCollection::Application.routes.draw do
   post 'list' => 'books#list', defaults: {format: :json}
   get 'clear_list' => 'books#clear_list', defaults: {format: :js}
   get 'show_list' => 'books#show_list'
+  post 'remove_copy' => 'books#remove_copy'
   post 'send_reminders' => 'users#send_reminders'
   post 'generate_report' => 'document_generator#new_report'
 
