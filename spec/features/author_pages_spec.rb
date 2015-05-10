@@ -5,9 +5,6 @@ describe 'Author Pages', type: feature do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
   end
-  after :all do
-    DatabaseCleaner.clean
-  end
 
   after :each do
     DatabaseCleaner.clean
@@ -49,12 +46,12 @@ describe 'Author Pages', type: feature do
       admin_login
       visit authors_path
       click_on 'New Author'
-      fill_in('Name', with: 'newer author')
+      fill_in('Name', with: 'Real Cool Writer')
       click_on 'submit'
     end
 
       it 'flashes success' do expect(subject).to have_content('Author Created') end
-      it 'lists in index' do expect(subject).to have_content('newer author') end
+      it 'lists in index' do expect(subject).to have_content('Writer, Real') end
 
   end
 

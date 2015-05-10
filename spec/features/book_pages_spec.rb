@@ -5,9 +5,6 @@ describe 'Book Pages', type: feature do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
   end
-  after :all do
-    DatabaseCleaner.clean
-  end
 
   after :each do
     DatabaseCleaner.clean
@@ -51,12 +48,6 @@ describe 'Book Pages', type: feature do
       it 'flashes success' do expect(subject).to have_content('Update Successful') end
       it 'changes title' do expect(subject).to have_content('new title') end
 
-#Can't get capybara to see select boxes
-
-      # it 'changes genre' do expect(subject).to have_content(genre.name) end
-      # it 'changes author' do expect(subject).to have_content(author.name) end
-      # it 'changes keyword' do expect(subject).to have_content(keyword.name) end
-
     end
   end
 
@@ -68,11 +59,6 @@ describe 'Book Pages', type: feature do
       click_on 'New Book'
       fill_in('Title', with: 'new title')
 
-#Can't get capybara to see select boxes
-
-      # select(Genre.all[0].name, from: 'Genre')
-      # select(Author.all[0].name, from: 'Author')
-      # select(Keyword.all[0].name, from: 'Keyword')
       click_on 'submit'
     end
 

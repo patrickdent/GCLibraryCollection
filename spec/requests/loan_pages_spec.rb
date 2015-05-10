@@ -89,4 +89,24 @@ describe "Loan Pages" do
       it "displays renewals" do expect(page).to have_content(@loan.renewal_count) end
     end
   end
+  describe 'overdue list' do
+    before do
+      librarian_login
+      book.update_attributes(count: 2)
+      @later_loan = create(:loan, user_id: user.id, book_id: book.id, due_date: "2015-04-10", start_date: "2015-03-10")
+      @earlier_loan = create(:loan, user_id: user.id, book_id: book.id, due_date: "2015-04-01", start_date: "2015-03-01")
+      visit overdue_list_path
+    end
+
+    it "shows all overdue loans" do
+     expect(page).to have_content(@later_loan.due_date.to_s)
+     expect(page).to have_content(@earlier_loan.due_date.to_s)
+   end
+
+    it "shows them in order by start date" do
+      #note: if the order of the columns in table changes, the "(3)" will need to change to reflect new postion of start date
+      expect(page.find("tbody tr:nth-child(1) td:nth-child(3)")).to have_content(@earlier_loan.start_date.to_s)
+      expect(page.find("tbody tr:nth-child(2) td:nth-child(3)")).to have_content(@later_loan.start_date.to_s)
+    end
+  end
 end

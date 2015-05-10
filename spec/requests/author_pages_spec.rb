@@ -24,7 +24,7 @@ describe "Author Pages" do
 
    before { visit authors_path }
 
-   it { should have_link(author.name, author_path(author.id)) }
+   it { should have_link(author.display_name, author_path(author.id)) }
 
   end
 
