@@ -1,4 +1,5 @@
-<table class="index">
+<table>
+
   <thead>
     <tr>
       <th><%= sortable "title", "Title" %></th>
@@ -19,21 +20,18 @@
       <% in_storage = "in-storage" if b.in_storage %>
       <tr class="<%= on_loan %>">
         <td>
-          <% if librarian_user? %>
-            <%=  check_box_tag :selected, b.id, b.selected, id: "book-select_#{b.id}"  %>
-          <% end %>
+          <%=  check_box_tag :selected, b.id, b.selected, id: "book-select_#{b.id}" if librarian_user? %>
           <%= link_to b.title, book_path(b.id) %>
         </td>
 
-        <td><% b.authors.each do |a| %>
-              <%= link_to a.display_name, author_path(a.id)%>
-            <% end %>
+        <td>
+          <% b.authors.each do |a| %>
+            <%= link_to a.display_name, author_path(a.id)%>
+          <% end %>
         </td>
 
         <td>
-          <% if b.genre %>
-            <%= link_to b.genre.name, genre_path(b.genre) %>
-          <% end %>
+          <%= link_to b.genre.name, genre_path(b.genre) if b.genre %>
         </td>
 
         <td>
@@ -54,5 +52,7 @@
       </tr>
     <% end %>
   </tbody>
+
 </table>
+
 <%= will_paginate @books %>

@@ -1,6 +1,6 @@
 <h2>Uploaded Books</h2>
 
-<table class="index">
+<table>
   <thead>
     <tr>
       <th>Title</th>
@@ -14,15 +14,16 @@
   <tbody>
     <% @new_books.each do |b| %>
     <tr>
-      <td> <%= link_to b.title, book_path(b.id) %></td>
-      <td>
-        <%= link_to b.genre.name, genre_path(b.genre) if b.genre %>
-      </td>
+      <td><%= link_to b.title, book_path(b.id) %></td>
+
+      <td><%= link_to b.genre.name, genre_path(b.genre) if b.genre %></td>
+
       <td>
         <% b.authors.each do |a| %>
           <%= link_to a.display_name, author_path(a) %>
         <% end %>
       </td>
+
       <% if admin_user? %>
         <td>
         <%= link_to "edit", edit_book_path(b) %>

@@ -23,17 +23,17 @@ td span.in-storage:after {
 
 .pagination { margin-bottom: 8rem;}
 
-.index th .current {
+table th .current {
   padding-right: 12px;
   background-repeat: no-repeat;
   background-position: right center;
 }
 
-.index th .asc {
+table th .asc {
   background-image: url(http://upload.wikimedia.org/wikipedia/commons/4/48/Icons-mini-arrow_up.gif);
 }
 
-.index th .desc {
+table th .desc {
   background-image: url(http://upload.wikimedia.org/wikipedia/commons/8/8b/Icons-mini-arrow_down.gif);
 }
 

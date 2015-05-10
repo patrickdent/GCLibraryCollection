@@ -1,4 +1,5 @@
-<table class="index">
+<table>
+
   <thead>
     <tr>
       <th><%= sortable "name", "Keyword" %></th>
@@ -9,11 +10,14 @@
       <% end %>
     </tr>
   </thead>
+
   <tbody>
     <% @keywords.each do |k| %>
     <tr>
       <td> <%= link_to k.name, keyword_path(k) %></td>
+
       <td><%= k.books.count %></td>
+
       <% if librarian_user? %>
         <td>
           <%= link_to "edit", edit_keyword_path(k) %>
@@ -23,5 +27,6 @@
     </tr>
     <% end %>
   </tbody>
+
 </table>
 <%= will_paginate @keywords %>

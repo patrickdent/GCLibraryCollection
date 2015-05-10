@@ -1,4 +1,4 @@
-<table class="index">
+<table>
   <thead>
     <tr>
       <th><%= sortable "name", "Category Name" %></th>
@@ -13,6 +13,7 @@
     <% @genres.each do |g| %>
     <tr>
       <td> <%= link_to g.name, genre_path(g.id) %></td>
+
       <td><%= g.books.count %></td>
 
       <% if admin_user? %>
