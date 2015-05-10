@@ -36,3 +36,42 @@ td span.in-storage:after {
 .index th .desc {
   background-image: url(http://upload.wikimedia.org/wikipedia/commons/8/8b/Icons-mini-arrow_down.gif);
 }
+
+table {
+  margin: auto;
+  border-spacing: 0;
+  border-collapse: collapse;
+  thead{
+    background-color: $dark_gray;
+    th {
+      padding: 0.75rem;
+    }
+  }
+  tr:hover td{
+    background-color:$lightest-gray;
+  }
+  td{
+    vertical-align:middle;
+    background-color:$white;
+    border-top: 1px solid $dark_gray;
+    border-bottom: 1px solid $dark_gray;
+    text-align:left;
+    padding:0.5rem;
+  }
+}
+// curve corners of table cells, because adding 'collapse' to table makes radius on table not work
+table tr:last-child td:last-child {
+  border-bottom-right-radius: 6px;
+}
+table tr:last-child td:first-child {
+  border-bottom-left-radius: 6px;
+}
+table thead tr:first-child th:first-child{
+ border-top-left-radius: 6px;
+}
+table thead tr:first-child th:last-child{
+  border-top-right-radius: 6px;
+}
+table tr:last-child td{
+  border-bottom: none;
+}
