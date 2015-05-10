@@ -6,14 +6,16 @@ describe UsersController do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
     @user = create :user
-    @librarian = create :librarian
     @admin = create :admin
+    @librarian = create :librarian
+    Warden.test_reset!
+  end
+
+  before :each do
+    Warden.test_reset!
   end
 
 describe 'as a visitor' do
-    before do
-      Warden.test_reset!
-    end
     it 'all actions require authentication' do
 
       expect(get :index).to redirect_to(new_user_session_path)
@@ -36,9 +38,6 @@ describe 'as a visitor' do
       expect(get :show, id: @librarian.id).to redirect_to(root_path)
       expect(post :send_reminders).to redirect_to(root_path)
     end
-    after do
-      Warden.test_reset!
-    end
   end
 
 
@@ -48,8 +47,9 @@ describe 'as a visitor' do
       sign_in @librarian
       request.env["HTTP_REFERER"] = "http://test.com/"
     end
+
     after do
-      Warden.test_reset!
+      sign_out @librarian
     end
 
     it 'redirects unauthorized users' do
@@ -76,6 +76,7 @@ describe 'as a visitor' do
     it "resets last_sent variable when sending overdue reminders" do
       expect{post :send_reminders}.to change{OverdueMailer.last_sent}
     end
+
   end
 
 
@@ -85,8 +86,9 @@ describe 'as a visitor' do
       sign_in @admin
       request.env["HTTP_REFERER"] = "http://test.com/"
     end
+
     after do
-      Warden.test_reset!
+      sign_out @admin
     end
 
     it "can change user roles" do
@@ -119,5 +121,7 @@ describe 'as a visitor' do
       get :edit, id: @user
       expect(response.status).to eq(200)
     end
+
   end
+
 end
