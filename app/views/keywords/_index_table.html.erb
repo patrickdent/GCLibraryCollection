@@ -4,6 +4,9 @@
       <th><%= sortable "name", "Keyword" %></th>
       <!-- unimplemented -->
       <th>Number of Books</th>
+      <% if librarian_user? %>
+        <th></th>
+      <% end %>
     </tr>
   </thead>
   <tbody>

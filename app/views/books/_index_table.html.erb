@@ -7,6 +7,9 @@
       <!-- unimplemented -->
       <th>Author(s)</th>
       <th><%= sortable "available", "Available" %></th>
+      <% if librarian_user? %>
+        <th></th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -16,37 +19,39 @@
       <% in_storage = "in-storage" if b.in_storage %>
       <tr class="<%= on_loan %> <%= missing %>">
         <td>
-          <% if librarian_user? %>
-            <%=  check_box_tag :selected, b.id, b.selected, id: "book-select_#{b.id}"  %>
-          <% end %>
+            <%=  check_box_tag :selected, b.id, b.selected, id: "book-select_#{b.id}" if librarian_user?  %>
           <%= link_to b.title, book_path(b.id) %>
         </td>
+
         <td>
-        <% if b.genre %>
-          <%= link_to b.genre.name, genre_path(b.genre) %>
-        <% end %>
+          <%= link_to b.genre.name, genre_path(b.genre)  if b.genre %>
         </td>
+
         <td>
           <% b.authors.each do |a| %>
             <%= link_to a.display_name, author_path(a) %>
           <% end %>
         </td>
+
         <td>
           <span class="<%= on_loan %>"></span>
           <span class="<%= in_storage %>"></span>
           <span class="<%= missing %>"></span>
           <!-- icon shows up here if book is on loan/in storage/missing -->
         </td>
-        <td>
-          <% if librarian_user? %>
+
+        <% if librarian_user? %>
+          <td>
             <%= link_to "edit", edit_book_path(b) %>
             <% if admin_user? %>
               <%= link_to "delete", book_path(b), method: :delete, data: {confirm: "Are you sure you want to delete this book?"} %>
             <% end %>
-          <% end %>
-        </td>
+          </td>
+        <% end %>
+
       </tr>
     <% end %>
+
   </tbody>
 </table>
 <%= will_paginate @books %>

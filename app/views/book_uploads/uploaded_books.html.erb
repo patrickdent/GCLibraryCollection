@@ -6,7 +6,9 @@
       <th>Title</th>
       <th>Category</th>
       <th>Author(s)</th>
-      <th></th>
+      <% if admin_user? %>
+        <th></th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -14,9 +16,7 @@
     <tr>
       <td> <%= link_to b.title, book_path(b.id) %></td>
       <td>
-      <% if b.genre %>
-        <%= link_to b.genre.name, genre_path(b.genre) %>
-      <% end %>
+        <%= link_to b.genre.name, genre_path(b.genre) if b.genre %>
       </td>
       <td>
         <% b.authors.each do |a| %>

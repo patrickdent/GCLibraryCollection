@@ -7,6 +7,9 @@
       <!-- unimplemented -->
       <th>Category</th>
       <th><%= sortable "available", "Available" %></th>
+      <% if librarian_user? %>
+        <th></th>
+      <% end %>
     </tr>
   </thead>
 
@@ -21,28 +24,33 @@
           <% end %>
           <%= link_to b.title, book_path(b.id) %>
         </td>
+
         <td><% b.authors.each do |a| %>
               <%= link_to a.display_name, author_path(a.id)%>
             <% end %>
         </td>
+
         <td>
           <% if b.genre %>
             <%= link_to b.genre.name, genre_path(b.genre) %>
           <% end %>
         </td>
+
         <td>
           <span class="<%= on_loan %>"></span>
           <span class="<%= in_storage %>"></span>
           <!-- icon shows up here if book is on loan/in storage -->
         </td>
-        <td>
-          <% if librarian_user? %>
+
+        <% if librarian_user? %>
+          <td>
             <%= link_to "edit", edit_book_path(b)  %>
             <% if admin_user? %>
               <%= link_to "delete", book_path(b), method: :delete, data: {confirm: "Are you sure you want to delete this book?"} %>
             <% end %>
+          </td>
         <% end %>
-        </td>
+
       </tr>
     <% end %>
   </tbody>
