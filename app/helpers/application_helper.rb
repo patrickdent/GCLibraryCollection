@@ -7,16 +7,22 @@ module ApplicationHelper
         'library'
       when 'devise/sessions'
         'login'
+      when 'genres'
+        'categories'
+      when 'authors'
+        'authors'
+      when 'books'
+        'books'
+      when 'keywords'
+        'keywords'
       when 'search'
         if request.original_url.include?('/import') then
           'import'
         else
           location
         end
-      else
-        location
+      end
     end
-  end
 
   def sortable(column, title = nil)
     title ||= column.titleize

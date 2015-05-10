@@ -1,4 +1,7 @@
 <h2>Edit Book</h2>
 
 <%= render 'form' %>
+
+<%= button_to "Remove Copy", remove_copy_path(id: @book.id), class: "danger-btn right", data: {confirm: "Are you sure you want to remove this copy?"} if admin_user? && (@book.count > 1)%>
+
 <%= link_to "cancel", book_path(@book), class: "meh-btn cancel" %>

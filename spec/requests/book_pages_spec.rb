@@ -44,18 +44,21 @@ describe "Book Pages" do
       it "author" do expect(subject).to have_link(author.display_name) end
       it "genre" do expect(subject).to have_link(genre.name) end
       it "keyword" do expect(subject).to have_link(keyword.name) end
-      it "no edit" do expect(subject).to_not have_content("Edit") end
+      it "no edit" do expect(subject).to_not have_content("Edit") end  
       #not all books have ISBNs, so not testing for presence
     end
 
     context "as admin" do
       before do
+        book.update_attributes(count: 2)
+        book.reload
         admin_login
         visit book_path(book)
       end
 
       it 'edit' do expect(subject).to have_link("Edit") end
       it 'delete' do expect(subject).to have_link("Delete") end
+      it 'remove one' do expect(subject).to have_button("Remove Copy") end
     end
   end
 end
