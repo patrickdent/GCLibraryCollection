@@ -1,6 +1,17 @@
 require 'spec_helper'
 
 describe 'Genre Pages', type: feature do
+  before :all do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.start
+  end
+  after :all do
+    DatabaseCleaner.clean
+  end
+
+  after :each do
+    DatabaseCleaner.clean
+  end
 
   let(:genre) { create(:genre) }
 

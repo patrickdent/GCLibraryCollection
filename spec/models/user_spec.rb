@@ -1,7 +1,15 @@
 require 'spec_helper'
 describe User do
+  before :all do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.start
+  end
+  after :all do
+    DatabaseCleaner.clean
+  end
 
   describe "accessible attributes" do
+
     let(:user) { FactoryGirl.create :user }
     subject { user }
 

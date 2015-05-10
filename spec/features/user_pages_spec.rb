@@ -1,6 +1,18 @@
 require 'spec_helper'
 
 describe 'User Pages', type: feature do
+  before :all do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.start
+  end
+  after :all do
+    DatabaseCleaner.clean
+  end
+
+  after :each do
+    Warden.test_reset!
+  end
+
   let!(:user) { create(:user) }
 
   describe 'index' do

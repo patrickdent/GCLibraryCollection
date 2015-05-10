@@ -4,19 +4,18 @@ require 'support/api_utilities'
 
 describe SearchController do
 
-  before do
+  before :all do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
     @user = create :user
     @librarian = create :librarian
   end
+  after :all do
+    DatabaseCleaner.clean
+  end
 
   before(:each) do
     request.env["HTTP_REFERER"] = root_path
-  end
-
-  after do
-    DatabaseCleaner.clean
   end
 
   after :each do
