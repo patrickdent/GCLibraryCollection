@@ -3,17 +3,18 @@
     display: none;
   }
 
-  div.column-2{
+  div.right-content{
     display: none;
   }
 
-  div.column-6{
+  div.left-page-content{
+    display: none;
+  }
+
+  section.main article{
     width: 100%;
     overflow: visible;
   }
-  .gray {
-    overflow: visible;
-    }
 
   table.index.tablesorter {
     border: none; 
