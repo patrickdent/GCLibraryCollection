@@ -1,19 +1,26 @@
 require 'spec_helper'
 
 describe "Book Pages" do
-
   let(:genre)   { create(:genre)}
   let(:book)    { create(:book, genre: genre) }
   let(:author)  { create(:author) }
   let(:keyword) { create(:keyword) }
 
+  subject { page }
 
   before do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.start
     BookAuthor.create(book: book, author: author)
     BookKeyword.create(book: book, keyword: keyword)
   end
+  after do
+    DatabaseCleaner.clean
+  end
 
-  subject { page }
+  after :each do
+    Warden.test_reset!
+  end
 
   describe 'index' do
     context "as non-admin" do
@@ -44,7 +51,7 @@ describe "Book Pages" do
       it "author" do expect(subject).to have_link(author.display_name) end
       it "genre" do expect(subject).to have_link(genre.name) end
       it "keyword" do expect(subject).to have_link(keyword.name) end
-      it "no edit" do expect(subject).to_not have_content("Edit") end  
+      it "no edit" do expect(subject).to_not have_content("Edit") end
       #not all books have ISBNs, so not testing for presence
     end
 

@@ -1,24 +1,23 @@
 require 'spec_helper'
 
 describe BookUploadsController do
-
-  let(:good_file) { fixture_file_upload('files/book_uploads_good_file.txt', 'text/xml') }
-  let(:bad_file) { fixture_file_upload('files/book_uploads_bad_file.txt', 'text/xml') }
-
-  before do
+  before :all do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
     @user = create :user
     @admin = create :admin
   end
 
-  after do
+  after :all do
     DatabaseCleaner.clean
   end
 
   after :each do
     Warden.test_reset!
   end
+
+  let(:good_file) { fixture_file_upload('files/book_uploads_good_file.txt', 'text/xml') }
+  let(:bad_file) { fixture_file_upload('files/book_uploads_bad_file.txt', 'text/xml') }
 
   describe 'as non-admin' do
 

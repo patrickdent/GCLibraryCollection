@@ -1,6 +1,13 @@
 require 'spec_helper'
 
 describe Author do
+  before :all do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.start
+  end
+  after :all do
+    DatabaseCleaner.clean
+  end
 
   describe "validations" do
     it "will not create a second author with exact same name" do

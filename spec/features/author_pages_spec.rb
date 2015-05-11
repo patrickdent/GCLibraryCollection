@@ -1,11 +1,18 @@
 require 'spec_helper'
 
 describe 'Author Pages', type: feature do
+  before :all do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.start
+  end
+
+  after :each do
+    DatabaseCleaner.clean
+  end
 
   let(:author) { create(:author) }
 
   subject { page }
-
 
   describe 'edit' do
 

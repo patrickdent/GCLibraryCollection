@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   include UsersHelper
 
   before_filter :authenticate_user!
-  before_filter :is_librarian?, only: [:edit, :update, :index]
+  before_filter :is_librarian?, only: [:edit, :update, :index, :send_reminders]
   before_filter :is_admin?, only: :destroy
   before_filter :find_user, only: [:show, :edit, :destroy, :update]
   helper_method :sort_column, :sort_direction

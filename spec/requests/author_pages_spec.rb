@@ -1,14 +1,22 @@
 require 'spec_helper'
 
 describe "Author Pages" do
+  before do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.start
+    BookAuthor.create(book: book, author: author)
+  end
+  after do
+    DatabaseCleaner.clean
+  end
+
+  after :each do
+    Warden.test_reset!
+  end
 
   let(:genre)   { create(:genre)}
   let(:book)    { create(:book, genre: genre) }
   let(:author)  { create(:author) }
-
-  before do
-   BookAuthor.create(book: book, author: author)
-  end
 
   subject { page }
 

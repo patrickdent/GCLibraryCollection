@@ -12,7 +12,7 @@
 <body>
 <div class="wrapper">
 
-  <div class="column-2 left-content">
+  <div class="column-2 left-page-content">
   <!-- search column aside -->
     <% flash.each do |name, msg| %>
       <%= content_tag :div, msg, class: name, id:"headerbar" %>
@@ -67,7 +67,7 @@
     <article><%= yield %></article>
    </div>
 
-  <div class="column-1">
+  <div class="column-1 right-content">
     <!-- cool location aside -->
     <span class="vertical"><%= location %></span>
   </div>
