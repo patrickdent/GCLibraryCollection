@@ -17,7 +17,6 @@ gem 'will_paginate', '~> 3.0.6'
 
 group :production do
   gem 'pg'
-  gem 'rails_12factor'
 end
 
 group :development, :test do

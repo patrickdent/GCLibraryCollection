@@ -26,16 +26,17 @@
 
       <%= link_to raw("<i class='fa fa-question'></i>"), user_guide_path, title: "Help", class: "large-icon tooltip" %>
 
-    <%= form_tag "/search", method: "get" do %>
-      <%= label_tag "search" %>
-      <%= submit_tag "search", name: nil %>
-      <%= text_field_tag :search, params[:search], placeholder:"sparkle" %>
-    <% end %>
+      <%= form_tag "/search", method: "get" do %>
+        <%= label_tag "search" %>
+        <%= submit_tag "search", name: nil %>
+        <%= text_field_tag :search, params[:search], placeholder:"sparkle" %>
+      <% end %>
 
-    <h2>browse</h2>
-    <h3><%= link_to "by author", authors_path %></h3>
-    <h3><%= link_to "by keyword", keywords_path %></h3>
-    <h3><%= link_to "by category", genres_path %></h3>
+      <h2>browse</h2>
+      <h3><%= link_to "by author", authors_path %></h3>
+      <h3><%= link_to "by keyword", keywords_path %></h3>
+      <h3><%= link_to "by category", genres_path %></h3>
+    </div>
   </div>
 
   <div class="column-7 gray">
