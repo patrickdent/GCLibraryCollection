@@ -30,7 +30,7 @@ class BooksController < ApplicationController
 
   def show
     if is_librarian? then
-      @loans = Loan.where(book_id: @book.id).order(sort_column("start_date") + " " + sort_direction("desc")).paginate(:page => params[:page], :per_page => 50)
+      @loans = Loan.where(book_id: @book.id).order("returned_date ASC", sort_column("start_date") + " " + sort_direction("desc")).paginate(:page => params[:page], :per_page => 50)
     end
   end
 
