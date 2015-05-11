@@ -1,8 +1,5 @@
 <table class="index">
   <thead>
-    <% @source = @user if params[:controller].downcase == 'users' %>
-    <% @source = @book if params[:controller].downcase == 'books' %>
-
     <tr>
       <% if params[:controller].humanize.downcase == 'users' %>
       <!-- unimplemeneted -->
@@ -27,7 +24,7 @@
   </thead>
 
   <tbody>
-    <% @source.loans.each do |l| %>
+    <% @loans.each do |l| %>
       <% overdue = "overdue" if l.overdue?; on_loan = "on-loan" if l.active? %>
       <tr class="<%= overdue %> <%= on_loan %>">
         <% if params[:controller].downcase == 'users' %>
