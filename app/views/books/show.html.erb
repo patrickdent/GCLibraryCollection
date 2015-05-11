@@ -45,5 +45,5 @@
 
 <% if librarian_user? %>
   <h3 class="clear">Loan History:</h3>
-  <%= render 'loans/loan_list.html.erb' %>
+  <div id="sortable-table"><%= render 'loans/loan_list.html.erb' %></div>
 <% end %>

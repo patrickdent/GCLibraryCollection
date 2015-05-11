@@ -29,6 +29,9 @@ class BooksController < ApplicationController
   end
 
   def show
+    if is_librarian? then
+      @loans = Loan.where(book_id: @book.id).order("returned_date ASC", sort_column("start_date") + " " + sort_direction("desc")).paginate(:page => params[:page], :per_page => 50)
+    end
   end
 
   def edit
@@ -90,11 +93,11 @@ class BooksController < ApplicationController
     @book = Book.find_by(id: params[:id])
   end
 
-  def sort_column
-    params[:sort] ? params[:sort] : "title"
+  def sort_column(default = "title")
+    params[:sort] ? params[:sort] : default
   end
   
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  def sort_direction(default = "asc")
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : default
   end
 end
