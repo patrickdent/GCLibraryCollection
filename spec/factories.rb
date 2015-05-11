@@ -24,7 +24,7 @@ FactoryGirl.define do
     end
   end
 
-  factory :user, class: User do
+  factory :user do
     sequence :email do |n|
       "user#{n}@example.com"
     end
@@ -42,37 +42,17 @@ FactoryGirl.define do
     identification "valid"
   end
 
-  factory :librarian, class: User do
+  factory :librarian, class: User, parent: :user do
     sequence :email do |n|
       "librarianuser#{n}@example.com"
     end
-    sequence :name do |n|
-      "Walt Whiskman the #{n}"
-    end
-    address "99 SoftPaws Ln"
-    city "Seattle"
-    state "WA"
-    zip "98102"
-    phone "206-999-0909"
-    password "password"
-    password_confirmation "password"
     after(:create) {|user| user.add_role(:librarian) }
   end
 
-  factory :admin, class: User do
+  factory :admin, class: User, parent: :user do
     sequence :email do |n|
       "adminuser#{n}@example.com"
     end
-    sequence :name do |n|
-      "Genghis Yawn the #{n}"
-    end
-    address "99 SoftPaws Ln"
-    city "Seattle"
-    state "WA"
-    zip "98102"
-    phone "206-999-0909"
-    password "password"
-    password_confirmation "password"
     after(:create) {|user| user.add_role(:admin) }
   end
 

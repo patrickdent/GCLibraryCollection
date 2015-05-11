@@ -15,7 +15,7 @@ describe UsersController do
     Warden.test_reset!
   end
 
-describe 'as a visitor' do
+  describe 'as a visitor' do
     it 'all actions require authentication' do
 
       expect(get :index).to redirect_to(new_user_session_path)
@@ -28,9 +28,15 @@ describe 'as a visitor' do
   end
 
   describe 'as a patron' do
-    it 'does not allow patrons to do anything with users' do
+    before do
+      Warden.test_reset!
       sign_in @user
+    end
 
+    after do
+      sign_out @user
+    end
+    it 'does not allow patrons to do anything with users' do
       expect(get :index).to redirect_to(root_path)
       expect(get :edit, id: @user.id).to redirect_to(root_path)
       expect(post :update, id: @user.id).to redirect_to(root_path)
