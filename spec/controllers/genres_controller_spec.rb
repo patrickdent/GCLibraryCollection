@@ -2,37 +2,37 @@ require 'spec_helper'
 
 describe GenresController do
 
-  before do 
+  before :all do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
-    @genre = create :genre 
+    @genre = create :genre
     @user = create :user
-    @admin = create :admin 
-  end 
+    @admin = create :admin
+  end
 
-  after do 
+  after :all do
     DatabaseCleaner.clean
-  end 
+  end
 
-  after :each do 
-    Warden.test_reset! 
-  end 
+  after :each do
+    Warden.test_reset!
+  end
 
-  describe "GET 'index'" do 
-    it "shows all genres" do 
-      get :index 
+  describe "GET 'index'" do
+    it "shows all genres" do
+      get :index
 
       expect(assigns[:genres]).to include @genre
-    end 
+    end
 
-  end 
+  end
 
-  describe "GET 'show'" do 
-    it "shows the specified genre" do 
-      get :show, id: @genre.id 
+  describe "GET 'show'" do
+    it "shows the specified genre" do
+      get :show, id: @genre.id
 
-      expect(assigns[:genre]).to eq @genre 
-    end 
+      expect(assigns[:genre]).to eq @genre
+    end
   end
 
   describe "POST 'create'" do
@@ -55,7 +55,7 @@ describe GenresController do
       it "redirects to index" do
         expect(post :create, genre: FactoryGirl.attributes_for(:genre, name: 'testname1')).to redirect_to(genres_path)
       end
-    end 
+    end
   end
 
   describe "DELETE destroy" do
@@ -88,19 +88,19 @@ describe GenresController do
 
       it 'redirects unauthorized user' do
         expect(put :update, id: @genre).to redirect_to(root_path)
-      end      
+      end
     end
 
     context 'as admin' do
       before { sign_in @admin }
 
-      it "does not update with invalid params" do 
+      it "does not update with invalid params" do
         post :update, id: @genre.id, genre: { name: "" }
-        @genre.reload 
+        @genre.reload
 
         expect(@genre.name).to_not eq("")
         expect(response.status).to eq(302)
-      end 
+      end
 
       it 'changes the name' do
         put :update, id: @genre, genre: FactoryGirl.attributes_for(:genre, name: "new and unique")

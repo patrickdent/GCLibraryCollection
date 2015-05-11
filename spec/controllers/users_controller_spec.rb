@@ -2,32 +2,41 @@ require 'spec_helper'
 
 describe UsersController do
 
-  before do
+  before :all do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
     @user = create :user
-    @librarian = create :librarian
     @admin = create :admin
-  end
-
-  after do
-    DatabaseCleaner.clean
-  end
-
-  after :each do
+    @librarian = create :librarian
     Warden.test_reset!
   end
 
-  describe 'as non-admin' do
+  before :each do
+    Warden.test_reset!
+  end
 
-    before { sign_in @user }
+describe 'as a visitor' do
+    it 'all actions require authentication' do
 
-    it 'redirects unauthorized users' do
+      expect(get :index).to redirect_to(new_user_session_path)
+      expect(get :edit, id: @user.id).to redirect_to(new_user_session_path)
+      expect(post :update, id: @user.id).to redirect_to(new_user_session_path)
+      expect(delete :destroy, id: @user.id).to redirect_to(new_user_session_path)
+      expect(get :show, id: @librarian.id).to redirect_to(new_user_session_path)
+      expect(post :send_reminders).to redirect_to(new_user_session_path)
+    end
+  end
+
+  describe 'as a patron' do
+    it 'does not allow patrons to do anything with users' do
+      sign_in @user
+
       expect(get :index).to redirect_to(root_path)
       expect(get :edit, id: @user.id).to redirect_to(root_path)
       expect(post :update, id: @user.id).to redirect_to(root_path)
       expect(delete :destroy, id: @user.id).to redirect_to(root_path)
       expect(get :show, id: @librarian.id).to redirect_to(root_path)
+      expect(post :send_reminders).to redirect_to(root_path)
     end
   end
 
@@ -37,6 +46,10 @@ describe UsersController do
     before do
       sign_in @librarian
       request.env["HTTP_REFERER"] = "http://test.com/"
+    end
+
+    after do
+      sign_out @librarian
     end
 
     it 'redirects unauthorized users' do
@@ -63,6 +76,7 @@ describe UsersController do
     it "resets last_sent variable when sending overdue reminders" do
       expect{post :send_reminders}.to change{OverdueMailer.last_sent}
     end
+
   end
 
 
@@ -71,6 +85,10 @@ describe UsersController do
     before do
       sign_in @admin
       request.env["HTTP_REFERER"] = "http://test.com/"
+    end
+
+    after do
+      sign_out @admin
     end
 
     it "can change user roles" do
@@ -103,5 +121,7 @@ describe UsersController do
       get :edit, id: @user
       expect(response.status).to eq(200)
     end
+
   end
+
 end
