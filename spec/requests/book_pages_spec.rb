@@ -1,19 +1,26 @@
 require 'spec_helper'
 
 describe "Book Pages" do
-
   let(:genre)   { create(:genre)}
   let(:book)    { create(:book, genre: genre) }
   let(:author)  { create(:author) }
   let(:keyword) { create(:keyword) }
 
+  subject { page }
 
   before do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.start
     BookAuthor.create(book: book, author: author)
     BookKeyword.create(book: book, keyword: keyword)
   end
+  after do
+    DatabaseCleaner.clean
+  end
 
-  subject { page }
+  after :each do
+    Warden.test_reset!
+  end
 
   describe 'index' do
     context "as non-admin" do
@@ -50,12 +57,15 @@ describe "Book Pages" do
 
     context "as admin" do
       before do
+        book.update_attributes(count: 2)
+        book.reload
         admin_login
         visit book_path(book)
       end
 
       it 'edit' do expect(subject).to have_link("Edit") end
       it 'delete' do expect(subject).to have_link("Delete") end
+      it 'remove one' do expect(subject).to have_button("Remove Copy") end
     end
   end
 end

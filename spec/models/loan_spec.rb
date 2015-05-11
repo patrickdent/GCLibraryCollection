@@ -1,6 +1,14 @@
 require 'spec_helper'
 
 describe Loan do
+  before :all do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.start
+  end
+  after :all do
+    DatabaseCleaner.clean
+  end
+
   let(:user) { create :user }
   let(:book) { create :book }
   let(:loan) { Loan.create(book_id: book.id, user_id: user.id) }
@@ -15,11 +23,11 @@ describe Loan do
 
   describe "returning books" do
     before { @loan = Loan.create( book_id: (create :book).id, user_id: (create :user).id ) }
-    
+
     it "sets a return date" do
       @loan.return_loan
-      expect(@loan.returned_date).to_not eq(nil) 
-      expect(Time.now.to_date).to eq(@loan.returned_date) 
+      expect(@loan.returned_date).to_not eq(nil)
+      expect(Time.now.to_date).to eq(@loan.returned_date)
     end
   end
 
@@ -44,15 +52,15 @@ describe Loan do
       old_date = @loan.due_date
       date = old_date + Loan::DURATION
       @loan.renew_loan
-      expect(@loan.due_date).to_not eq(old_date) 
-      expect(date).to eq(@loan.due_date) 
+      expect(@loan.due_date).to_not eq(old_date)
+      expect(date).to eq(@loan.due_date)
     end
 
-    it "increments renewal count" do 
+    it "increments renewal count" do
       old_count = @loan.renewal_count
       @loan.renew_loan
       count = @loan.renewal_count
-      expect(count).to eq(old_count + 1) 
+      expect(count).to eq(old_count + 1)
     end
   end
 end

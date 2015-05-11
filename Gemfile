@@ -12,18 +12,17 @@ gem 'rolify'
 gem 'figaro'
 gem 'pry'
 gem 'prawn'
-gem 'jquery-tablesorter'
 gem 'jquery-turbolinks'
 gem 'will_paginate', '~> 3.0.6'
 
 group :production do
   gem 'pg'
-end 
+end
 
-group :development, :test do 
+group :development, :test do
   gem 'rspec-rails'
   gem 'sqlite3'
-end 
+end
 
 group :test do
     gem 'database_cleaner', '~> 1.3.0'

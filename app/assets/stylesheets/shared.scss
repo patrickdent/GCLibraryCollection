@@ -71,8 +71,8 @@ h3 {
 }
 
 .main article {
-	margin: 5em 2em;
-	// height: 100%;
+	margin: 4em 2em;
+	height: 100%;
 }
 
 .main p {
@@ -114,4 +114,7 @@ td > a:hover {
 
 .clear {clear: both;}
 
-.dashboard-links {line-height: 2rem;}
+.contribution {
+  font-weight: normal;
+  color: $darkest_gray;
+}

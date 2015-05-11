@@ -3,10 +3,11 @@ class AuthorsController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
   before_filter :find_author, only: [:show, :edit, :destroy, :update]
   before_filter :is_admin?, only: [:new, :create, :edit, :destroy, :update]
+  helper_method :sort_column, :sort_direction
 
 
   def index
-    @authors = Author.includes(:books).order('sort_by ASC').paginate(:page => params[:page], :per_page => 50)
+    @authors = Author.includes(:books).order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
   end
 
   def new
@@ -43,7 +44,7 @@ class AuthorsController < ApplicationController
   end
 
   def show
-    @books = @author.books.includes(:genre)
+    @books = @author.books.includes(:genre).order(sort_column("title") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
   end
 
   def destroy
@@ -62,5 +63,13 @@ class AuthorsController < ApplicationController
 
   def author_params
     params.require(:author).permit(:name, :id, :sort_by)
+  end
+
+  def sort_column(default = "name")
+    params[:sort] ? params[:sort] : default
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end

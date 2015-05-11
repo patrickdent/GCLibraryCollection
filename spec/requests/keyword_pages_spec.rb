@@ -1,17 +1,24 @@
 require 'spec_helper'
 
 describe "Keyword Pages" do
+  before do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.start
+    BookAuthor.create(book: book, author: author)
+    BookKeyword.create(book: book, keyword: keyword)
+  end
+  after do
+    DatabaseCleaner.clean
+  end
+
+  after :each do
+    Warden.test_reset!
+  end
 
   let(:genre)   { create(:genre)}
   let(:book)    { create(:book, genre: genre) }
   let(:author)  { create(:author) }
   let(:keyword) { create(:keyword) }
-
-
-  before do
-    BookAuthor.create(book: book, author: author)
-    BookKeyword.create(book: book, keyword: keyword)
-  end
 
   subject { page }
 
