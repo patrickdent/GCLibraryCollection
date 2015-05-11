@@ -9,14 +9,10 @@
       <!-- unimplemeneted -->
         <th>Patron</th>
         <% end %>
-      <!-- unimplemeneted -->
-      <th>Start Date</th>
-      <!-- unimplemeneted -->
-      <th>Due Date</th>
-      <!-- unimplemeneted -->
-      <th>Returned</th>
-      <!-- unimplemeneted -->
-      <th>Renewals</th>
+      <th><%= sortable "start_date", "Start Date" %></th>
+      <th><%= sortable "due_date", "Due Date" %></th>
+      <th><%= sortable "returned_date", "Returned" %></th>
+      <th><%= sortable "renewal_count", "Renewals" %></th>
       <% if librarian_user? %>
         <th></th>
       <% end %>
