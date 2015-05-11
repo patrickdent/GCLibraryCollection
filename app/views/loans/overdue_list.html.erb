@@ -2,29 +2,4 @@
 <%= button_to "Send Overdue Reminders", send_reminders_path %>
 <p>Reminders last sent on <%= OverdueMailer.last_sent.strftime("%m/%d/%Y") %></p>
 
-<table class="index tablesorter">
-  <thead>
-    <tr>
-      <th>Book Title</th>
-      <th>User</th>
-      <th>Start Date</th>
-      <th>Due Date</th>
-      <th>Borrower Name</th>
-      <th>Borrower Phone</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @loans.each do |l| %>
-      <tr>
-        <td><%= link_to l.book.title, book_path(l.book.id) %></td>
-        <td><%= link_to l.user.name, user_path(l.user.id) %></td>
-        <td><%= l.start_date %></td>
-        <td><%= l.due_date %></td>
-        <td><%= l.user.name %></td>
-        <td><%= l.user.phone %></td>
-        <td><%= link_to 'view', loan_path(l.id) %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= will_paginate @loans %>
+<div id="sortable-table"><%= render 'overdue_table' %></div>

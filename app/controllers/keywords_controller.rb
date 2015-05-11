@@ -6,9 +6,10 @@ class KeywordsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create, :edit, :destroy, :update]
   before_filter :find_keyword, only: [:show, :edit, :destroy, :update]
   before_filter :is_librarian?, only: [:new, :create, :edit, :destroy, :update]
+  helper_method :sort_column, :sort_direction
 
   def index
-    @keywords = Keyword.all.order('name ASC').paginate(:page => params[:page], :per_page => 50)
+    @keywords = Keyword.all.order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
   end
 
   def new 
@@ -27,6 +28,7 @@ class KeywordsController < ApplicationController
   end 
 
   def show
+    @books = @keyword.books.includes(:authors, :genre).order(sort_column("title") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
   end
 
   def edit 
@@ -52,4 +54,12 @@ class KeywordsController < ApplicationController
   def find_keyword
     @keyword = Keyword.find(params[:id])
   end 
+
+  def sort_column(default = "name")
+    params[:sort] ? params[:sort] : default
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
 end
