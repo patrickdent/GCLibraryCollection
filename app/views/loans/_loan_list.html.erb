@@ -4,11 +4,11 @@
       <% if params[:controller].humanize.downcase == 'users' %>
       <!-- unimplemeneted -->
         <th>Title</th>
-        <% end %>
+      <% end %>
       <% if params[:controller].humanize.downcase == 'books' %>
       <!-- unimplemeneted -->
         <th>Patron</th>
-        <% end %>
+      <% end %>
       <th><%= sortable "start_date", "Start Date" %></th>
       <th><%= sortable "due_date", "Due Date" %></th>
       <th><%= sortable "returned_date", "Returned" %></th>
@@ -23,13 +23,14 @@
     <% @loans.each do |l| %>
       <% overdue = "overdue" if l.overdue?; on_loan = "on-loan" if l.active? %>
       <tr class="<%= overdue %> <%= on_loan %>">
-        <% if params[:controller].downcase == 'users' %>
-          <td><%= link_to l.book.title, book_path(l.book.id) %></td>
-        <% end %>
-
-        <% if params[:controller].downcase == 'books' %>
-          <td><%= link_to l.user.name, user_path(l.user.id) %></td>
-        <% end %>
+        <td>
+          <% if params[:controller].downcase == 'users' && l.book %>
+            <%= link_to l.book.title, book_path(l.book.id) %>
+          <% end %>
+          <% if params[:controller].downcase == 'books' && l.user %>
+            <%= link_to l.user.name, user_path(l.user.id) %>
+          <% end %>
+        </td>
 
         <td><%= l.start_date %></td>
 
