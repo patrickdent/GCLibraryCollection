@@ -2,37 +2,37 @@ require 'spec_helper'
 
 describe KeywordsController do
 
-  before do 
+  before :all do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
-    @keyword = create :keyword 
+    @keyword = create :keyword
     @user = create :user
-    @admin = create :admin 
-  end 
+    @admin = create :admin
+  end
 
-  after do 
+  after :all do
     DatabaseCleaner.clean
-  end 
+  end
 
-  after :each do 
-    Warden.test_reset! 
-  end 
+  after :each do
+    Warden.test_reset!
+  end
 
-  describe "GET 'index'" do 
-    it "shows all keywords" do 
-      get :index 
+  describe "GET 'index'" do
+    it "shows all keywords" do
+      get :index
 
       expect(assigns[:keywords]).to include @keyword
-    end 
+    end
 
-  end 
+  end
 
-  describe "GET 'show'" do 
-    it "shows the specified keyword" do 
-      get :show, id: @keyword.id 
+  describe "GET 'show'" do
+    it "shows the specified keyword" do
+      get :show, id: @keyword.id
 
-      expect(assigns[:keyword]).to eq @keyword 
-    end 
+      expect(assigns[:keyword]).to eq @keyword
+    end
   end
 
   describe "POST 'create'" do
@@ -55,7 +55,7 @@ describe KeywordsController do
       it "redirects to index" do
         expect(post :create, keyword: FactoryGirl.attributes_for(:keyword, name: 'testname1')).to redirect_to(keywords_path)
       end
-    end 
+    end
   end
 
   describe "DELETE destroy" do
@@ -88,19 +88,19 @@ describe KeywordsController do
 
       it 'redirects unauthorized user' do
         expect(put :update, id: @keyword).to redirect_to(root_path)
-      end      
+      end
     end
 
     context 'as admin' do
       before { sign_in @admin }
 
-      it "does not update with invalid params" do 
+      it "does not update with invalid params" do
         post :update, id: @keyword.id, keyword: { name: "" }
-        @keyword.reload 
+        @keyword.reload
 
         expect(@keyword.name).to_not eq("")
         expect(response.status).to eq(302)
-      end 
+      end
 
       it 'changes the name' do
         put :update, id: @keyword, keyword: FactoryGirl.attributes_for(:keyword, name: "new and unique")

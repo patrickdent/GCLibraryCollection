@@ -6,6 +6,7 @@ class LoansController < ApplicationController
   before_filter :is_librarian?, only: [:new, :create, :renew, :return, :index, :new_multi, :loan_multi]
   before_filter :authenticate_user!
   before_filter :find_loan, only: [:renew, :return, :show]
+  helper_method :sort_column, :sort_direction
 
   def new
     if params[:user_id]
@@ -111,10 +112,20 @@ class LoansController < ApplicationController
   end
 
   def index
-    @loans = Loan.all.order('due_date ASC').paginate(:page => params[:page], :per_page => 50)
+    @loans = Loan.all.order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
   end
 
   def overdue_list
     @loans = Loan.overdue.paginate(:page => params[:page], :per_page => 50)
+  end
+
+  private
+
+  def sort_column(default = "due_date")
+    params[:sort] ? params[:sort] : default
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end

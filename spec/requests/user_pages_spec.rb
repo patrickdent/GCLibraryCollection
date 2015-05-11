@@ -1,11 +1,19 @@
 require 'spec_helper'
 
 describe "User Pages" do
-
-  before do
+ before do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.start
     @user = create :user, name: "UserName"
     @librarian = create :librarian, name: "LibrarianName"
-    @admin = create :admin, name: "AdminName" 
+    @admin = create :admin, name: "AdminName"
+  end
+  after do
+    DatabaseCleaner.clean
+  end
+
+  after :each do
+    Warden.test_reset!
   end
 
   subject { page }
@@ -38,8 +46,8 @@ describe "User Pages" do
     context "as librarian" do
 
       before do
-        librarian_login 
-        visit user_path(@user.id) 
+        librarian_login
+        visit user_path(@user.id)
       end
 
       it "displays user name" do expect(subject).to have_selector('h2', text: @user.name) end
@@ -51,8 +59,8 @@ describe "User Pages" do
     context "as admin" do
 
       before do
-        admin_login 
-        visit user_path(@user.id) 
+        admin_login
+        visit user_path(@user.id)
       end
 
       it "displays user name" do expect(subject).to have_selector('h2', text: @user.name) end

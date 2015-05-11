@@ -1,6 +1,5 @@
 ready = ->
   $ ->
-    $(".tablesorter").tablesorter theme: "metro-dark" 
     $('.chosen-select').chosen()
     $('[id^="book-select_"]').change ->
       $.ajax

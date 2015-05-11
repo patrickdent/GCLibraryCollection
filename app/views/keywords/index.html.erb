@@ -3,26 +3,4 @@
   <%= link_to "New Keyword", new_keyword_path, class: "go-btn right" %>
 <% end %>
 
-<table class="index tablesorter">
-  <thead>
-    <tr>
-      <th>Keyword</th>
-      <th>Number of Books</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @keywords.each do |k| %>
-    <tr>
-      <td> <%= link_to k.name, keyword_path(k) %></td>
-      <td><%= k.books.count %></td>
-      <% if librarian_user? %>
-        <td>
-          <%= link_to "edit", edit_keyword_path(k) %>
-          <%= link_to "delete", keyword_path(k), method: :delete, data: {confirm: "Are you sure you want to delete this keyword?"} %>
-        </td>
-      <% end %>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= will_paginate @keywords %>
+<div id="sortable-table"><%= render 'index_table' %></div>

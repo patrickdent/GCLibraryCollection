@@ -3,17 +3,23 @@
 <div class="show">
   <ul class="dashboard-links">
     <% if admin_user? %>
-    <li><%= link_to "Upload Books From File", new_book_upload_path %></li>
-    <li><%= link_to "Upload Users From File", new_user_upload_path %></li>
-    <li><%= link_to "Import Books From Web", import_path %></li>
-    <li><%= link_to "Manage Books", books_path %></li>
-    <li><%= link_to "Manage Categories", genres_path %></li>
-    <li><%= link_to "Manage Authors", authors_path %></li>
+      <div class="adminAdd">
+        <li><i class="fa fa-upload"></i><%= link_to "Upload Books From File", new_book_upload_path %></li>
+        <li><i class="fa fa-upload"></i><%= link_to "Upload Users From File", new_user_upload_path %></li>
+        <li><i class="fa fa-download"></i></i><%= link_to "Import Books From Web", import_path %></li>
+      </div>
+      <div class="adminManage">
+        <li><i class="fa fa-book"></i><%= link_to "Manage Books", books_path %></li>
+        <li><i class="fa fa-list"></i><%= link_to "Manage Categories", genres_path %></li>
+        <li><i class="fa fa-user"></i><%= link_to "Manage Authors", authors_path %></li>
+      </div>
     <% end %>
-    <li><%= link_to "Browse Books by Title", books_path %></li>
-    <li><%= link_to "Manage Keywords", keywords_path %></li>
-    <li><%= link_to "Manage Users", users_path %></li>
-    <li><%= link_to "Manage Loans", loans_path %></li>
-    <li><%= link_to "View Overdue Loans", overdue_list_path %></li>
+    <div class="librarianTasks">
+      <li><i class="fa fa-search"></i><%= link_to "Browse Books by Title", books_path %></li>
+      <li><i class="fa fa-key"></i><%= link_to "Manage Keywords", keywords_path %></li>
+      <li><i class="fa fa-users"></i><%= link_to "Manage Users", users_path %></li>
+      <li><i class="fa fa-folder-open"></i><%= link_to "Manage Loans", loans_path %></li>
+      <li><i class="fa fa-exclamation-triangle"></i><%= link_to "View Overdue Loans", overdue_list_path %></li>
+    </div>
   </ul>
 </div>

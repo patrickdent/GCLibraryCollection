@@ -3,13 +3,13 @@ class BooksController < ApplicationController
   include UserRoleHelper
 
   before_filter :authenticate_user!, except: [:index, :show]
-  before_filter :find_book, only: [:show, :edit, :destroy, :update]
-  before_filter :is_admin?, only: [:new, :create, :destroy]
+  before_filter :find_book, only: [:show, :edit, :destroy, :update, :remove_copy]
+  before_filter :is_admin?, only: [:new, :create, :destroy, :remove_copy]
   before_filter :is_librarian?, only: [:edit, :update, :list, :clear_list, :show_list]
-
+  helper_method :sort_column, :sort_direction
 
   def index
-    @books = Book.includes(:authors, :genre).order('title ASC').paginate(:page => params[:page], :per_page => 50)
+    @books = Book.includes(:authors, :genre).order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
   end
 
   def new
@@ -72,12 +72,29 @@ class BooksController < ApplicationController
   end
 
   def show_list
-    @books = Book.includes(:authors, :genre).where(selected: true).order('title ASC').paginate(:page => params[:page], :per_page => 50)
+    @books = Book.includes(:authors, :genre).where(selected: true).order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
     @multi_loan_available = is_librarian? && (@books - Book.available_to_loan).empty? && (@books.length < 6)
+  end
+
+  def remove_copy
+    if @book.count > 1 && @book.update_attributes(count: @book.count - 1) then
+      flash[:notice] = "Copy Removed"
+    else
+      flash[:error] = "Unable To Remove Copy"
+    end
+    redirect_to :back
   end
 
   private
   def find_book
     @book = Book.find_by(id: params[:id])
+  end
+
+  def sort_column
+    params[:sort] ? params[:sort] : "title"
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end

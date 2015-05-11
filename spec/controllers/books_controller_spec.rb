@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe BooksController do
 
-  before do
+  before :all do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
     @book = create :book
@@ -15,7 +15,7 @@ describe BooksController do
     @unselected_book = create :book
   end
 
-  after do
+  after :all do
     DatabaseCleaner.clean
   end
 
@@ -54,6 +54,34 @@ describe BooksController do
         get :edit, id: @book.id
         expect(response.status).to eq(200)
       end
+    end
+  end
+
+  describe "POST 'remove addtional copy'" do
+    before { request.env["HTTP_REFERER"] = book_path(@book) }
+
+    it "decreases count if more than one copy" do
+      sign_in @admin
+      @book.update_attributes(count: 2)
+      post :remove_copy, id: @book.id
+      @book.reload
+      expect(@book.count).to eq(1)
+    end
+
+    it "doesn't decrease count if less than 2 copies" do
+      sign_in @admin
+      @book.update_attributes(count: 1)
+      post :remove_copy, id: @book.id
+      @book.reload
+      expect(@book.count).to eq(1)
+    end
+
+    it "doesn't decrease count if non-admin" do
+      sign_in @librarian
+      @book.update_attributes(count: 2)
+      post :remove_copy, id: @book.id
+      @book.reload
+      expect(@book.count).to eq(2)
     end
   end
 
@@ -105,7 +133,7 @@ describe BooksController do
       end
 
       it "redirects to index" do
-        expect(post :create, book: FactoryGirl.attributes_for(:book, name: 'testname1')).to redirect_to(root_path)
+        expect(post :create, book: FactoryGirl.attributes_for(:book, title: 'testname1')).to redirect_to(root_path)
       end
     end
   end
