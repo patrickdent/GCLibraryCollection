@@ -11,22 +11,20 @@
 <body>
 <div class="wrapper">
 
-  <div class="column-2 left-content">
+  <div class="column-2 left-page-content">
   <!-- search column aside -->
-
     <div id="flashes">
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, class: name %>
       <% end %>
     </div>
 
-    <%= link_to raw("<i class='fa fa-users'></i>"), users_path, class: "large-icon" if librarian_user? %>
+    <div class="left-content">
+      <%= link_to raw("<i class='fa fa-users'></i>"), users_path, title: "Manage Users", class: "large-icon tooltip" if librarian_user? %>
+      <%= link_to raw("<i class='fa fa-home'></i>"), root_path, title: "Home", class: "large-icon tooltip" %>
+      <a href="mailto:library@example.com?Subject=Inquiry" target="_top" title="Contact Us" class="large-icon tooltip"><i class='fa fa-envelope'></i></a>
 
-    <%= link_to raw("<i class='fa fa-home'></i>"), root_path, class: "large-icon" %>
-
-    <a href="mailto:resources@gaycity.org?Subject=Inquiry" target="_top" class="large-icon"><i class='fa fa-envelope'></i></a>
-
-    <%= link_to raw("<i class='fa fa-question'></i>"), user_guide_path, class: "large-icon" %>
+      <%= link_to raw("<i class='fa fa-question'></i>"), user_guide_path, title: "Help", class: "large-icon tooltip" %>
 
     <%= form_tag "/search", method: "get" do %>
       <%= label_tag "search" %>
@@ -40,7 +38,7 @@
     <h3><%= link_to "by category", genres_path %></h3>
   </div>
 
-  <div class="column-6 gray">
+  <div class="column-7 gray">
   <!-- central content area -->
     <section class="main">
       <header>
@@ -76,7 +74,7 @@
     </footer>
    </div>
 
-  <div class="column-2 right-content">
+  <div class="column-1 right-content">
     <!-- cool location aside -->
     <span class="vertical"><%= location %></span>
   </div>

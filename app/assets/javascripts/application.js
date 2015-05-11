@@ -13,8 +13,8 @@
 
 //= require jquery
 //= require jquery_ujs
-//= require jquery-tablesorter
 //= require chosen.jquery.min.js
 //= require turbolinks
 //= require jquery.turbolinks
+//= require tables.js
 //= require_tree .

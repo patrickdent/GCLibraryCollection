@@ -1,8 +1,13 @@
 require "spec_helper"
 
 describe OverdueMailer, type: :mailer do
-  let(:user) { create :user }
-  let(:loan) { create :loan, user: user, due_date: (Date.today - 1.week) }
+  before :all do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.start
+  end
+  after :all do
+    DatabaseCleaner.clean
+  end
 
   before(:each) do
     ActionMailer::Base.delivery_method = :test
@@ -15,6 +20,9 @@ describe OverdueMailer, type: :mailer do
   after(:each) do
     ActionMailer::Base.deliveries.clear
   end
+
+  let(:user) { create :user }
+  let(:loan) { create :loan, user: user, due_date: (Date.today - 1.week) }
 
   it 'should send an email' do
     ActionMailer::Base.deliveries.count.should == 1

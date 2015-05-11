@@ -31,8 +31,10 @@ class SearchController < ApplicationController
   def scrape
     isbn = params[:isbn].strip.gsub("-", "")
 
-    @book = Search.scrape(isbn)
-    redirect_to edit_book_path(@book) and return if @book
+    if (@book = Search.scrape(isbn))
+      flash[:notice] = "Book Added: Please complete additional fields"
+      redirect_to edit_book_path(@book) and return
+    end
 
     flash[:error] = "Book Upload Failed"
     redirect_to import_path

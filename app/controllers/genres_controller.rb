@@ -4,13 +4,14 @@ class GenresController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create, :edit, :destroy, :update]
   before_filter :find_genre, only: [:show, :edit, :destroy, :update]
   before_filter :is_admin?, only: [:new, :create, :edit, :destroy, :update]
+  helper_method :sort_column, :sort_direction
 
   def index
-    @genres = Genre.all.order('name ASC').paginate(:page => params[:page], :per_page => 50)
+    @genres = Genre.all.order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
   end
 
   def show
-    @books = @genre.books.includes(:authors).paginate(:page => params[:page], :per_page => 50)
+    @books = @genre.books.includes(:authors).order(sort_column("title") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
   end
 
   def new
@@ -62,5 +63,13 @@ class GenresController < ApplicationController
 
   def find_genre
     @genre = Genre.find(params[:id])
+  end
+
+  def sort_column(default = "name")
+    params[:sort] ? params[:sort] : default
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end

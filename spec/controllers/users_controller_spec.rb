@@ -2,32 +2,41 @@ require 'spec_helper'
 
 describe UsersController do
 
-  before do
+  before :all do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
-    @user = create :user
-    @librarian = create :librarian
-    @admin = create :admin
   end
 
-  after do
-    DatabaseCleaner.clean
-  end
-
-  after :each do
+  before :each do
     Warden.test_reset!
   end
 
-  describe 'as non-admin' do
+  describe 'as a visitor' do
+    it 'all actions require authentication' do
+      @user = create :user
 
-    before { sign_in @user }
+      expect(get :index).to redirect_to(new_user_session_path)
+      expect(get :edit, id: @user.id).to redirect_to(new_user_session_path)
+      expect(post :update, id: @user.id).to redirect_to(new_user_session_path)
+      expect(delete :destroy, id: @user.id).to redirect_to(new_user_session_path)
+      expect(get :show, id: @user.id).to redirect_to(new_user_session_path)
+      expect(post :send_reminders).to redirect_to(new_user_session_path)
+    end
+  end
 
-    it 'redirects unauthorized users' do
+  describe 'as a patron' do
+    it 'does not allow patrons to do anything with users' do
+      @user = create :user
+      @librarian = create :librarian
+      patron = create :user
+      sign_in patron
+
       expect(get :index).to redirect_to(root_path)
       expect(get :edit, id: @user.id).to redirect_to(root_path)
       expect(post :update, id: @user.id).to redirect_to(root_path)
       expect(delete :destroy, id: @user.id).to redirect_to(root_path)
       expect(get :show, id: @librarian.id).to redirect_to(root_path)
+      expect(post :send_reminders).to redirect_to(root_path)
     end
   end
 
@@ -35,6 +44,8 @@ describe UsersController do
   describe 'as librarian' do
 
     before do
+      @user = create :user
+      @librarian = create :librarian
       sign_in @librarian
       request.env["HTTP_REFERER"] = "http://test.com/"
     end
@@ -63,12 +74,16 @@ describe UsersController do
     it "resets last_sent variable when sending overdue reminders" do
       expect{post :send_reminders}.to change{OverdueMailer.last_sent}
     end
+
   end
 
 
   describe 'as admin' do
 
     before do
+      @user = create :user
+      @admin = create :admin
+      @librarian = create :librarian
       sign_in @admin
       request.env["HTTP_REFERER"] = "http://test.com/"
     end
@@ -79,7 +94,7 @@ describe UsersController do
     end
 
     it "DELETE 'destroy'" do
-      expect{delete :destroy, id: @user.id}.to change{@user.reload.deactivated}.to(true)
+      expect{delete :destroy, id: @librarian.id}.to change{@librarian.reload.deactivated}.to(true)
     end
 
     it "can't DELETE 'destroy' self" do
@@ -94,14 +109,15 @@ describe UsersController do
     end
 
     it "PUT 'update'" do
-      put :update, id: @user, user: FactoryGirl.attributes_for(:user, email: "new@mewgle.com")
-      @user.reload
-      expect(@user.email).to eq("new@mewgle.com")
+      put :update, id: @user, user: {email: "new@mewgle.com"}
+      expect(@user.reload.email).to eq("new@mewgle.com")
     end
 
     it "GET 'edit'" do
       get :edit, id: @user
       expect(response.status).to eq(200)
     end
+
   end
+
 end

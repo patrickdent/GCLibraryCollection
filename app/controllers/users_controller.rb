@@ -3,15 +3,16 @@ class UsersController < ApplicationController
   include UsersHelper
 
   before_filter :authenticate_user!
-  before_filter :is_librarian?, only: [:edit, :update, :index]
+  before_filter :is_librarian?, only: [:edit, :update, :index, :send_reminders]
   before_filter :is_admin?, only: :destroy
   before_filter :find_user, only: [:show, :edit, :destroy, :update]
+  helper_method :sort_column, :sort_direction
 
   def edit
   end
 
   def index
-    @users = User.active.order('name ASC').paginate(:page => params[:page], :per_page => 50)
+    @users = User.active.order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
   end
 
   def update
@@ -76,4 +77,11 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
   end
 
+  def sort_column(default = "preferred_first_name")
+    params[:sort] ? params[:sort] : default
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
 end

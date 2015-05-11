@@ -1,5 +1,3 @@
-// Admin dashboard styles
-
 .dashboard-links div {
   border: 2px solid black;
   border-bottom: none;
@@ -17,15 +15,16 @@
 .dashboard-links .fa {
   padding: 0 .25rem;
 }
+
 .adminAdd {
-  background: lighten( $hotpink, 30% )
+  background: lighten( $light_green, 10% )
 }
 
 .adminManage {
-  background: lighten( $green, 30% )
+  background: lighten( $light_green, 20%  )
 }
 
 .librarianTasks {
-  background: lighten( $orange, 20% );
+  background: lighten( $light_green, 30% );
 }
 
