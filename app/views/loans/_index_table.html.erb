@@ -16,8 +16,16 @@
     <% @loans.each do |l| %>
       <% overdue = "overdue" if l.overdue?; on_loan = "on-loan" if l.active? %>
       <tr class="<%= overdue %> <%= on_loan %>">
-        <td><%= link_to l.book.title, book_path(l.book.id) %></td>
-        <td><%= link_to l.user.name, user_path(l.user.id) %></td>
+        <td>
+	  <% if l.book %>
+	    <%= link_to l.book.title, book_path(l.book.id) %>
+	  <% end %>
+	</td>
+        <td>
+          <% if l.user %>
+	    <%= link_to l.user.name, user_path(l.user.id) %>
+	  <% end %>
+	</td>
         <td><%= l.start_date %></td>
         <td><%= l.due_date %></td>
         <td><%= l.returned_date %></td>
