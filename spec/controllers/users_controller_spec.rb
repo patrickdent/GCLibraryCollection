@@ -5,10 +5,6 @@ describe UsersController do
   before :all do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
-    @user = create :user
-    @admin = create :admin
-    @librarian = create :librarian
-    Warden.test_reset!
   end
 
   before :each do
@@ -17,26 +13,24 @@ describe UsersController do
 
   describe 'as a visitor' do
     it 'all actions require authentication' do
+      @user = create :user
 
       expect(get :index).to redirect_to(new_user_session_path)
       expect(get :edit, id: @user.id).to redirect_to(new_user_session_path)
       expect(post :update, id: @user.id).to redirect_to(new_user_session_path)
       expect(delete :destroy, id: @user.id).to redirect_to(new_user_session_path)
-      expect(get :show, id: @librarian.id).to redirect_to(new_user_session_path)
+      expect(get :show, id: @user.id).to redirect_to(new_user_session_path)
       expect(post :send_reminders).to redirect_to(new_user_session_path)
     end
   end
 
   describe 'as a patron' do
-    before do
-      Warden.test_reset!
-      sign_in @user
-    end
-
-    after do
-      sign_out @user
-    end
     it 'does not allow patrons to do anything with users' do
+      @user = create :user
+      @librarian = create :librarian
+      patron = create :user
+      sign_in patron
+
       expect(get :index).to redirect_to(root_path)
       expect(get :edit, id: @user.id).to redirect_to(root_path)
       expect(post :update, id: @user.id).to redirect_to(root_path)
@@ -50,12 +44,10 @@ describe UsersController do
   describe 'as librarian' do
 
     before do
+      @user = create :user
+      @librarian = create :librarian
       sign_in @librarian
       request.env["HTTP_REFERER"] = "http://test.com/"
-    end
-
-    after do
-      sign_out @librarian
     end
 
     it 'redirects unauthorized users' do
@@ -89,12 +81,11 @@ describe UsersController do
   describe 'as admin' do
 
     before do
+      @user = create :user
+      @admin = create :admin
+      @librarian = create :librarian
       sign_in @admin
       request.env["HTTP_REFERER"] = "http://test.com/"
-    end
-
-    after do
-      sign_out @admin
     end
 
     it "can change user roles" do
@@ -103,7 +94,7 @@ describe UsersController do
     end
 
     it "DELETE 'destroy'" do
-      expect{delete :destroy, id: @user.id}.to change{@user.reload.deactivated}.to(true)
+      expect{delete :destroy, id: @librarian.id}.to change{@librarian.reload.deactivated}.to(true)
     end
 
     it "can't DELETE 'destroy' self" do
@@ -118,9 +109,8 @@ describe UsersController do
     end
 
     it "PUT 'update'" do
-      put :update, id: @user, user: FactoryGirl.attributes_for(:user, email: "new@mewgle.com")
-      @user.reload
-      expect(@user.email).to eq("new@mewgle.com")
+      put :update, id: @user, user: {email: "new@mewgle.com"}
+      expect(@user.reload.email).to eq("new@mewgle.com")
     end
 
     it "GET 'edit'" do
