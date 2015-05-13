@@ -1,10 +1,8 @@
 <table>
-
   <thead>
     <tr>
       <th><%= sortable "title", "Title" %></th>
-      <!-- unimplemented -->
-      <th>Author</th>
+      <th><%= sortable "sort_by", "Author" %></th>
       <th><%= sortable "available", "Available" %></th>
       <% if librarian_user? %>
         <th></th>
