@@ -61,21 +61,27 @@ class BooksController < ApplicationController
 
   def list
     @book = Book.find_by(id: params[:book][:id])
-    @book.selected = params[:book][:selected]
-    if @book.save!
-      render json: {status: :success }
-    else
-      render json: {status: :failure }
+
+    if session[:selected_books]
+      if session[:selected_books] << @book.id
+        render json: {status: :success } and return
+      end
     end
+
+    if session[:selected_books] = [@book.id]
+      render json: {status: :success } and return 
+    end
+
+    render json: {status: :failure } and return
   end
 
   def clear_list
-    Book.where(selected: true).update_all(selected: false)
+    session[:selected_books] = nil
     render inline: "location.reload();"
   end
 
   def show_list
-    @books = Book.includes(:authors, :genre).where(selected: true).order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
+    @books = Book.includes(:authors, :genre).where(id: session[:selected_books]).order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
     @multi_loan_available = is_librarian? && (@books - Book.available_to_loan).empty? && (@books.length < 6)
   end
 
