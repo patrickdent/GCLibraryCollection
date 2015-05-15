@@ -1,7 +1,7 @@
 <h2>Book: <%= @book.title %></h2>
 <h3> <%= @book.available ? "#{@book.count - @book.loans.active.count} available for checkout" : "unavailable for checkout" %> </h3>
 <% if librarian_user? %>
-  <%=  check_box_tag :selected, @book.id, @book.selected, id: "book-select_#{@book.id}"  %> <small>Add to selected books</small>
+  <%=  check_box_tag :selected, @book.id, @book.selected?(session[:selected_books]), id: "book-select_#{@book.id}"  %> <small>Add to selected books</small>
 <% end %>
 
 <div class="show">
