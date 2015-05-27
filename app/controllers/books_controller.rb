@@ -61,15 +61,16 @@ class BooksController < ApplicationController
 
   def list
     @book = Book.find_by(id: params[:book][:id])
+    session[:selected_books] = [] if session[:selected_books].nil?
 
-    if session[:selected_books]
-      if session[:selected_books] << @book.id
-        render json: {status: :success } and return
-      end
+    if @book &&  params[:book][:selected] == "true"
+      session[:selected_books] << @book.id
+      render json: {status: :success } and return
     end
 
-    if session[:selected_books] = [@book.id]
-      render json: {status: :success } and return 
+    if @book && params[:book][:selected] == "false"
+      session[:selected_books].delete(@book.id)
+      render json: {status: :success } and return
     end
 
     render json: {status: :failure } and return
@@ -102,7 +103,7 @@ class BooksController < ApplicationController
   def sort_column(default = "title")
     params[:sort] ? params[:sort] : default
   end
-  
+
   def sort_direction(default = "asc")
     %w[asc desc].include?(params[:direction]) ? params[:direction] : default
   end
