@@ -1,4 +1,5 @@
 class Author < ActiveRecord::Base
+  self.primary_key = 'id'
   has_many :book_authors
   has_many :books, through: :book_authors
   has_many :contributions, through: :book_authors

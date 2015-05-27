@@ -1,6 +1,6 @@
 LibraryCollection::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
+  Rails.application.routes.default_url_options[:host] = 'libcat.gaycity.org'
   # Code is not reloaded between requests.
   config.cache_classes = true
 
