@@ -30,3 +30,5 @@ coverage
 #Ignore stuff that's only necessary on production server
 public/assets/*
 vendor/bundle/*
+
+*.dump
