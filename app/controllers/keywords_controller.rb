@@ -28,7 +28,14 @@ class KeywordsController < ApplicationController
   end 
 
   def show
-    @books = @keyword.books.includes(:authors, :genre).order(sort_column("title") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
+    case params["sort"]
+    when "name"
+      @books = @keyword.books.joins(:genre).includes(:authors)
+      .order(sort_column("title") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
+    else
+      params["sort"] ||= "title" #don't know why optional param for sort_column isn't working
+      @books = @keyword.books.includes(:authors, :genre).order(sort_column("title") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
+    end
   end
 
   def edit 

@@ -1,10 +1,11 @@
 <table>
   <thead>
     <tr>
+      <% @admin_user = admin_user? %>
       <th><%= sortable "name", "Category Name" %></th>
       <!-- unimplemented -->
       <th>Number of Books</th>
-      <% if admin_user? %>
+      <% if @admin_user %>
         <th></th>
       <% end %>
     </tr>
@@ -16,7 +17,7 @@
 
       <td><%= g.books.count %></td>
 
-      <% if admin_user? %>
+      <% if @admin_user %>
         <td>
           <%= link_to "edit", edit_genre_path(g) %>
           <%= link_to "delete", genre_path(g), method: :delete, data: {confirm: "Are you sure you want to delete this category?"} %>
