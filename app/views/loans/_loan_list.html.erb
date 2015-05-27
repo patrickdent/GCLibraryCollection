@@ -2,12 +2,10 @@
   <thead>
     <tr>
       <% if params[:controller].humanize.downcase == 'users' %>
-      <!-- unimplemeneted -->
-        <th>Title</th>
+        <th><%= sortable 'title', "Title" %></th>
       <% end %>
       <% if params[:controller].humanize.downcase == 'books' %>
-      <!-- unimplemeneted -->
-        <th>Patron</th>
+        <th><%= sortable 'name', "Patron" %></th>
       <% end %>
       <th><%= sortable "start_date", "Start Date" %></th>
       <th><%= sortable "due_date", "Due Date" %></th>

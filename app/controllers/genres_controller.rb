@@ -11,7 +11,11 @@ class GenresController < ApplicationController
   end
 
   def show
-    @books = @genre.books.includes(:authors).order(sort_column("title") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
+    if params["sort"] == "sort_by"
+      @books = @genre.books.joins(:authors).order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
+    else
+      @books = @genre.books.includes(:authors).order(sort_column("title") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
+    end
   end
 
   def new

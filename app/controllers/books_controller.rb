@@ -9,7 +9,12 @@ class BooksController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @books = Book.includes(:authors, :genre).order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
+    case params["sort"]
+    when "name"
+      @books = Book.joins(:genre).includes(:authors).order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
+    else
+      @books = Book.includes(:authors, :genre).order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
+    end
   end
 
   def new
@@ -30,13 +35,13 @@ class BooksController < ApplicationController
 
   def show
     if is_librarian? then
-      @loans = Loan.where(book_id: @book.id).order("returned_date ASC", sort_column("start_date") + " " + sort_direction("desc")).paginate(:page => params[:page], :per_page => 50)
+      @loans = Loan.where(book_id: @book.id).joins(:user)
+      .order("returned_date ASC", sort_column("start_date") + " " + sort_direction("desc")).paginate(:page => params[:page], :per_page => 50)
     end
   end
 
   def edit
     @author = Author.new
-
   end
 
   def destroy
@@ -75,7 +80,15 @@ class BooksController < ApplicationController
   end
 
   def show_list
-    @books = Book.includes(:authors, :genre).where(selected: true).order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
+    case params["sort"]
+    when "name"
+      @books = Book.joins(:genre).includes(:authors).where(selected: true)
+      .order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
+    else
+      @books = Book.includes(:authors, :genre).where(selected: true)
+      .order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
+    end
+    # @books = Book.includes(:authors, :genre).where(selected: true).order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
     @multi_loan_available = is_librarian? && (@books - Book.available_to_loan).empty? && (@books.length < 6)
   end
 
