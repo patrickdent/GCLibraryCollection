@@ -18,8 +18,8 @@
   <tbody>
     <% @loans.each do |l| %>
       <tr>
-        <td><%= link_to l.book.title, book_path(l.book.id) %></td>
-        <td><%= link_to l.user.name, user_path(l.user.id) %></td>
+        <td><%= link_to l.book.title, book_path(l.book.id) if l.book %></td>
+        <td><%= link_to l.user.name, user_path(l.user.id) if l.user %></td>
         <td><%= l.start_date %></td>
         <td><%= l.due_date %></td>
         <td><%= l.user.name %></td>
