@@ -196,7 +196,7 @@ describe BooksController do
     context 'librarian logged in' do
       it "changes the selected status of the book" do
         sign_in @librarian
-        post :list, book: {id: @unselected_book.id, selected: true}
+        post :list, book: {id: @unselected_book.id, selected: "true"}
         expect(session[:selected_books]).to include(@unselected_book.id)
       end
     end
