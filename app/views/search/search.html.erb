@@ -1,4 +1,5 @@
 <div class = "results">
+<% @librarian_user = librarian_user? %>
   <h2> Search Results </h2>
 
 
@@ -18,7 +19,7 @@
     <ul>
       <% @books.each do |b| %>
         <li class="results">
-          <% if librarian_user? %>
+          <% if @librarian_user %>
             <%=  check_box_tag :selected, b.id, b.selected, id: "book-select_#{b.id}"  %>
             <% available = "available" if b.available %>
             <% available = "unavailable" if !b.available %>
@@ -48,7 +49,7 @@
       </ul>
     </div>
 
-    <% if librarian_user? %>
+    <% if @librarian_user %>
       <h3>Users:</h3>
       <div class="search-results">
         <ul>
