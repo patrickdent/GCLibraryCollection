@@ -16,7 +16,7 @@ class DocumentGenerator
     else
       puts "FAILURE IN generate_document"
     end
-    document.render_file "collection_reports/#{@format.to_s}.pdf"
+    document.render_file "#{@format.to_s}.pdf"
   end
 
   private
@@ -42,7 +42,7 @@ class DocumentGenerator
     @dimensions[:bottom_margin] = 0.47
     @dimensions[:left_margin] = 0.39
     @dimensions[:right_margin] = 0.31
-    
+
     @dimensions[:gutter] = 0.3
 
     @dimensions[:rows] = 15
@@ -51,10 +51,10 @@ class DocumentGenerator
 
   def make_labels(books)
     document = Prawn::Document.new({page_size: "LETTER",
-                                    margin: [@dimensions[:top_margin].in, 
+                                    margin: [@dimensions[:top_margin].in,
                                              @dimensions[:right_margin].in,
                                              @dimensions[:bottom_margin].in,
-                                             @dimensions[:left_margin].in]})  
+                                             @dimensions[:left_margin].in]})
 
     #to count labels to know when to go to a new line
     @label_count = 0
@@ -71,14 +71,14 @@ class DocumentGenerator
         document.start_new_page
         @y = cursor
         @x = 0
-      elsif @label_count % 4 == 0 then 
+      elsif @label_count % 4 == 0 then
         @y -= 0.66.in
         @x = 0
       else
         #change to @dim...:width :gutter
-        @x += ( 1.75.in + 0.3.in )   
+        @x += ( 1.75.in + 0.3.in )
       end
-    end      
+    end
     return document
   end
 
@@ -89,7 +89,7 @@ class DocumentGenerator
         #genre.abbr, 1st 4 of auth's last n
         document.text_box( "#{book.genre.abbreviation.upcase}
                             #{book.authors.first.name[0..3]}
-                            ", 
+                            ",
                             overflow: :shrink_to_fit, align: :center )
       end
     end
