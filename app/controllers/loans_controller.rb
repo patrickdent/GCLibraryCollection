@@ -118,7 +118,9 @@ class LoansController < ApplicationController
   end
 
   def overdue_list
-    @loans = Loan.overdue.joins(:book, :user).paginate(:page => params[:page], :per_page => 50)
+    @loans = Loan.overdue.joins(:book, :user)
+    .order(sort_column + " " + sort_direction)
+    .paginate(:page => params[:page], :per_page => 50)
   end
 
   private
