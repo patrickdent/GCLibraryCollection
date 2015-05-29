@@ -3,7 +3,7 @@
 <% @librarian_user = librarian_user? %>
 <% @admin_user = admin_user? %>
 <% if @librarian_user %>
-  <%=  check_box_tag :selected, @book.id, @book.selected, id: "book-select_#{@book.id}"  %> <small>Add to selected books</small>
+  <%=  check_box_tag :selected, @book.id, @book.selected?(session[:selected_books]), id: "book-select_#{@book.id}"  %> <small>Add to selected books</small>
 <% end %>
 
 <div class="show">

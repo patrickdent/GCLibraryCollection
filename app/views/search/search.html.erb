@@ -20,7 +20,7 @@
       <% @books.each do |b| %>
         <li class="results">
           <% if @librarian_user %>
-            <%=  check_box_tag :selected, b.id, b.selected, id: "book-select_#{b.id}"  %>
+            <%=  check_box_tag :selected, b.id, b.selected?(session[:selected_books]), id: "book-select_#{b.id}"  %>
             <% available = "available" if b.available %>
             <% available = "unavailable" if !b.available %>
           <% end %>

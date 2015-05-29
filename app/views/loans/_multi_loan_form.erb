@@ -1,6 +1,6 @@
 <% if true %>
   <%= form_tag(loan_multi_path, method: "post") do %>
-    <% Book.where(selected: true).each do |b| %>
+    <% Book.where(id: session[:selected_books]).each do |b| %>
       <%= hidden_field_tag("book_ids[]", b.id) %>
     <% end %>
     <%= select_tag(:user_id, options_from_collection_for_select(User.able_to_borrow, :id, :name), multiple: false, class: "chosen-select") %>
