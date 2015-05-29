@@ -2,8 +2,8 @@
 
 <div class="show">
   <p class="highlighted_text"><%= "This book is overdue!" if @loan.overdue? %></p>
-  <p>Book: <%= link_to @loan.book.title, book_path(@loan.book.id) %></p>
-  <p>Patron: <%= link_to @loan.user.name, user_path(@loan.user.id) %></p>
+  <p>Book: <%= link_to @loan.book.title, book_path(@loan.book.id) if @loan.book %></p>
+  <p>Patron: <%= link_to @loan.user.name, user_path(@loan.user.id) if @loan.user %></p>
   <p>Loaned: <%= @loan.start_date %></p>
   <p>Due Date: <%= @loan.due_date %></p>
   <p>Returned: <%= @loan.returned_date || "---" %></p>

@@ -1,42 +1,35 @@
 <table class="index">
+  <% @librarian_user = librarian_user? %>
   <thead>
-    <% @source = @user if params[:controller].downcase == 'users' %>
-    <% @source = @book if params[:controller].downcase == 'books' %>
-
     <tr>
       <% if params[:controller].humanize.downcase == 'users' %>
-      <!-- unimplemeneted -->
-        <th>Title</th>
-        <% end %>
+        <th><%= sortable 'title', "Title" %></th>
+      <% end %>
       <% if params[:controller].humanize.downcase == 'books' %>
-      <!-- unimplemeneted -->
-        <th>Patron</th>
-        <% end %>
-      <!-- unimplemeneted -->
-      <th>Start Date</th>
-      <!-- unimplemeneted -->
-      <th>Due Date</th>
-      <!-- unimplemeneted -->
-      <th>Returned</th>
-      <!-- unimplemeneted -->
-      <th>Renewals</th>
-      <% if librarian_user? %>
+        <th><%= sortable 'name', "Patron" %></th>
+      <% end %>
+      <th><%= sortable "start_date", "Start Date" %></th>
+      <th><%= sortable "due_date", "Due Date" %></th>
+      <th><%= sortable "returned_date", "Returned" %></th>
+      <th><%= sortable "renewal_count", "Renewals" %></th>
+      <% if @librarian_user %>
         <th></th>
       <% end %>
     </tr>
   </thead>
 
   <tbody>
-    <% @source.loans.each do |l| %>
+    <% @loans.each do |l| %>
       <% overdue = "overdue" if l.overdue?; on_loan = "on-loan" if l.active? %>
       <tr class="<%= overdue %> <%= on_loan %>">
-        <% if params[:controller].downcase == 'users' %>
-          <td><%= link_to l.book.title, book_path(l.book.id) %></td>
-        <% end %>
-
-        <% if params[:controller].downcase == 'books' %>
-          <td><%= link_to l.user.name, user_path(l.user.id) %></td>
-        <% end %>
+        <td>
+          <% if params[:controller].downcase == 'users' && l.book %>
+            <%= link_to l.book.title, book_path(l.book.id) %>
+          <% end %>
+          <% if params[:controller].downcase == 'books' && l.user %>
+            <%= link_to l.user.name, user_path(l.user.id) %>
+          <% end %>
+        </td>
 
         <td><%= l.start_date %></td>
 
@@ -45,14 +38,14 @@
         <td>
           <% if l.returned_date %>
             <%= l.returned_date %>
-          <% elsif librarian_user? %>
+          <% elsif @librarian_user %>
             <%= button_to 'return', return_path(id: l.id), data: {confirm: "Are you sure you want to return this book?"} %>
           <% end %>
         </td>
 
         <td><%= l.renewal_count %></td>
 
-        <% if !l.returned_date && (l.renewal_count < Loan::MAX_RENEWALS) && librarian_user? %>
+        <% if !l.returned_date && (l.renewal_count < Loan::MAX_RENEWALS) && @librarian_user %>
           <td>
             <%= button_to 'renew now', renew_path(id: l.id), data: {confirm: "Are you sure you want to renew this loan?"} %>
           </td>
