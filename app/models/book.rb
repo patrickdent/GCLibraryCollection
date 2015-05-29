@@ -27,4 +27,11 @@ class Book < ActiveRecord::Base
     end
   end
 
+  def selected?(selected_books)
+    if selected_books && selected_books.include?(self.id)
+      return true
+    else
+      return false
+    end
+  end
 end

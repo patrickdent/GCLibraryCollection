@@ -11,7 +11,7 @@ describe BooksController do
     @admin = create :admin
     @librarian = create :librarian
     @patron = create :user
-    @selected_book = create :book, selected: true
+    @selected_book = create :book
     @unselected_book = create :book
   end
 
@@ -165,6 +165,7 @@ describe BooksController do
     context 'librarian logged in' do
       it "returns the selected books" do
         sign_in @librarian
+        session[:selected_books] = [@selected_book.id]
         get :show_list
         expect(assigns[:books]).to include(@selected_book)
       end
@@ -184,16 +185,9 @@ describe BooksController do
     context 'librarian logged in' do
       it "clears all books" do
         sign_in @librarian
+        session[:selected_books] = [@selected_book.id]
         get :clear_list
-        expect(@selected_book.reload.selected).to eq(false)
-      end
-    end
-
-    context 'patron logged in' do
-      it "does not clear books" do
-        sign_in @patron
-        get :clear_list
-        expect(@selected_book.reload.selected).to eq(true)
+        expect(session[:selected_books]).to eq(nil)
       end
     end
   end
@@ -202,16 +196,8 @@ describe BooksController do
     context 'librarian logged in' do
       it "changes the selected status of the book" do
         sign_in @librarian
-        post :list, book: {id: @unselected_book.id, selected: true}
-        expect(@unselected_book.reload.selected).to eq(true)
-      end
-    end
-
-    context 'patron logged in' do
-      it "does not change the selected status of book" do
-        sign_in @patron
-        post :list, book: {id: @unselected_book.id, selected: true}
-        expect(@unselected_book.reload.selected).to eq(false)
+        post :list, book: {id: @unselected_book.id, selected: "true"}
+        expect(session[:selected_books]).to include(@unselected_book.id)
       end
     end
   end

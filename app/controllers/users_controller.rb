@@ -12,7 +12,8 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.active.order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
+    @users = User.active.order(sort_column + " " + sort_direction)
+    .paginate(:page => params[:page], :per_page => 50)
   end
 
   def update
@@ -42,6 +43,10 @@ class UsersController < ApplicationController
       flash[:error] = "You are not authorized"
       redirect_to root_path
     end
+
+    @loans = Loan.where(user_id: @user.id).joins(:book)
+    .order("returned_date ASC", sort_column("start_date") + " " + sort_direction("desc"))
+    .paginate(:page => params[:page], :per_page => 50)  
   end
 
   def destroy
@@ -81,7 +86,7 @@ class UsersController < ApplicationController
     params[:sort] ? params[:sort] : default
   end
   
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  def sort_direction(default = "asc")
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : default
   end
 end
