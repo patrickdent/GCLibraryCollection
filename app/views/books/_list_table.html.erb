@@ -3,9 +3,8 @@
     <tr>
       <% @librarian_user = librarian_user? %>
       <th><%= sortable "title", "Title" %></th>
-      <th><%= sortable "name", "Category" %></th>
-      <!-- unimplemented -->
-      <th>Author(s)</th>
+      <th><%= sortable "cat_name", "Category" %></th>
+      <th><%= sortable "auth_name", "Author(s)" %></th>
       <th><%= sortable "available", "Available" %></th>
     </tr>
   </thead>

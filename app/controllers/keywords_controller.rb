@@ -29,12 +29,15 @@ class KeywordsController < ApplicationController
 
   def show
     case params["sort"]
-    when "name"
+    when "cat_name"
       @books = @keyword.books.joins(:genre).includes(:authors)
-      .order(sort_column("title") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
+      .order(sort_column("name") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
+    when "auth_name"
+      @books = @keyword.books.joins(:authors).includes(:genre)
+      .order(sort_column("sort_by") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
     else
-      params["sort"] ||= "title" #don't know why optional param for sort_column isn't working
-      @books = @keyword.books.includes(:authors, :genre).order(sort_column("title") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
+      @books = @keyword.books.includes(:authors, :genre)
+      .order(sort_column("title") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
     end
   end
 
@@ -62,10 +65,14 @@ class KeywordsController < ApplicationController
     @keyword = Keyword.find(params[:id])
   end 
 
-  def sort_column(default = "name")
-    params[:sort] ? params[:sort] : default
+  def sort_column(column_name = nil)
+    unless column_name
+      params[:sort] ? params[:sort] : "name"
+    else
+      column_name
+    end
   end
-  
+
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end

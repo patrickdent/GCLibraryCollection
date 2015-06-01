@@ -4,9 +4,8 @@
   <% @admin_user = admin_user? %>
     <tr>
       <th><%= sortable "title", "Title" %></th>
-      <!-- unimplemented -->
-      <th>Author</th>
-      <th><%= sortable "name", "Category" %></th>
+      <th><%= sortable "auth_name", "Author(s)" %></th>
+      <th><%= sortable "cat_name", "Category" %></th>
       <th><%= sortable "available", "Available" %></th>
       <% if @librarian_user %>
         <th></th>
