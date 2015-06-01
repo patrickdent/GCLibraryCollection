@@ -4,8 +4,7 @@
       <% @librarian_user = librarian_user? %>
       <% @admin_user = admin_user? %>
       <th><%= sortable "title", "Title" %></th>
-            <!-- unimplemented -->
-      <th>Category</th>
+      <th><%= sortable "cat_name", "Category" %></th>
       <th><%= sortable "available", "Available" %></th>
       <% if @librarian_user %>
         <th></th>
