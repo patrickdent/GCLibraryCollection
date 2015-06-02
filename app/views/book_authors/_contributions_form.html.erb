@@ -1,0 +1,10 @@
+<h2>Manage Author Contributions</h2>
+<% @book_authors.each do |book_author| %>
+  <%= form_for book_author, remote: true do |f| %>
+  <%= f.label :author %> 
+  <%= f.select :author_id, Author.all.collect { |a| [a.name, a.id] }, {}, multiple: false, class: "chosen-select", disabled: true %>
+  <%= f.label :contribution %> 
+  <%= f.select :contribution_id, Contribution.all.collect { |a| [a.name, a.id] }, {}, multiple: false, class: "chosen-select", disabled: false %>
+  <%= f.submit "submit" %>
+  <% end %>
+<% end %>
