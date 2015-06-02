@@ -1,5 +1,4 @@
 class BooksController < ApplicationController
-  include BooksHelper
   include UserRoleHelper
 
   before_filter :authenticate_user!, except: [:index, :show]
@@ -118,5 +117,9 @@ class BooksController < ApplicationController
 
   def sort_direction(default = "asc")
     %w[asc desc].include?(params[:direction]) ? params[:direction] : default
+  end
+
+  def book_params
+    params.require(:book).permit!
   end
 end

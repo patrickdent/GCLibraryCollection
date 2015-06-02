@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   include UserRoleHelper
-  include UsersHelper
 
   before_filter :authenticate_user!
   before_filter :is_librarian?, only: [:edit, :update, :index, :send_reminders]
@@ -88,5 +87,11 @@ class UsersController < ApplicationController
   
   def sort_direction(default = "asc")
     %w[asc desc].include?(params[:direction]) ? params[:direction] : default
+  end
+
+  def user_params
+    params.require(:user).permit( :email, :password, :password_confirmation, :remember_me,
+                                  :notes, :name, :phone, :preferred_first_name, :do_not_lend,
+                                  :address, :city, :state, :zip, :identification, :username )
   end
 end

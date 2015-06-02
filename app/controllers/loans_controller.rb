@@ -1,7 +1,5 @@
 class LoansController < ApplicationController
-
   include UserRoleHelper
-  include LoanHelper
 
   before_filter :is_librarian?, only: [:new, :create, :renew, :return, :index, :new_multi, :loan_multi]
   before_filter :authenticate_user!
@@ -129,5 +127,13 @@ class LoansController < ApplicationController
   
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
+  end
+
+  def loan_params
+    params.require(:loan).permit(:book_id, :user_id, :id)
+  end 
+
+  def find_loan
+    @loan = Loan.find(params[:id])
   end
 end

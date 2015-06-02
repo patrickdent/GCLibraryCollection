@@ -1,7 +1,5 @@
 class KeywordsController < ApplicationController
-
   include UserRoleHelper
-  include KeywordHelper
 
   before_filter :authenticate_user!, only: [:new, :create, :edit, :destroy, :update]
   before_filter :find_keyword, only: [:show, :edit, :destroy, :update]
@@ -69,4 +67,8 @@ class KeywordsController < ApplicationController
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
+
+  def keyword_params
+    params.require(:keyword).permit(:name, :id)
+  end 
 end
