@@ -1,7 +1,5 @@
 class BookAuthorsController < ApplicationController
-
   include UserRoleHelper
-  include BookAuthorsHelper
 
   before_filter :authenticate_user!
   before_filter :is_librarian?
@@ -19,5 +17,10 @@ class BookAuthorsController < ApplicationController
     respond_to do |format|
       format.js {render inline: "location.reload();" }
     end
+  end
+
+private
+  def book_author_params
+    params.require(:book_author).permit(:contribution_id)
   end
 end
