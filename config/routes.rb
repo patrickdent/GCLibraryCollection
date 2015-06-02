@@ -25,6 +25,7 @@ LibraryCollection::Application.routes.draw do
   post 'remove_copy' => 'books#remove_copy'
   post 'send_reminders' => 'users#send_reminders'
   post 'generate_report' => 'document_generator#new_report'
+  get 'new_author_ajax' => 'authors#new_ajax'
 
   get 'admin_dashboard' => 'static_pages#admin_dashboard'
   get 'styleguide' => 'static_pages#styleguide'
