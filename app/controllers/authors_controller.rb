@@ -68,10 +68,6 @@ class AuthorsController < ApplicationController
     @author = Author.find(params[:id])
   end
 
-  def author_params
-    params.require(:author).permit(:name, :id, :sort_by)
-  end
-
   def sort_column(column_name = nil)
     unless column_name
       params[:sort] ? params[:sort] : "sort_by"
@@ -82,5 +78,9 @@ class AuthorsController < ApplicationController
 
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+
+  def author_params
+    params.require(:author).permit(:name, :id, :sort_by)
   end
 end

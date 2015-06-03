@@ -60,10 +60,7 @@ class GenresController < ApplicationController
     redirect_to genres_path
   end
 
-  private
-  def genre_params
-    params.require(:genre).permit(:name, :abbreviation, :id)
-  end
+private
 
   def find_genre
     @genre = Genre.find(params[:id])
@@ -75,5 +72,9 @@ class GenresController < ApplicationController
   
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+
+  def genre_params
+    params.require(:genre).permit(:name, :abbreviation, :id)
   end
 end
