@@ -28,7 +28,7 @@ LibraryCollection::Application.routes.draw do
   post 'generate_report' => 'document_generator#new_report'
   get 'new_author_ajax' => 'authors#new_ajax'
   get 'manage_contributions' => 'book_authors#manage_contributions'
-
+  post 'update_contributions' => 'book_authors#update_contributions'
 
   get 'admin_dashboard' => 'static_pages#admin_dashboard'
   get 'styleguide' => 'static_pages#styleguide'

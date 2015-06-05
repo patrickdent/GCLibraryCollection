@@ -8,15 +8,22 @@ class BookAuthorsController < ApplicationController
     @book_authors = BookAuthor.where(id: params["subjects"])
   end 
 
-  def update
-    if BookAuthor.find(params["id"]).update(book_author_params)
-      flash[:notice] = "Update Successful"
+  def update_contributions
+    book_author_ids = params[:book_author].keys
+    failures = 0
+
+    book_author_ids.each do |b|
+      contribution_id = params[:book_author][b]["contribution_id"]
+      failures += 1 unless BookAuthor.find(b).update(contribution_id: contribution_id)
+    end
+
+    if failures > 0
+      flash[:error] = failures.to_s + " Update(s) Failed"
     else
-      flash[:error] = "Update Unsuccessful"
+      flash[:notice] = "Update(s) Successful"
     end
-    respond_to do |format|
-      format.js {render inline: "location.reload();" }
-    end
+    
+    redirect_to :back
   end
 
 private

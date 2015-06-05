@@ -1,10 +1,13 @@
 <h2>Manage Author Contributions</h2>
-<% @book_authors.each do |book_author| %>
-  <%= form_for book_author, remote: true do |f| %>
-  <%= f.label :author %> 
-  <%= f.select :author_id, Author.all.collect { |a| [a.name, a.id] }, {}, multiple: false, class: "chosen-select", disabled: true %>
-  <%= f.label :contribution %> 
-  <%= f.select :contribution_id, Contribution.all.collect { |a| [a.name, a.id] }, {}, multiple: false, class: "chosen-select", disabled: false %>
-  <%= f.submit "submit" %>
+<%= form_tag(update_contributions_path, method: 'post') do %>
+  <% for @book_author in @book_authors %>
+    <%= fields_for @book_author do |f| %>
+      <%= f.label :author %>
+      <%= f.collection_select(:author_id, Author.all, :id, :name, {}, class: "chosen-select", disabled: true, index: @book_author.id) %>
+      <%= f.label :contribution %> 
+      <%= f.collection_select(:contribution_id, Contribution.all, :id, :name, {}, multiple: false, class: "chosen-select", index: @book_author.id) %>
+    <% end %>
   <% end %>
+<%= submit_tag "submit" %>
 <% end %>
+
