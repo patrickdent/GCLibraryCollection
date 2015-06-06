@@ -6,7 +6,7 @@ class BookAuthorsController < ApplicationController
 
   def manage_contributions
     @book_authors = BookAuthor.where(id: params["subjects"])
-  end 
+  end
 
   def update_contributions
     book_author_ids = params[:book_author].keys
@@ -14,7 +14,11 @@ class BookAuthorsController < ApplicationController
 
     book_author_ids.each do |b|
       contribution_id = params[:book_author][b]["contribution_id"]
-      failures += 1 unless BookAuthor.find(b).update(contribution_id: contribution_id)
+      if Contribution.find_by(id: contribution_id)
+        failures += 1 unless BookAuthor.find(b).update(contribution_id: contribution_id)
+      elsif contribution_id.blank?
+        BookAuthor.find(b).update(contribution_id: nil)
+      end
     end
 
     if failures > 0
@@ -22,7 +26,7 @@ class BookAuthorsController < ApplicationController
     else
       flash[:notice] = "Update(s) Successful"
     end
-    
+
     redirect_to :back
   end
 
