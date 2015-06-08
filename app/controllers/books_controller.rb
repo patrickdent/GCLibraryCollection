@@ -1,5 +1,4 @@
 class BooksController < ApplicationController
-  include BooksHelper
   include UserRoleHelper
 
   before_filter :authenticate_user!, except: [:index, :show]
@@ -34,7 +33,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    if is_librarian? then
+    if is_librarian?
       @loans = Loan.where(book_id: @book.id).joins(:user)
       .order("returned_date ASC", sort_column("start_date") + " " + sort_direction("desc")).paginate(:page => params[:page], :per_page => 50)
     end
@@ -110,6 +109,7 @@ class BooksController < ApplicationController
   private
   def find_book
     @book = Book.find_by(id: params[:id])
+    unless @book redirect_to root_path and return
   end
 
   def sort_column(default = "title")
@@ -118,5 +118,9 @@ class BooksController < ApplicationController
 
   def sort_direction(default = "asc")
     %w[asc desc].include?(params[:direction]) ? params[:direction] : default
+  end
+
+  def book_params
+    params.require(:book).permit!
   end
 end

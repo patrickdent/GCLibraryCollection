@@ -42,7 +42,8 @@ u = User.new(
   preferred_first_name: "Adonis",
   name: "Ad Meownistrator",
   address: "99 SoftPaws Ln, Seattle, WA 98122",
-  phone: "206-999-0909")
+  phone: "206-999-0909",
+  identification: "ok")
 u.add_role :admin
 u.save!
 
@@ -52,7 +53,9 @@ u = User.new(
   password_confirmation: "password",
   name: "Dewey Decimeowl",
   address: "99 SoftPaws Ln, Seattle, WA 98122",
-  phone: "206-999-0909")
+  phone: "206-999-0909",
+  identification: "ok")
+
 u.add_role :librarian
 u.save!
 
@@ -63,13 +66,21 @@ u = User.new(
   preferred_first_name: "Murray",
   name: "Marie Purrie",
   address: "99 SoftPaws Ln, Seattle, WA 98122",
-  phone: "206-999-0909")
+  phone: "206-999-0909",
+  identification: "ok")
+
 u.save!
 
-l = Loan.new(
-  user_id: User.last.id,
-  book_id: Book.first.id)
-l.save!(validate: false)
+(1..10).each do |n|
+  s_d = Date.today - (n * 7)
+  l = Loan.new(
+    user_id: (n % User.count) + 1,
+    book_id: n,
+    start_date: s_d,
+    due_date: s_d + 30
+    )
+  l.save!(validate: false)
+end
 
 contributions = Contribution.create([{ name: "Author" },
                                      { name: "Illustrator" },

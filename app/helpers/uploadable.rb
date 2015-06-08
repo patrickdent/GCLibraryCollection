@@ -1,5 +1,4 @@
 module Uploadable
-
   require 'csv'
 
   def save

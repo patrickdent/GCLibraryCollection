@@ -1,0 +1,13 @@
+<h2>Manage Author Contributions</h2>
+<%= form_tag(update_contributions_path, method: 'post') do %>
+  <% for @book_author in @book_authors %>
+    <%= fields_for @book_author do |f| %>
+      <%= f.label :author %>
+      <%= f.collection_select(:author_id, Author.all, :id, :name, {}, class: "chosen-select", disabled: true, index: @book_author.id) %>
+      <%= f.label :contribution %>
+      <%= f.collection_select(:contribution_id, Contribution.all, :id, :name, {include_blank: ''}, multiple: false, class: "chosen-select", index: @book_author.id) %>
+    <% end %>
+  <% end %>
+<%= submit_tag "submit" %>
+<% end %>
+

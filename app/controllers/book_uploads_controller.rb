@@ -1,5 +1,4 @@
 class BookUploadsController < ApplicationController
-  include BookUploadsHelper
   include UserRoleHelper
   require 'csv'
   rescue_from BookUpload::InvalidFileError, with: :invalid_file
@@ -39,5 +38,9 @@ private
   def invalid_file(msg)
     flash[:error] = "Upload Unsuccessful: please upload a file with the correct file type and formatting."
     redirect_to :back
+  end
+
+  def book_uploads_params
+    params.require(:book_upload).permit(:file, :genre)
   end
 end
