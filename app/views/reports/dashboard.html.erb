@@ -1,0 +1,20 @@
+<select id="report-selector">
+  <option>Book Popularity</option>
+</select>
+
+<h2>Report</h2>
+
+<table id="report-results">
+  <thead>
+    <tr>
+      <th>Title</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @books.each do |b| %>
+      <tr>
+        <td><%= link_to b.title, book_path(b) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
