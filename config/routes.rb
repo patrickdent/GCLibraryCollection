@@ -27,6 +27,7 @@ LibraryCollection::Application.routes.draw do
 
   get 'reports' => 'reports#dashboard'
   post 'build_report' => 'reports#build_report', defaults: {format: :json}
+  get 'view_report' => 'reports#view_report'
 
   get 'search' => 'search#search'
   get 'import' => 'search#import'

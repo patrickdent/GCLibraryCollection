@@ -1,24 +1,9 @@
-<form id="reports-form">
-  <select id="report-selector">
+<%= form_tag({controller: "reports", action: "build_report"}, method: 'post', id: "reports-form") do %>
+  <select id="report-selector" name="report">
     <option></option>
     <option value="book-popularity">Book Popularity</option>
   </select>
 
 </form>
 
-<h2>Report</h2>
-
-<table id="report-results">
-  <thead>
-    <tr>
-      <th>Title</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @books.each do |b| %>
-      <tr>
-        <td><%= link_to b.title, book_path(b) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% end %>
