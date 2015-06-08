@@ -1,5 +1,4 @@
 class UserUploadsController < ApplicationController
-  include UserUploadsHelper
   include UserRoleHelper
   require 'csv'
   rescue_from UserUpload::InvalidFileError, with: :invalid_file
@@ -36,5 +35,9 @@ private
   def invalid_file(msg)
     flash[:error] = "upload unsuccessful: please upload a file with the correct file type and formatting."
     redirect_to :back
+  end
+
+  def user_uploads_params
+    params.require(:user_upload).permit(:file)
   end
 end

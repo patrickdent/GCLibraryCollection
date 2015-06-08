@@ -14,6 +14,10 @@ class AuthorsController < ApplicationController
     @author = Author.new
   end
 
+  def new_ajax
+    self.new
+  end
+
   def create
     @author = Author.new(author_params)
     if @author.save
@@ -61,15 +65,15 @@ class AuthorsController < ApplicationController
     @author = Author.find(params[:id])
   end
 
-  def author_params
-    params.require(:author).permit(:name, :id, :sort_by)
-  end
-
   def sort_column(default = "name")
     params[:sort] ? params[:sort] : default
   end
   
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+
+  def author_params
+    params.require(:author).permit(:name, :id, :sort_by)
   end
 end
