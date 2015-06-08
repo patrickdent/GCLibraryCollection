@@ -26,6 +26,7 @@ LibraryCollection::Application.routes.draw do
   get 'overdue_list' => 'loans#overdue_list'
 
   get 'reports' => 'reports#dashboard'
+  post 'build_report' => 'reports#build_report', defaults: {format: :json}
 
   get 'search' => 'search#search'
   get 'import' => 'search#import'
