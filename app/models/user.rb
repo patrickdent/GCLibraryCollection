@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
   validates :username, uniqueness: {case_sensitive: false, allow_nil: true, allow_blank: true}
   validates :email, uniqueness: {case_sensitive: false, allow_nil: true, allow_blank: true}
   validates :name, presence: true
-  validates :address, presence: true
-  validates :phone, presence: true
+  #validates :address, presence: true
+  #validates :phone, presence: true
 
   has_many :loans
   has_many :books, through: :loans
@@ -54,7 +54,7 @@ class User < ActiveRecord::Base
       return name.split.first unless chosen_name_only
       return nil
     end
-    return preferred_first_name 
+    return preferred_first_name
   end
 
   def self.able_to_borrow
@@ -63,7 +63,7 @@ class User < ActiveRecord::Base
 
   def self.search(search)
     search_length = search.split.length
-    active.where([(['lower(preferred_first_name) LIKE lower(?)'] * search_length).join(' AND ')] + search.split.map { |search| "%#{search}%" }) +
+    active.where([(['lower(preferred_first_name) LIKE lower(?)'] * search_length).join(' AND ')] + search.split.map { |search| "%#{search}%" }).order(:name) +
     active.where([(['lower(name) LIKE lower(?)'] * search_length).join(' AND ')] + search.split.map { |search| "%#{search}%" }).order(:name)
   end
 

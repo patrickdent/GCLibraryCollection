@@ -6,13 +6,23 @@
   padding: 2rem 0;
   background: $light_gray;
   .logo {
-  	max-width: 25%;
-  	float: left;
+    display: block;
+    max-width: 20%;
+    margin: 0 auto;
+  }
+  h1 {
+    color: $dark_gray;
+    font-size: 2rem;
+    text-align: center;
+    text-transform: none;
+    padding-top: 1rem;
+    margin-bottom: 1rem;
   }
   nav{
     display: block;
     padding: .75rem;
     background-color: $lightest_gray;
+    margin-top: 0.5rem;
     ul {
       list-style: none;
       text-align: center;
@@ -68,6 +78,24 @@ h3 {
   margin: 1em 0;
   font-weight: normal;
   text-transform: none;
+}
+
+footer {
+  clear: both;
+  text-align: center;
+}
+
+#sponsor-link img{
+  height: 3rem;
+  margin: 0 auto;
+  opacity: .75;
+  position: relative;
+  top: 1rem;
+}
+.sponsor{
+  display: inline;
+  font-size: 1rem;
+  font-weight: 800;
 }
 
 .right {

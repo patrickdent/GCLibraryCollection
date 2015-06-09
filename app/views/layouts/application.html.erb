@@ -7,16 +7,17 @@
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <%= csrf_meta_tags %>
   <%= favicon_link_tag 'favicon.ico' %>
-
 </head>
 <body>
 <div class="wrapper">
 
   <div class="column-2 left-page-content">
   <!-- search column aside -->
-    <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, class: name, id:"headerbar" %>
-    <% end %>
+    <div id="flashes">
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, class: name %>
+      <% end %>
+    </div>
 
     <div class="left-content">
       <%= link_to raw("<i class='fa fa-users'></i>"), users_path, title: "Manage Users", class: "large-icon tooltip" if librarian_user? %>
@@ -42,7 +43,8 @@
   <!-- central content area -->
     <section class="main">
       <header>
-        <h1>Library Collection</h1>
+        <%= image_tag("gc20logo.png", class: "logo") %>
+        <h1>Michael C. Weidemann LGBT Library Catalog</h1>
         <nav>
           <ul>
           <% if user_signed_in? %>
@@ -65,6 +67,12 @@
       </header>
 
     <article><%= yield %></article>
+    <footer>
+      <p class="sponsor">Generously hosted by </p>
+      <a href="http://nird.us/managed-rails-hosting" id="sponsor-link">
+      <%= image_tag("nird-logo.png") %>
+      </a>
+    </footer>
    </div>
 
   <div class="column-1 right-content">
