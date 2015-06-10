@@ -19,7 +19,7 @@
         <fieldset>
         <%= fields_for @book_author do |ff| %>
           <%= ff.label :author %>
-          <%= ff.collection_select(:author_id, Author.all, :id, :name, {}, class: "chosen-select", disabled: true, index: @book_author.id) %>
+          <%= ff.collection_select(:author_id, Author.all, :id, :name, {}, class: "chosen-select", disabled: false, index: @book_author.id) %>
           <%= ff.label :contribution %>
           <%= ff.collection_select(:contribution_id, Contribution.all, :id, :name, {include_blank: ''}, multiple: false, class: "chosen-select", index: @book_author.id) %>
         <% end %>
