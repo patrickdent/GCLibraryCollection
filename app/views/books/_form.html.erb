@@ -14,9 +14,17 @@
     	<%= f.label :genre, "Category" %>
     	<%= f.select :genre_id, Genre.all.collect { |n| [n.name, n.id] }, {}, multiple: false, class: "chosen-select", disabled: disabled %>
     </fieldset>
-    <fieldset>
-    	<%= f.label :author %>
-    	<%= f.select :author_ids, Author.all.collect { |a| [a.display_name, a.id] }, {}, multiple: true, class: "chosen-select", disabled: disabled %>
+    <fieldset id='authors'>
+      <% for @book_author in @book.book_authors %>
+        <fieldset>
+        <%= fields_for @book_author do |ff| %>
+          <%= ff.label :author %>
+          <%= ff.collection_select(:author_id, Author.all, :id, :name, {}, class: "chosen-select", disabled: true, index: @book_author.id) %>
+          <%= ff.label :contribution %>
+          <%= ff.collection_select(:contribution_id, Contribution.all, :id, :name, {include_blank: ''}, multiple: false, class: "chosen-select", index: @book_author.id) %>
+        <% end %>
+      </fieldset>
+    <% end %>
     </fieldset>
     <fieldset>
     	<%= f.label :keyword %>

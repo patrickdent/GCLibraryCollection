@@ -40,7 +40,7 @@ class BooksController < ApplicationController
   end
 
   def edit
-    @author = Author.new
+    @author_ids = @book.authors.map { |a| a.id  }
   end
 
   def destroy
@@ -53,7 +53,10 @@ class BooksController < ApplicationController
   end
 
   def update
-    if @book.update(book_params)
+    @book.attributes = book_params
+    @book.book_authors.update params[:book_author].keys, params[:book_author].values
+    
+    if @book.save
       @book.update_availability
       flash[:notice] = "Update Successful!"
       redirect_to book_path(@book)
