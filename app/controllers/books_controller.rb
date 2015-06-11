@@ -40,7 +40,6 @@ class BooksController < ApplicationController
   end
 
   def edit
-    @author_ids = @book.authors.map { |a| a.id  }
   end
 
   def destroy
@@ -54,7 +53,16 @@ class BooksController < ApplicationController
 
   def update
     @book.attributes = book_params
-    @book.book_authors.update params[:book_author].keys, params[:book_author].values
+
+    unless params.has_key?(:book_author)
+      @book.book_authors.each { |b| b.delete }
+    else
+      @book.book_authors.update params[:book_author].keys, params[:book_author].values
+
+      book_author_ids = @book.book_authors.map { |b| b.id }
+      to_remove = book_author_ids.reject { |id| params[:book_author].keys.include?(id.to_s) }
+      to_remove.each { |a| BookAuthor.find(a).delete }
+    end
     
     if @book.save
       @book.update_availability

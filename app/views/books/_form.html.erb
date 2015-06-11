@@ -16,15 +16,19 @@
     </fieldset>
     <fieldset id='authors'>
       <% for @book_author in @book.book_authors %>
-        <fieldset>
+        <fieldset id="#{@book_author.id">
         <%= fields_for @book_author do |ff| %>
           <%= ff.label :author %>
           <%= ff.collection_select(:author_id, Author.all, :id, :name, {}, class: "chosen-select", disabled: false, index: @book_author.id) %>
+          <span class="remove-author" title="remove this author"></span>
           <%= ff.label :contribution %>
           <%= ff.collection_select(:contribution_id, Contribution.all, :id, :name, {include_blank: ''}, multiple: false, class: "chosen-select", index: @book_author.id) %>
         <% end %>
       </fieldset>
     <% end %>
+
+    <span class="add-author" title="add an author"></span>
+    <!-- <div class="go-btn right">add</div> -->
     </fieldset>
     <fieldset>
     	<%= f.label :keyword %>
