@@ -5,5 +5,7 @@
     <span class='remove-author' title='remove this author'></span>
     <%= fff.label :contribution %>
     <%= fff.collection_select(:contribution_id, Contribution.all, :id, :name, {include_blank: ''}, multiple: false, class: 'chosen-select', index: @book_author.id) %>
+    <%= fff.radio_button :primary, :true, id: "#{@book_author.id}", class: "primary-radio-true", index: @book_author.id %>
+    <%= fff.radio_button :primary, :false, id: "#{@book_author.id}", class: "primary-radio-false", index: @book_author.id, hidden: true %>
   <% end %>
 </fieldset>

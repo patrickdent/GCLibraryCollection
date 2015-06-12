@@ -23,12 +23,13 @@
           <span class="remove-author" title="remove this author"></span>
           <%= ff.label :contribution %>
           <%= ff.collection_select(:contribution_id, Contribution.all, :id, :name, {include_blank: ''}, multiple: false, class: "chosen-select", index: @book_author.id) %>
+          <%= ff.radio_button :primary, :true, id: "#{@book_author.id}", class: "primary-radio-true", index: @book_author.id %>
+          <%= ff.radio_button :primary, :false, id: "#{@book_author.id}", class: "primary-radio-false", index: @book_author.id, hidden: true %>
         <% end %>
       </fieldset>
     <% end %>
     </fieldset>
     <fieldset>
-      <!-- add author stuff -->
       <%= link_to add_author_ajax_path(book_id: @book.id), id: "add-author", remote: true do %>
         <span class="add-author" title="add an author"></span>
       <% end %>
