@@ -14,7 +14,7 @@
     	<%= f.label :genre, "Category" %>
     	<%= f.select :genre_id, Genre.all.collect { |n| [n.name, n.id] }, {}, multiple: false, class: "chosen-select", disabled: disabled %>
     </fieldset>
-    <fieldset id='authors'>
+    <fieldset id ='authors'>
       <% for @book_author in @book.book_authors %>
         <fieldset id="#{@book_author.id">
         <%= fields_for @book_author do |ff| %>
@@ -26,9 +26,12 @@
         <% end %>
       </fieldset>
     <% end %>
-
-    <span class="add-author" title="add an author"></span>
-    <!-- <div class="go-btn right">add</div> -->
+    </fieldset>
+    <fieldset>
+      <!-- add author stuff -->
+      <%= link_to add_author_ajax_path(book_id: @book.id), id: "add-author", remote: true do %>
+        <span class="add-author" title="add an author"></span>
+      <% end %>
     </fieldset>
     <fieldset>
     	<%= f.label :keyword %>

@@ -8,6 +8,10 @@ class BookAuthorsController < ApplicationController
     @book_authors = BookAuthor.where(id: params["subjects"])
   end
 
+  def add_author
+    @book_author = BookAuthor.create(book_id: params["book_id"])
+  end
+
   def update_contributions
     book_author_ids = params[:book_author].keys
     failures = 0

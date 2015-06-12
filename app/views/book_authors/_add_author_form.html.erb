@@ -1,0 +1,9 @@
+<fieldset>
+  <%= fields_for @book_author do |fff| %>
+    <%= fff.label :author %>
+    <%= fff.collection_select(:author_id, Author.all, :id, :name, {}, multiple: false, class: 'chosen-select', index: @book_author.id) %>
+    <span class='remove-author' title='remove this author'></span>
+    <%= fff.label :contribution %>
+    <%= fff.collection_select(:contribution_id, Contribution.all, :id, :name, {include_blank: ''}, multiple: false, class: 'chosen-select', index: @book_author.id) %>
+  <% end %>
+</fieldset>
