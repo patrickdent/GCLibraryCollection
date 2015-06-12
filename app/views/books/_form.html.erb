@@ -78,4 +78,3 @@
 <br>
 
 <%= link_to "new author", new_author_ajax_path, id: "new-author", remote: true, class: "meh-btn right" %>
-<%= link_to "manage author contributions", manage_contributions_path(subjects: @book.book_authors.map { |ba| ba.id }), id: "manage-contributions", remote: true, class: "meh-btn right" %>
