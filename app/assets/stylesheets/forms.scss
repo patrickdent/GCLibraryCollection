@@ -86,10 +86,9 @@ span.add-author:after {
   font-family: FontAwesome;
   content: "\f067";
   font-size: 1.1rem;
-  float: right;
+  float: inline;
   cursor: pointer;
-  color: $green;
-  padding-right: 10% }
+  color: $green }
 
 span.remove-author:after {
   font-family: FontAwesome;
