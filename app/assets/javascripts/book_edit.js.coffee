@@ -1,5 +1,5 @@
 $(document).on('click', '.remove-author',  ->
-  $(this).parent().remove()
+  $(this).parent().parent().remove()
 )
 
 $(document).on('click', '.primary-radio-true', ->
