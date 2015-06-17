@@ -33,6 +33,9 @@ class BooksController < ApplicationController
   end
 
   def show
+    @primary = @book.primary_author
+    @other_contributors = @book.other_contributors
+
     if is_librarian?
       @loans = Loan.where(book_id: @book.id).joins(:user)
       .order("returned_date ASC", sort_column("start_date") + " " + sort_direction("desc")).paginate(:page => params[:page], :per_page => 50)

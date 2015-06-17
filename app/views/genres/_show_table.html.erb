@@ -21,9 +21,14 @@
           <%= link_to b.title, book_path(b.id) %>
         </td>
 
-        <td><% b.authors.each do |a| %>
-              <%= link_to a.display_name, author_path(a) %>
-            <% end %>
+        <td>
+          <% primary_author = b.primary_author %>
+          <% other_contributors = b.other_contributors %>
+          <%= link_to primary_author.display_name, author_path(primary_author) %>
+          <% unless other_contributors.empty? %>*<% end %>
+          <% other_contributors.each do |a| %>
+            | <%= link_to a.display_name, author_path(a) %>
+          <% end %>
         </td>
 
         <td>
