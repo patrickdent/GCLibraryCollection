@@ -15,8 +15,8 @@ class BookAuthor < ActiveRecord::Base
     end
   end
 
-  def self.create_or_delete(book, array)
-    array.each do |a|
+  def self.create_multi(book, hash)
+    hash.each_value do |a|
       BookAuthor.create( book_id: book.id, author_id: a[:author_id], contribution_id: a[:contribution_id], primary: a[:primary] )
     end
   end
