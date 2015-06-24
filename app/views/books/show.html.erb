@@ -9,16 +9,18 @@
 <div class="show">
   <p>Author(s): </p>
     <ul>
-      <% p_contribution = BookAuthor.where(author_id: @primary.id, book_id: @book.id).first.contribution %>
-      <li>
-        <%= link_to @primary.display_name, author_path(@primary) %> 
-        <% unless @other_contributors.empty? %>*<% end %>
-        <span class="contribution"><%= p_contribution.name if p_contribution %></span>
-      </li>
+      <% unless @book.authors.empty? %>
+        <% p_contribution = BookAuthor.where(author_id: @primary.id, book_id: @book.id).first.contribution %>
+        <li>
+          <%= link_to @primary.display_name, author_path(@primary) %> 
+          <% unless @other_contributors.empty? %>*<% end %>
+          <span class="contribution"><%= p_contribution.name if p_contribution %></span>
+        </li>
 
-      <% @other_contributors.each do |a| %>
-      <% contribution = BookAuthor.where(author_id: a.id, book_id: @book.id).first.contribution %>
-      <li><%= link_to a.display_name, author_path(a) %> <span class="contribution"><%= contribution.name if contribution %></span></li>
+        <% @other_contributors.each do |a| %>
+        <% contribution = BookAuthor.where(author_id: a.id, book_id: @book.id).first.contribution %>
+        <li><%= link_to a.display_name, author_path(a) %> <span class="contribution"><%= contribution.name if contribution %></span></li>
+        <% end %>
       <% end %>
     </ul>
 

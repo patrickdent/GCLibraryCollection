@@ -36,6 +36,8 @@ class Book < ActiveRecord::Base
   end
 
   def primary_author
+    return nil if authors.empty?
+
     alpha_author = authors.first
 
     book_authors.each do |b| 
@@ -51,9 +53,5 @@ class Book < ActiveRecord::Base
     author_array = []
     authors.each { |a| author_array << a unless a == primary }
     return author_array
-  end
-
-  def ordered_authors
-    [primary_author] + other_contributors
   end
 end

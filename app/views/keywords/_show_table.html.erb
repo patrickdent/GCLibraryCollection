@@ -27,7 +27,7 @@
         <td>
           <% primary_author = b.primary_author %>
           <% other_contributors = b.other_contributors %>
-          <%= link_to primary_author.display_name, author_path(primary_author) %>
+          <%= link_to primary_author.display_name, author_path(primary_author) if primary_author %>
           <% unless other_contributors.empty? %>*<% end %>
           <% other_contributors.each do |a| %>
             | <%= link_to a.display_name, author_path(a) %>
