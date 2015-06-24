@@ -26,23 +26,23 @@
         </thead>
         <tbody>
           <% for @book_author in @book.book_authors %>
-                <%= fields_for @book_author do |ff| %>
-                <tr class="author-row">
-                  <td class="add-remove-author-cell">
-                    <span class="remove-author" title="remove this author"</span>
-                  </td>
-                  <td>
-                    <%= ff.collection_select(:author_id, Author.all, :id, :name, {}, class: "chosen-select", disabled: false, index: @book_author.id) %>
-                  </td>
-                  <td>
-                    <%= ff.collection_select(:contribution_id, Contribution.all, :id, :name, {include_blank: ''}, multiple: false, class: "chosen-select", index: @book_author.id) %>
-                  </td>
-                  <td class="primary-radio-cell">
-                    <%= ff.radio_button :primary, :true, id: "#{@book_author.id}", class: "primary-radio-true", index: @book_author.id %>
-                    <%= ff.radio_button :primary, :false, id: "#{@book_author.id}", class: "primary-radio-false", index: @book_author.id, hidden: true %>
-                  </td>
-                </tr>
-              <% end %>
+            <%= fields_for @book_author do |ff| %>
+              <tr class="author-row">
+                <td class="add-remove-author-cell">
+                  <span class="remove-author" title="remove this author"</span>
+                </td>
+                <td>
+                  <%= ff.collection_select(:author_id, Author.all, :id, :name, {}, class: "chosen-select", disabled: false, index: @book_author.id) %>
+                </td>
+                <td>
+                  <%= ff.collection_select(:contribution_id, Contribution.all, :id, :name, {include_blank: ''}, multiple: false, class: "chosen-select", index: @book_author.id) %>
+                </td>
+                <td class="primary-radio-cell">
+                  <%= ff.radio_button :primary, :true, id: "#{@book_author.id}", class: "primary-radio-true", index: @book_author.id %>
+                  <%= ff.radio_button :primary, :false, id: "#{@book_author.id}", class: "primary-radio-false", index: @book_author.id, hidden: true %>
+                </td>
+              </tr>
+            <% end %>
           <% end %>
           <tr>
             <td class="add-remove-author-cell">

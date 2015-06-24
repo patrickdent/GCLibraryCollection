@@ -5,11 +5,11 @@ class BookAuthorsController < ApplicationController
   before_filter :is_librarian?
 
   def add_author
-    @book_author = BookAuthor.create(book_id: params["book_id"])
+    @book_author = BookAuthor.new
   end
 
 private
   def book_author_params
-    params.require(:book_author).permit(:contribution_id)
+    params.require(:book_author).permit(:contribution_id, :author_id, :book_id, :primary)
   end
 end

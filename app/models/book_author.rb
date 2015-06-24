@@ -14,4 +14,10 @@ class BookAuthor < ActiveRecord::Base
       to_remove.each { |a| BookAuthor.find(a).delete }
     end
   end
+
+  def self.create_or_delete(book, array)
+    array.each do |a|
+      BookAuthor.create( book_id: book.id, author_id: a[:author_id], contribution_id: a[:contribution_id], primary: a[:primary] )
+    end
+  end
 end

@@ -1,17 +1,18 @@
 <%= fields_for @book_author do |fff| %>
+  <% temp_id = rand(1000) %>
   <tr class="author-row">
     <td class="add-remove-author-cell">
       <span class="remove-author" title="remove this author"</span>
     </td>
     <td>
-      <%= fff.collection_select(:author_id, Author.all, :id, :name, {include_blank: ''}, class: "chosen-select", disabled: false, index: @book_author.id) %>
+      <%= fff.collection_select(:author_id, Author.all, :id, :name, {include_blank: ''}, class: "chosen-select", disabled: false, index: "new #{temp_id}" ) %>
     </td>
     <td>
-      <%= fff.collection_select(:contribution_id, Contribution.all, :id, :name, {include_blank: ''}, multiple: false, class: "chosen-select", index: @book_author.id) %>
+      <%= fff.collection_select(:contribution_id, Contribution.all, :id, :name, {include_blank: ''}, multiple: false, class: "chosen-select", index: "new #{temp_id}" ) %>
     </td>
     <td>
-      <%= fff.radio_button :primary, :true, id: "#{@book_author.id}", class: "primary-radio-true", index: @book_author.id %>
-      <%= fff.radio_button :primary, :false, id: "#{@book_author.id}", class: "primary-radio-false", index: @book_author.id, hidden: true %>
+      <%= fff.radio_button :primary, :true, id: "new #{temp_id}", class: "primary-radio-true", index: "new #{temp_id}"  %>
+      <%= fff.radio_button :primary, :false, id: "new #{temp_id}", class: "primary-radio-false", index: "new #{temp_id}" , hidden: true %>
     </td>
   </tr>
 <% end %>
