@@ -20,7 +20,6 @@ class BooksController < ApplicationController
     @book = Book.new
     @author = Author.new
     @book.authors << @author
-    @new = true
  end
 
   def create
@@ -37,7 +36,7 @@ class BooksController < ApplicationController
 
   def show
     @primary = @book.primary_author
-    @other_contributors = @book.other_contributors
+    @other_contributors = @book.other_contributors(@primary)
 
     if is_librarian?
       @loans = Loan.where(book_id: @book.id).joins(:user)
@@ -62,7 +61,7 @@ class BooksController < ApplicationController
 
     if params[:book_author]
       to_create = extract_new_book_authors
-      
+
       BookAuthor::update_or_delete_from_book(@book, params[:book_author])
       BookAuthor::create_multi(@book, to_create)
     end

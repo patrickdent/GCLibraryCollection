@@ -48,10 +48,7 @@ class Book < ActiveRecord::Base
     return alpha_author
   end
 
-  def other_contributors
-    primary = primary_author
-    author_array = []
-    authors.each { |a| author_array << a unless a == primary }
-    return author_array
+  def other_contributors(primary)
+    authors.reject { |a| a == primary }
   end
 end

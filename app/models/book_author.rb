@@ -9,8 +9,7 @@ class BookAuthor < ActiveRecord::Base
     else
       book.book_authors.update book_author_data_by_id.keys, book_author_data_by_id.values
 
-      book_author_ids = book.book_authors.map { |b| b.id }
-      to_remove = book_author_ids.reject { |id| book_author_data_by_id.keys.include?(id.to_s) }
+      to_remove = book.book_authors.map { |b| b.id }.reject { |id| book_author_data_by_id.keys.include?(id.to_s) }
       to_remove.each { |a| BookAuthor.find(a).delete }
     end
   end

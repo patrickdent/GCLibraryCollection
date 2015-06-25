@@ -26,7 +26,7 @@
         </thead>
         <tbody>
           <% for @book_author in @book.book_authors %>
-            <% @new ? temp_id = rand(1000) : temp_id = @book_author.id %>
+            <% @book.id.nil? ? temp_id = rand(1000) : temp_id = @book_author.id %>
             <%= fields_for @book_author do |ff| %>
               <tr class="author-row">
                 <td class="add-remove-author-cell">
