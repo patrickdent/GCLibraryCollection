@@ -7,6 +7,10 @@ describe BooksController do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
     @book = create :book
+    @author = create :author
+    @author_2 = create :author
+    @contribution = create :contribution
+    @book_author = create( :book_author, author_id: @author_2.id, book_id: @book.id, contribution_id: @contribution.id )
     @user = create :user
     @admin = create :admin
     @librarian = create :librarian
@@ -99,11 +103,33 @@ describe BooksController do
     context 'when admin is logged in' do
       it "allows authorized user to update with valid params" do
         sign_in @admin
-        post :update, id: @book.id, book: { title: "Whiskers and Black Lace" }
+        post :update, id: @book.id, book: { title: "Whiskers and Black Lace" }, 
+          book_author: { @book_author.id.to_s => { author_id: @book_author.author_id, contribution_id: @book_author.contribution_id, primary: false},
+            garbage: { author_id: @author.id, contribution_id: @contribution.id, primary: true } }
         @book.reload
 
         expect(@book.title).to eq("Whiskers and Black Lace")
+        expect(@book.primary_author).to eq(@author)
       end
+
+      it "deletes omitted book authors" do
+        sign_in @admin
+        post :update, id: @book.id, book: { title: "Whiskers and Black Lace" }, book_author: {}
+        @book.reload
+
+        expect(@book.authors.count).to eq(0)
+      end
+
+      it "adds a new author and contribution" do
+        sign_in @admin
+        post :update, id: @book.id, book: { title: "Whiskers and Black Lace" }, 
+          book_author: { @book_author.id.to_s => { author_id: @book_author.author_id, contribution_id: @book_author.contribution_id, primary: false},
+          "new 123" => { author_id: @author.id, contribution_id: @contribution.id, primary: true } }
+        @book.reload
+
+        expect(@book.authors.count).to eq(2)
+      end
+
       it "does not update with invalid params" do
         sign_in @admin
         post :update, id: @book.id, book: { title: "" }
@@ -129,11 +155,12 @@ describe BooksController do
       before { sign_in @admin }
 
       it "creates a new book" do
-        expect{post :create, book: {title: "Touch My Belly... Trust Me"}}.to change{Book.count}.by(1)
+        expect{post :create, book: {title: "Touch My Belly... Trust Me"},
+                            book_author: { garbage: {author_id: @author.id, contribution_id: @contribution.id, primary: true}}}.to change{Book.count}.by(1)
       end
 
-      it "redirects to index" do
-        expect(post :create, book: FactoryGirl.attributes_for(:book, title: 'testname1')).to redirect_to(root_path)
+      it "redirects to book#show" do
+        expect(post :create, book: FactoryGirl.attributes_for(:book, title: 'testname1')).to redirect_to(book_path(Book.last.id))
       end
     end
   end

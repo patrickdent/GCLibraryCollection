@@ -27,7 +27,7 @@ class BooksController < ApplicationController
     if @book.save
       BookAuthor::create_multi(@book, params[:book_author]) if params[:book_author]
       flash[:notice] = "Book Created"
-      redirect_to root_path
+      redirect_to book_path(@book)
     else
       flash[:error] = "Book Creation Failed"
       redirect_to new_book_path
