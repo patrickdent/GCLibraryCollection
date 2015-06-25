@@ -109,7 +109,7 @@ class BooksController < ApplicationController
   private
   def find_book
     @book = Book.find_by(id: params[:id])
-    unless @book redirect_to root_path and return
+    redirect_to root_path and return unless @book 
   end
 
   def sort_column(default = "title")
