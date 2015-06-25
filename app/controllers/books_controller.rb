@@ -26,7 +26,7 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
-      BookAuthor::create_multi(@book, params[:book_author])
+      BookAuthor::create_multi(@book, params[:book_author]) if params[:book_author]
       flash[:notice] = "Book Created"
       redirect_to root_path
     else
@@ -58,17 +58,14 @@ class BooksController < ApplicationController
   end
 
   def update
-    to_create = Hash.new
-
-    params[:book_author].keys.each do |k|
-      unless k.to_i > 0
-        to_create[k] = params[:book_author].delete(k)
-      end
-    end
-
     @book.attributes = book_params
-    BookAuthor::update_or_delete_from_book(@book, params[:book_author])
-    BookAuthor::create_multi(@book, to_create)
+
+    if params[:book_author]
+      to_create = extract_new_book_authors
+      
+      BookAuthor::update_or_delete_from_book(@book, params[:book_author])
+      BookAuthor::create_multi(@book, to_create)
+    end
 
     if @book.save
       @book.update_availability
@@ -139,5 +136,16 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit!
+  end
+
+  def extract_new_book_authors
+    to_create = Hash.new
+
+    params[:book_author].keys.each do |id_or_string|
+      unless id_or_string.to_i > 0
+        to_create[id_or_string] = params[:book_author].delete(id_or_string)
+      end
+    end
+    return to_create
   end
 end

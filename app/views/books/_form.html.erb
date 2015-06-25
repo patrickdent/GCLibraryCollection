@@ -33,7 +33,7 @@
                   <span class="remove-author" title="remove this author"</span>
                 </td>
                 <td>
-                  <%= ff.collection_select(:author_id, Author.all, :id, :name, {}, class: "chosen-select", disabled: false, index: temp_id) %>
+                  <%= ff.collection_select(:author_id, Author.all, :id, :name, {include_blank: ''}, class: "chosen-select", disabled: false, index: temp_id) %>
                 </td>
                 <td>
                   <%= ff.collection_select(:contribution_id, Contribution.all, :id, :name, {include_blank: ''}, multiple: false, class: "chosen-select", index: temp_id) %>
