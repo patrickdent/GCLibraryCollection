@@ -1,6 +1,6 @@
 class BookAuthor < ActiveRecord::Base
-  belongs_to :author 
-  belongs_to :book 
+  belongs_to :author
+  belongs_to :book
   belongs_to :contribution
 
   def self.update_or_delete_from_book(book, book_author_data_by_id)
