@@ -22,18 +22,14 @@
     <% @loans.each do |l| %>
       <% overdue = "overdue" if l.overdue?; on_loan = "on-loan" if l.active? %>
       <tr class="<%= overdue %> <%= on_loan %>">
-        <td>
-          <% if params[:controller].downcase == 'users' && l.book %>
-            <%= link_to l.book.title, book_path(l.book.id) %>
-          <% else %>
-            <td>N/A</td>
-          <% end %>
-          <% if params[:controller].downcase == 'books' && l.user %>
-            <%= link_to l.user.name, user_path(l.user.id) %>
-          <% else %>
-            <td>N/A</td>
-          <% end %>
-        </td>
+        
+        <% if params[:controller].downcase == 'users' && l.book %>
+          <td><%= link_to l.book.title, book_path(l.book.id) %></td>
+        <% elsif params[:controller].downcase == 'books' && l.user %>
+          <td><%= link_to l.user.name, user_path(l.user.id) %></td>
+        <% else %>
+          <td>N/A</td>
+        <% end %>
 
         <td><%= l.start_date %></td>
 
