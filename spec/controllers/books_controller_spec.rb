@@ -104,7 +104,7 @@ describe BooksController do
       it "allows authorized user to update with valid params" do
         sign_in @admin
         post :update, id: @book.id, book: { title: "Whiskers and Black Lace" }, 
-          book_author: { @book_author.id.to_s => { author_id: @book_author.author_id, contribution_id: @book_author.contribution_id, primary: false},
+          book_author: { @book_author.id.to_s => { author_id: @book_author.author_id, contribution_id: '', primary: false},
             garbage: { author_id: @author.id, contribution_id: @contribution.id, primary: true } }
         @book.reload
 
