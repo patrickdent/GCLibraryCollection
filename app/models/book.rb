@@ -34,4 +34,21 @@ class Book < ActiveRecord::Base
       return false
     end
   end
+
+  def primary_author
+    return nil if authors.empty?
+
+    alpha_author = authors.first
+
+    book_authors.each do |b| 
+      return Author.find(b.author_id) if b.primary
+      author = Author.find(b.author_id)
+      alpha_author = author if author.sort_by < alpha_author.sort_by
+    end
+    return alpha_author
+  end
+
+  def other_contributors(primary)
+    authors.reject { |a| a == primary }
+  end
 end

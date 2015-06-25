@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150514171553) do
+ActiveRecord::Schema.define(version: 20150612174106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20150514171553) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "contribution_id"
+    t.boolean  "primary",         default: false
   end
 
   add_index "book_authors", ["author_id"], name: "index_book_authors_on_author_id", using: :btree
