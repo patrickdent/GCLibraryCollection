@@ -14,9 +14,47 @@
     	<%= f.label :genre, "Category" %>
     	<%= f.select :genre_id, Genre.all.collect { |n| [n.name, n.id] }, {}, multiple: false, class: "chosen-select", disabled: disabled %>
     </fieldset>
-    <fieldset>
-    	<%= f.label :author %>
-    	<%= f.select :author_ids, Author.all.collect { |a| [a.display_name, a.id] }, {}, multiple: true, class: "chosen-select", disabled: disabled %>
+    <fieldset id ='authors'>
+      <table class='form-table'>
+        <thead>
+          <tr>
+            <th class="add-remove-author-cell"></th>
+            <th>Author</th>
+            <th>Contribution</th>
+            <th class="primary-radio-cell">Main</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for @book_author in @book.book_authors %>
+            <% @book.id.nil? ? temp_id = rand(1000) : temp_id = @book_author.id %>
+            <%= fields_for @book_author do |ff| %>
+              <tr class="author-row">
+                <td class="add-remove-author-cell">
+                  <span class="remove-author" title="remove this author"</span>
+                </td>
+                <td>
+                  <%= ff.collection_select(:author_id, Author.all, :id, :name, {include_blank: ''}, class: "chosen-select", disabled: false, index: temp_id) %>
+                </td>
+                <td>
+                  <%= ff.collection_select(:contribution_id, Contribution.all, :id, :name, {include_blank: ''}, multiple: false, class: "chosen-select", index: temp_id) %>
+                </td>
+                <td class="primary-radio-cell">
+                  <%= ff.radio_button :primary, :true, id: "#{temp_id}", class: "primary-radio-true", index: temp_id %>
+                  <%= ff.radio_button :primary, :false, id: "#{temp_id}", class: "primary-radio-false", index: temp_id, hidden: true %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+          <tr>
+            <td class="add-remove-author-cell">
+              <%= link_to add_author_ajax_path(book_id: @book.id), id: "add-author", remote: true do %>
+                <span class="add-author" title="add an author"></span>
+              <% end %>
+            </td>
+            <td></td><td></td><td></td>
+          </tr>
+        </tbody>
+      </table>
     </fieldset>
     <fieldset>
     	<%= f.label :keyword %>
@@ -63,4 +101,3 @@
 <br>
 
 <%= link_to "new author", new_author_ajax_path, id: "new-author", remote: true, class: "meh-btn right" %>
-<%= link_to "manage author contributions", manage_contributions_path(subjects: @book.book_authors.map { |ba| ba.id }), id: "manage-contributions", remote: true, class: "meh-btn right" %>

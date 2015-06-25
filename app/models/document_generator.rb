@@ -88,7 +88,7 @@ class DocumentGenerator
         #use padding instead of a new line here if you can
         #genre.abbr, 1st 4 of auth's last n
         document.text_box( "#{book.genre.abbreviation.upcase}
-                            #{book.authors.first.name[0..3]}
+                            #{book.primary_author.sort_by[0..3]}
                             ",
                             overflow: :shrink_to_fit, align: :center )
       end
