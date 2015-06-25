@@ -19,13 +19,15 @@ class BooksController < ApplicationController
   def new
     @book = Book.new
     @author = Author.new
-  end
+    @book.authors << @author
+ end
 
   def create
     @book = Book.new(book_params)
     if @book.save
+      BookAuthor::create_multi(@book, params[:book_author]) if params[:book_author]
       flash[:notice] = "Book Created"
-      redirect_to root_path
+      redirect_to book_path(@book)
     else
       flash[:error] = "Book Creation Failed"
       redirect_to new_book_path
@@ -33,6 +35,9 @@ class BooksController < ApplicationController
   end
 
   def show
+    @primary = @book.primary_author
+    @other_contributors = @book.other_contributors(@primary)
+
     if is_librarian?
       @loans = Loan.where(book_id: @book.id).joins(:user)
       .order("returned_date ASC", sort_column("start_date") + " " + sort_direction("desc")).paginate(:page => params[:page], :per_page => 50)
@@ -40,7 +45,6 @@ class BooksController < ApplicationController
   end
 
   def edit
-    @author = Author.new
   end
 
   def destroy
@@ -53,7 +57,16 @@ class BooksController < ApplicationController
   end
 
   def update
-    if @book.update(book_params)
+    @book.attributes = book_params
+
+    if params[:book_author]
+      to_create = extract_new_book_authors
+
+      BookAuthor::update_or_delete_from_book(@book, params[:book_author])
+      BookAuthor::create_multi(@book, to_create)
+    end
+
+    if @book.save
       @book.update_availability
       flash[:notice] = "Update Successful!"
       redirect_to book_path(@book)
@@ -109,7 +122,7 @@ class BooksController < ApplicationController
   private
   def find_book
     @book = Book.find_by(id: params[:id])
-    redirect_to root_path and return unless @book 
+    redirect_to root_path and return unless @book
   end
 
   def sort_column(default = "title")
@@ -122,5 +135,16 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit!
+  end
+
+  def extract_new_book_authors
+    to_create = Hash.new
+
+    params[:book_author].keys.each do |id_or_string|
+      unless id_or_string.to_i > 0
+        to_create[id_or_string] = params[:book_author].delete(id_or_string)
+      end
+    end
+    return to_create
   end
 end
