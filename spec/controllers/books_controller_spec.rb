@@ -112,6 +112,14 @@ describe BooksController do
         expect(@book.primary_author).to eq(@author)
       end
 
+      it "doesn't delete if no book author data is passed" do
+        sign_in @admin
+        post :update, id: @book.id, book: { title: "Whiskers and Black Lace" }
+        @book.reload
+
+        expect(@book.authors.count).to eq(1)
+      end
+
       it "deletes omitted book authors" do
         sign_in @admin
         post :update, id: @book.id, book: { title: "Whiskers and Black Lace" }, book_author: {}
