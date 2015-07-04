@@ -1,7 +1,6 @@
 class ReportsController < ApplicationController
 
   def dashboard
-    @books ||= [] #placeholder for real logic
   end
 
   def build_report
