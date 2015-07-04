@@ -35,6 +35,10 @@ LibraryCollection::Application.routes.draw do
 
   post 'send_reminders' => 'users#send_reminders'
 
+  post 'generate_report' => 'document_generator#new_report'
+  get 'new_author_ajax' => 'authors#new_ajax'
+  get 'add_author_ajax' => 'book_authors#add_author'
+
   get 'admin_dashboard' => 'static_pages#admin_dashboard'
   get 'styleguide' => 'static_pages#styleguide'
   get 'user_guide' => 'static_pages#user_guide'

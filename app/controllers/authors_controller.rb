@@ -68,7 +68,7 @@ class AuthorsController < ApplicationController
   def sort_column(default = "name")
     params[:sort] ? params[:sort] : default
   end
-  
+
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
