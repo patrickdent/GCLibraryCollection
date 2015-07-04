@@ -8,6 +8,7 @@ class ReportsController < ApplicationController
     if params[:report] == "book-popularity"
       @books = Book.where(genre_id: params[:genre]) unless params[:genre].empty?
       @books = Book.all if params[:genre].empty?
+      @report_title = "Book Popularity"
     end
     if @books
       render "view_report.html.erb"
