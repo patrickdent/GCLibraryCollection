@@ -134,7 +134,10 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit!
+    params.require(:book).permit(:title, :isbn, :genre_id, :created_at, :updated_at,
+                                 :publisher, :publish_date, :publication_place,
+                                 :language, :pages, :location, :available, :count,
+                                 :in_storage, :missing, :notable, :keep_multiple)
   end
 
   def extract_new_book_authors
