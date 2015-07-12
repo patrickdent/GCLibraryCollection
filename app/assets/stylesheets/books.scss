@@ -1,27 +1,27 @@
 #missing:before {
     font-family: FontAwesome;
-    content: "\f071";
+    content: $missing_icon;
     font-size: 1.1rem;
     padding-right: 1.1rem;
     color: $green;}
 
 #storage:before {
     font-family: FontAwesome;
-    content: "\f187";
+    content: $storage_icon;
     font-size: 1.1rem;
     padding-right: 1.1rem;
     color: $green;}
 
 #notable:before {
     font-family: FontAwesome;
-    content: "\f219";
+    content: $notable_icon;
     font-size: 1.1rem;
     padding-right: 1.1rem;
     color: $green;}
 
 #multiple:before {
     font-family: FontAwesome;
-    content: "\f0c5";
+    content: $multiple_icon;
     font-size: 1.1rem;
     padding-right: 1.1rem;
     color: $green;}

@@ -14,71 +14,71 @@ li.results{
   }
   a.unavailable:after {
     font-family: FontAwesome;
-    content: "\f05e";
+    content: $unavailable_icon;
     font-size: 1.1rem;
     padding-left: 1.5rem;
     color: $white;}
   a.available:after {
     font-family: FontAwesome;
-    content: "\f164";
+    content: $available_icon;
     font-size: 1.1rem;
     padding-left: 1.5rem;
     color: $white;}
   a.notable:after {
     font-family: FontAwesome;
-    content:"\f219";
+    content: $notable_icon;
     font-size: 1.1rem;
     padding-left: 1.5rem;
     color: $white;}
   a.multiple:after {
     font-family: FontAwesome;
-    content: "\f0c5";
+    content: $multiple_icon;
     font-size: 1.1rem;
     padding-left: 1.5rem;
     color: $white;}
 
   a.available.notable:after {
     font-family: FontAwesome;
-    content: "\f164" "\f219";
+    content: $available_icon $notable_icon;
     font-size: 1.1rem;
     padding-left: 1.5rem;
     color: $white;}
   a.unavailable.notable:after {
     font-family: FontAwesome;
-    content: "\f05e" "\f219";
+    content: $unavailable_icon $notable_icon;
     font-size: 1.1rem;
     padding-left: 1.5rem;
     color: $white;}
 
   a.available.multiple:after {
     font-family: FontAwesome;
-    content: "\f164" "\f0c5";
+    content: $available_icon $multiple_icon;
     font-size: 1.1rem;
     padding-left: 1.5rem;
     color: $white;}
   a.unavailable.multiple:after {
     font-family: FontAwesome;
-    content: "\f05e" "\f0c5";
+    content: $unavailable_icon $multiple_icon;
     font-size: 1.1rem;
     padding-left: 1.5rem;
     color: $white;}
 
   a.available.notable.multiple:after {
     font-family: FontAwesome;
-    content: "\f164" "\f219" "\f0c5";
+    content: $available_icon $notable_icon $multiple_icon;
     font-size: 1.1rem;
     padding-left: 1.5rem;
     color: $white;}
   a.unavailable.notable.multiple:after {
     font-family: FontAwesome;
-    content: "\f05e" "\f219" "\f0c5";
+    content: $unavailable_icon $notable_icon $multiple_icon;
     font-size: 1.1rem;
     padding-left: 1.5rem;
     color: $white;}
 
   a.notable.multiple:after {
     font-family: FontAwesome;
-    content: "\f219" "\f0c5";
+    content: $notable_icon $multiple_icon;
     font-size: 1.1rem;
     padding-left: 1.5rem;
     color: $white;}

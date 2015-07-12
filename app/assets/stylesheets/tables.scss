@@ -5,19 +5,19 @@ tr.missing td, tr.on-loan.overdue td, tr.cannot_borrow td {background-color: lig
 
 td span.on-loan:after {
   font-family: FontAwesome;
-  content: "\f05e";
+  content: $on_loan_icon;
   font-size: 1.1rem;
   padding-left: 20%;}
 
 td span.missing:after {
   font-family: FontAwesome;
-  content: "\f071";
+  content: $missing_icon;
   font-size: 1.1rem;
   padding-left: 20%;}
 
 td span.in-storage:after {
   font-family: FontAwesome;
-  content: "\f187";
+  content: $storage_icon;
   font-size: 1.4rem;
   padding-left: 20%;}
 
@@ -80,7 +80,7 @@ table tr:last-child td{
   }
   tr:last-child td:last-child {
     border-bottom-right-radius: 0px;
-  }    
+  }
   thead{
     border: 0rem;
     tr:first-child th:first-child {
@@ -88,7 +88,7 @@ table tr:last-child td{
     }
     tr:first-child th:last-child {
       border-top-right-radius: 0px;
-    }    
+    }
     th {
       background-color: $lightest-gray;
       padding: .5rem;
