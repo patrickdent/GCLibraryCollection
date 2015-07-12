@@ -22,8 +22,8 @@ ready = ->
           dataType: "json"
 
       $(document).on 'change', '#genre-selector', ->
-        if $(':submit').is(':hidden')
-          $(':submit').show()
+        submit = "<button>Submit</button>"
+        $('#reports-form').append(submit).trigger('create')
         return
 
 $(document).ready(ready)
