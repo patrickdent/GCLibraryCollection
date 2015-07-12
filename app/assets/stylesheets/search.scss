@@ -24,6 +24,64 @@ li.results{
     font-size: 1.1rem;
     padding-left: 1.5rem;
     color: $white;}
+  a.notable:after {
+    font-family: FontAwesome;
+    content:"\f219";
+    font-size: 1.1rem;
+    padding-left: 1.5rem;
+    color: $white;}
+  a.multiple:after {
+    font-family: FontAwesome;
+    content: "\f0c5";
+    font-size: 1.1rem;
+    padding-left: 1.5rem;
+    color: $white;}
+
+  a.available.notable:after {
+    font-family: FontAwesome;
+    content: "\f164" "\f219";
+    font-size: 1.1rem;
+    padding-left: 1.5rem;
+    color: $white;}
+  a.unavailable.notable:after {
+    font-family: FontAwesome;
+    content: "\f05e" "\f219";
+    font-size: 1.1rem;
+    padding-left: 1.5rem;
+    color: $white;}
+
+  a.available.multiple:after {
+    font-family: FontAwesome;
+    content: "\f164" "\f0c5";
+    font-size: 1.1rem;
+    padding-left: 1.5rem;
+    color: $white;}
+  a.unavailable.multiple:after {
+    font-family: FontAwesome;
+    content: "\f05e" "\f0c5";
+    font-size: 1.1rem;
+    padding-left: 1.5rem;
+    color: $white;}
+
+  a.available.notable.multiple:after {
+    font-family: FontAwesome;
+    content: "\f164" "\f219" "\f0c5";
+    font-size: 1.1rem;
+    padding-left: 1.5rem;
+    color: $white;}
+  a.unavailable.notable.multiple:after {
+    font-family: FontAwesome;
+    content: "\f05e" "\f219" "\f0c5";
+    font-size: 1.1rem;
+    padding-left: 1.5rem;
+    color: $white;}
+
+  a.notable.multiple:after {
+    font-family: FontAwesome;
+    content: "\f219" "\f0c5";
+    font-size: 1.1rem;
+    padding-left: 1.5rem;
+    color: $white;}
 }
 
 
