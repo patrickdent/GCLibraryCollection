@@ -12,12 +12,11 @@ ready = ->
                           <label>Select a Category</label>
                           <select name='genre' required='required'>
                             <option></option>
-                            <option value=''>All Categories</option>"
+                            <option value='all'>All Categories</option>"
             for genre in data
               selector += "<option value='" + genre.id + "''>" + genre.name + "</option>"
             selector +=  "</select></fieldset>"
             $('#reports-form').append(selector).trigger('create')
-
           error: ->
            # TODO: how do show user error?
           dataType: "json"

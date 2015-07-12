@@ -5,8 +5,9 @@ class ReportsController < ApplicationController
 
   def build_report
     if params[:report] == "book-popularity"
-      @books = Book.where(genre_id: params[:genre]) unless params[:genre].empty?
-      @books = Book.all if params[:genre].empty?
+      @books = Book.all if params[:genre].empty? || params[:genre] == 'all'
+      @books ||= Book.where(genre_id: params[:genre])
+      @books.reject!{|b| b.loans.count < 1}
       @report_title = "Book Popularity"
     end
     if @books
