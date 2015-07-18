@@ -21,7 +21,7 @@ td span.in-storage:after {
   font-size: 1.4rem;
   padding-left: 20%;}
 
-.pagination { margin-bottom: 8rem;}
+.pagination:last { margin-bottom: 8rem;}
 
 table th .asc:after {
   font-family: FontAwesome;
