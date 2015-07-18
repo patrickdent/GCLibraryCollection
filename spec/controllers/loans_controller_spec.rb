@@ -2,15 +2,17 @@ require 'spec_helper'
 
 describe LoansController do
 
-  before :all do
+  before :each do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
     @book = create :book
     @user = create :user
+    @available_book = create :book
     @complete_user = create :user, identification: "MIAO-MIAO-99"
     @librarian = create :librarian
     @loan = create(:loan, user_id: @user.id, book_id: @book.id)
   end
+
   after :all do
     DatabaseCleaner.clean
   end
@@ -36,16 +38,30 @@ describe LoansController do
       before { sign_in @librarian }
 
       it "redirects to :back" do
-        expect(post :create, loan: {user_id: @complete_user.id, book_id: @book.id}).to redirect_to(root_path)
+        expect(post :create, loan: {user_id: @complete_user.id, book_id: @available_book.id}).to redirect_to(root_path)
       end
 
       it "creates a new loan for a user who's good to borrow" do
-        expect { post :create, loan: { user_id: @complete_user.id, book_id: @book.id } }.to change(Loan, :count).by(1)
+        expect { post :create, loan: { user_id: @complete_user.id, book_id: @available_book.id } }.to change(Loan, :count).by(1)
       end
 
       it "doesn't create a new loan for a user who isn't good to borrow" do
         bad_user = create :user, identification: ''
         expect { post :create, loan: { user_id: bad_user.id, book_id: @book.id } }.to change(Loan, :count).by(0)
+
+        bad_user = create :user, identification: 'ok'
+        User::MAX_LOANS.times { Loan.create(user_id: bad_user.id, book_id: (create :book).id) }
+        expect { post :create, loan: { user_id: bad_user.id, book_id: @book.id } }.to change(Loan, :count).by(0)
+      end
+
+      it "doesn't create a new loan for a book that's unavailable" do
+        @book.update_attributes(available: false)
+        expect { post :create, loan: { user_id: @complete_user.id, book_id: @book.id } }.to change(Loan, :count).by(0)
+      end
+
+      it "makes the loaned book unavailable" do
+        post :create, loan: { user_id: @complete_user.id, book_id: @book.id }
+        expect(@book.reload.available).to eq(false)
       end
     end
   end
@@ -144,12 +160,10 @@ describe LoansController do
 
   describe 'POST multi loan' do
     before do
-      @complete_user = create :user
       @books = [(create :book)]
       User::MAX_LOANS.times do
         @books << (create :book)
       end
-      @books.map { |b| b.id }
       sign_in @librarian
     end
 

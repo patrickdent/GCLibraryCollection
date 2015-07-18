@@ -25,13 +25,19 @@ class LoansController < ApplicationController
   end
 
   def create
+    Book.find_by(id: params[:book_id]).update_availability if params[:book_id] # we're doing this as a stopgap because it's not getting called somewhere else
+
     @loan = Loan.new(loan_params)
+
     unless @loan.user.good_to_borrow?
       flash[:alert] = "User Can Not Borrow at This Time"
       redirect_to user_path(@loan.user.id) and return
     end
+    unless @loan.book.available
+      flash[:alert] = "Book is Not Available"
+      redirect_to user_path(@loan.user.id) and return
+    end
     if @loan.save
-      @loan.book.update_availability
       flash[:notice] = "Loan Created"
     else
       flash[:alert] = "Loan Creation Failed"
@@ -44,7 +50,7 @@ class LoansController < ApplicationController
 
   def loan_multi
     @user = User.find(params[:user_id]) if params[:user_id]
-    @books = params[:book_ids].map { |b| Book.find(b) } if params[:book_ids]
+    @books = params[:book_ids].map { |b| Book.find_by(id: b) } if params[:book_ids]
     if message = missing_elements?
       flash[:alert] = message
       redirect_to :back and return
@@ -126,14 +132,14 @@ class LoansController < ApplicationController
   def sort_column(default = "start_date")
     params[:sort] ? params[:sort] : default
   end
-  
+
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
   end
 
   def loan_params
     params.require(:loan).permit(:book_id, :user_id, :id)
-  end 
+  end
 
   def find_loan
     @loan = Loan.find(params[:id])
