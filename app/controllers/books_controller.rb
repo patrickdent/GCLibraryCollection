@@ -112,6 +112,7 @@ class BooksController < ApplicationController
 
   def remove_copy
     if @book.count > 1 && @book.update_attributes(count: @book.count - 1) then
+      @book.update_availability
       flash[:notice] = "Copy Removed"
     else
       flash[:error] = "Unable To Remove Copy"
