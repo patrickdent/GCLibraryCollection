@@ -27,7 +27,8 @@ describe Book do
     it { should respond_to(:keywords) }
     it { should respond_to(:location) }
     it { should respond_to(:in_storage) }
-
+    it { should respond_to(:notable) }
+    it { should respond_to(:keep_multiple) }
   end
 
   describe "validations" do

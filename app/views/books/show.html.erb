@@ -12,7 +12,7 @@
       <% unless @book.authors.empty? %>
         <% p_contribution = BookAuthor.where(author_id: @primary.id, book_id: @book.id).first.contribution %>
         <li>
-          <%= link_to @primary.display_name, author_path(@primary) %> 
+          <%= link_to @primary.display_name, author_path(@primary) %>
           <% unless @other_contributors.empty? %>*<% end %>
           <span class="contribution"><%= p_contribution.name if p_contribution %></span>
         </li>
@@ -43,9 +43,13 @@
 
   <% if @librarian_user %>
     <p>Location: <%= @book.location %></p>
-    <p><%= "*missing*" if @book.missing %></p>
-    <p><%= "*in storage*" if @book.in_storage %></p>
+    <br>
+    <%= raw("<p id='missing'>missing</p>") if @book.missing %>
+    <%= raw("<p id='storage'>in storage</p>") if @book.in_storage %>
+    <%= raw("<p id='multiple'>keep multiple</p>") if @book.keep_multiple %>
   <% end %>
+
+  <%= raw("<p id='notable'>notable book</p>") if @book.notable %>
 </div>
 
   <%= link_to "Loan Book", new_loan_path(book_id: @book.id), id: "new-book-loan-link", remote: true, class: "go-btn right" if (@librarian_user && @book.available) %>

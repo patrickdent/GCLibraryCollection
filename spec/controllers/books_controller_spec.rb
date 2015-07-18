@@ -101,9 +101,12 @@ describe BooksController do
     end
 
     context 'when admin is logged in' do
-      it "allows authorized user to update with valid params" do
+      before do
         sign_in @admin
-        post :update, id: @book.id, book: { title: "Whiskers and Black Lace" }, 
+      end
+
+      it "allows authorized user to update with valid params" do
+        post :update, id: @book.id, book: { title: "Whiskers and Black Lace" },
           book_author: { @book_author.id.to_s => { author_id: @book_author.author_id, contribution_id: '', primary: false},
             garbage: { author_id: @author.id, contribution_id: @contribution.id, primary: true } }
         @book.reload
@@ -112,8 +115,19 @@ describe BooksController do
         expect(@book.primary_author).to eq(@author)
       end
 
+      it "allows authorized user to update notable" do
+        post :update, id: @book.id, book: {notable: true}
+
+        expect(@book.reload.notable).to eq(true)
+      end
+
+      it "allows authorized user to update keep_multiple" do
+        post :update, id: @book.id, book: {keep_multiple: true}
+
+        expect(@book.reload.keep_multiple).to eq(true)
+      end
+
       it "doesn't delete if no book author data is passed" do
-        sign_in @admin
         post :update, id: @book.id, book: { title: "Whiskers and Black Lace" }
         @book.reload
 
@@ -121,7 +135,6 @@ describe BooksController do
       end
 
       it "deletes omitted book authors" do
-        sign_in @admin
         post :update, id: @book.id, book: { title: "Whiskers and Black Lace" }, book_author: {}
         @book.reload
 
@@ -129,8 +142,7 @@ describe BooksController do
       end
 
       it "adds a new author and contribution" do
-        sign_in @admin
-        post :update, id: @book.id, book: { title: "Whiskers and Black Lace" }, 
+        post :update, id: @book.id, book: { title: "Whiskers and Black Lace" },
           book_author: { @book_author.id.to_s => { author_id: @book_author.author_id, contribution_id: @book_author.contribution_id, primary: false},
           "new 123" => { author_id: @author.id, contribution_id: @contribution.id, primary: true } }
         @book.reload
@@ -139,7 +151,6 @@ describe BooksController do
       end
 
       it "does not update with invalid params" do
-        sign_in @admin
         post :update, id: @book.id, book: { title: "" }
         @book.reload
 
