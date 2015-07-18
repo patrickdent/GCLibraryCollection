@@ -21,7 +21,7 @@ td span.in-storage:after {
   font-size: 1.4rem;
   padding-left: 20%;}
 
-.pagination { margin-bottom: 8rem;}
+.pagination:last { margin-bottom: 8rem;}
 
 table th .asc:after {
   font-family: FontAwesome;
@@ -80,7 +80,7 @@ table tr:last-child td{
   }
   tr:last-child td:last-child {
     border-bottom-right-radius: 0px;
-  }    
+  }
   thead{
     border: 0rem;
     tr:first-child th:first-child {
@@ -88,7 +88,7 @@ table tr:last-child td{
     }
     tr:first-child th:last-child {
       border-top-right-radius: 0px;
-    }    
+    }
     th {
       background-color: $lightest-gray;
       padding: .5rem;
