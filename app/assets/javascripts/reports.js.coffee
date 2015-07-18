@@ -1,7 +1,7 @@
 ready = ->
   $ ->
-    $(':submit').hide()
     $('#report-selector').change ->
+      $('#submit').remove()
       $('#genre-selector').remove()
       if $('#report-selector').val() == "book-popularity"
         $.ajax
@@ -16,13 +16,15 @@ ready = ->
             for genre in data
               selector += "<option value='" + genre.id + "''>" + genre.name + "</option>"
             selector +=  "</select></fieldset>"
+            $('#genre-selector').remove()
             $('#reports-form').append(selector).trigger('create')
           error: ->
            # TODO: how do show user error?
           dataType: "json"
 
       $(document).on 'change', '#genre-selector', ->
-        submit = "<button>Submit</button>"
+        $('#submit').remove()
+        submit = "<button id='submit'>Submit</button>"
         $('#reports-form').append(submit).trigger('create')
         return
 
