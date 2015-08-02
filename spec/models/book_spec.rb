@@ -37,6 +37,11 @@ describe Book do
     end
   end
 
+  it "destroys its dependent book_authors on delete" do
+    BookAuthor.create(book_id: book.id, author_id: (create(:author).id))
+    expect{ book.destroy }.to change{ BookAuthor.count }.by(-1)
+  end
+
   describe "search" do
     before :all do
       @book1 = FactoryGirl.create(:book, title: "Boogers and Their Uses", isbn: "9988998899" )
