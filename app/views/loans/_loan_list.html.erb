@@ -21,35 +21,35 @@
   <tbody>
     <% @loans.each do |l| %>
       <% overdue = "overdue" if l.overdue?; on_loan = "on-loan" if l.active? %>
-      <tr class="<%= overdue %> <%= on_loan %>">
-        <td>
-          <% if params[:controller].downcase == 'users' && l.book %>
-            <%= link_to l.book.title, book_path(l.book.id) %>
-          <% end %>
-          <% if params[:controller].downcase == 'books' && l.user %>
-            <%= link_to l.user.name, user_path(l.user.id) %>
-          <% end %>
-        </td>
+      <tr class="<%= on_loan %> <%= overdue %>">
 
-        <td><%= l.start_date %></td>
+      <% if params[:controller].downcase == 'users' && l.book %>
+        <td><%= link_to l.book.title, book_path(l.book.id) %></td>
+      <% elsif params[:controller].downcase == 'books' && l.user %>
+        <td><%= link_to l.user.name, user_path(l.user.id) %></td>
+      <% else %>
+        <td>N/A</td>
+      <% end %>
 
-        <td><%= l.due_date %></td>
+      <td><%= l.start_date %></td>
 
-        <td>
-          <% if l.returned_date %>
-            <%= l.returned_date %>
-          <% elsif @librarian_user %>
-            <%= button_to 'return', return_path(id: l.id), data: {confirm: "Are you sure you want to return this book?"} %>
-          <% end %>
-        </td>
+      <td><%= l.due_date %></td>
 
-        <td><%= l.renewal_count %></td>
-
-        <% if !l.returned_date && (l.renewal_count < Loan::MAX_RENEWALS) && @librarian_user %>
-          <td>
-            <%= button_to 'renew now', renew_path(id: l.id), data: {confirm: "Are you sure you want to renew this loan?"} %>
-          </td>
+      <td>
+        <% if l.returned_date %>
+          <%= l.returned_date %>
+        <% elsif @librarian_user %>
+          <%= button_to 'return', return_path(id: l.id), data: {confirm: "Are you sure you want to return this book?"} %>
         <% end %>
+      </td>
+
+      <td><%= l.renewal_count %></td>
+
+      <% if !l.returned_date && (l.renewal_count < Loan::MAX_RENEWALS) && @librarian_user %>
+        <td>
+          <%= button_to 'renew now', renew_path(id: l.id), data: {confirm: "Are you sure you want to renew this loan?"} %>
+        </td>
+      <% end %>
       </tr>
     <% end %>
   </tbody>

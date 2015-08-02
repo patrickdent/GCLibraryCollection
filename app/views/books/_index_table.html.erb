@@ -1,3 +1,4 @@
+<%= will_paginate @books %>
 <table>
   <thead>
     <tr>
@@ -14,8 +15,13 @@
   </thead>
   <tbody>
     <% @books.each do |b| %>
+
       <% missing = "missing" if b.missing; on_loan = "on-loan" unless b.available || missing; in_storage = "in-storage" if b.in_storage %>
-      <tr class="<%= on_loan %> <%= missing %>">
+      <% if @librarian_user %>
+        <tr class="<%= on_loan %> <%= missing %>">
+      <% else %>
+        <tr>
+      <% end %>
         <td>
           <%=  check_box_tag :selected, b.id, b.selected?(session[:selected_books]), id: "book-select_#{b.id}" if @librarian_user  %>
           <%= link_to b.title, book_path(b.id) %>
@@ -26,15 +32,19 @@
         </td>
 
         <td>
-          <% b.authors.each do |a| %>
-            <%= link_to a.display_name, author_path(a) %>
+          <% primary_author = b.primary_author %>
+          <% other_contributors = b.other_contributors(primary_author) %>
+          <%= link_to primary_author.display_name, author_path(primary_author) if primary_author %>
+          <% unless other_contributors.empty? %>*<% end %>
+          <% other_contributors.each do |a| %>
+            | <%= link_to a.display_name, author_path(a) %>
           <% end %>
         </td>
 
         <td>
-          <span class="<%= on_loan %>"></span>
-          <span class="<%= in_storage %>"></span>
-          <span class="<%= missing %>"></span>
+          <span class="<%= on_loan %>" title="on loan"></span>
+          <span class="<%= in_storage %>" title="in storage"></span>
+          <span class="<%= missing %>" title="missing"></span>
           <!-- icon shows up here if book is on loan/in storage/missing -->
         </td>
 

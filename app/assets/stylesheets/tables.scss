@@ -5,23 +5,23 @@ tr.missing td, tr.on-loan.overdue td, tr.cannot_borrow td {background-color: lig
 
 td span.on-loan:after {
   font-family: FontAwesome;
-  content: "\f05e";
+  content: $on_loan_icon;
   font-size: 1.1rem;
   padding-left: 20%;}
 
 td span.missing:after {
   font-family: FontAwesome;
-  content: "\f071";
+  content: $missing_icon;
   font-size: 1.1rem;
   padding-left: 20%;}
 
 td span.in-storage:after {
   font-family: FontAwesome;
-  content: "\f187";
+  content: $storage_icon;
   font-size: 1.4rem;
   padding-left: 20%;}
 
-.pagination { margin-bottom: 8rem;}
+.pagination:last { margin-bottom: 8rem;}
 
 table th .asc:after {
   font-family: FontAwesome;
@@ -72,4 +72,47 @@ table thead tr:first-child th:last-child{
 }
 table tr:last-child td{
   border-bottom: none;
+}
+
+.form-table {
+    tr:last-child td:first-child {
+    border-bottom-left-radius: 0px;
+  }
+  tr:last-child td:last-child {
+    border-bottom-right-radius: 0px;
+  }
+  thead{
+    border: 0rem;
+    tr:first-child th:first-child {
+      border-top-left-radius: 0px;
+    }
+    tr:first-child th:last-child {
+      border-top-right-radius: 0px;
+    }
+    th {
+      background-color: $lightest-gray;
+      padding: .5rem;
+      text-align:left;
+      font-size: 0.85em;
+    }
+  }
+  tbody {
+    td {
+      border: 0rem;
+      background-color: $lightest-gray;
+      vertical-align: center;
+    }
+  }
+  .primary-radio-cell {
+    width: 2rem;
+    padding: .5rem .5rem .5rem 0rem;
+    vertical-align: right;
+    text-align: center;
+  }
+  .add-remove-author-cell {
+    width: 2rem;
+    vertical-align: left;
+    text-align: center;
+    padding: .5rem 0rem .5rem .5rem;
+  }
 }

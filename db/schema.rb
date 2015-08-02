@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150514171553) do
+ActiveRecord::Schema.define(version: 20150712192651) do
 
   create_table "authors", force: true do |t|
     t.string   "name"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20150514171553) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "contribution_id"
+    t.boolean  "primary",         default: false
   end
 
   add_index "book_authors", ["author_id"], name: "index_book_authors_on_author_id"
@@ -66,6 +67,8 @@ ActiveRecord::Schema.define(version: 20150514171553) do
     t.integer  "count",             default: 1
     t.boolean  "in_storage",        default: false
     t.boolean  "missing",           default: false
+    t.boolean  "notable"
+    t.boolean  "keep_multiple"
   end
 
   add_index "books", ["genre_id"], name: "index_books_on_genre_id"

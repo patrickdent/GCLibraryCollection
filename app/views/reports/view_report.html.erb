@@ -1,0 +1,18 @@
+<h2>Report: <%= @report_title %></h2>
+
+<table id="report-results" class="tablesorter">
+  <thead>
+    <tr>
+      <th><a href="#" class="asc">Title</a></th>
+      <th><a href="#" class="asc">Loan Count</a></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @books.each do |b| %>
+      <tr>
+        <td><%= link_to b.title, book_path(b) %></td>
+        <td><%= b.loans.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
