@@ -1,0 +1,10 @@
+<h2>Build Your Report</h2>
+<%= form_tag({controller: "reports", action: "build_report"}, method: 'post', id: "reports-form") do %>
+  <fieldset>
+    <label>Select a Report:</label>
+    <select id="report-selector" name="report" required="required">
+      <option></option>
+      <option value="book-popularity">Book Popularity</option>
+    </select>
+  </fieldset>
+<% end %>
