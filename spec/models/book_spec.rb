@@ -42,6 +42,11 @@ describe Book do
     expect{ book.destroy }.to change{ BookAuthor.count }.by(-1)
   end
 
+  it "will not delete if it has dependent loan objects" do
+    Loan.create(user_id: (create :user).id, book_id: book.id)
+    expect{ book.reload.destroy }.to change{ Book.count }.by(0)
+  end
+
   describe "search" do
     before :all do
       @book1 = FactoryGirl.create(:book, title: "Boogers and Their Uses", isbn: "9988998899" )
