@@ -9,6 +9,7 @@ class ReportsController < ApplicationController
       @books ||= Book.where(genre_id: params[:genre])
       @books.reject!{|b| b.loans.count < 1}
       @report_title = "Book Popularity"
+      @report_description = "These are all the books that have had any loans during the specified time period (currently since the beginning of time)."
     end
     if @books
       render "view_report.html.erb"
