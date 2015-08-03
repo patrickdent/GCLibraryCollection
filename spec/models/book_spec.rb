@@ -27,13 +27,24 @@ describe Book do
     it { should respond_to(:keywords) }
     it { should respond_to(:location) }
     it { should respond_to(:in_storage) }
-
+    it { should respond_to(:notable) }
+    it { should respond_to(:keep_multiple) }
   end
 
   describe "validations" do
     it "will not create a book without a title" do
       FactoryGirl.build(:book, title: "").should_not be_valid
     end
+  end
+
+  it "destroys its dependent book_authors on delete" do
+    BookAuthor.create(book_id: book.id, author_id: (create(:author).id))
+    expect{ book.destroy }.to change{ BookAuthor.count }.by(-1)
+  end
+
+  it "will not delete if it has dependent loan objects" do
+    Loan.create(user_id: (create :user).id, book_id: book.id)
+    expect{ book.reload.destroy }.to change{ Book.count }.by(0)
   end
 
   describe "search" do

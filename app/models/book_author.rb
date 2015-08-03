@@ -3,6 +3,8 @@ class BookAuthor < ActiveRecord::Base
   belongs_to :book
   belongs_to :contribution
 
+  validates :author_id, :book_id, presence: true
+
   def self.update_or_delete_from_book(book, book_author_data_by_id)
     if book_author_data_by_id.nil?
       book.book_authors.each { |b| b.delete }

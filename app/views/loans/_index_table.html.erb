@@ -1,3 +1,4 @@
+<%= will_paginate @loans %>
 <table>
   <thead>
     <tr>
@@ -15,15 +16,15 @@
       <% overdue = "overdue" if l.overdue?; on_loan = "on-loan" if l.active? %>
       <tr class="<%= overdue %> <%= on_loan %>">
         <td>
-	  <% if l.book %>
-	    <%= link_to l.book.title, book_path(l.book.id) %>
-	  <% end %>
-	</td>
+      	  <% if l.book %>
+      	    <%= link_to l.book.title, book_path(l.book.id) %>
+      	  <% end %>
+      	</td>
         <td>
           <% if l.user %>
-	    <%= link_to l.user.name, user_path(l.user.id) %>
-	  <% end %>
-	</td>
+      	    <%= link_to l.user.name, user_path(l.user.id) %>
+      	  <% end %>
+      	</td>
         <td><%= l.start_date %></td>
         <td><%= l.due_date %></td>
         <td><%= l.returned_date %></td>
@@ -33,5 +34,4 @@
     <% end %>
   </tbody>
 </table>
-
 <%= will_paginate @loans %>
