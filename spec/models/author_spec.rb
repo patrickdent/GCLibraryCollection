@@ -21,6 +21,12 @@ describe Author do
     end
   end
 
+  it "destroys its dependent book_authors on delete" do
+    author = create(:author)
+    BookAuthor.create(book_id: create(:book).id, author_id: (author.id))
+    expect{ author.destroy }.to change{ BookAuthor.count }.by(-1)
+  end
+
   describe "sort_by_name" do
     before do
       @author = FactoryGirl.create(:author, name: "One Two Three")

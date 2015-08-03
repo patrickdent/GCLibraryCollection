@@ -1,5 +1,6 @@
 ready = ->
   $ ->
+    $('.tablesorter').tablesorter()
     $('.chosen-select').chosen()
     $('[id^="book-select_"]').change ->
       $.ajax

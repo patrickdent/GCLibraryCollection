@@ -38,7 +38,7 @@ class BooksController < ApplicationController
     @primary = @book.primary_author
     @other_contributors = @book.other_contributors(@primary)
 
-    if is_librarian?
+    if current_user && is_given_user_or_librarian?(current_user)
       @loans = Loan.where(book_id: @book.id).joins(:user)
       .order("returned_date ASC", sort_column("start_date") + " " + sort_direction("desc")).paginate(:page => params[:page], :per_page => 50)
     end
@@ -107,11 +107,12 @@ class BooksController < ApplicationController
       @books = Book.includes(:authors, :genre).where(id: session[:selected_books])
       .order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
     end
-    @multi_loan_available = is_librarian? && (@books - Book.available_to_loan).empty? && (@books.length < 6)
+    @multi_loan_available = is_given_user_or_librarian?(current_user) && (@books - Book.available_to_loan).empty? && (@books.length < 6)
   end
 
   def remove_copy
     if @book.count > 1 && @book.update_attributes(count: @book.count - 1) then
+      @book.update_availability
       flash[:notice] = "Copy Removed"
     else
       flash[:error] = "Unable To Remove Copy"
@@ -134,7 +135,10 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit!
+    params.require(:book).permit(:title, :isbn, :genre_id, :created_at, :updated_at,
+                                 :publisher, :publish_date, :publication_place,
+                                 :language, :pages, :location, :available, :count,
+                                 :in_storage, :missing, :notable, :keep_multiple)
   end
 
   def extract_new_book_authors

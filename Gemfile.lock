@@ -76,6 +76,8 @@ GEM
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-tablesorter (1.13.3)
+      railties (>= 3.1, < 5)
     jquery-turbolinks (2.1.0)
       railties (>= 3.1.0)
       turbolinks
@@ -215,6 +217,7 @@ DEPENDENCIES
   figaro
   jbuilder (~> 1.2)
   jquery-rails
+  jquery-tablesorter
   jquery-turbolinks
   launchy
   pg

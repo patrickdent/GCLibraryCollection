@@ -14,6 +14,7 @@ gem 'pry'
 gem 'prawn'
 gem 'jquery-turbolinks'
 gem 'will_paginate', '~> 3.0.6'
+gem 'jquery-tablesorter'
 
 group :production do
   gem 'pg'

@@ -9,7 +9,7 @@ require 'database_cleaner'
 include Warden::Test::Helpers
 Warden.test_mode!
 
-# prevents tests from conecting to the web and provides framework 
+# prevents tests from conecting to the web and provides framework
 # to mock responses
 require 'webmock/rspec'
 WebMock.disable_net_connect!(allow_localhost: true)
@@ -44,7 +44,7 @@ RSpec.configure do |config|
   require 'capybara/rspec'
   # require 'capybara/rails'
 
-  config.include Capybara::DSL 
+  config.include Capybara::DSL
   config.include FactoryGirl::Syntax::Methods
   config.include Devise::TestHelpers, :type => :controller
   config.include Logins, :type => :request

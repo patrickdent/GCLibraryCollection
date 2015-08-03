@@ -93,6 +93,15 @@
       <%= f.label :location %>
       <%= f.text_field :location %>
     </fieldset>
+    <br>
+    <fieldset>
+      <%= f.label :notable %>
+      <%= f.check_box :notable %>
+    </fieldset>
+    <fieldset>
+      <%= f.label :keep_multiple %>
+      <%= f.check_box :keep_multiple %>
+    </fieldset>
 
     <%= f.submit "submit" %>
 <% end %>

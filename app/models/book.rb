@@ -1,11 +1,11 @@
 class Book < ActiveRecord::Base
 	belongs_to :genre
-  has_many :book_authors
+  has_many :book_authors, dependent: :destroy
   has_many :authors, through: :book_authors
   has_many :book_keywords
   has_many :keywords, through: :book_keywords
   has_many :contributions, through: :book_authors
-  has_many :loans
+  has_many :loans, dependent: :restrict_with_error
   has_many :users, through: :loans
 
   scope :available_to_loan, -> { where(available: true ) }
@@ -40,7 +40,7 @@ class Book < ActiveRecord::Base
 
     alpha_author = authors.first
 
-    book_authors.each do |b| 
+    book_authors.each do |b|
       return Author.find(b.author_id) if b.primary
       author = Author.find(b.author_id)
       alpha_author = author if author.sort_by < alpha_author.sort_by
