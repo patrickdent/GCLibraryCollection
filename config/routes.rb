@@ -16,6 +16,11 @@ LibraryCollection::Application.routes.draw do
 
   resources :book_uploads, only: [:new, :create]
   resources :genres
+
+  get 'genre_select' => 'inventory#genre_select', as: 'inventory_genre_select'
+  get 'inventory_checklist/:genre_id' => 'inventory#checklist', as: 'inventory_checklist'
+  post 'update_checklist_item' => 'inventory#update_checklist_item', defaults: {format: :json}
+
   resources :keywords
 
   resources :loans, only: [ :show, :index, :new, :create ]
