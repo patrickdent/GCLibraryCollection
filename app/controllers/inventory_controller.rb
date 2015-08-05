@@ -8,7 +8,7 @@ class InventoryController < ApplicationController
 
   def checklist
     @genre = Genre.find_by(params[:genre_id]) if params[:genre_id]
-
+    render layout: false
   end
 
   def update_checklist_item
