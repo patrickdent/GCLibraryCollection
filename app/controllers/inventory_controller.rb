@@ -1,5 +1,6 @@
 class InventoryController < ApplicationController
   include UserRoleHelper
+
   before_filter :is_admin?
 
   def genre_select
@@ -12,6 +13,9 @@ class InventoryController < ApplicationController
   end
 
   def update_checklist_item
-
+    @book = Book.find_by(id: params[:id])
+    params[:book].delete_if { |key, value| value == '' }
+    @book.update_attributes(params[:book])
+    redirect_to :back
   end
 end
