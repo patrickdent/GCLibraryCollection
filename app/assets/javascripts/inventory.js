@@ -19,11 +19,5 @@ var sendData = function(id) {
 			}
 		},
 		dataType: 'json',
-		success: function(data) {
-			alert(data.success);
-		},
-		error: function () {
-			alert("error");
-		}
 	});
 }

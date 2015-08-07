@@ -2,7 +2,7 @@ class BooksController < ApplicationController
   include UserRoleHelper
 
   before_filter :authenticate_user!, except: [:index, :show]
-  before_filter :find_book, only: [:show, :edit, :destroy, :update, :remove_copy]
+  before_filter :find_book, only: [:show, :edit, :destroy, :update, :remove_copy, :update_checklist_item]
   before_filter :is_admin?, only: [:new, :create, :destroy, :remove_copy]
   before_filter :is_librarian?, only: [:edit, :update, :list, :clear_list, :show_list]
   helper_method :sort_column, :sort_direction
@@ -74,6 +74,23 @@ class BooksController < ApplicationController
       flash[:error] = "Update Failed"
       redirect_to edit_book_path
     end
+  end
+
+  def update_checklist_item
+    @book.attributes = book_params
+
+    if @book.save
+      @book.update_availability
+      flash[:notice] = "Update Successful!"
+      redirect_to :back
+    else
+      flash[:error] = "Update Failed"
+      redirect_to :back
+    end
+    # @book = Book.find_by(id: params[:id])
+    # params[:book].delete_if { |key, value| value == '' }
+    # @book.update_attributes(params[:book])
+    # redirect_to :back
   end
 
   def list
