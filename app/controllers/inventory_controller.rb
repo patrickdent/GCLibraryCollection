@@ -15,7 +15,18 @@ class InventoryController < ApplicationController
   def update_checklist_item
     @book = Book.find_by(id: params[:id])
     params[:book].delete_if { |key, value| value == '' }
-    @book.update_attributes(params[:book])
-    redirect_to :back
+    if @book.update_attributes!(book_params)
+      render json: {status: "ok"}
+    else
+      render json: {status: "unprocessible entity"}
+    end
+  end
+
+  private
+  def book_params
+    params.require(:book).permit(:title, :isbn, :genre_id, :created_at, :updated_at,
+                                 :publisher, :publish_date, :publication_place,
+                                 :language, :pages, :location, :available, :count,
+                                 :in_storage, :missing, :notable, :keep_multiple)
   end
 end

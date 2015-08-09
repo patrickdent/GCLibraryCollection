@@ -20,7 +20,7 @@ var sendData = function(id) {
 		},
 		dataType: 'json',
 		success: function(data) {
-			alert(data.success);
+			alert(data.status);
 		},
 		error: function () {
 			alert("error");
