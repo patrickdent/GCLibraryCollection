@@ -18,7 +18,7 @@ class InventoryController < ApplicationController
     if @book.update_attributes!(book_params)
       render json: {status: "ok"}
     else
-      render json: {status: "unprocessible entity"}
+      render json: {status: "unprocessable entity"}
     end
   end
 

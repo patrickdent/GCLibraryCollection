@@ -4,6 +4,12 @@
 
 .alert {
 	@include flash-message($orange);
+  &.inventory{
+    border: none;
+    height: 1.25rem;
+    width: 70%;
+    float: left;
+  }
 }
 
 .notice {

@@ -20,10 +20,20 @@ var sendData = function(id) {
 		},
 		dataType: 'json',
 		success: function(data) {
-			alert(data.status);
+			if(data.status === 'ok'){
+				displayMessage("Saved!");
+			}
+			else if(data.status === 'unprocessable entity'){
+				displayMessage("Error, could not save");
+			}
 		},
 		error: function () {
-			alert("error");
+			displayMessage("Error, could not save");
 		}
 	});
+}
+
+var displayMessage = function(message){
+	$('#ajax-messages').html(message);
+	setTimeout(function() { $('#ajax-messages').html(""); }, 2000);
 }
