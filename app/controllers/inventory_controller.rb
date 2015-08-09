@@ -9,6 +9,7 @@ class InventoryController < ApplicationController
 
   def checklist
     @genre = Genre.find_by(params[:genre_id]) if params[:genre_id]
+    @last_inventoried = (@genre.last_inventoried ? @genre.last_inventoried.strftime("%m/%d/%Y at %I:%M%p") : "never")
     render layout: "minimal"
   end
 
@@ -24,6 +25,7 @@ class InventoryController < ApplicationController
 
   def complete_inventory
     @genre = Genre.find_by(params[:genre_id])
+    @genre.update_attributes(last_inventoried: DateTime.now)
     redirect_to genre_path(@genre)
   end
 
