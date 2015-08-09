@@ -22,6 +22,11 @@ class InventoryController < ApplicationController
     end
   end
 
+  def complete_inventory
+    @genre = Genre.find_by(params[:genre_id])
+    redirect_to genre_path(@genre)
+  end
+
   private
   def book_params
     params.require(:book).permit(:title, :isbn, :genre_id, :created_at, :updated_at,

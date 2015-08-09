@@ -20,6 +20,7 @@ LibraryCollection::Application.routes.draw do
   get 'genre_select' => 'inventory#genre_select', as: 'inventory_genre_select'
   get 'inventory_checklist/:genre_id' => 'inventory#checklist', as: 'inventory_checklist'
   post 'update_checklist_item' => 'inventory#update_checklist_item', defaults: {format: :json}
+  post 'complete_inventory' => 'inventory#complete_inventory'
 
   resources :keywords
 
