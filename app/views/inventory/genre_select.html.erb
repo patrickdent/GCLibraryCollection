@@ -1,0 +1,7 @@
+<h2>Please Select a Category to Inventory</h2>
+
+<ul>
+  <% @genres.each do |genre| %>
+    <li><%= link_to genre.name, inventory_checklist_path(genre_id: genre.id) %></li>
+  <% end %>
+</ul>
