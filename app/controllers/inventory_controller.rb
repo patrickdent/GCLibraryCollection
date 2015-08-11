@@ -17,7 +17,7 @@ class InventoryController < ApplicationController
     @book = Book.find_by(id: params[:id])
     params[:book].delete_if { |key, value| value == '' }
     if @book.update_attributes!(book_params)
-      render json: {status: "ok"}
+      render json: {status: "ok", book: @book.reload.as_json}
     else
       render json: {status: "unprocessable entity"}
     end
@@ -31,9 +31,8 @@ class InventoryController < ApplicationController
 
   private
   def book_params
-    params.require(:book).permit(:title, :isbn, :genre_id, :created_at, :updated_at,
+    params.require(:book).permit(:title, :isbn, :language, :pages, :location, :count,
                                  :publisher, :publish_date, :publication_place,
-                                 :language, :pages, :location, :available, :count,
                                  :in_storage, :missing, :notable, :keep_multiple)
   end
 end
