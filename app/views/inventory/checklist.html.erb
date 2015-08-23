@@ -5,43 +5,39 @@
   <small>Note: blank values will not be saved</small>
 </header>
 
-<table>
+<table id="inventory_table" class="tablesorter {sortlist: [[1,0]]}">
   <thead>
-    <th>Done?</th>
+    <th></th>
+    <th>Author</th>
     <th>Title</th>
     <th>ISBN</th>
-    <th>Publisher</th>
     <th>Publish Date</th>
-    <th>Publication Place</th>
-    <th>Language</th>
-    <th>Pages</th>
     <th>Location</th>
     <th>Count</th>
     <th>In Storage</th>
     <th>Missing</th>
     <th>Notable</th>
     <th>Keep Multiple</th>
+    <th>Done?</th>
   </thead>
   <tbody>
     <% @genre.books.each do |book| %>
       <tr>
-        <td><input type="checkbox" onchange="sendData(<%= book.id %>)" class="inventory-commit"></td>
+        <td><%=  link_to "edit", edit_book_path(book), target: "blank" %></td>
+        <td><%= book.primary_author.name %></td>
         <td><input type="text" value="<%= book.title %>" class="book_<%= book.id %>" name="title"></td>
         <td><input type="text" value="<%= book.isbn %>" class="book_<%= book.id %>" name="isbn"></td>
-        <!-- <td><input type="text" value="<%= book.publisher %>" class="book_<%= book.id %>" name="publisher"></td> -->
         <td><input type="text" value="<%= book.publish_date %>" class="book_<%= book.id %>" name="publish_date"></td>
-        <td><input type="text" value="<%= book.publication_place %>" class="book_<%= book.id %>" name="publication_place"></td>
-        <td><input type="text" value="<%= book.language %>" class="book_<%= book.id %>" name="language"></td>
-        <td><input type="text" value="<%= book.pages %>" class="book_<%= book.id %>" name="pages"></td>
         <td><input type="text" value="<%= book.location %>" class="book_<%= book.id %>" name="location"></td>
         <td><input type="number" value="<%= book.count %>" class="book_<%= book.id %>" name="count"></td>
         <td><input type="checkbox" value="<%= book.in_storage %>" class="book_<%= book.id %>" name="in_storage"></td>
         <td><input type="checkbox" value="<%= book.missing %>" class="book_<%= book.id %>" name="missing"></td>
         <td><input type="checkbox" value="<%= book.notable %>" class="book_<%= book.id %>" name="notable"></td>
         <td><input type="checkbox" value="<%= book.keep_multiple %>" class="book_<%= book.id %>" name="keep_multiple"></td>
+        <td><input type="checkbox" onchange="sendData(<%= book.id %>)" class="inventory-commit"></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= button_to "Done", complete_inventory_path %>
+<%= button_to "Done", complete_inventory_path, class: "go-btn right" %>
