@@ -1,9 +1,15 @@
-<h2><%= @genre.name %></h2>
+<header class="inventory">
+  <p id="ajax-messages" class="inventory alert"></p>
+  <h2><%= @genre.name %></h2>
+  <p>Last updated: <%= @last_inventoried %></p>
+  <small>Note: blank values will not be saved</small>
+</header>
 
 <table>
   <thead>
     <th>Done?</th>
     <th>Title</th>
+    <th>ISBN</th>
     <th>Publisher</th>
     <th>Publish Date</th>
     <th>Publication Place</th>
@@ -21,7 +27,8 @@
       <tr>
         <td><input type="checkbox" onchange="sendData(<%= book.id %>)" class="inventory-commit"></td>
         <td><input type="text" value="<%= book.title %>" class="book_<%= book.id %>" name="title"></td>
-        <td><input type="text" value="<%= book.publisher %>" class="book_<%= book.id %>" name="publisher"></td>
+        <td><input type="text" value="<%= book.isbn %>" class="book_<%= book.id %>" name="isbn"></td>
+        <!-- <td><input type="text" value="<%= book.publisher %>" class="book_<%= book.id %>" name="publisher"></td> -->
         <td><input type="text" value="<%= book.publish_date %>" class="book_<%= book.id %>" name="publish_date"></td>
         <td><input type="text" value="<%= book.publication_place %>" class="book_<%= book.id %>" name="publication_place"></td>
         <td><input type="text" value="<%= book.language %>" class="book_<%= book.id %>" name="language"></td>
@@ -37,4 +44,4 @@
   </tbody>
 </table>
 
-<button>Done!</button>
+<%= button_to "Done", complete_inventory_path %>
