@@ -26,6 +26,9 @@ class InventoryController < ApplicationController
   def complete_inventory
     @genre = Genre.find_by(params[:genre_id])
     @genre.update_attributes(last_inventoried: DateTime.now)
+    @genre.books.each do |b|
+      b.update_attributes(inventoried: false)
+    end
     redirect_to genre_path(@genre)
   end
 
@@ -33,6 +36,6 @@ class InventoryController < ApplicationController
   def book_params
     params.require(:book).permit(:title, :isbn, :language, :pages, :location, :count,
                                  :publisher, :publish_date, :publication_place,
-                                 :in_storage, :missing, :notable, :keep_multiple)
+                                 :in_storage, :missing, :notable, :keep_multiple, :inventoried)
   end
 end

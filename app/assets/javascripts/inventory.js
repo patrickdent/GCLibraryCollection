@@ -18,6 +18,7 @@ var sendData = function(id) {
 			// TODO: update form values with returned value from controller
 			if(data.status === 'ok'){
 				displayMessage("Saved!");
+				$(book_id).parent().parent().addClass('complete');
 			}
 			else if(data.status === 'unprocessable entity'){
 				displayMessage("Error, could not save");
