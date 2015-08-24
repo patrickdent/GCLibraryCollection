@@ -9,7 +9,7 @@ class InventoryController < ApplicationController
 
   def checklist
     @genre = Genre.find_by(id: params[:genre_id]) if params[:genre_id]
-    @last_inventoried = (@genre.last_inventoried ? @genre.last_inventoried.strftime("%m/%d/%Y at %I:%M%p") : "never")
+    @last_inventoried = (@genre.last_inventoried ? @genre.last_inventoried.localtime.strftime("%m/%d/%Y at %I:%M%p") : "never")
     render layout: "minimal"
   end
 
@@ -24,7 +24,7 @@ class InventoryController < ApplicationController
   end
 
   def complete_inventory
-    @genre = Genre.find_by(params[:genre_id])
+    @genre = Genre.find_by(id: params[:genre_id])
     @genre.update_attributes(last_inventoried: DateTime.now)
     @genre.books.each do |b|
       b.update_attributes(inventoried: false)

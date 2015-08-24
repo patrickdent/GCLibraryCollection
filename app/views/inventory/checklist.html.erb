@@ -76,4 +76,4 @@
   </tbody>
 </table>
 
-<%= button_to "Done", complete_inventory_path, class: "go-btn right" %>
+<%= button_to "Done", complete_inventory_path(genre_id: @genre.id), class: "go-btn right" %>
