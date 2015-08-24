@@ -26,6 +26,9 @@ class InventoryController < ApplicationController
   def complete_inventory
     @genre = Genre.find_by(params[:genre_id])
     @genre.update_attributes(last_inventoried: DateTime.now)
+    @genre.books.each do |b|
+      b.update_attributes(inventoried: false)
+    end
     redirect_to genre_path(@genre)
   end
 
