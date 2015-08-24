@@ -22,7 +22,7 @@
   </thead>
   <tbody>
     <% @genre.books.each do |book| %>
-      <tr>
+      <tr class="<%= 'complete' if book.inventoried %>">
         <td><%=  link_to "edit", edit_book_path(book), target: "_blank" %></td>
         <td><%= book.primary_author.name %></td>
         <td><input type="text" value="<%= book.title %>" class="book_<%= book.id %>" name="title"></td>

@@ -45,6 +45,9 @@ table {
       padding: 0.75rem;
     }
   }
+  tbody tr.complete td{
+    background-color:$lightest-gray;
+  }
   tr:hover td{
     background-color:$lightest-gray;
   }
