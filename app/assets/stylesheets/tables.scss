@@ -21,6 +21,12 @@ td span.in-storage:after {
   font-size: 1.4rem;
   padding-left: 20%;}
 
+td span.unavailable:after {
+    font-family: FontAwesome;
+    content: $unavailable_icon;
+    font-size: 1.1rem;
+    color: $red;}
+
 .pagination:last { margin-bottom: 8rem;}
 
 table th .asc:after {

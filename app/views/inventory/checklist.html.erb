@@ -5,8 +5,9 @@
   <small>Note: blank values will not be saved</small>
 </header>
 
-<table id="inventory_table" class="tablesorter {sortlist: [[1,0]]}">
+<table id="inventory_table" class="tablesorter {sortlist: [[2,0]]}">
   <thead>
+    <th></th>
     <th></th>
     <th>Author</th>
     <th>Title</th>
@@ -23,6 +24,7 @@
   <tbody>
     <% @genre.books.each do |book| %>
       <tr class="<%= 'complete' if book.inventoried %>">
+        <td><span class="<%= 'unavailable' if !book.available %>" title="unavailable"></span></td>
         <td><%=  link_to "edit", edit_book_path(book), target: "_blank" %></td>
         <td><%= book.primary_author.name %></td>
         <td><input type="text" value="<%= book.title %>" class="book_<%= book.id %>" name="title"></td>
