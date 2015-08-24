@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150809034441) do
+ActiveRecord::Schema.define(version: 20150823225223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20150809034441) do
     t.boolean  "missing",           default: false
     t.boolean  "notable"
     t.boolean  "keep_multiple"
+    t.boolean  "inventoried",       default: false
   end
 
   add_index "books", ["genre_id"], name: "index_books_on_genre_id", using: :btree
