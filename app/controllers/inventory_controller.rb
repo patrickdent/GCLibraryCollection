@@ -17,6 +17,7 @@ class InventoryController < ApplicationController
     @book = Book.find_by(id: params[:id])
     params[:book].delete_if { |key, value| value == '' }
     if @book.update_attributes!(book_params)
+      @book.update_availability
       render json: {status: "ok", book: @book.reload.as_json}
     else
       render json: {status: "unprocessable entity"}
