@@ -7,7 +7,6 @@ class Search
       return book
     end
 
-
     google_info = google_api(isbn)
     return nil if google_info == nil
 
@@ -18,6 +17,7 @@ class Search
     b.language = google_info["lang"]
     b.pages = google_info["pageCount"]
     b.isbn = isbn
+    b.save!
     authors = google_info["authors"]
     if authors
       authors.each do |name|
@@ -25,7 +25,6 @@ class Search
         BookAuthor.create(author: a, book: b)
       end
     end
-    b.save!
 
     return b
   end
