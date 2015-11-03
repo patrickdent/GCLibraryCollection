@@ -46,6 +46,8 @@ class Search
     b.pages = book_info["pages"]
     b.isbn = isbn
     authors = book_info["authors"]
+    b.save!
+    authors = google_info["authors"]
     if authors
       authors.each do |name|
         a = Author.find_or_create_by(name: name)
@@ -53,6 +55,8 @@ class Search
       end
     end
     b.save!
+
+    return b
   end
 
   #preferred method; has most important fields
