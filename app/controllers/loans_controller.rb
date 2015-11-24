@@ -31,11 +31,11 @@ class LoansController < ApplicationController
 
     unless @loan.user.good_to_borrow?
       flash[:alert] = "User Can Not Borrow at This Time"
-      redirect_to user_path(@loan.user.id) and return
+      redirect_to :back and return
     end
     unless @loan.book.available
       flash[:alert] = "Book is Not Available"
-      redirect_to user_path(@loan.user.id) and return
+      redirect_to :back and return
     end
     if @loan.save
       flash[:notice] = "Loan Created"
@@ -99,11 +99,11 @@ class LoansController < ApplicationController
   end
 
   def return
-    if @loan.return_loan
+    if @loan.update_attributes(returned_date: Time.now.to_date)
       @loan.book.update_availability
       flash[:notice] = "Loan Returned"
     else
-      flash[:alert] = "Loan Return Faild"
+      flash[:alert] = "Loan Return Failed"
     end
     redirect_to :back
   end
