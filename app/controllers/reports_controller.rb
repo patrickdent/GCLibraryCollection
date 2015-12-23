@@ -25,7 +25,7 @@ class ReportsController < ApplicationController
   private
   def build_book_popularity
     @genre_name = set_genre
-    @books = set_books.reject!{|b| b.loans.count < 1}
+    @books = set_books.sort_by{|b| b.loans.count}
     @report_title = "Book Popularity"
     @report_description = "These are all the books that have had any loans during the specified time period (currently since the beginning of time)."
   end
