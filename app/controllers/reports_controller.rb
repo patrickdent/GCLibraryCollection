@@ -8,6 +8,8 @@ class ReportsController < ApplicationController
       build_book_popularity
     elsif params[:report] == "unpopular-books"
       build_unpopular_books
+    elsif params[:report] == "missing-books"
+      build_missing_books
     end
     if @books
       render "view_report.html.erb"
@@ -33,6 +35,13 @@ class ReportsController < ApplicationController
     @books = set_books.reject!{|b| b.loans.count >= 1}
     @report_title = "Books Never Checked Out"
     @report_description = "These are all the books that have not had any loans during the specified time period (currently since the beginning of time)."
+  end
+
+  def build_missing_books
+    @genre_name = set_genre
+    @books = set_books.where(missing: true)
+    @report_title = "Missing Books"
+    @report_description = "These are all the books that have been marked as missing."
   end
 
   def set_books

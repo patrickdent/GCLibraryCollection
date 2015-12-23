@@ -3,10 +3,7 @@ ready = ->
     $('#report-selector').change ->
       $('#submit').remove()
       $('#genre-selector').remove()
-      if $('#report-selector').val() == "book-popularity"
-        fetchAndAppendGenres()
-      else if $('#report-selector').val() == "unpopular-books"
-        fetchAndAppendGenres()
+      fetchAndAppendGenres()
 
       $(document).on 'change', '#genre-selector', ->
         $('#submit').remove()
