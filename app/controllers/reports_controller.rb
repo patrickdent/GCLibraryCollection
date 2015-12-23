@@ -4,10 +4,11 @@ class ReportsController < ApplicationController
   end
 
   def build_report
-    set_date_range
     if params[:report] == "book-popularity"
+      set_date_range
       build_book_popularity
     elsif params[:report] == "unpopular-books"
+      set_date_range
       build_unpopular_books
     elsif params[:report] == "missing-books"
       build_missing_books
@@ -42,7 +43,7 @@ class ReportsController < ApplicationController
     @genre_name = set_genre
     @books = set_books.sort_by{|b| b.loans.where(start_date: @date_range).count}
     @report_title = "Book Popularity"
-    @report_description = "These are all the books for specified category with the count of loans they've had during specified time period."
+    @report_description = "These are all the books in the specified category with the count of loans they've had during specified time period."
   end
 
   def build_unpopular_books
@@ -56,7 +57,7 @@ class ReportsController < ApplicationController
     @genre_name = set_genre
     @books = set_books.where(missing: true)
     @report_title = "Missing Books"
-    @report_description = "These are all the books that have been marked as missing."
+    @report_description = "These are all the books in the specified category that have been marked as missing."
   end
 
   def set_books

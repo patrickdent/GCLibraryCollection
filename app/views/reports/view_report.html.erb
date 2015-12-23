@@ -1,6 +1,8 @@
 <h2>Report: <%= @report_title %></h2>
 <h3>Genre: <%= @genre_name %></h3>
-<h3>For Date Range: <%= @date_range.first.strftime("%b/%d/%Y") + "  -  " + @date_range.last.strftime("%b/%d/%Y") %></h3>
+<% if @date_range %>
+  <h3>For Date Range: <%= @date_range.first.strftime("%b/%d/%Y") + "  -  " + @date_range.last.strftime("%b/%d/%Y") %></h3>
+<% end %>
 <p><%= @report_description %></p>
 
 
