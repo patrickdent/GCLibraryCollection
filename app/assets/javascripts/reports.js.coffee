@@ -3,6 +3,8 @@ ready = ->
     $('#report-selector').change ->
       $('#submit').remove()
       $('#genre-selector').remove()
+      if $('#report-selector').val() == "book-popularity" || $('#report-selector').val() == "unpopular-books"
+        appendDateRanges()
       fetchAndAppendGenres()
 
       $(document).on 'change', '#genre-selector', ->
@@ -29,6 +31,18 @@ fetchAndAppendGenres=()->
     error: ->
      # TODO: how do show user error?
     dataType: "json"
+
+appendDateRanges=()->
+  startDate = "<fieldset  id='date-range-selector'>
+                <label>Select a Date Range</label>
+                <select name='dates'>
+                  <option value=''>Forever</option>
+                  <option value='last-week'>Last Week</option>
+                  <option value='last-month'>Last Month</option>
+                  <option value='last-year'>Last Year</option>
+                </select>
+              </fieldset>"
+  $('#reports-form').append(startDate).trigger('create')
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
