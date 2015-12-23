@@ -10,7 +10,7 @@ ready = ->
 
       $(document).on 'change', '#genre-selector', ->
         $('#submit').remove()
-        submit = "<button id='submit'>Submit</button>"
+        submit = "<button id='submit' class='go-btn right'>Submit</button>"
         $('#reports-form').append(submit).trigger('create')
         return
 

@@ -12,7 +12,8 @@ class ReportsController < ApplicationController
     if @books
       render "view_report.html.erb"
     else
-      render json: {status: :error}
+      flash[:error] = "No books match this query"
+      redirect_to :back
     end
   end
 
