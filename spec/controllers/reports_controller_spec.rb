@@ -10,6 +10,7 @@ describe ReportsController do
     create :loan, book_id: @book1.id
     create :loan, book_id: @book2.id
     @book3 = create :book
+    @book4 = create :book, genre_id: @genre.id
   end
 
   after :all do
@@ -28,10 +29,25 @@ describe ReportsController do
       expect(assigns(:books)).to include(@book2)
     end
 
-    it "only shows books that have been loaned" do
+    it "book popularity report only shows books that have been loaned" do
       post :build_report, report: "book-popularity", genre: 'all'
       expect(assigns(:books)).to_not include(@book3)
     end
-  end
 
+    it "builds the unpopular books report for a genre" do
+      post :build_report, report: "unpopular-books", genre: @genre.id
+      expect(assigns(:books)).to eq([@book4])
+    end
+
+    it "builds the unpopular books report for all books" do
+      post :build_report, report: "unpopular-books", genre: 'all'
+      expect(assigns(:books)).to include(@book3)
+    end
+
+    it "unpopular books report only shows books that have not been loaned" do
+      post :build_report, report: "unpopular-books", genre: 'all'
+      expect(assigns(:books)).to_not include(@book1)
+      expect(assigns(:books)).to_not include(@book2)
+    end
+  end
 end
