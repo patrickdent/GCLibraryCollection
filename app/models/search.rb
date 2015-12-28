@@ -23,7 +23,6 @@ class Search
 
     if supplimental.class == Array
       supplimental.each do |data|
-        binding.pry
         data.keys.each do |key|
           main[key] = data[key] unless main[key]
         end
@@ -47,7 +46,7 @@ class Search
     b.isbn = isbn
     authors = book_info["authors"]
     b.save!
-    authors = google_info["authors"]
+    authors = book_info["authors"]
     if authors
       authors.each do |name|
         a = Author.find_or_create_by(name: name)
@@ -59,7 +58,6 @@ class Search
     return b
   end
 
-  #preferred method; has most important fields
   def self.google_api(isbn)
     url = URI.parse("https://www.googleapis.com/books/v1/volumes?q=isbn:#{isbn}&key=")
     req = Net::HTTP::Get.new(url.to_s + ENV['google_api_key'].to_s)
@@ -101,7 +99,7 @@ class Search
     good_reads_info['title'] = book_hash['best_book']['title']
     good_reads_info['title'] = book_hash['best_book']['title']
     good_reads_info['authors'] = [book_hash['best_book']['author']['name']]
-    
+
     return good_reads_info
   end
 

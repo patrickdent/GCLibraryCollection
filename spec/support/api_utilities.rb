@@ -6,11 +6,10 @@ end
 def create_google_stub(url, description)
   stub_request(:get, url).
     with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'}).
-    to_return(:status => 200, :body => return_json_body(description), :headers => {})
+    to_return(:status => 200, :body => return_json_body_for_google(description), :headers => {})
 end
 
-
-def return_json_body(description)
+def return_json_body_for_google(description)
   case description
     when "exists"
       return '{
@@ -90,7 +89,7 @@ def return_json_body(description)
                ]
               }'
 
-    when "does not exist" 
+    when "does not exist"
       return  '{
                "kind": "books#volumes",
                "totalItems": 0
@@ -170,6 +169,84 @@ def return_json_body(description)
                 }
                ]
               }'
+    else raise ArgumentError.new("Please provide a valid description of the book in your method call")
+  end
+end
+
+def create_goodreads_url(isbn)
+  url = ("https://www.goodreads.com/search.xml?key=" + ENV['good_reads_api_key'].to_s + "=&q=#{isbn}")
+  return url
+end
+
+def create_goodreads_stub(url, description)
+  stub_request(:get, url).
+    with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'}).
+    to_return(:status => 200, :body => return_xml_body_for_goodreads(description), :headers => {})
+end
+
+def return_xml_body_for_goodreads(description)
+  case description
+    when "exists"
+      return "<?xml version='1.0' encoding='UTF-8'?>
+      <GoodreadsResponse>
+
+        <Request>
+            <authentication>true</authentication>
+              <key><![CDATA[TKAQpgIzHcFYzNDx7LkoQ]]></key>
+            <method><![CDATA[search_search]]></method>
+          </Request>
+          <search>
+          <query><![CDATA[1878379925]]></query>
+            <results-start>1</results-start>
+            <results-end>1</results-end>
+            <total-results>1</total-results>
+            <source>Goodreads</source>
+            <query-time-seconds>0.01</query-time-seconds>
+            <results>
+                <work>
+          <id type='integer'>255333</id>
+          <books_count type='integer'>3</books_count>
+          <ratings_count type='integer'>12</ratings_count>
+          <text_reviews_count type='integer'>1</text_reviews_count>
+          <original_publication_year type='integer'>1999</original_publication_year>
+          <original_publication_month type='integer'>11</original_publication_month>
+          <original_publication_day type='integer'>1</original_publication_day>
+          <average_rating>3.92</average_rating>
+          <best_book type='Book'>
+            <id type='integer'>263401</id>
+            <title>Herding Cats: Multiparty Mediation in a Complex World</title>
+            <author>
+              <id type='integer'>153858</id>
+              <name>Chester A. Crocker</name>
+            </author>
+            <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
+            <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
+          </best_book>
+          </work>
+
+            </results>
+            </search>
+
+        </GoodreadsResponse>"
+    else raise ArgumentError.new("Please provide a valid description of the book in your method call")
+  end
+end
+
+def create_worldcat_url(isbn)
+  url = ("http://xisbn.worldcat.org/webservices/xid/isbn/#{isbn}?method=getMetadata&format=json&fl=*")
+  return url
+end
+
+def create_worldcat_stub(url, description)
+  stub_request(:get, url).
+    with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'}).
+    to_return(:status => 200, :body => return_json_body_for_worldcat(description), :headers => {})
+end
+
+def return_json_body_for_worldcat(description)
+  case description
+    when "exists"
+      return "{\n \"stat\":\"ok\",\n \"list\":[{\n\t\"url\":[\"http://www.worldcat.org/oclc/255913704?referer=xid\"],\n\t\"publisher\":\"United States Inst. of Peace Press\",\n\t\"form\":[\"BC\"],\n\t\"lccn\":[\"99035750\"],\n\t\"lang\":\"eng\",\n\t\"city\":\"Washington, DC\",\n\t\"author\":\"Chester A. Crocker ...eds\",\n\t\"ed\":\"3. printing\",\n\t\"year\":\"2003\",\n\t\"isbn\":[\"1878379925\"],\n\t\"title\":\"Herding cats : multiparty mediation in a complex world\",\n\t\"oclcnum\":[\"255913704\",\n\t \"476307942\",\n\t \"493892053\",\n\t \"181646423\",\n\t \"231934832\",\n\t \"41504459\",\n\t \"461504741\",\n\t \"717772717\",\n\t \"812373255\",\n\t \"835948255\"]}]}"
     else raise ArgumentError.new("Please provide a valid description of the book in your method call")
   end
 end
