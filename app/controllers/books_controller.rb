@@ -114,7 +114,7 @@ class BooksController < ApplicationController
       @books = Book.joins(:genre).includes(:authors).where(id: session[:selected_books])
       .order(sort_column("name") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
     when "auth_name"
-      @books = Book.joins(:authors).includes(:genre).where(id: session[:selected_books])
+      @books = Book.joins(:authors).uniq.includes(:genre).where(id: session[:selected_books])
       .order(sort_column("sort_by") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
     else
       @books = Book.includes(:authors, :genre).where(id: session[:selected_books])
