@@ -30,6 +30,11 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
+      if params[:book][:keyword_ids]
+        params[:book][:keyword_ids].each do |id|
+          BookKeyword.create(keyword_id: id, book_id: @book.id) unless id.empty?
+        end
+      end
       BookAuthor::create_multi(@book, params[:book_author]) if params[:book_author]
       flash[:notice] = "Book Created"
       redirect_to book_path(@book)

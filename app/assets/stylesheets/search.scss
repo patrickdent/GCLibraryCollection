@@ -39,46 +39,46 @@ li.results{
 
   a.available.notable:after {
     font-family: FontAwesome;
-    content: $available_icon $notable_icon;
+    content: $available_icon "   " $notable_icon;
     font-size: 1.1rem;
     padding-left: 1.5rem;
     color: $white;}
   a.unavailable.notable:after {
     font-family: FontAwesome;
-    content: $unavailable_icon $notable_icon;
+    content: $unavailable_icon "   " $notable_icon;
     font-size: 1.1rem;
     padding-left: 1.5rem;
     color: $white;}
 
   a.available.multiple:after {
     font-family: FontAwesome;
-    content: $available_icon $multiple_icon;
+    content: $available_icon "   " $multiple_icon;
     font-size: 1.1rem;
     padding-left: 1.5rem;
     color: $white;}
   a.unavailable.multiple:after {
     font-family: FontAwesome;
-    content: $unavailable_icon $multiple_icon;
+    content: $unavailable_icon "   " $multiple_icon;
     font-size: 1.1rem;
     padding-left: 1.5rem;
     color: $white;}
 
   a.available.notable.multiple:after {
     font-family: FontAwesome;
-    content: $available_icon $notable_icon $multiple_icon;
+    content: $available_icon "   " $notable_icon "   " $multiple_icon;
     font-size: 1.1rem;
     padding-left: 1.5rem;
     color: $white;}
   a.unavailable.notable.multiple:after {
     font-family: FontAwesome;
-    content: $unavailable_icon $notable_icon $multiple_icon;
+    content: $unavailable_icon "   " $notable_icon "   " $multiple_icon;
     font-size: 1.1rem;
     padding-left: 1.5rem;
     color: $white;}
 
   a.notable.multiple:after {
     font-family: FontAwesome;
-    content: $notable_icon $multiple_icon;
+    content: $notable_icon "   " $multiple_icon;
     font-size: 1.1rem;
     padding-left: 1.5rem;
     color: $white;}
