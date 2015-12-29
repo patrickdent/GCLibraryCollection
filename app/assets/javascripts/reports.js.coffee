@@ -42,7 +42,7 @@ appendDateRanges=()->
                   <option value='last-year'>Last Year</option>
                 </select>
               </fieldset>"
-  $('#reports-form').append(startDate).trigger('create')
+  $('#date-range-selector').replaceWith(startDate)
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
