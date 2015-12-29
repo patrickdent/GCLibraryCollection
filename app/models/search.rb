@@ -20,6 +20,7 @@ class Search
   private
 
   def self.join_hashes(main, *supplimental)
+    return nil unless main
 
     if supplimental.class == Array
       supplimental.each do |data|
@@ -37,6 +38,7 @@ class Search
   end
 
   def self.create_book(book_info, isbn)
+    return nil unless book_info
     b = Book.new
     b.title = book_info["title"]
     b.publisher = book_info["publisher"]
