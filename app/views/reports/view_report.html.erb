@@ -17,7 +17,7 @@
     <% @books.each do |b| %>
       <tr>
         <td><%= link_to b.title, book_path(b) %></td>
-        <td><%= b.loans.where(start_date: @date_range).count %></td>
+        <td class="centered-content"><%= b.loans.where(start_date: @date_range).count %></td>
       </tr>
     <% end %>
   </tbody>
