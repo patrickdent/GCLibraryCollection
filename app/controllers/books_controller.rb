@@ -12,9 +12,6 @@ class BooksController < ApplicationController
     when "cat_name"
       @books = Book.joins(:genre).includes(:authors)
       .order(sort_column("lower(name)") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
-    when "auth_name"
-      @books = Book.joins(:authors).includes(:genre)
-      .order(sort_column("lower(sort_by)") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
     else
       @books = Book.includes(:authors, :genre)
       .order("lower(#{sort_column})" + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
@@ -113,9 +110,6 @@ class BooksController < ApplicationController
     when "cat_name"
       @books = Book.joins(:genre).includes(:authors).where(id: session[:selected_books])
       .order(sort_column("lower(name)") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
-    when "auth_name"
-      @books = Book.joins(:authors).uniq.includes(:genre).where(id: session[:selected_books])
-      .order(sort_column("lower(sort_by)") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
     else
       @books = Book.includes(:authors, :genre).where(id: session[:selected_books])
       .order("lower(#{sort_column})" + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
