@@ -11,13 +11,10 @@ class BooksController < ApplicationController
     case params["sort"]
     when "cat_name"
       @books = Book.joins(:genre).includes(:authors)
-      .order(sort_column("name") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
-    when "auth_name"
-      @books = Book.joins(:authors).includes(:genre)
-      .order(sort_column("sort_by") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
+      .order(sort_column("lower(name)") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
     else
       @books = Book.includes(:authors, :genre)
-      .order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
+      .order("lower(#{sort_column})" + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
     end
   end
 
@@ -112,13 +109,10 @@ class BooksController < ApplicationController
     case params["sort"]
     when "cat_name"
       @books = Book.joins(:genre).includes(:authors).where(id: session[:selected_books])
-      .order(sort_column("name") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
-    when "auth_name"
-      @books = Book.joins(:authors).uniq.includes(:genre).where(id: session[:selected_books])
-      .order(sort_column("sort_by") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
+      .order(sort_column("lower(name)") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
     else
       @books = Book.includes(:authors, :genre).where(id: session[:selected_books])
-      .order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
+      .order("lower(#{sort_column})" + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
     end
     @multi_loan_available = is_given_user_or_librarian?(current_user) && (@books - Book.available_to_loan).empty? && (@books.length < 6)
   end
