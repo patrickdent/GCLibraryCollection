@@ -11,7 +11,7 @@ class Search
     google_info = google_api(isbn)
     world_cat_info = world_cat_api(isbn)
 
-    return nil unless google_info || good_reads_info || world_cat_info
+    return nil if google_info.empty? && good_reads_info.empty? && world_cat_info.empty?
 
     joined_hash = join_hashes(google_info, good_reads_info, world_cat_info)
     return create_book(joined_hash, isbn)
@@ -28,8 +28,8 @@ class Search
           main[key] = data[key] unless main[key]
         end
       end
-    else
-      data.keys.each do |key|
+    elsif supplimental
+      supplimental.keys.each do |key|
         main[key] = supplimental[key] unless main[key]
       end
     end
@@ -69,7 +69,7 @@ class Search
     body = response.body
     temp_hash = JSON.parse(body)
 
-    return nil if temp_hash["totalItems"] == 0
+    return {} if temp_hash["totalItems"] == 0
 
     book_hash = temp_hash["items"].first["volumeInfo"]
 
@@ -93,8 +93,9 @@ class Search
     response = http.request(req)
     body = response.body
     temp_hash = Hash.from_xml(body)
-
     book_hash = temp_hash['GoodreadsResponse']['search']['results']['work']
+
+    return {} unless book_hash['id']
 
     good_reads_info = Hash.new
     good_reads_info['publish_date'] = book_hash['original_publication_year']
@@ -110,8 +111,11 @@ class Search
     req = Net::HTTP::Get.new(url.to_s)
     http = Net::HTTP.new(url.host, url.port)
     response = http.request(req)
-    body = response.body
-    book_hash = JSON.parse(body)["list"].first
+    body = JSON.parse(response.body)
+
+    return {} if body['stat'] == "unknownId"
+
+    book_hash = body["list"].first
 
     world_cat_info = Hash.new
     world_cat_info["title"] = book_hash["title"]

@@ -325,7 +325,7 @@ def return_json_body_for_worldcat(description)
     when "exists"
       return "{\n \"stat\":\"ok\",\n \"list\":[{\n\t\"url\":[\"http://www.worldcat.org/oclc/255913704?referer=xid\"],\n\t\"publisher\":\"United States Inst. of Peace Press\",\n\t\"form\":[\"BC\"],\n\t\"lccn\":[\"99035750\"],\n\t\"lang\":\"eng\",\n\t\"city\":\"Washington, DC\",\n\t\"author\":\"Chester A. Crocker ...eds\",\n\t\"ed\":\"3. printing\",\n\t\"year\":\"2003\",\n\t\"isbn\":[\"1878379925\"],\n\t\"title\":\"Herding cats : multiparty mediation in a complex world\",\n\t\"oclcnum\":[\"255913704\",\n\t \"476307942\",\n\t \"493892053\",\n\t \"181646423\",\n\t \"231934832\",\n\t \"41504459\",\n\t \"461504741\",\n\t \"717772717\",\n\t \"812373255\",\n\t \"835948255\"]}]}"
     when "does not exist"
-      return "{\n \"stat\":\"ok\",\n \"list\":[{}]}"
+      return "{\n \"stat\":\"unknownId\",\n \"list\":[{}]}"
     when "no authors"
       return "{\n \"stat\":\"ok\",\n \"list\":[{\n\t\"url\":[\"http://www.worldcat.org/oclc/255913704?referer=xid\"],\n\t\"publisher\":\"United States Inst. of Peace Press\",\n\t\"form\":[\"BC\"],\n\t\"lccn\":[\"99035750\"],\n\t\"lang\":\"eng\",\n\t\"city\":\"Washington, DC\",\n\t\"author\":\"\",\n\t\"ed\":\"3. printing\",\n\t\"year\":\"2003\",\n\t\"isbn\":[\"1878379925\"],\n\t\"title\":\"Herding cats : multiparty mediation in a complex world\",\n\t\"oclcnum\":[\"255913704\",\n\t \"476307942\",\n\t \"493892053\",\n\t \"181646423\",\n\t \"231934832\",\n\t \"41504459\",\n\t \"461504741\",\n\t \"717772717\",\n\t \"812373255\",\n\t \"835948255\"]}]}"
     else raise ArgumentError.new("Please provide a valid description of the book in your method call")
