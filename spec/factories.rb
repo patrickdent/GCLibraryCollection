@@ -65,7 +65,7 @@ FactoryGirl.define do
   end
 
   factory :loan, class: Loan do
-    :book
-    :user
+    association :book
+    association :user
   end
 end

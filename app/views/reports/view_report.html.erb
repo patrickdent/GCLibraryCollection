@@ -1,5 +1,10 @@
 <h2>Report: <%= @report_title %></h2>
+<h3>Genre: <%= @genre_name %></h3>
+<% if @date_range %>
+  <h3>For Date Range: <%= @date_range.first.strftime("%b/%d/%Y") + "  -  " + @date_range.last.strftime("%b/%d/%Y") %></h3>
+<% end %>
 <p><%= @report_description %></p>
+
 
 <table id="report-results" class="tablesorter">
   <thead>
@@ -12,8 +17,12 @@
     <% @books.each do |b| %>
       <tr>
         <td><%= link_to b.title, book_path(b) %></td>
-        <td><%= b.loans.count %></td>
+        <td class="centered-content"><%= b.loans.where(start_date: @date_range).count %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= link_to reports_path do %>
+  <button class="meh-btn right">Back to Build A Report</button>
+<% end %>
