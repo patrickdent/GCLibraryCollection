@@ -29,10 +29,10 @@ class KeywordsController < ApplicationController
     case params["sort"]
     when "cat_name"
       @books = @keyword.books.joins(:genre).includes(:authors)
-      .order(sort_column("name") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
+      .order(sort_column("lower(name)") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
     else
       @books = @keyword.books.includes(:authors, :genre)
-      .order(sort_column("title") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
+      .order(sort_column("lower(title)") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
     end
   end
 
