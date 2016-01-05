@@ -9,10 +9,12 @@ class BooksController < ApplicationController
 
   def index
     case params["sort"]
-    when "name"
-      @books = Book.joins(:genre).includes(:authors).order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
+    when "cat_name"
+      @books = Book.joins(:genre).includes(:authors)
+      .order(sort_column("lower(name)") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
     else
-      @books = Book.includes(:authors, :genre).order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
+      @books = Book.includes(:authors, :genre)
+      .order("lower(#{sort_column})" + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
     end
   end
 
@@ -105,12 +107,12 @@ class BooksController < ApplicationController
 
   def show_list
     case params["sort"]
-    when "name"
+    when "cat_name"
       @books = Book.joins(:genre).includes(:authors).where(id: session[:selected_books])
-      .order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
+      .order(sort_column("lower(name)") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
     else
       @books = Book.includes(:authors, :genre).where(id: session[:selected_books])
-      .order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
+      .order("lower(#{sort_column})" + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
     end
     @multi_loan_available = is_given_user_or_librarian?(current_user) && (@books - Book.available_to_loan).empty? && (@books.length < 6)
   end
@@ -131,8 +133,12 @@ class BooksController < ApplicationController
     redirect_to root_path and return unless @book
   end
 
-  def sort_column(default = "title")
-    params[:sort] ? params[:sort] : default
+  def sort_column(column_name = nil)
+    unless column_name
+      params[:sort] ? params[:sort] : "title"
+    else
+      column_name
+    end
   end
 
   def sort_direction(default = "asc")
