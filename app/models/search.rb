@@ -11,7 +11,7 @@ class Search
     google_info = google_api(isbn)
     world_cat_info = world_cat_api(isbn)
 
-    return nil if !google_info && !good_reads_info && !world_cat_info
+    return nil unless google_info || good_reads_info || world_cat_info
 
     joined_hash = join_hashes(google_info, good_reads_info, world_cat_info)
     return create_book(joined_hash, isbn)
