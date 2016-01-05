@@ -33,6 +33,48 @@ describe KeywordsController do
 
       expect(assigns[:keyword]).to eq @keyword
     end
+
+    context "sorting" do
+      before do
+        agenre = create :genre, name: "a genre"
+        lgenre = create :genre, name: "L genre"
+        zgenre = create :genre, name: "z genre"
+        @abook = create :book, title: "A title", genre_id: agenre.id
+        @lbook = create :book, title: "l title", genre_id: lgenre.id
+        @zbook = create :book, title: "z title", genre_id: zgenre.id
+        create :book_keyword, keyword_id: @keyword.id, book_id: @abook.id
+        create :book_keyword, keyword_id: @keyword.id, book_id: @lbook.id
+        create :book_keyword, keyword_id: @keyword.id, book_id: @zbook.id
+      end
+
+      it "sorts the keyword's books by title based on params" do
+        get :show, id: @keyword.id, sort: "title", direction: "asc"
+
+        expect(assigns[:books].first).to eq(@abook)
+        expect(assigns[:books][1]).to eq(@lbook)
+        expect(assigns[:books].last).to eq(@zbook)
+
+        get :show, id: @keyword.id, sort: "title", direction: "desc"
+
+        expect(assigns[:books].first).to eq(@zbook)
+        expect(assigns[:books][1]).to eq(@lbook)
+        expect(assigns[:books].last).to eq(@abook)
+      end
+
+      it "sorts the keyword's books by genre based on params" do
+        get :show, id: @keyword.id, sort: "cat_name", direction: "asc"
+
+        expect(assigns[:books].first).to eq(@abook)
+        expect(assigns[:books][1]).to eq(@lbook)
+        expect(assigns[:books].last).to eq(@zbook)
+
+        get :show, id: @keyword.id, sort: "cat_name", direction: "desc"
+
+        expect(assigns[:books].first).to eq(@zbook)
+        expect(assigns[:books][1]).to eq(@lbook)
+        expect(assigns[:books].last).to eq(@abook)
+      end
+    end
   end
 
   describe "POST 'create'" do
