@@ -12,6 +12,13 @@ FactoryGirl.define do
   end
 
   factory :book_author, class: BookAuthor do
+    association :book
+    association :author
+  end
+
+  factory :book_keyword, class: BookKeyword do
+    association :book
+    association :keyword
   end
 
   factory :genre, class: Genre do

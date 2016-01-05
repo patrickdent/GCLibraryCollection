@@ -16,9 +16,9 @@ describe "Author Pages" do
   end
 
   let(:genre)   { create(:genre, name: "a genre") }
-  let(:genre2)  { create(:genre, name: "z genre") }
+  let(:genre2)  { create(:genre, name: "Z genre") }
   let(:author)  { create(:author) }
-  let(:book)    { create(:book, title: "a book", genre: genre) }
+  let(:book)    { create(:book, title: "A book", genre: genre) }
   let(:book2)   { create(:book, title: "z book", genre: genre2, available: false) }
 
 
