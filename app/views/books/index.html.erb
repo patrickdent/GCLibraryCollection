@@ -4,3 +4,9 @@
 <% end %>
 
 <div id="sortable-table"><%= render 'index_table' %></div>
+
+
+
+Download:
+  <%= link_to "CSV", books_path(format: "csv") %> |
+  <%= link_to "Excel", books_path(format: "xls") %>

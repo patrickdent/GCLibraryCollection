@@ -16,13 +16,18 @@ class BooksController < ApplicationController
       @books = Book.includes(:authors, :genre)
       .order("lower(#{sort_column})" + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
     end
+    respond_to do |format|
+      format.html
+      format.csv { send_data @books.to_csv }
+      format.xls { send_data @books.to_csv(col_sep: "\t") }
+    end
   end
 
   def new
     @book = Book.new
     @author = Author.new
     @book.authors << @author
- end
+  end
 
   def create
     @book = Book.new(book_params)
