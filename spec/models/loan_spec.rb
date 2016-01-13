@@ -11,8 +11,7 @@ describe Loan do
 
   let(:user) { create :user }
   let(:book) { create :book }
-  let(:loan) { Loan.create(book_id: book.id, user_id: user.id) }
-  before {}
+  let(:loan) { create :loan, book_id: book.id, user_id: user.id }
 
   it "has user" do expect(loan.user).to eq(user) end
   it "has book" do expect(loan.book).to eq(book) end
@@ -20,6 +19,16 @@ describe Loan do
   it "has due date" do expect(loan.due_date).to eq(Loan::DURATION.days.from_now.to_date) end
   it "has returned date" do expect(loan).to respond_to(:returned_date) end
   it "has renewal count" do expect(loan).to respond_to(:renewal_count) end
+
+  describe "validations" do
+    it "requires a user" do
+      expect(Loan.new(book_id: book.id, start_date: Date.today)).to_not be_valid
+    end
+
+    it "requires a book" do
+      expect(Loan.new(user_id: user.id, start_date: Date.today)).to_not be_valid
+    end
+  end
 
   describe "returning books" do
     before { @loan = Loan.create( book_id: (create :book).id, user_id: (create :user).id ) }
