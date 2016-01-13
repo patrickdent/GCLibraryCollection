@@ -62,7 +62,7 @@ class User < ActiveRecord::Base
 
     problems.push("librarian has marked 'do not lend' for them") if do_not_lend
     problems.push("they are missing contact info") unless contains_field?(name) && (contains_field?(email) || contains_field?(phone))
-    problems.push("they are missing identification ") unless contains_field?(identification)
+    problems.push("they are missing identification") unless contains_field?(identification)
     problems.push("they have borrowed the max number of items already") unless loans.active.count < User::MAX_LOANS
 
     return problems.join(" and ") + "."
