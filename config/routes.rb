@@ -37,6 +37,7 @@ LibraryCollection::Application.routes.draw do
 
   get 'search' => 'search#search'
   get 'import' => 'search#import'
+  get 'import_results' => 'search#import_results'
   post 'scrape' => 'search#scrape'
 
   post 'send_reminders' => 'users#send_reminders'

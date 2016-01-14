@@ -29,15 +29,21 @@ class SearchController < ApplicationController
   end
 
   def scrape
-    isbn = params[:isbn].first.strip.gsub("-", "")
-
-    if (@book = Search.scrape(isbn))
-      flash[:notice] = "Book Added: Please complete additional fields"
-      redirect_to edit_book_path(@book) and return
+    @books = []
+    params[:isbn].each do |isbn|
+      unless isbn.empty?
+        new_book = Search.scrape(isbn.strip.gsub("-", ""))
+        @books.push(new_book) if new_book
+      end
     end
 
-    flash[:error] = "Book Upload Failed"
-    redirect_to import_path
+    if @books.empty?
+      flash[:error] = "Book Upload Failed"
+      redirect_to import_path and return
+    end
+
+    flash[:notice] = "Books Added"
+    render :import_results
   end
 
 end
