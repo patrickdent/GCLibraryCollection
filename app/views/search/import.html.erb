@@ -3,7 +3,11 @@
 <%= form_tag("/scrape", method: "post") do |b| %>
   <fieldset>
     <%= label_tag :isbn, "enter ISBN", class: "ignore-caps" %>
-    <%= text_field_tag :isbn %>
-  </fieldset>  
+    <input name="isbn[]">
+  </fieldset>
+  <fieldset>
+    <%= label_tag :isbn, "enter ISBN", class: "ignore-caps" %>
+    <input name="isbn[]">
+  </fieldset>
   <%= submit_tag "import book" %>
 <% end %>

@@ -29,7 +29,7 @@ class SearchController < ApplicationController
   end
 
   def scrape
-    isbn = params[:isbn].strip.gsub("-", "")
+    isbn = params[:isbn].first.strip.gsub("-", "")
 
     if (@book = Search.scrape(isbn))
       flash[:notice] = "Book Added: Please complete additional fields"
