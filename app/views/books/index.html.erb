@@ -1,6 +1,9 @@
 <h2>All Books</h2>
 <% if admin_user? %>
   <%= link_to "New Book", new_book_path, class: "go-btn right" %>
+  Download:
+  <%= link_to "CSV", books_path(format: "csv") %> |
+  <%= link_to "Excel", books_path(format: "xls") %>
 <% end %>
 
 <div id="sortable-table"><%= render 'index_table' %></div>

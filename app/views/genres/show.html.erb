@@ -3,6 +3,9 @@
 <% if admin_user? %>
   <%= link_to "Edit Category", edit_genre_path(@genre), class: "meh-btn right" %>
   <%= link_to "Delete", genre_path(@genre), method: :delete, data: {confirm: "Are you sure you want to delete this category?"}, class: "danger-btn right" %>
+  Download:
+  <%= link_to "CSV", genre_path(@genre, format: "csv") %> |
+  <%= link_to "Excel", genre_path(@genre, format: "xls") %>
 <% end %>
 
 <div id="sortable-table"><%= render 'show_table' %></div>

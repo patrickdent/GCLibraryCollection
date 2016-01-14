@@ -19,6 +19,12 @@ class GenresController < ApplicationController
     else
       @books = @genre.books.includes(:authors).order(sort_column("title") + " " + sort_direction).paginate(:page => params[:page], :per_page => 50)
     end
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @books.to_csv }
+      format.xls { send_data @books.to_csv(col_sep: "\t") }
+    end
   end
 
   def new
