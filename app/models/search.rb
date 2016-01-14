@@ -72,7 +72,7 @@ class Search
     return {} if temp_hash["totalItems"] == 0
 
     book_hash = temp_hash["items"].first["volumeInfo"]
-
+    # temp_hash["items"].first["volumeInfo"]["categories"] may be a source for keywords
     google_info = Hash.new
     google_info["title"] = book_hash["title"]
     google_info["publisher"] = book_hash["publisher"]
@@ -95,6 +95,8 @@ class Search
     temp_hash = Hash.from_xml(body)
     book_hash = temp_hash['GoodreadsResponse']['search']['results']['work']
 
+    # book_hash is an array of objects (search results?) if what was sent wasn't an ISBN
+    # this is causing errors
     return {} unless book_hash['id']
 
     good_reads_info = Hash.new
