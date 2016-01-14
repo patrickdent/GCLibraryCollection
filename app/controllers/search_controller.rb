@@ -43,7 +43,12 @@ class SearchController < ApplicationController
     end
 
     flash[:notice] = "Books Added"
-    render :import_results
+    redirect_to import_results_path(books: @books)
+  end
+
+  def import_results
+    ids = params[:books] || []
+    @books = ids.map{|id| Book.find_by(id: id.to_i)}
   end
 
 end

@@ -2,8 +2,8 @@
   <thead>
     <tr>
       <th>Title</th>
+      <th>Count</th>
       <th>Author(s)</th>
-      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -11,7 +11,11 @@
       <tr>
         <td>
           <%= link_to b.title, book_path(b.id) %>
+          <%= link_to "edit", edit_book_path(b), class: "meh-btn right" %>
+          <%= link_to "delete", book_path(b), method: :delete, data: {confirm: "Are you sure you want to delete this book?"}, class: "danger-btn right" %>
         </td>
+
+        <td><%= b.count %></td>
 
         <td>
           <% primary_author = b.primary_author %>
@@ -21,11 +25,6 @@
           <% other_contributors.each do |a| %>
             | <%= link_to a.display_name, author_path(a) %>
           <% end %>
-        </td>
-
-        <td>
-          <%= link_to "edit", edit_book_path(b) %>
-          <%= link_to "delete", book_path(b), method: :delete, data: {confirm: "Are you sure you want to delete this book?"} if @admin_user %>
         </td>
       </tr>
     <% end %>
