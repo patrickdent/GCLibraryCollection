@@ -48,6 +48,7 @@ LibraryCollection::Application.routes.draw do
   get 'admin_dashboard' => 'static_pages#admin_dashboard'
   get 'styleguide' => 'static_pages#styleguide'
   get 'user_guide' => 'static_pages#user_guide'
+  get 'about' => 'static_pages#about'
 
   get 'uploaded_books' => 'book_uploads#uploaded_books'
   get 'uploaded_users' => 'user_uploads#uploaded_users'
