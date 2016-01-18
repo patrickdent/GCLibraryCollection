@@ -10,7 +10,7 @@ class LoansController < ApplicationController
     if params[:user_id]
       @user = User.find_by(id: params[:user_id])
       unless @user.good_to_borrow?
-        flash[:alert] = "User Can Not Borrow at This Time"
+        flash[:alert] = "User can not borrow at this time because #{@user.description_of_borrowing_problems}"
         redirect_to user_path(@user.id) and return
       end
       @loan = Loan.new(user: @user)
@@ -30,12 +30,12 @@ class LoansController < ApplicationController
     @loan = Loan.new(loan_params)
 
     unless @loan.user.good_to_borrow?
-      flash[:alert] = "User Can Not Borrow at This Time"
-      redirect_to user_path(@loan.user.id) and return
+      flash[:alert] = "User can not borrow at this time because #{@loan.user.description_of_borrowing_problems}"
+      redirect_to :back and return
     end
     unless @loan.book.available
       flash[:alert] = "Book is Not Available"
-      redirect_to user_path(@loan.user.id) and return
+      redirect_to :back and return
     end
     if @loan.save
       flash[:notice] = "Loan Created"
@@ -99,11 +99,11 @@ class LoansController < ApplicationController
   end
 
   def return
-    if @loan.return_loan
+    if @loan.update_attributes(returned_date: Time.now.to_date)
       @loan.book.update_availability
       flash[:notice] = "Loan Returned"
     else
-      flash[:alert] = "Loan Return Faild"
+      flash[:alert] = "Loan Return Failed"
     end
     redirect_to :back
   end
