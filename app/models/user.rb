@@ -57,6 +57,17 @@ class User < ActiveRecord::Base
     return preferred_first_name
   end
 
+  def description_of_borrowing_problems
+    problems = []
+
+    problems.push("librarian has marked 'do not lend' for them") if do_not_lend
+    problems.push("they are missing contact info") unless contains_field?(name) && (contains_field?(email) || contains_field?(phone))
+    problems.push("they are missing identification") unless contains_field?(identification)
+    problems.push("they have borrowed the max number of items already") unless loans.active.count < User::MAX_LOANS
+
+    return problems.join(" and ") + "."
+  end
+
   def self.able_to_borrow
     active.select{|u| u.good_to_borrow? }
   end

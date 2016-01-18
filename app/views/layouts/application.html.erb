@@ -67,12 +67,13 @@
       </header>
 
     <article><%= yield %></article>
+
     <footer>
-      <p class="sponsor">Generously hosted by </p>
-      <a href="http://nird.us/managed-rails-hosting" id="sponsor-link">
-      <%= image_tag("nird-logo.png") %>
-      </a>
+      <p class="sponsor">
+      Built by <%= link_to 'Adorable Dragons', about_path %> | Generously hosted by
+      <a href="http://nirdhost.com/" id="sponsor-link" target="_blank">NIRDHost</a></p>
     </footer>
+
    </div>
 
   <div class="column-1 right-content">
