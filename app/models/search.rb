@@ -11,31 +11,14 @@ class Search
     google_info = google_api(isbn)
     world_cat_info = world_cat_api(isbn)
 
-    return nil if google_info.empty? && good_reads_info.empty? && world_cat_info.empty?
+    joined_hash = google_info.merge(good_reads_info).merge(world_cat_info)
 
-    joined_hash = join_hashes(google_info, good_reads_info, world_cat_info)
+    return nil if joined_hash.empty?
+
     return create_book(joined_hash, isbn)
   end
 
   private
-
-  def self.join_hashes(main, *supplimental)
-    return nil unless main
-
-    if supplimental.class == Array
-      supplimental.each do |data|
-        data.keys.each do |key|
-          main[key] = data[key] unless main[key]
-        end
-      end
-    elsif supplimental
-      supplimental.keys.each do |key|
-        main[key] = supplimental[key] unless main[key]
-      end
-    end
-
-    return main
-  end
 
   def self.create_book(book_info, isbn)
     return nil unless book_info
@@ -95,8 +78,7 @@ class Search
     temp_hash = Hash.from_xml(body)
     book_hash = temp_hash['GoodreadsResponse']['search']['results']['work']
 
-    # book_hash is an array of objects (search results?) if what was sent wasn't an ISBN
-    # this is causing errors
+    return {} unless book_hash.class == "Hash"
     return {} unless book_hash['id']
 
     good_reads_info = Hash.new
@@ -115,7 +97,7 @@ class Search
     response = http.request(req)
     body = JSON.parse(response.body)
 
-    return {} if body['stat'] == "unknownId"
+    return {} if body['stat'] == "unknownId" || body['stat'] == "invalidId"
 
     book_hash = body["list"].first
 
