@@ -22,25 +22,19 @@ class Search
 
   def self.create_book(book_info, isbn)
     return nil unless book_info
-    b = Book.new
-    b.title = book_info["title"]
-    b.publisher = book_info["publisher"]
-    b.publish_date = book_info["publish_date"]
-    b.language = book_info["language"]
-    b.pages = book_info["pages"]
-    b.isbn = isbn
-    authors = book_info["authors"]
-    b.save!
-    authors = book_info["authors"]
-    if authors
-      authors.each do |name|
-        a = Author.find_or_create_by(name: name)
-        BookAuthor.create(author: a, book: b)
-      end
-    end
-    b.save!
-
+    book_info["isbn"] = isbn
+    authors = book_info.delete("authors")
+    b = Book.new(book_info)
+    b.save
+    build_book_authors(b, authors) if authors
     return b
+  end
+
+  def self.build_book_authors(book, authors)
+    authors.each do |name|
+      a = Author.find_or_create_by(name: name)
+      BookAuthor.create(author: a, book: book)
+    end
   end
 
   def self.google_api(isbn)
@@ -106,7 +100,7 @@ class Search
     world_cat_info["publisher"] = book_hash["publisher"]
     world_cat_info["language"] = book_hash["lang"]
     world_cat_info["publish_date"] = book_hash["year"]
-    world_cat_info["publish_place"] = book_hash["city"]
+    world_cat_info["publication_place"] = book_hash["city"]
 
     return world_cat_info
   end
