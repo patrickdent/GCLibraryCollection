@@ -18,6 +18,8 @@ describe Search do
       # the example Json response has three authors, one of whom is made into the @author variable below
       before do
         create_google_stub(create_google_url(isbn), "exists")
+        create_goodreads_stub(create_goodreads_url(isbn), "exists")
+        create_worldcat_stub(create_worldcat_url(isbn), "exists")
         @author = create(:author, name: "Fen Osler Hampson")
         @author_count = Author.all.length
         @book = Search.scrape(isbn)
@@ -40,11 +42,15 @@ describe Search do
 
     it "will return nil if no book info comes back" do
       create_google_stub(create_google_url(isbn), "does not exist")
+      create_goodreads_stub(create_goodreads_url(isbn), "does not exist")
+      create_worldcat_stub(create_worldcat_url(isbn), "does not exist")
       expect(Search.scrape(isbn)).to eq nil
     end
 
     it "will not error if no author info present" do
       create_google_stub(create_google_url(isbn), "no authors")
+      create_goodreads_stub(create_goodreads_url(isbn), "no authors")
+      create_worldcat_stub(create_worldcat_url(isbn), "no authors")
       expect(Search.scrape(isbn)).to be_valid
     end
   end
