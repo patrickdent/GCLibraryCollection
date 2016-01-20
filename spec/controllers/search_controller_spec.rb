@@ -77,6 +77,8 @@ describe SearchController do
     @admin = create :admin
     @isbn = "1234567890"
     create_google_stub(create_google_url(@isbn), "exists")
+    create_goodreads_stub(create_goodreads_url(@isbn), "exists")
+    create_worldcat_stub(create_worldcat_url(@isbn), "exists")
   end
 
   after do
