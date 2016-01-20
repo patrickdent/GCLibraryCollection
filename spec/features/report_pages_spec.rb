@@ -16,7 +16,9 @@ describe 'Report Pages', type: feature do
       visit reports_path
     end
 
-    it 'displays title' do expect(subject).to have_selector('h2', 'Build Your Report') end
+    it 'displays title' do
+      expect(subject).to have_selector('h2', 'Build Your Report')
+    end
 
 
   end
