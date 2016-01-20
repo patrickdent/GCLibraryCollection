@@ -37,18 +37,13 @@ class Search
   end
 
   def self.google_api(isbn)
-    url = URI.parse("https://www.googleapis.com/books/v1/volumes?q=isbn:#{isbn}&key=")
-    req = Net::HTTP::Get.new(url.to_s + ENV['google_api_key'].to_s)
-    http = Net::HTTP.new(url.host, url.port)
-    http.use_ssl = true
-    response = http.request(req)
-    body = response.body
+    body = call_api("https://www.googleapis.com/books/v1/volumes?q=isbn:#{isbn}&key=#{ENV['google_api_key'].to_s}")
     temp_hash = JSON.parse(body)
 
     return {} if temp_hash["totalItems"] == 0
 
     book_hash = temp_hash["items"].first["volumeInfo"]
-    # temp_hash["items"].first["volumeInfo"]["categories"] may be a source for keywords
+
     google_info = Hash.new
     google_info["title"] = book_hash["title"]
     google_info["publisher"] = book_hash["publisher"]
@@ -62,12 +57,7 @@ class Search
   end
 
   def self.good_reads_api(isbn)
-    url = URI.parse("https://www.goodreads.com/search.xml?key=#{ENV['good_reads_api_key']}=&q=#{isbn}")
-    req = Net::HTTP::Get.new(url.to_s)
-    http = Net::HTTP.new(url.host, url.port)
-    http.use_ssl = true
-    response = http.request(req)
-    body = response.body
+    body = call_api("https://www.goodreads.com/search.xml?key=#{ENV['good_reads_api_key']}=&q=#{isbn}")
     temp_hash = Hash.from_xml(body)
     book_hash = temp_hash['GoodreadsResponse']['search']['results']['work']
 
@@ -84,11 +74,8 @@ class Search
   end
 
   def self.world_cat_api(isbn)
-    url = URI.parse("http://xisbn.worldcat.org/webservices/xid/isbn/#{isbn}?method=getMetadata&format=json&fl=*")
-    req = Net::HTTP::Get.new(url.to_s)
-    http = Net::HTTP.new(url.host, url.port)
-    response = http.request(req)
-    body = JSON.parse(response.body)
+    body = call_api("http://xisbn.worldcat.org/webservices/xid/isbn/#{isbn}?method=getMetadata&format=json&fl=*", false)
+    body = JSON.parse(body)
 
     return {} if body['stat'] == "unknownId" || body['stat'] == "invalidId"
 
@@ -102,5 +89,13 @@ class Search
     world_cat_info["publication_place"] = book_hash["city"]
 
     return world_cat_info
+  end
+
+  def self.call_api(uri, use_ssl = true)
+    url = URI.parse(uri)
+    req = Net::HTTP::Get.new(url.to_s)
+    http = Net::HTTP.new(url.host, url.port)
+    http.use_ssl = use_ssl
+    return http.request(req).body
   end
 end
