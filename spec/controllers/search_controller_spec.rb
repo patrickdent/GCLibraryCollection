@@ -70,30 +70,28 @@ describe SearchController do
 
   describe 'scrape' do
 
-  before do
-    DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.start
-    @user = create :user
-    @admin = create :admin
-    @isbn = "1234567890"
-    create_google_stub(create_google_url(@isbn), "exists")
-    create_goodreads_stub(create_goodreads_url(@isbn), "exists")
-    create_worldcat_stub(create_worldcat_url(@isbn), "exists")
-  end
+    before do
+      DatabaseCleaner.strategy = :transaction
+      DatabaseCleaner.start
+      @user = create :user
+      @admin = create :admin
+      @isbn = "1234567890"
+      create_google_stub(create_google_url(@isbn), "exists")
+      create_goodreads_stub(create_goodreads_url(@isbn), "exists")
+      create_worldcat_stub(create_worldcat_url(@isbn), "exists")
+    end
 
-  after do
-    DatabaseCleaner.clean
-  end
+    after do
+      DatabaseCleaner.clean
+    end
 
-  after :each do
-    Warden.test_reset!
-  end
-
+    after :each do
+      Warden.test_reset!
+    end
 
     context 'as non-admin' do
 
       before { sign_in @user }
-
 
       it 'redirects un-authorized users' do
         expect(get :import).to redirect_to(root_path)
@@ -107,14 +105,14 @@ describe SearchController do
 
       context 'success' do
         it 'redirects to edit book' do
-          post :scrape, isbn: @isbn
-          expect(response).to redirect_to(edit_book_path(Book.last))
+          post :scrape, isbn: [@isbn]
+          expect(response).to redirect_to(import_results_path(books: [1]))
         end
 
          it 'redirects to edit if book is already in the system' do
           book = Search.scrape(@isbn)
-          post :scrape, isbn: @isbn
-          expect(response).to redirect_to(edit_book_path(book))
+          post :scrape, isbn: [@isbn]
+          expect(response).to redirect_to(import_results_path(books: [1]))
         end
       end
     end
