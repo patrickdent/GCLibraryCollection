@@ -30,16 +30,6 @@ describe Loan do
     end
   end
 
-  describe "returning books" do
-    before { @loan = Loan.create( book_id: (create :book).id, user_id: (create :user).id ) }
-
-    it "sets a return date" do
-      @loan.return_loan
-      expect(@loan.returned_date).to_not eq(nil)
-      expect(Time.now.to_date).to eq(@loan.returned_date)
-    end
-  end
-
   describe "renewing books" do
     before { @loan = Loan.create( book_id: (create :book).id, user_id: (create :user).id ) }
 

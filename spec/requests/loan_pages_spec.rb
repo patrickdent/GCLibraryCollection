@@ -56,7 +56,7 @@ describe "Loan Pages" do
       before do
         librarian_login
         @loan = create(:loan, user_id: user.id, book_id: book.id)
-        @loan.return_loan
+        @loan.update_attributes(returned_date: Time.now.to_date)
         visit loan_path(@loan.id)
       end
 

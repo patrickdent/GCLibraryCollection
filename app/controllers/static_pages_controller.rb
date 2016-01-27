@@ -10,4 +10,7 @@ class StaticPagesController < ApplicationController
 
   def user_guide
   end
+
+  def about
+  end
 end

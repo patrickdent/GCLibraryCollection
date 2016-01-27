@@ -38,10 +38,11 @@ describe User do
     end
   end
 
-  describe "good to borrow?" do
+  describe "good to borrow? and description_of_borrowing_problems" do
     it "should require that do_not_lend is not true to borrow" do
       bad_user = FactoryGirl.create :user, do_not_lend: true
       expect(bad_user.good_to_borrow?).to be_false
+      expect(bad_user.description_of_borrowing_problems).to eq("librarian has marked 'do not lend' for them.")
     end
 
     it "should require a name" do
@@ -50,7 +51,9 @@ describe User do
       bad_user_2 = FactoryGirl.create :user
       bad_user_2.name = nil
       expect(bad_user.good_to_borrow?).to be_false
+      expect(bad_user.description_of_borrowing_problems).to eq("they are missing contact info.")
       expect(bad_user_2.good_to_borrow?).to be_false
+      expect(bad_user_2.description_of_borrowing_problems).to eq("they are missing contact info.")
     end
 
     it "should require contact info" do
@@ -61,7 +64,9 @@ describe User do
       bad_user_2.email = ''
       bad_user_2.phone = ''
       expect(bad_user.good_to_borrow?).to be_false
+      expect(bad_user.description_of_borrowing_problems).to eq("they are missing contact info.")
       expect(bad_user_2.good_to_borrow?).to be_false
+      expect(bad_user_2.description_of_borrowing_problems).to eq("they are missing contact info.")
     end
 
     it "should require identification" do
@@ -70,12 +75,26 @@ describe User do
       bad_user_2 = FactoryGirl.create :user
       bad_user_2.identification = ''
       expect(bad_user.good_to_borrow?).to be_false
+      expect(bad_user.description_of_borrowing_problems).to eq("they are missing identification.")
       expect(bad_user_2.good_to_borrow?).to be_false
+      expect(bad_user_2.description_of_borrowing_problems).to eq("they are missing identification.")
     end
 
     it "should not lend beyond MAX_LOANS" do
       bad_user = FactoryGirl.create :user
       expect(bad_user.good_to_borrow?(User::MAX_LOANS + 1)).to be_false
+
+      User::MAX_LOANS.times do
+        create :loan, user_id: bad_user.id
+      end
+      expect(bad_user.description_of_borrowing_problems).to eq("they have borrowed the max number of items already.")
+    end
+
+    it "returns true and no errors if user is good to borrow" do
+      cool_user = FactoryGirl.create :user
+      expect(cool_user.good_to_borrow?(User::MAX_LOANS)).to be_true
+      expect(cool_user.good_to_borrow?).to be_true
+      expect(cool_user.description_of_borrowing_problems).to eq(".")
     end
   end
 
@@ -100,5 +119,4 @@ describe User do
       expect(User.search("Jingles")).to eq([@user2, @user1])
     end
   end
-
 end
