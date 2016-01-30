@@ -23,8 +23,12 @@ class GenresController < ApplicationController
     respond_to do |format|
       format.js
       format.html
-      format.csv { send_data @books.to_csv }
-      format.xls { send_data @books.to_csv(col_sep: "\t") }
+      format.csv do
+        send_data @genre.books.to_csv
+      end
+      format.xls do
+        send_data @genre.books.to_csv(col_sep: "\t")
+      end
     end
   end
 
