@@ -18,6 +18,7 @@ class BooksController < ApplicationController
     end
     respond_to do |format|
       format.html
+      format.js
       format.csv { send_data @books.to_csv }
       format.xls { send_data @books.to_csv(col_sep: "\t") }
     end
