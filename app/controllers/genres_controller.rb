@@ -21,6 +21,7 @@ class GenresController < ApplicationController
     end
 
     respond_to do |format|
+      format.js
       format.html
       format.csv { send_data @books.to_csv }
       format.xls { send_data @books.to_csv(col_sep: "\t") }
