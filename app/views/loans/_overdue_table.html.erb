@@ -3,7 +3,6 @@
   <thead>
     <tr>
       <th><%= sortable "title", "Book Title" %></th>
-      <th><%= sortable "name", "User" %></th>
       <th><%= sortable "start_date", "Start Date" %></th>
       <th><%= sortable "due_date", "Due Date" %></th>
       <th><%= sortable "name", "Borrower Name" %></th>
@@ -16,10 +15,9 @@
     <% @loans.each do |l| %>
       <tr>
         <td><%= link_to l.book.title, book_path(l.book.id) if l.book %></td>
-        <td><%= link_to l.user.name, user_path(l.user.id) if l.user %></td>
         <td><%= l.start_date %></td>
         <td><%= l.due_date %></td>
-        <td><%= l.user.name %></td>
+        <td><%= link_to l.user.name, user_path(l.user.id) if l.user %></td>
         <td><%= l.user.phone %></td>
         <td><%= link_to 'view', loan_path(l.id) %></td>
     </tr>
