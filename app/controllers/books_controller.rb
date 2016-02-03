@@ -21,11 +21,11 @@ class BooksController < ApplicationController
       format.js
       format.csv do
         @books = Book.all
-        send_data @books.to_csv
+        send_data @books.to_csv, filename: "AllBooks-#{Date.today}.csv"
       end
       format.xls do
         @books = Book.all
-        send_data @books.to_csv(col_sep: "\t")
+        send_data @books.to_csv(col_sep: "\t"), filename: "AllBooks-#{Date.today}.csv"
       end
     end
   end

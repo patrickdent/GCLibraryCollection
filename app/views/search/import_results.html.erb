@@ -1,0 +1,34 @@
+<table class="tablesorter">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Count</th>
+      <th>Author(s)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @books.each do |b| %>
+      <tr>
+        <td>
+          <%= link_to b.title, book_path(b.id) %>
+          <%= link_to "edit", edit_book_path(b), class: "meh-btn right" %>
+        </td>
+
+        <td><%= b.count %></td>
+
+        <td>
+          <% primary_author = b.primary_author %>
+          <% other_contributors = b.other_contributors(primary_author) %>
+          <%= link_to primary_author.display_name, author_path(primary_author) if primary_author %>
+          <% unless other_contributors.empty? %>*<% end %>
+          <% other_contributors.each do |a| %>
+            | <%= link_to a.display_name, author_path(a) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
+
+<%= link_to 'Back', import_path, class: "meh-btn right" %>
