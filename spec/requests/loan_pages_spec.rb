@@ -106,14 +106,13 @@ describe "Loan Pages" do
    end
 
     it "shows them in order by start date (desc)" do
-      #note: if the order of the columns in table changes, the "(3)" will need to change to reflect new postion of start date
-      expect(page.find("tbody tr:nth-child(2) td:nth-child(3)")).to have_content(@earlier_loan.start_date.to_s)
-      expect(page.find("tbody tr:nth-child(1) td:nth-child(3)")).to have_content(@later_loan.start_date.to_s)
+      #note: if the order of the columns in table changes, the "(2)" will need to change to reflect new postion of start date
+      expect(page.find("tbody tr:nth-child(2) td:nth-child(2)")).to have_content(@earlier_loan.start_date.to_s)
+      expect(page.find("tbody tr:nth-child(1) td:nth-child(2)")).to have_content(@later_loan.start_date.to_s)
     end
 
     it "has sort links" do
       expect(page).to have_link("Book Title", href: overdue_list_path.to_s + "?direction=asc&sort=title")
-      expect(page).to have_link("User", href: overdue_list_path.to_s + "?direction=asc&sort=name")
       expect(page).to have_link("Start Date", href: overdue_list_path.to_s + "?direction=asc&sort=start_date")
       expect(page).to have_link("Due Date", href: overdue_list_path.to_s + "?direction=asc&sort=due_date")
       expect(page).to have_link("Borrower Name", href: overdue_list_path.to_s + "?direction=asc&sort=name")
@@ -139,64 +138,49 @@ describe "Loan Pages" do
     context "with table sorted by user" do
       it "orders them by (asc)" do
         visit overdue_list_path.to_s + "?direction=asc&sort=name"
-      #note: if the order of the columns in table changes, the "(2)" will need to change to reflect new postion of title
-        expect(page.find("tbody tr:nth-child(1) td:nth-child(2)")).to have_content(user.name)
-        expect(page.find("tbody tr:nth-child(2) td:nth-child(2)")).to have_content(user2.name)
+      #note: if the order of the columns in table changes, the "(4)" will need to change to reflect new postion of title
+        expect(page.find("tbody tr:nth-child(1) td:nth-child(4)")).to have_content(user.name)
+        expect(page.find("tbody tr:nth-child(2) td:nth-child(4)")).to have_content(user2.name)
       end
 
       it "orders them by (desc)" do
         visit overdue_list_path.to_s + "?direction=desc&sort=name"
-      #note: if the order of the columns in table changes, the "(2)" will need to change to reflect new postion of title
-        expect(page.find("tbody tr:nth-child(2) td:nth-child(2)")).to have_content(user.name)
-        expect(page.find("tbody tr:nth-child(1) td:nth-child(2)")).to have_content(user2.name)
+      #note: if the order of the columns in table changes, the "(4)" will need to change to reflect new postion of title
+        expect(page.find("tbody tr:nth-child(2) td:nth-child(4)")).to have_content(user.name)
+        expect(page.find("tbody tr:nth-child(1) td:nth-child(4)")).to have_content(user2.name)
       end
     end
 
     context "with table sorted by due date" do
       it "orders them by (asc)" do
         visit overdue_list_path.to_s + "?direction=asc&sort=due_date"
-      #note: if the order of the columns in table changes, the "(4)" will need to change to reflect new postion of title
-        expect(page.find("tbody tr:nth-child(1) td:nth-child(4)")).to have_content(@earlier_loan.due_date)
-        expect(page.find("tbody tr:nth-child(2) td:nth-child(4)")).to have_content(@later_loan.due_date)
+      #note: if the order of the columns in table changes, the "(3)" will need to change to reflect new postion of title
+        expect(page.find("tbody tr:nth-child(1) td:nth-child(3)")).to have_content(@earlier_loan.due_date)
+        expect(page.find("tbody tr:nth-child(2) td:nth-child(3)")).to have_content(@later_loan.due_date)
       end
 
       it "orders them by (desc)" do
         visit overdue_list_path.to_s + "?direction=desc&sort=due_date"
-      #note: if the order of the columns in table changes, the "(4)" will need to change to reflect new postion of title
-        expect(page.find("tbody tr:nth-child(2) td:nth-child(4)")).to have_content(@earlier_loan.due_date)
-        expect(page.find("tbody tr:nth-child(1) td:nth-child(4)")).to have_content(@later_loan.due_date)
+      #note: if the order of the columns in table changes, the "(3)" will need to change to reflect new postion of title
+        expect(page.find("tbody tr:nth-child(2) td:nth-child(3)")).to have_content(@earlier_loan.due_date)
+        expect(page.find("tbody tr:nth-child(1) td:nth-child(3)")).to have_content(@later_loan.due_date)
       end
     end
 
-    context "with table sorted by borrower name" do
-      it "orders them by (asc)" do
-        visit overdue_list_path.to_s + "?direction=asc&sort=name"
-      #note: if the order of the columns in table changes, the "(5)" will need to change to reflect new postion of title
-        expect(page.find("tbody tr:nth-child(1) td:nth-child(5)")).to have_content(user.name)
-        expect(page.find("tbody tr:nth-child(2) td:nth-child(5)")).to have_content(user2.name)
-      end
-
-      it "orders them by (desc)" do
-        visit overdue_list_path.to_s + "?direction=desc&sort=name"
-      #note: if the order of the columns in table changes, the "(5)" will need to change to reflect new postion of title
-        expect(page.find("tbody tr:nth-child(2) td:nth-child(5)")).to have_content(user.name)
-        expect(page.find("tbody tr:nth-child(1) td:nth-child(5)")).to have_content(user2.name)
-      end
-    end
 
     context "with table sorted by phone" do
       it "orders them by (asc)" do
         visit overdue_list_path.to_s + "?direction=asc&sort=phone"
-      #note: if the order of the columns in table changes, the "(6)" will need to change to reflect new postion of title
-        expect(page.find("tbody tr:nth-child(1) td:nth-child(6)")).to have_content(user.phone)
-        expect(page.find("tbody tr:nth-child(2) td:nth-child(6)")).to have_content(user2.phone)
+      #note: if the order of the columns in table changes, the "(5)" will need to change to reflect new postion of title
+        expect(page.find("tbody tr:nth-child(1) td:nth-child(5)")).to have_content(user.phone)
+        expect(page.find("tbody tr:nth-child(2) td:nth-child(5)")).to have_content(user2.phone)
       end
 
       it "orders them by (desc)" do
         visit overdue_list_path.to_s + "?direction=desc&sort=phone"
-      #note: if the order of the columns in table changes, the "(6)" will need to change to reflect new postion of title
-        expect(page.find("tbody tr:nth-child(2) td:nth-child(6)")).to have_content(user.phone)
-        expect(page.find("tbody tr:nth-child(1) td:nth-child(6)")).to have_content(user2.phone)
+      #note: if the order of the columns in table changes, the "(5)" will need to change to reflect new postion of title
+        expect(page.find("tbody tr:nth-child(2) td:nth-child(5)")).to have_content(user.phone)
+        expect(page.find("tbody tr:nth-child(1) td:nth-child(5)")).to have_content(user2.phone)
       end
     end
   end
