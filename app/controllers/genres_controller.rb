@@ -24,10 +24,10 @@ class GenresController < ApplicationController
       format.js
       format.html
       format.csv do
-        send_data @genre.books.to_csv
+        send_data @genre.books.to_csv, filename: "#{@genre.name}-#{Date.today}.csv"
       end
       format.xls do
-        send_data @genre.books.to_csv(col_sep: "\t")
+        send_data @genre.books.to_csv(col_sep: "\t"), filename: "#{@genre.name}-#{Date.today}.csv"
       end
     end
   end
