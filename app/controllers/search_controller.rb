@@ -10,11 +10,11 @@ class SearchController < ApplicationController
       redirect_to :back
       return
     else
-      @authors = Author.search(params[:search])
-      @books = Book.search(params[:search])
-      @genres = Genre.search(params[:search])
-      @keywords = Keyword.search(params[:search])
-      @users = User.search(params[:search]) if is_librarian?
+      @authors = Author.search(params[:search]).uniq
+      @books = Book.search(params[:search]).uniq
+      @genres = Genre.search(params[:search]).uniq
+      @keywords = Keyword.search(params[:search]).uniq
+      @users = User.search(params[:search]).uniq if is_librarian?
     end
 
     if @authors.blank? && @books.blank? && @genres.blank? && @keywords.blank? && @users.blank?

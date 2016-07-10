@@ -54,6 +54,12 @@ describe SearchController do
       expect(assigns[:books]).to include(book)
     end
 
+    it 'returns only uniq results' do
+      FactoryGirl.create(:user, name: "Jingles Abracadabra", preferred_first_name: "Abracadabra")
+      get :search, search: "Abracadabra"
+      expect(assigns[:users].length).to eq(1)
+    end
+
     it 'returns nothing for unsuccessful searches' do
       get :search, search: "Pegasus"
       response.should be_redirect
