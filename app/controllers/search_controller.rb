@@ -4,7 +4,6 @@ class SearchController < ApplicationController
   before_filter :authenticate_user!, except: [:search]
   before_filter :is_admin?, only: [:import, :scrape]
 
-
   def search
     if params[:search] == ""
       flash[:alert] = "Please enter a search term."
@@ -22,7 +21,6 @@ class SearchController < ApplicationController
       flash[:alert] = "Your search yielded no results."
       redirect_to :back
     end
-
   end
 
   def import
@@ -39,7 +37,7 @@ class SearchController < ApplicationController
 
     if @books.empty?
       flash[:error] = "Book Upload Failed"
-      redirect_to import_path and return
+      return redirect_to import_path
     end
 
     flash[:notice] = "Books Added"
