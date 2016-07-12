@@ -38,6 +38,25 @@ describe UsersController do
       expect(get :show, id: @librarian.id).to redirect_to(root_path)
       expect(post :send_reminders).to redirect_to(root_path)
     end
+
+    it 'permits patrons to see their own show page' do
+      patron = create :user
+      sign_in patron
+      get :show, id: patron.id
+      expect(response.code).to eq("200")
+    end
+
+    it 'shows loans ordered newest first' do
+      patron = create :user
+      old_loan = create :loan, user: patron, start_date: Date.yesterday
+      new_loan = create :loan, user: patron, start_date: Date.today, returned_date: Date.today
+      sign_in patron
+
+      get :show, id: patron.id
+      loans = assigns(:loans)
+      expect(loans.first).to eq(new_loan)
+      expect(loans.last).to eq(old_loan)
+    end
   end
 
 

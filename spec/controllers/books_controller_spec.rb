@@ -42,6 +42,18 @@ describe BooksController do
 
       expect(assigns[:book]).to eq @book
     end
+
+    it 'shows loans ordered newest first' do
+      sign_in @librarian
+      old_loan = create :loan, book: @book, start_date: Date.yesterday
+      new_loan = create :loan, book: @book, start_date: Date.today, returned_date: Date.today
+
+      get :show, id: @book.id
+      loans = assigns(:loans)
+      expect(loans.first).to eq(new_loan)
+      expect(loans.last).to eq(old_loan)
+    end
+
   end
 
   describe "GET 'edit'" do
