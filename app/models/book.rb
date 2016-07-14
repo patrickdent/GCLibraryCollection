@@ -54,13 +54,16 @@ class Book < ActiveRecord::Base
   end
 
   def self.to_csv(options = {})
-    columns = %w{title isbn publisher publish-date language primary-author category location missing notable }
+    columns = %w{ primary-author category }
     CSV.generate(options) do |csv|
-      csv << columns
+      # binding.pry
+      csv << column_names + columns  #headers
+
+
       all.each do |book|
         auth = book.primary_author ? book.primary_author.name : ''
-        cat = book.genre ? book.genre.name : ''
-        csv << [book.title, book.isbn, book.publisher, book.publish_date, book.language, auth, cat, book.location, book.missing, book.notable]
+        cat_name = book.genre ? book.genre.name : ''
+        csv << book.attributes.values_at(*column_names) + [auth, cat_name]
       end
     end
   end

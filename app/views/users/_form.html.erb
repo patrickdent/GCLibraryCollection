@@ -1,10 +1,10 @@
 <%= form_for @user do |u| %>
   <fieldset>
-    <%= u.label :name %>
+    <%= u.label :name, "Full Legal Name" %>
     <%= u.text_field :name %>
   </fieldset>
   <fieldset>
-    <%= u.label :preferred_first_name %>
+    <%= u.label :preferred_first_name, "Preferred First Name" %>
     <%= u.text_field :preferred_first_name %>
   </fieldset>
   <fieldset>

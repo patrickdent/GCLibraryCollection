@@ -4,25 +4,23 @@ class SearchController < ApplicationController
   before_filter :authenticate_user!, except: [:search]
   before_filter :is_admin?, only: [:import, :scrape]
 
-
   def search
     if params[:search] == ""
       flash[:alert] = "Please enter a search term."
       redirect_to :back
       return
     else
-      @authors = Author.search(params[:search])
-      @books = Book.search(params[:search])
-      @genres = Genre.search(params[:search])
-      @keywords = Keyword.search(params[:search])
-      @users = User.search(params[:search]) if is_librarian?
+      @authors = Author.search(params[:search]).uniq
+      @books = Book.search(params[:search]).uniq
+      @genres = Genre.search(params[:search]).uniq
+      @keywords = Keyword.search(params[:search]).uniq
+      @users = User.search(params[:search]).uniq if is_librarian?
     end
 
     if @authors.blank? && @books.blank? && @genres.blank? && @keywords.blank? && @users.blank?
       flash[:alert] = "Your search yielded no results."
       redirect_to :back
     end
-
   end
 
   def import
@@ -39,7 +37,7 @@ class SearchController < ApplicationController
 
     if @books.empty?
       flash[:error] = "Book Upload Failed"
-      redirect_to import_path and return
+      return redirect_to import_path
     end
 
     flash[:notice] = "Books Added"
