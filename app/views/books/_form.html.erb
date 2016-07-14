@@ -1,5 +1,5 @@
 <small>If the author of this book cannot be found in the drop down, you can create them in the author form at the bottom of this page. Note that this will cause the form to refresh.</small>
-<% disabled ||= true %>
+<% disabled = true %>
 <% disabled = false if admin_user? %>
 <%= form_for @book do |f| %>
     <fieldset>
@@ -96,7 +96,7 @@
     <br>
     <fieldset>
       <%= f.label :notable %>
-      <%= f.check_box :notable %>
+      <%= f.check_box :notable, disabled: disabled %>
     </fieldset>
     <fieldset>
       <%= f.label :keep_multiple %>

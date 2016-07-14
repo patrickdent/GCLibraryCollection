@@ -59,7 +59,7 @@ class BooksController < ApplicationController
 
     if current_user && is_given_user_or_librarian?(current_user)
       @loans = Loan.where(book_id: @book.id).joins(:user)
-      .order("returned_date ASC", sort_column("start_date") + " " + sort_direction("desc")).paginate(:page => params[:page], :per_page => 50)
+      .order("returned_date DESC", sort_column("start_date") + " " + sort_direction("desc")).paginate(:page => params[:page], :per_page => 50)
     end
   end
 
