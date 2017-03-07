@@ -1,5 +1,15 @@
-<h2>Please Select a Category to Inventory</h2>
+<h2>Please Select a Category or Location to Inventory</h2>
 
+<h3>Locations</h3>
+<ul>
+  <% @locations.each do |loc| %>
+    <li><%= link_to loc, inventory_checklist_path(location: loc) %></li>
+  <% end %>
+</ul>
+
+<hr>
+
+<h3>Categories</h3>
 <ul>
   <% @genres.each do |genre| %>
     <li><%= link_to genre.name, inventory_checklist_path(genre_id: genre.id) %></li>

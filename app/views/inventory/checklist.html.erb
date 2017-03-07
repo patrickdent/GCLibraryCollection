@@ -1,7 +1,7 @@
 <header class="inventory">
   <p id="ajax-messages" class="inventory alert"></p>
-  <h2><%= @genre.name %></h2>
-  <p>Last updated: <%= @last_inventoried %></p>
+  <h2><%= @genre ? @genre.name : @location %></h2>
+  <p><%= @last_inventoried ? ("Last updated: " + @last_inventoried) : "" %></p>
   <small>Note: blank values will not be saved</small>
 </header>
 
@@ -22,7 +22,7 @@
     <th>Done?</th>
   </thead>
   <tbody>
-    <% @genre.books.each do |book| %>
+    <% @books.each do |book| %>
       <tr class="<%= 'complete' if book.inventoried %>">
         <td><span class="<%= 'unavailable' if !book.available %>" title="unavailable"></span></td>
         <td><%=  link_to "edit", edit_book_path(book), target: "_blank" %></td>
@@ -75,5 +75,8 @@
     <% end %>
   </tbody>
 </table>
-
-<%= button_to "Done", complete_inventory_path(genre_id: @genre.id), class: "go-btn right" %>
+<% if @genre %>
+  <%= button_to "Done", complete_inventory_path(genre_id: @genre.id), class: "go-btn right" %>
+<% else %>
+  <%= button_to "Done", complete_inventory_path(location: @location), class: "go-btn right" %>
+<% end %>

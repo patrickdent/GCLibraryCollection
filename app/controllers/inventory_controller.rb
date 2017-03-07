@@ -4,12 +4,21 @@ class InventoryController < ApplicationController
   before_filter :is_admin?
 
   def genre_select
+    @locations = Book.all.collect(&:location).uniq.compact.reject(&:empty?)
     @genres = Genre.all
   end
 
   def checklist
-    @genre = Genre.find_by(id: params[:genre_id]) if params[:genre_id]
-    @last_inventoried = (@genre.last_inventoried ? @genre.last_inventoried.localtime.strftime("%m/%d/%Y at %I:%M%p") : "never")
+    if params[:genre_id]
+      @genre = Genre.find_by(id: params[:genre_id])
+      if @genre
+        @books = @genre.books
+        @last_inventoried = (@genre.last_inventoried ? @genre.last_inventoried.localtime.strftime("%m/%d/%Y at %I:%M%p") : "never")
+      end
+    elsif params[:location]
+      @location = params[:location]
+      @books = Book.where(location: params[:location])
+    end
     render layout: "minimal"
   end
 
@@ -25,12 +34,20 @@ class InventoryController < ApplicationController
   end
 
   def complete_inventory
-    @genre = Genre.find_by(id: params[:genre_id])
-    @genre.update_attributes(last_inventoried: DateTime.now)
-    @genre.books.each do |b|
-      b.update_attributes(inventoried: false)
+    if params[:genre_id]
+      @genre = Genre.find_by(id: params[:genre_id])
+      @genre.update_attributes(last_inventoried: DateTime.now)
+      @genre.books.each do |b|
+        b.update_attributes(inventoried: false)
+      end
+      return redirect_to genre_path(@genre)
+    elsif params[:location]
+      @books = Book.where(location: params[:location])
+      @books.each do |b|
+        b.update_attributes(inventoried: false)
+      end
+      return redirect_to admin_dashboard_path
     end
-    redirect_to genre_path(@genre)
   end
 
   private
