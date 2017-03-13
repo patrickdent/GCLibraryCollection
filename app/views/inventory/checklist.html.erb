@@ -5,7 +5,7 @@
   <small>Note: blank values will not be saved</small>
 </header>
 
-<table id="inventory_table" class="tablesorter {sortlist: [[2,0]]}">
+<table class="tablesorter {sortlist: [[2,0]]}">
   <thead>
     <th></th>
     <th></th>
@@ -34,42 +34,22 @@
         <td><input type="number" value="<%= book.count %>" class="book_<%= book.id %>" name="count"></td>
         <td>
           <input type="hidden" value="false" class="book_<%= book.id %>" name="in_storage">
-          <% if book.in_storage %>
-            <input type="checkbox" value="true" class="book_<%= book.id %>" name="in_storage" checked >
-          <% else %>
-            <input type="checkbox" value="true" class="book_<%= book.id %>" name="in_storage">
-          <% end %>
+          <input type="checkbox" value="true" class="book_<%= book.id %>" name="in_storage" value="<%= book.in_storage %>" <%= book.in_storage ? "checked" : "" %>>
         </td>
         <td>
           <input type="hidden" value="false" class="book_<%= book.id %>" name="missing">
-          <% if book.missing %>
-            <input type="checkbox" value="true" class="book_<%= book.id %>" name="missing" checked >
-          <% else %>
-            <input type="checkbox" value="true" class="book_<%= book.id %>" name="missing">
-          <% end %>
+          <input type="checkbox" value="true" class="book_<%= book.id %>" name="missing" <%= book.missing ? "checked" : "" %>>
         </td>
         <td>
           <input type="hidden" value="false" class="book_<%= book.id %>" name="notable">
-          <% if book.notable %>
-            <input type="checkbox" value="true" class="book_<%= book.id %>" name="notable" checked >
-          <% else %>
-            <input type="checkbox" value="true" class="book_<%= book.id %>" name="notable">
-          <% end %>
+          <input type="checkbox" value="true" class="book_<%= book.id %>" name="notable" <%= book.notable ? "checked" : "" %>>
         </td>
         <td>
           <input type="hidden" value="false" class="book_<%= book.id %>" name="keep_multiple">
-          <% if book.keep_multiple %>
-            <input type="checkbox" value="true" class="book_<%= book.id %>" name="keep_multiple" checked >
-          <% else %>
-            <input type="checkbox" value="true" class="book_<%= book.id %>" name="keep_multiple">
-          <% end %>
+          <input type="checkbox" value="true" class="book_<%= book.id %>" name="keep_multiple" <%= book.keep_multiple ? "checked" : "" %>>
         </td>
         <td>
-          <% if book.inventoried %>
-            <input type="checkbox" value="true" onchange="sendData(<%= book.id %>)" class="inventory-commit book_<%= book.id %>" name="inventoried" checked>
-          <% else %>
-            <input type="checkbox" value="true" onchange="sendData(<%= book.id %>)" class="inventory-commit book_<%= book.id %>" name="inventoried" >
-          <% end %>
+          <input type="checkbox" value="true" onchange="sendData(<%= book.id %>)" class="inventory-commit book_<%= book.id %>" name="inventoried" <%= book.inventoried ? "checked" : "" %>>
         </td>
       </tr>
     <% end %>
