@@ -9,3 +9,28 @@
 .inventory h3 {
   color: $orange;
 }
+
+.inventory input.short{
+  width: 3rem;
+}
+
+.inventory table th {
+  word-wrap:break-word;
+}
+
+.inventory table td {
+  padding: 0.5rem 0.1rem;
+  text-align: center;
+}
+
+.inventory table td:nth-child(1n+0) {
+  background-color: lighten( $hotpink, 30% );
+}
+
+.inventory table td:nth-child(2n+0) {
+  background-color: $light_gray;
+}
+
+.inventory table td:nth-child(3n+0) {
+  background-color: $lightest_gray;
+}
