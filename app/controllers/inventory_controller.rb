@@ -4,8 +4,8 @@ class InventoryController < ApplicationController
   before_filter :is_admin?
 
   def genre_select
-    @locations = Book.all.collect(&:location).uniq.compact.reject(&:empty?)
-    @genres = Genre.all
+    @locations = Book.all.collect(&:location).uniq.compact.reject(&:empty?).sort
+    @genres = Genre.all.sort_by { |a| a.name }
   end
 
   def checklist
