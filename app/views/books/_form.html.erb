@@ -25,6 +25,8 @@
           </tr>
         </thead>
         <tbody>
+          <!-- empty row so js has something to hook new field onto -->
+          <tr class="author-row"></tr>
           <% for @book_author in @book.book_authors %>
             <% @book.id.nil? ? temp_id = rand(1000) : temp_id = @book_author.id %>
             <%= fields_for @book_author do |ff| %>

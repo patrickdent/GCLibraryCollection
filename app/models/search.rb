@@ -87,7 +87,8 @@ class Search
     world_cat_info["language"] = book_hash["lang"]
     world_cat_info["publish_date"] = book_hash["year"]
     world_cat_info["publication_place"] = book_hash["city"]
-
+    # Note: we do not include authors from World Cat because they are
+    # horribly formatted, like "by Louse Pince." instead of "Louise Pince".
     return world_cat_info
   end
 
