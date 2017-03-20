@@ -60,8 +60,7 @@ class Search
     body = call_api("https://www.goodreads.com/search.xml?key=#{ENV['good_reads_api_key']}=&q=#{isbn}")
     temp_hash = Hash.from_xml(body)
     book_hash = temp_hash['GoodreadsResponse']['search']['results']['work']
-
-    return {} unless book_hash.class == "Hash"
+    return {} unless book_hash.class == Hash
     return {} unless book_hash['id']
 
     good_reads_info = Hash.new
